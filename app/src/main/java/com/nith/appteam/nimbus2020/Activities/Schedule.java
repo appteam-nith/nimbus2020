@@ -10,6 +10,7 @@ import android.view.View;
 import com.google.android.material.button.MaterialButton;
 import com.nith.appteam.nimbus2020.Fragments.Day1Fragment;
 import com.nith.appteam.nimbus2020.Fragments.Day2Fragment;
+import com.nith.appteam.nimbus2020.Fragments.Day3Fragment;
 import com.nith.appteam.nimbus2020.R;
 import android.app.Fragment;
 import android.widget.Button;
@@ -28,6 +29,7 @@ public class Schedule extends AppCompatActivity {
         day1Button=findViewById(R.id.day1Button);
         day2Button=findViewById(R.id.day2Button);
         day3Button=findViewById(R.id.day3Button);
+        LoadFragment(new Day1Fragment());
         day1Button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -38,6 +40,12 @@ public class Schedule extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 LoadFragment(new Day2Fragment());
+            }
+        });
+        day3Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                LoadFragment(new Day3Fragment());
             }
         });
 
