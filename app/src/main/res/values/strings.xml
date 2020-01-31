@@ -1,3 +1,10 @@
 <resources>
+<<<<<<< HEAD
     <string name="app_name">Nimbus2020</string>
+=======
+
+    <string name="app_name">Nimbus2020</string>
+    <string name="baseUrl">http://api.festnimbus.com</string>
+
+>>>>>>> 7310f1245ad476ead7e9e2ce85b9a7a9727e9830
 </resources>

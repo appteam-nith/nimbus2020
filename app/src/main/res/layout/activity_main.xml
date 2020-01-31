@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+<<<<<<< HEAD
     tools:context=".MainActivity">
 
     <TextView
@@ -14,5 +15,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+=======
+    tools:context=".Activities.MainActivity">
+>>>>>>> 7310f1245ad476ead7e9e2ce85b9a7a9727e9830
 
 </androidx.constraintlayout.widget.ConstraintLayout>
