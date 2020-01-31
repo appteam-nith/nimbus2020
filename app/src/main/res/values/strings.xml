@@ -3,4 +3,7 @@
     <string name="app_name">Nimbus2020</string>
     <string name="baseUrl">http://api.festnimbus.com</string>
 
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
