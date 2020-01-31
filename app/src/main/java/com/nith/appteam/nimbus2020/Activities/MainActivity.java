@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Intent intent=new Intent(this,SponsorsActivity.class);
+        Intent intent=new Intent(this,QuizMainActivity.class);
         startActivity(intent);
     }
 }
