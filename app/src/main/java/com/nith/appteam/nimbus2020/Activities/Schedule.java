@@ -12,11 +12,13 @@ import com.nith.appteam.nimbus2020.Fragments.Day1Fragment;
 import com.nith.appteam.nimbus2020.Fragments.Day2Fragment;
 import com.nith.appteam.nimbus2020.R;
 import android.app.Fragment;
+import android.widget.Button;
+
 public class Schedule extends AppCompatActivity {
 
-    MaterialButton day1Button;
-    MaterialButton day2Button;
-    MaterialButton day3Button;
+    Button day1Button;
+    Button day2Button;
+    Button day3Button;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
