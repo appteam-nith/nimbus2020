@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <application
+    <application>
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +12,33 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Activities.SponsorsActivity"></activity>
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".Activities.MainActivity"/>
+            <activity android:name=".Activities.Add_Exhibition"
+                android:theme="@style/AppTheme"></activity>
+            <activity android:name=".Activities.department_Events"
+                android:theme="@style/AppTheme"
+                />
+            <activity android:name=".Activities.Institute_Events"
+                android:theme="@style/AppTheme"/>
+            <activity android:name=".Activities.Add_Workshop"
+                android:theme="@style/AppTheme"/>
+            <activity android:name=".Activities.Add_Talk"
+                android:theme="@style/AppTheme"/>
+            <activity
+                android:name=".Activities.Exhhibition"
+
+                android:label="@string/title_activity_exhhibition"
+                android:theme="@style/AppTheme.NoActionBar" />
+            <activity
+                android:name=".Activities.Workshops"
+
+                android:label="@string/title_activity_workshops"
+                android:theme="@style/AppTheme" />
+            <activity
+                android:name=".Activities.Talks"
+
+                android:label="@string/title_activity_talks"
+                android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,6 +47,7 @@
         </activity>
         <activity android:name=".Activities.Quiz"></activity>
         <activity android:name=".Activities.DepartmentQuiz" />
+
         <activity android:name=".Activities.QuizMainActivity"/>
     </application>
 
