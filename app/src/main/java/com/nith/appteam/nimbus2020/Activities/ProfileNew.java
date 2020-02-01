@@ -15,9 +15,6 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -26,6 +23,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -41,6 +39,8 @@ import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileNew extends AppCompatActivity {
@@ -78,10 +78,13 @@ public class ProfileNew extends AppCompatActivity {
         submitProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (imageUrl.equals(""))
+                if (imageUrl.equals("")) {
                     imageUrl = String.valueOf(R.string.defaultImageUrl);
-                if (!name.getText().toString().isEmpty() && !rollno.getText().toString().isEmpty() &&
-                        !phoneNumber.getText().toString().isEmpty() && !college.getText().toString().isEmpty()) {
+                }
+                if (!name.getText().toString().isEmpty() && !rollno.getText().toString().isEmpty()
+                        &&
+                        !phoneNumber.getText().toString().isEmpty()
+                        && !college.getText().toString().isEmpty()) {
 
                     progressBar.setVisibility(View.VISIBLE);
                     JSONObject details = new JSONObject();
@@ -99,32 +102,37 @@ public class ProfileNew extends AppCompatActivity {
                     Log.v("TESTING", String.valueOf(details));
                     final String requestBody = details.toString();
                     RequestQueue queue = Volley.newRequestQueue(ProfileNew.this);
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/auth/signup", new com.android.volley.Response.Listener<String>() {
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                            getString(R.string.baseUrl) + "/auth/signup",
+                            new com.android.volley.Response.Listener<String>() {
 
-                        @Override
-                        public void onResponse(String response) {
-                            Toast.makeText(ProfileNew.this, response, Toast.LENGTH_LONG).show();
-                            if (Integer.parseInt(response) == 0) {
-                                editor.putString("name", name.getText().toString());
-                                editor.putString("rollno", rollno.getText().toString());
-                                editor.putString("college", college.getText().toString());
-                                editor.putString("phone", phoneNumber.getText().toString());
-                                editor.putString("image", imageUrl);
-                                editor.putBoolean("profileStatus", true);
-                                editor.commit();
-                                progressBar.setVisibility(View.GONE);
-                                Intent i = new Intent(ProfileNew.this, MainActivity.class);
-                                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(i);
-                                finish();
-                            }
-                        }
-                    }, new com.android.volley.Response.ErrorListener() {
+                                @Override
+                                public void onResponse(String response) {
+                                    Toast.makeText(ProfileNew.this, response,
+                                            Toast.LENGTH_LONG).show();
+                                    if (Integer.parseInt(response) == 0) {
+                                        editor.putString("name", name.getText().toString());
+                                        editor.putString("rollno", rollno.getText().toString());
+                                        editor.putString("college", college.getText().toString());
+                                        editor.putString("phone", phoneNumber.getText().toString());
+                                        editor.putString("image", imageUrl);
+                                        editor.putBoolean("profileStatus", true);
+                                        editor.commit();
+                                        progressBar.setVisibility(View.GONE);
+                                        Intent i = new Intent(ProfileNew.this, MainActivity.class);
+                                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                                | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(i);
+                                        finish();
+                                    }
+                                }
+                            }, new com.android.volley.Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Log.e("VOLLEY", error.toString());
                             progressBar.setVisibility(View.GONE);
-                            Toast.makeText(ProfileNew.this, error.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfileNew.this, error.toString(),
+                                    Toast.LENGTH_SHORT).show();
                         }
                     }) {
                         @Override
@@ -147,7 +155,10 @@ public class ProfileNew extends AppCompatActivity {
 
 
                             } catch (UnsupportedEncodingException uee) {
-                                VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+                                VolleyLog.wtf(
+                                        "Unsupported Encoding while trying to get the bytes of %s"
+                                                + " using %s",
+                                        requestBody, "utf-8");
                                 return null;
                             }
                         }
@@ -156,8 +167,10 @@ public class ProfileNew extends AppCompatActivity {
                             DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
                             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
                     queue.add(stringRequest);
-                } else
-                    Toast.makeText(ProfileNew.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(ProfileNew.this, "Please fill all fields",
+                            Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -170,7 +183,8 @@ public class ProfileNew extends AppCompatActivity {
             Uri photoUri = data.getData();
             Bitmap selectedImage = null;
             try {
-                selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
+                selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(),
+                        photoUri);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -229,7 +243,9 @@ public class ProfileNew extends AppCompatActivity {
                     public void onError(String requestId, ErrorInfo error) {
                         Log.i("HELLO", "JIJIJ");
 //                      finish();
-                        Toast.makeText(ProfileNew.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();
+                        Toast.makeText(ProfileNew.this,
+                                "Upload Failed" + error.getDescription() + " requestId" + requestId,
+                                Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
                     }
 

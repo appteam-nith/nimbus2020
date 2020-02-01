@@ -5,11 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,6 +26,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class Workshops extends AppCompatActivity {
     private RecyclerView recyclerViewwor;
     private List<WorkshopModel> workshopList;
@@ -38,12 +38,11 @@ public class Workshops extends AppCompatActivity {
     private RequestQueue requestQueuework;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workshops);
-        requestQueuework= Volley.newRequestQueue(this);
+        requestQueuework = Volley.newRequestQueue(this);
         Toolbar toolbar = findViewById(R.id.toolbarworksop);
         setSupportActionBar(toolbar);
 
@@ -51,46 +50,50 @@ public class Workshops extends AppCompatActivity {
         fabwo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent= new Intent(Workshops.this,Add_Workshop.class);
+                Intent intent = new Intent(Workshops.this, Add_Workshop.class);
                 startActivity(intent);
 
             }
         });
-        recyclerViewwor= findViewById(R.id.recyclerViewWorkshop);
+        recyclerViewwor = findViewById(R.id.recyclerViewWorkshop);
         recyclerViewwor.setHasFixedSize(true);
-        recyclerViewwor.setLayoutManager( new LinearLayoutManager(this));
-        workshopList= new ArrayList<>();
-        PrefsWorkshop prefsWorkshop=new PrefsWorkshop(this);
-        String search=prefsWorkshop.getSearch();
-        workshopList=getWorkshop(search);
+        recyclerViewwor.setLayoutManager(new LinearLayoutManager(this));
+        workshopList = new ArrayList<>();
+        PrefsWorkshop prefsWorkshop = new PrefsWorkshop(this);
+        String search = prefsWorkshop.getSearch();
+        workshopList = getWorkshop(search);
 
     }
+
     public List<WorkshopModel> getWorkshop(String searchTerm)//all info returned from api
     {
         workshopList.clear();
-        workshopRecyclerViewAdapter=new WorkshopRecyclerViewAdapter(this,workshopList);
+        workshopRecyclerViewAdapter = new WorkshopRecyclerViewAdapter(this, workshopList);
         recyclerViewwor.setAdapter(workshopRecyclerViewAdapter);
 
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, Constant.Url+ searchTerm,null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
+                Constant.Url + searchTerm, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 //                Log.d("Response",response.toString());
-                for(int i=0;i<response.length();i++)
-                {
+                for (int i = 0; i < response.length(); i++) {
                     try {
-                        JSONObject workshopObj= response.getJSONObject(i);
-                        WorkshopModel workshop=new WorkshopModel();
-//                        talk.setName("Aysuh KAusnldjhlkhfkllnewlfnlwenflkjewlkjfljwhekjksdjkjhkuhkjhkjsdhlehlkjhalhldhll");
-//                        talk.setVenue("LEcture aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
+                        JSONObject workshopObj = response.getJSONObject(i);
+                        WorkshopModel workshop = new WorkshopModel();
+//                        talk.setName("Aysuh
+//                        KAusnldjhlkhfkllnewlfnlwenflkjewlkjfljwhekjksdjkjhkuhkjhkjsdhlehlkjhalhldhll");
+//                        talk.setVenue("LEcture
+//                        aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
 //                        talk.setRegURL("https://github.com/appteam-nith/nimbus2019");
-//                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
+//                        talk.setInfo("HE is
+//                        veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
                         workshop.setNameWor(workshopObj.getString("name"));
                         workshop.setDateWor("On: " + workshopObj.getString("date"));
                         workshop.setImageWor(workshopObj.getString("image"));
                         workshop.setInfoWor(workshopObj.getString("info"));
-                        workshop.setUrlWor(  workshopObj.getString("regUrl"));
+                        workshop.setUrlWor(workshopObj.getString("regUrl"));
                         workshop.setVenueWor("Venue: " + workshopObj.getString("venue"));
                         workshop.setTypeWor(workshopObj.getString("type"));
                         // Log.d("Talk",talk.getName());
@@ -107,7 +110,7 @@ public class Workshops extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Error",error.getMessage());
+                Log.d("Error", error.getMessage());
 
             }
         });

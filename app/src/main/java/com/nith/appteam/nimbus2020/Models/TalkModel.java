@@ -6,8 +6,8 @@ public class TalkModel
         implements Serializable {
 
 
-    private static final long id= 1L;
-    private String name,info,venue,regURL,date,image;
+    private static final long id = 1L;
+    private String name, info, venue, regURL, date, image;
 
     public TalkModel() {
     }

@@ -1,10 +1,10 @@
 package com.nith.appteam.nimbus2020.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 
 import com.nith.appteam.nimbus2020.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class CampusAmbassadorPost extends AppCompatActivity {
 

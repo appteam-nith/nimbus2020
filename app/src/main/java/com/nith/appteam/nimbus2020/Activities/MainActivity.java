@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.cloudinary.android.MediaManager;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
@@ -15,15 +13,15 @@ import com.squareup.picasso.Picasso;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends AppCompatActivity {
+    Button quiz, sponsor;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     private CircleImageView profileButton;
     private Button post;
-
-    Button quiz,sponsor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
         Picasso.with(MainActivity.this)
 
 
-
                 .load(sharedPref.getString("imageUrl", String.valueOf(R.string.defaultImageUrl)))
                 .resize(80, 80)
                 .centerCrop()
@@ -74,13 +71,13 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        quiz=findViewById(R.id.quiz);
-        sponsor=findViewById(R.id.sponsors);
+        quiz = findViewById(R.id.quiz);
+        sponsor = findViewById(R.id.sponsors);
 
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,QuizMainActivity.class);
+                Intent intent = new Intent(MainActivity.this, QuizMainActivity.class);
                 startActivity(intent);
             }
         });
@@ -88,11 +85,10 @@ public class MainActivity extends AppCompatActivity {
         sponsor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,SponsorsActivity.class);
+                Intent intent = new Intent(MainActivity.this, SponsorsActivity.class);
                 startActivity(intent);
             }
         });
-
 
 
     }

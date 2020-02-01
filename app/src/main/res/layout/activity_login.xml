@@ -27,24 +27,24 @@
         android:textColor="#fff"
         android:textSize="16sp" />
 
-<!--    <TextView-->
-<!--        android:id="@+id/skip"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_centerHorizontal="true"-->
-<!--        android:layout_marginLeft="24dp"-->
-<!--        android:layout_marginRight="24dp"-->
-<!--        android:layout_marginBottom="16dp"-->
-<!--        android:background="@drawable/login_button"-->
-<!--        android:gravity="center"-->
-<!--        android:onClick="onSkipClick"-->
-<!--        android:paddingTop="12dp"-->
-<!--        android:paddingBottom="12dp"-->
-<!--        android:text="Skip"-->
-<!--        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"-->
-<!--        android:textColor="#fff"-->
-<!--        android:textSize="16sp" />-->
+    <!--    <TextView-->
+    <!--        android:id="@+id/skip"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_alignParentBottom="true"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:layout_marginLeft="24dp"-->
+    <!--        android:layout_marginRight="24dp"-->
+    <!--        android:layout_marginBottom="16dp"-->
+    <!--        android:background="@drawable/login_button"-->
+    <!--        android:gravity="center"-->
+    <!--        android:onClick="onSkipClick"-->
+    <!--        android:paddingTop="12dp"-->
+    <!--        android:paddingBottom="12dp"-->
+    <!--        android:text="Skip"-->
+    <!--        android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"-->
+    <!--        android:textColor="#fff"-->
+    <!--        android:textSize="16sp" />-->
 
 
     <ProgressBar

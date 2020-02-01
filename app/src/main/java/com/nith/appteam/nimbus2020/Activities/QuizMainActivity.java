@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -34,47 +35,60 @@ import androidx.recyclerview.widget.RecyclerView;
 public class QuizMainActivity extends AppCompatActivity {
     RecyclerView quizrecyclerView;
     RequestQueue queue;
-    ArrayList<Id_Value> quiztypes =new ArrayList<>();
+    ArrayList<Id_Value> quiztypes = new ArrayList<>();
+    ProgressBar loadwall;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_activity_main);
-        quizrecyclerView=findViewById(R.id.quizrecyclerview);
+        quizrecyclerView = findViewById(R.id.quizrecyclerview);
         queue = Volley.newRequestQueue(QuizMainActivity.this);
 
+        loadwall = findViewById(R.id.loadwall);
+
         quizrecyclerView.setLayoutManager(new LinearLayoutManager(this));
-        quizrecyclerView.setAdapter(new QuizRecyclerAdapter(QuizMainActivity.this,quiztypes));
+        quizrecyclerView.setAdapter(new QuizRecyclerAdapter(QuizMainActivity.this, quiztypes));
         getdata();
         quizrecyclerView.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, quizrecyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                    postdata(position);
+                new RecyclerItemClickListener(this, quizrecyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                postdata(position);
 
-                    }
+                            }
 
-                    @Override public void onLongItemClick(View view, int position) {
-                        // do whatever
-                    }
-                })
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                // do whatever
+                            }
+                        })
         );
 
     }
 
 
+    private void getdata() {
+        loadwall.setVisibility(View.VISIBLE);
 
-    private  void getdata(){
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,getString(R.string.baseUrl)+"/quiz/departments", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,
+                getString(R.string.baseUrl) + "/quiz/departments", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
+                loadwall.setVisibility(View.GONE);
+
                 try {
-                    JSONArray jsonArray=new JSONArray(response);
-                    for(int i=0;i<jsonArray.length();i++){
-                        Id_Value idValue =new Id_Value(jsonArray.getJSONObject(i).getString("departmentName"),
-                                jsonArray.getJSONObject(i).getString("departmentId"));
+                    JSONArray jsonArray = new JSONArray(response);
+                    for (int i = 0; i < jsonArray.length(); i++) {
+                        Id_Value idValue = new Id_Value(
+                                jsonArray.getJSONObject(i).getString("departmentName"),
+                                jsonArray.getJSONObject(i).getString("departmentId"),
+                                jsonArray.getJSONObject(i).getString("image"));
                         quiztypes.add(idValue);
-                        Objects.requireNonNull(quizrecyclerView.getAdapter()).notifyDataSetChanged();
+                        Objects.requireNonNull(
+                                quizrecyclerView.getAdapter()).notifyDataSetChanged();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -84,7 +98,7 @@ public class QuizMainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Loggerreer",error.toString());
+                Log.e("Loggerreer", error.toString());
 
             }
         });
@@ -96,17 +110,15 @@ public class QuizMainActivity extends AppCompatActivity {
     }
 
 
-
-
-
-    private void postdata(final int position){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,getString(R.string.baseUrl)+"/quiz/departments", new Response.Listener<String>() {
+    private void postdata(final int position) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                getString(R.string.baseUrl) + "/quiz/departments", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                Intent i=new Intent(QuizMainActivity.this,DepartmentQuiz.class);
-                i.putExtra("quiz",response);
-                i.putExtra("departmentname",quiztypes.get(position).getValue());
+                Intent i = new Intent(QuizMainActivity.this, DepartmentQuiz.class);
+                i.putExtra("quiz", response);
+                i.putExtra("departmentname", quiztypes.get(position).getValue());
                 startActivity(i);
 
             }
@@ -116,7 +128,7 @@ public class QuizMainActivity extends AppCompatActivity {
 
             }
 
-        }){
+        }) {
 
             @Override
             public String getBodyContentType() {
@@ -126,7 +138,7 @@ public class QuizMainActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("deptId",quiztypes.get(position).getId());
+                params.put("deptId", quiztypes.get(position).getId());
                 return params;
             }
 
@@ -135,8 +147,6 @@ public class QuizMainActivity extends AppCompatActivity {
         queue.add(stringRequest);
 
     }
-
-
 
 
 }

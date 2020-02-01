@@ -4,19 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.QuizInstructionsActivity"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    tools:context=".Activities.QuizInstructionsActivity">
 
     <TextView
         android:id="@+id/textView3"
+        style="@style/TextAppearance.AppCompat.Title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="INSTRUCTIONS"
-        android:layout_marginTop="16dp"
         android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
-        style="@style/TextAppearance.AppCompat.Title"
-        android:textSize="32sp"/>
+        android:layout_marginTop="16dp"
+        android:text="INSTRUCTIONS"
+        android:textSize="32sp"
+        android:textStyle="bold" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -30,25 +30,25 @@
 
             <TextView
                 android:id="@+id/textView2"
+                style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="vkkkkkkkkkkkkkkkkkkkkkkas;snvc sdeoraivn a;sosnvsadgr"
-                style="@style/TextAppearance.AppCompat.Body1"
-                android:textSize="24sp"/>
+                android:textSize="24sp" />
 
             <Button
                 android:id="@+id/playNowButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Play Now!"
-                android:backgroundTint="@color/colorAccent"/>
+                android:backgroundTint="@color/colorAccent"
+                android:text="Play Now!" />
 
             <Button
                 android:id="@+id/leaderboardButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="LeaderBoard"
-                android:backgroundTint="@color/colorAccent"/>
+                android:backgroundTint="@color/colorAccent"
+                android:text="LeaderBoard" />
 
         </LinearLayout>
     </ScrollView>

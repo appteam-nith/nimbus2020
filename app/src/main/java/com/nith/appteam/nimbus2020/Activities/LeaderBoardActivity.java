@@ -45,7 +45,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
 
-        quizId=getIntent().getStringExtra("quizId");
+        quizId = getIntent().getStringExtra("quizId");
 
         queue = Volley.newRequestQueue(LeaderBoardActivity.this);
 
@@ -73,15 +73,17 @@ public class LeaderBoardActivity extends AppCompatActivity {
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);
-                            Log.e("response",response);
+                            Log.e("response", response);
 
-                            JSONArray players=jsonObject.getJSONArray("players");
+                            JSONArray players = jsonObject.getJSONArray("players");
 
-                            for(int i=0;i<players.length();++i){
+                            for (int i = 0; i < players.length(); ++i) {
 
-                                JSONObject player=players.getJSONObject(i);
+                                JSONObject player = players.getJSONObject(i);
 
-                                mLeaderboardModelList.add(new LeaderboardModel(player.getString("name"),player.getInt("score"),player.getString("image")));
+                                mLeaderboardModelList.add(
+                                        new LeaderboardModel(player.getString("name"),
+                                                player.getInt("score"), player.getString("image")));
                                 mLeaderBoardAdapter.notifyDataSetChanged();
                             }
                             loadwall.setVisibility(View.GONE);
@@ -107,7 +109,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("quizId",quizId);
+                params.put("quizId", quizId);
                 return params;
             }
 

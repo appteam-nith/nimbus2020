@@ -1,20 +1,23 @@
 package com.nith.appteam.nimbus2020.Utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 public class PrefsIevent {
- SharedPreferences sharedPreferences;
- public PrefsIevent(Activity activity)
-        {
-        sharedPreferences=activity.getPreferences(activity.MODE_PRIVATE);
+    SharedPreferences sharedPreferences;
 
-        }
-public void getSearch(String search){
-        sharedPreferences.edit().putString("search",search).commit();
+    public PrefsIevent(Activity activity) {
+        sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
 
-        }
-public String getSearch()
-        {
-        return sharedPreferences.getString("search","instituteEvents");
-        }}
+    }
+
+    public void getSearch(String search) {
+        sharedPreferences.edit().putString("search", search).commit();
+
+    }
+
+    public String getSearch() {
+        return sharedPreferences.getString("search", "instituteEvents");
+    }
+}

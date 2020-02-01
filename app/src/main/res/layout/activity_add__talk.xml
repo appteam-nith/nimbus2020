@@ -1,118 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
 
 
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".Activity.Add_Talk">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/WelcomeId"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_centerHorizontal="true"
-        android:text="Welcome Admin"
-        android:textSize="30dp"
-        android:textStyle="bold"
-        android:textColor="#000000"
-        />
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".Activity.Add_Talk">
 
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/WelcomeId"
-        android:layout_marginTop="25dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="15dp"
-        android:hint="Please enter name of speaker"
-        android:inputType="text"
-        android:id="@+id/spkNameAdd"
-        android:padding="20sp"/>
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spkNameAdd"
-        android:id="@+id/infoAdd"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_centerHorizontal="true"
-        android:hint="Please add info related to speaker"
-        android:inputType="textMultiLine"
-        android:padding="20dp"/>
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/infoAdd"
-        android:id="@+id/spkrvenueAdd"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_centerHorizontal="true"
-        android:hint="Please add venue of talk"
-        android:inputType="text"
-        android:padding="20dp"/>
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/spkrvenueAdd"
-        android:id="@+id/dateAdd"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_centerHorizontal="true"
-        android:hint="Please add date of lecture"
-        android:inputType="datetime"
-        android:padding="20dp"/>
-    <EditText
-    android:layout_width="350dp"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/dateAdd"
-    android:id="@+id/imageAdd"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="15dp"
-    android:layout_centerHorizontal="true"
-    android:hint="Please add link of image "
-    android:inputType="textWebEmailAddress"
-    android:padding="20dp"/>
-    <EditText
-    android:layout_width="350dp"
-    android:layout_height="wrap_content"
-    android:layout_below="@+id/imageAdd"
-    android:id="@+id/addregUrl"
-    android:layout_marginTop="20dp"
-    android:layout_marginLeft="15dp"
-    android:layout_centerHorizontal="true"
-    android:hint="Please add regUrl for the lecture"
-    android:inputType="textWebEditText"
-    android:padding="20dp"/>
+        <TextView
+            android:id="@+id/WelcomeId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:text="Welcome Admin"
+            android:textColor="#000000"
+            android:textSize="30dp"
+            android:textStyle="bold" />
 
-    <Button
-        android:id="@+id/AddButton"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addregUrl"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textColor="#FDFAFA"
-        android:background="@drawable/buttob"
-        android:padding="20dp"
-        android:text="ADD"
-        android:textAllCaps="false"
-        android:backgroundTint="#0A0709"
-        android:textStyle="bold|italic"
-        android:textSize="20sp" />
+        <EditText
+            android:id="@+id/spkNameAdd"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/WelcomeId"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:hint="Please enter name of speaker"
+            android:inputType="text"
+            android:padding="20sp" />
+
+        <EditText
+            android:id="@+id/infoAdd"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spkNameAdd"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add info related to speaker"
+            android:inputType="textMultiLine"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/spkrvenueAdd"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/infoAdd"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add venue of talk"
+            android:inputType="text"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/dateAdd"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/spkrvenueAdd"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add date of lecture"
+            android:inputType="datetime"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/imageAdd"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dateAdd"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add link of image "
+            android:inputType="textWebEmailAddress"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/addregUrl"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/imageAdd"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add regUrl for the lecture"
+            android:inputType="textWebEditText"
+            android:padding="20dp" />
+
+        <Button
+            android:id="@+id/AddButton"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addregUrl"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/buttob"
+            android:backgroundTint="#0A0709"
+            android:padding="20dp"
+            android:text="ADD"
+            android:textAllCaps="false"
+            android:textColor="#FDFAFA"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
 
 
-
-
-
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>
