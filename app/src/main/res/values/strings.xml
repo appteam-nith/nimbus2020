@@ -2,5 +2,6 @@
 
     <string name="app_name">Nimbus2020</string>
     <string name="baseUrl">http://api.festnimbus.com</string>
+    <string name= "defaultImageUrl" >https://res.cloudinary.com/duutozrvz/image/upload/v1580507678/user_ntztoi.png</string>
 
 </resources>
