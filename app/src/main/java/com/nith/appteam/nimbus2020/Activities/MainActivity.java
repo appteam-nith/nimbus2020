@@ -50,6 +50,9 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
         Picasso.with(MainActivity.this)
+
+
+
                 .load(sharedPref.getString("imageUrl", String.valueOf(R.string.defaultImageUrl)))
                 .resize(80, 80)
                 .centerCrop()
