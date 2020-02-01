@@ -50,6 +50,52 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_button" />
 
+    <Button
+        android:id="@+id/talkIDX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="28dp"
+        android:text="Talk"
+        app:layout_constraintBottom_toTopOf="@+id/ExhibitionIDX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.854"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sponsors" />
+
+    <Button
+        android:id="@+id/ExhibitionIDX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Exhibition"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sponsors" />
+
+    <Button
+        android:id="@+id/WorkshopIDX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="workshop"
+        app:layout_constraintBottom_toTopOf="@+id/talkIDX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.051"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sponsors"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/EventsIDX"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:layout_marginBottom="9dp"
+        android:text="Events"
+        app:layout_constraintBottom_toTopOf="@+id/quiz"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/post" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
