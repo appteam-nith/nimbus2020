@@ -59,27 +59,7 @@
                 android:padding="5dp"
                 android:layout_centerHorizontal="true"
                 android:textSize="17sp"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/EventIInfoID"
-                android:layout_below="@+id/EventIVenueID"
-                android:text="Info"
-                android:textSize="17sp"
-                android:padding="5dp"
-                />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/regURLEvevntI"
-                android:autoLink="all"
-                android:clickable="true"
-                android:layout_below="@+id/EventIInfoID"
-                android:text="URL"
-                android:textColor="#08ACF5"
-                android:textSize="17sp"
-                android:padding="5dp"
-                />
+
 
 
 

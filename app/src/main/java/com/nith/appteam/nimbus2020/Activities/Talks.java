@@ -86,17 +86,20 @@ public class Talks extends AppCompatActivity {
                         TalkModel talk=new TalkModel();
 //                        talk.setName("Aysuh KAusnldjhlkhfkllnewlfnlwenflkjewlkjfljwhekjksdjkjhkuhkjhkjsdhlehlkjhalhldhll");
 //                        talk.setVenue("LEcture aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
-                       talk.setRegURL("https://github.com/appteam-nith/nimbus2019");
+                      // talk.setRegURL("https://github.com/appteam-nith/nimbus2019");
 //                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
                         talk.setName(talkObj.getString("name"));
                         talk.setDate("On: " + talkObj.getString("date"));
                         talk.setImage(talkObj.getString("image"));
+                        talk.setIdTalk(talkObj.getString("_id"));
                         talk.setInfo(talkObj.getString("info"));
-                       // talk.setRegURL(  talkObj.getString("regUrl"));
+                        talk.setRegURL(  talkObj.getString("regUrl"));
                         talk.setVenue("Venue: " + talkObj.getString("venue"));
                         // Log.d("Talk",talk.getName());
-                       //Log.d("date",talk.getDate());
+
+
+
                       talkList.add(talk);
                         talkRecyclerViewAdapter.notifyDataSetChanged();
 

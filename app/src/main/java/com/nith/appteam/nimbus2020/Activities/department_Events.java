@@ -1,7 +1,9 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Adapters.Events_D_RecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.departmentEvent;
 import com.nith.appteam.nimbus2020.R;
@@ -38,6 +41,15 @@ public class department_Events extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_departmen);
+        FloatingActionButton fab = findViewById(R.id.fabD);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(department_Events.this,Add_D_Events.class);
+                startActivity(intent);
+
+            }
+        });
         requestQueueEVED= Volley.newRequestQueue(this);
 
         recyclerViewDEVE= findViewById(R.id.recyclerViewEVED);

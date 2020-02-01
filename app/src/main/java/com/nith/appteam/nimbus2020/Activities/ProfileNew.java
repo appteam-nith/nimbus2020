@@ -72,6 +72,7 @@ public class ProfileNew extends AppCompatActivity {
                 }
             }
         });
+
         submitProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

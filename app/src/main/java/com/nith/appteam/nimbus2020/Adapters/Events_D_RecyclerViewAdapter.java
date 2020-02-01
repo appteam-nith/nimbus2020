@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.nith.appteam.nimbus2020.Activities.Add_deptEvents_detail;
+import com.nith.appteam.nimbus2020.Activities.Add_exhibition_details;
+import com.nith.appteam.nimbus2020.Models.ExhibitionModel;
 import com.nith.appteam.nimbus2020.Models.departmentEvent;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
@@ -39,8 +43,8 @@ public class Events_D_RecyclerViewAdapter extends RecyclerView.Adapter<Events_D_
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         departmentEvent Devents=eventListDep.get(position);
         String imageLinkEVED=Devents.getImageDEVE();
-        holder.regUrlEVED.setText(Devents.getRegURLDEVE());
-        holder.infoEVED.setText(Devents.getInfoDEVE());
+        //holder.regUrlEVED.setText(Devents.getRegURLDEVE());
+        //holder.infoEVED.setText(Devents.getInfoDEVE());
         holder.datEVED.setText(Devents.getDateDEVE());
         holder.venueEVED.setText(Devents.getVenueDEVE());
         holder.nameEVED.setText(Devents.getNameDEVE());
@@ -62,15 +66,18 @@ public class Events_D_RecyclerViewAdapter extends RecyclerView.Adapter<Events_D_
             imgEVEVD=(ImageView) itemView.findViewById(R.id.EventDImageID);
             venueEVED=(TextView) itemView.findViewById(R.id.EventDVenueID);
             datEVED=(TextView)itemView.findViewById(R.id.EventDDate);
-            infoEVED=(TextView) itemView.findViewById(R.id.EventDInfoID);
-            regUrlEVED=(TextView) itemView.findViewById(R.id.regURLEvevntD);
+            //infoEVED=(TextView) itemView.findViewById(R.id.EventDInfoID);
+          //  regUrlEVED=(TextView) itemView.findViewById(R.id.regURLEvevntD);
             itemView.setOnClickListener(new View.OnClickListener() {
 
 
 
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context,"Scroll Only",Toast.LENGTH_SHORT).show();
+                    departmentEvent dept= eventListDep.get(getAdapterPosition());
+                    Intent intent=new Intent(context, Add_deptEvents_detail.class);
+                    intent.putExtra("departmentEvents",dept);
+                    ctx.startActivity(intent);
                 }
 
             });
