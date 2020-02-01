@@ -43,7 +43,7 @@ public class EventIRecyclerViewAdapter extends RecyclerView.Adapter<EventIRecycl
         holder.datEVEI.setText(Ievents.getDateIEVE());
         holder.venueEVEI.setText(Ievents.getVenueIEVE());
         holder.nameEVEI.setText(Ievents.getNameIEVE());
-        Picasso.get().load(imageLinkEVE).placeholder(android.R.drawable.ic_btn_speak_now).into(holder.imgEVEVi);
+        Picasso.with(context).load(imageLinkEVE).placeholder(android.R.drawable.ic_btn_speak_now).into(holder.imgEVEVi);
 
     }
 

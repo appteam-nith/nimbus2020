@@ -46,7 +46,7 @@ public class WorkshopRecyclerViewAdapter extends RecyclerView.Adapter<WorkshopRe
         holder.venueWor.setText(workshop.getVenueWor());
         holder.nameWor.setText(workshop.getNameWor());
         holder.typeWor.setText(workshop.getTypeWor());
-        Picasso.get().load(imageLinkWor).placeholder(android.R.drawable.ic_btn_speak_now).into(holder.imgSpkrWork);
+        Picasso.with(context).load(imageLinkWor).placeholder(android.R.drawable.ic_btn_speak_now).into(holder.imgSpkrWork);
 
 
     }
