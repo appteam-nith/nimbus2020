@@ -27,17 +27,17 @@
             <activity
                 android:name=".Activities.Exhhibition"
 
-                android:label="@string/title_activity_exhhibition"
+
                 android:theme="@style/AppTheme.NoActionBar" />
             <activity
                 android:name=".Activities.Workshops"
 
-                android:label="@string/title_activity_workshops"
+
                 android:theme="@style/AppTheme" />
             <activity
                 android:name=".Activities.Talks"
 
-                android:label="@string/title_activity_talks"
+                android:exported="true"
                 android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
