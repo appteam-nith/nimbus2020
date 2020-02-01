@@ -23,7 +23,6 @@ import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cloudinary.android.MediaManager;
@@ -37,7 +36,6 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -55,7 +53,6 @@ public class ProfileNew extends AppCompatActivity {
     private byte[] byteArray;
     private String imageUrl = "";
     private Bitmap bmp, img;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,29 +80,27 @@ public class ProfileNew extends AppCompatActivity {
                     imageUrl = String.valueOf(R.string.defaultImageUrl);
                 if (!name.getText().toString().isEmpty() && !rollno.getText().toString().isEmpty() &&
                         !phoneNumber.getText().toString().isEmpty() && !college.getText().toString().isEmpty()) {
-
                     progressBar.setVisibility(View.VISIBLE);
-                    JSONObject details = new JSONObject();
-                    try {
-                        details.put("name", name.getText().toString());
-                        details.put("rollNumber", rollno.getText().toString());
-                        details.put("college", college.getText().toString());
-                        //details.put("campusAmbassador", false);
-                        details.put("image", imageUrl);
-                        details.put("phone", phoneNumber);
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-
-                    Log.v("TESTING", String.valueOf(details));
-                    final String requestBody = details.toString();
                     RequestQueue queue = Volley.newRequestQueue(ProfileNew.this);
                     StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/auth/signup", new com.android.volley.Response.Listener<String>() {
 
                         @Override
                         public void onResponse(String response) {
-                            Toast.makeText(ProfileNew.this, response, Toast.LENGTH_LONG).show();
-                            if (Integer.parseInt(response) == 0) {
+                            int errorCode = 1;
+                            String token;
+                            final JSONObject jsonObject;
+                            try {
+                                jsonObject = new JSONObject(response);
+                                errorCode = (int) jsonObject.get("errorCode");
+                                token = (String) jsonObject.get("token");
+                                editor.putString("token", token);
+                                editor.apply();
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+//                            Toast.makeText(ProfileNew.this, response, Toast.LENGTH_LONG).show();
+                            if (errorCode == 0) {
                                 editor.putString("name", name.getText().toString());
                                 editor.putString("rollno", rollno.getText().toString());
                                 editor.putString("college", college.getText().toString());
@@ -125,33 +120,47 @@ public class ProfileNew extends AppCompatActivity {
                         public void onErrorResponse(VolleyError error) {
                             Log.e("VOLLEY", error.toString());
                             progressBar.setVisibility(View.GONE);
-                            Toast.makeText(ProfileNew.this, error.toString(), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(ProfileNew.this, error.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }) {
+
                         @Override
                         public String getBodyContentType() {
-                            return "application/json; charset=utf-8";
+                            return "application/x-www-form-urlencoded; charset=UTF-8";
                         }
 
                         @Override
-                        public Map<String, String> getHeaders() {
-                            HashMap<String, String> headers = new HashMap<>();
-                            headers.put("token", sharedPrefs.getString("firebaseId", ""));
-                            return headers;
+                        protected Map<String, String> getParams() throws AuthFailureError {
+                            Map<String, String> params = new HashMap<String, String>();
+                            params.put("name", name.getText().toString());
+                            params.put("rollNumber", rollno.getText().toString());
+                            params.put("college", college.getText().toString());
+                            //params.put("campusAmbassador", false);
+                            params.put("image", imageUrl);
+                            params.put("phone", phoneNumber.getText().toString());
+                            return params;
                         }
 
-                        @Override
-                        public byte[] getBody() throws AuthFailureError {
-                            try {
+//                        @Override
+//                        public Map<String, String> getHeaders() {
+//                            HashMap<String, String> headers = new HashMap<>();
+//                            headers.put("token", sharedPrefs.getString("firebaseId", ""));
+//                            return headers;
+//                        }
 
-                                return requestBody == null ? null : requestBody.getBytes("utf-8");
 
-
-                            } catch (UnsupportedEncodingException uee) {
-                                VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-                                return null;
-                            }
-                        }
+//                        @Override
+//                        public byte[] getBody() throws AuthFailureError {
+//                            try {
+//
+//                                return requestBody == null ? null : requestBody.getBytes("utf-8");
+//
+//
+//                            } catch (UnsupportedEncodingException uee) {
+//                                VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
+//                                return null;
+//                            }
+//                        }
                     };
                     stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
                             DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
@@ -161,7 +170,6 @@ public class ProfileNew extends AppCompatActivity {
                     Toast.makeText(ProfileNew.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     @Override
