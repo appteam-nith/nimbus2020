@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -24,51 +26,51 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class Quiz extends AppCompatActivity {
-    TextView questionView,questionnumber,timeview;
+    TextView questionView, questionnumber, timeview;
     Button option1;
     Button option2;
     Button option3;
     Button option4;
     RequestQueue requestQueue;
     List<QuestionData> questions = new ArrayList<>();
-    int counter=0;
+    int counter = 0;
     CountDownTimer timer;
+    JSONArray mJSONArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
+        mJSONArray=new JSONArray();
         Objects.requireNonNull(getSupportActionBar()).hide();
         timer = new CountDownTimer(15000, 1000) {
             @SuppressLint("SetTextI18n")
             public void onTick(long millisUntilFinished) {
-            timeview.setText(millisUntilFinished/1000+"s");
+                timeview.setText(millisUntilFinished / 1000 + "s");
             }
 
             public void onFinish() {
                 counter++;
-                if(counter<questions.size()) {
+                if (counter < questions.size()) {
                     updateQuestion();
 
-                }
-                else {
+                } else {
 
                     getscore();
                 }
             }
         };
 
-        questionnumber=findViewById(R.id.quizquestionnumber);
-        timeview=findViewById(R.id.quizTimer);
+        questionnumber = findViewById(R.id.quizquestionnumber);
+        timeview = findViewById(R.id.quizTimer);
         questionView = findViewById(R.id.quizquestion);
         option1 = findViewById(R.id.option1);
         option2 = findViewById(R.id.option2);
@@ -78,11 +80,19 @@ public class Quiz extends AppCompatActivity {
         getQuestions();
 
 
-
         option1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 questions.get(counter).setOption_chosen(1);
+                questions.get(counter).setOption_chosen(1);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("questionId", questions.get(counter).getQuestionid());
+                    jsonObject.put("answer", questions.get(counter).getOption_chosen());
+                    mJSONArray.put(jsonObject);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 timer.onFinish();
 
 
@@ -92,7 +102,16 @@ public class Quiz extends AppCompatActivity {
         option2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                  questions.get(counter).setOption_chosen(4);
+                questions.get(counter).setOption_chosen(4);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("questionId", questions.get(counter).getQuestionid());
+                    jsonObject.put("answer", questions.get(counter).getOption_chosen());
+                    mJSONArray.put(jsonObject);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 timer.onFinish();
             }
         });
@@ -100,6 +119,15 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 questions.get(counter).setOption_chosen(2);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("questionId", questions.get(counter).getQuestionid());
+                    jsonObject.put("answer", questions.get(counter).getOption_chosen());
+                    mJSONArray.put(jsonObject);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 timer.onFinish();
             }
         });
@@ -107,6 +135,15 @@ public class Quiz extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 questions.get(counter).setOption_chosen(3);
+                JSONObject jsonObject = new JSONObject();
+                try {
+                    jsonObject.put("questionId", questions.get(counter).getQuestionid());
+                    jsonObject.put("answer", questions.get(counter).getOption_chosen());
+                    mJSONArray.put(jsonObject);
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 timer.onFinish();
             }
         });
@@ -120,18 +157,18 @@ public class Quiz extends AppCompatActivity {
         option2.setText(questions.get(counter).getOption_2());
         option3.setText(questions.get(counter).getOption_3());
         option4.setText(questions.get(counter).getOption_4());
-        questionnumber.setText("Q"+(counter+1));
+        questionnumber.setText("Q" + (counter + 1));
         timer.start();
 
     }
 
 
     private void getQuestions() {
-        String response=getIntent().getStringExtra("questions");
+        String response = getIntent().getStringExtra("questions");
         questionView.setText(response);
-        JSONArray jsonArray=null;
+        JSONArray jsonArray = null;
         try {
-            jsonArray= new JSONArray(response);
+            jsonArray = new JSONArray(response);
 
         } catch (JSONException e) {
             e.printStackTrace();
@@ -168,20 +205,27 @@ public class Quiz extends AppCompatActivity {
     }
 
 
-    private  void getscore(){
+    private void getscore() {
         option4.setClickable(false);
         option1.setClickable(false);
         option2.setClickable(false);
         option3.setClickable(false);
         Log.e("hiiii", "onResponse: ");
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,"https://still-dawn-92078.herokuapp.com"+"/quiz/submit", new Response.Listener<String>() {
+        final String result = mJSONArray.toString();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                getString(R.string.baseUrl) + "/quiz/submit", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("hiiii", "onResponse: "+response );
+                Log.e("hiiii", "onResponse: " + response);
                 try {
-                    JSONObject jsonObject=new JSONObject(response);
-                    Toast.makeText(Quiz.this," score is "+jsonObject.getString("score"),Toast.LENGTH_LONG).show();
-                    //TODO: show score
+                    JSONObject jsonObject = new JSONObject(response);
+                    Toast.makeText(Quiz.this, " score is " + jsonObject.getString("score"),
+                            Toast.LENGTH_LONG).show();
+
+                    Intent intent=new Intent(Quiz.this,QuizScoreActivity.class);
+                    intent.putExtra("score",Integer.valueOf(jsonObject.getString("score")));
+                    startActivity(intent);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -189,10 +233,10 @@ public class Quiz extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                error.printStackTrace();
             }
 
-        }){
+        }) {
 
             @Override
             public String getBodyContentType() {
@@ -200,23 +244,19 @@ public class Quiz extends AppCompatActivity {
             }
 
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                //TODO: send answers as params
-                Map<String, String> params = new HashMap<String, String>();
-                Map<String,String> answer = new HashMap<>();
-
-                for(int i=0; i<questions.size();i++){
-                    answer.put("questionId"+questions.get(i).getQuestionid(),"answer"+questions.get(i).getOption_chosen());
+            public byte[] getBody() throws AuthFailureError {
+                try {
+                    return result == null ? null : result.getBytes("utf-8");
+                } catch (UnsupportedEncodingException uee) {
+                    VolleyLog.wtf(
+                            "Unsupported Encoding while trying to get the bytes of %s using %s",
+                            result, "utf-8");
+                    return null;
                 }
-                params.put("answers",answer.toString());
-                return params;
             }
-
         };
 
-       requestQueue.add(stringRequest);
-
-
+        requestQueue.add(stringRequest);
 
 
     }
