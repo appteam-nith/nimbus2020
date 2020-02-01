@@ -2,5 +2,6 @@
 
     <string name="app_name">Nimbus2020</string>
     <string name="baseUrl">http://api.festnimbus.com</string>
+    <string name="quiz_comment">*Make sure to read all instructions before attempting the quiz</string>
 
 </resources>
