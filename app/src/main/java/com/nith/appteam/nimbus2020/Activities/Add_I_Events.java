@@ -1,5 +1,8 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,14 +10,12 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.transition.CircularPropagation;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -24,7 +25,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -42,11 +42,11 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Add_Talk extends AppCompatActivity {
-    private EditText nameAdd,infoAdd,venueAdd,dateAdd,regUrlAdd;
-    private CircleImageView imageAddTalk;
-    private Button addButton;
-    private RequestQueue requestQueue;
+public class Add_I_Events extends AppCompatActivity {
+    private EditText nameAddI,infoAddI,venueAddI,dateAddI,regUrlAddI,pdfAddI;
+    private CircleImageView imgI;
+    private Button addButtonI;
+    private RequestQueue requestQueueI;
     private int PICK_PHOTO_CODE = 100;
     private byte[] byteArray;
     private String imageUrl = "";
@@ -55,28 +55,27 @@ public class Add_Talk extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add__talk);
-        nameAdd=findViewById(R.id.NameAddTalk);
-        infoAdd=findViewById(R.id.infoAddTalk);
-        venueAdd=findViewById(R.id.venueAddTalk);
-        dateAdd=findViewById(R.id.dateAddTalk);
-        imageAddTalk=findViewById(R.id.addImgTalk);
-        regUrlAdd=findViewById(R.id.addregUrlTalk);
-        addButton=findViewById(R.id.AddButtonTalk);
+        setContentView(R.layout.activity_add__i__events);
+        nameAddI=findViewById(R.id.NameAddI);
+        pdfAddI=findViewById(R.id.pdfAddI);
+        infoAddI=findViewById(R.id.infoAddI);
+        venueAddI=findViewById(R.id.venueAddI);
+        dateAddI=findViewById(R.id.dateAddI);
+         imgI=findViewById(R.id.addImgI);
+        regUrlAddI=findViewById(R.id.addregUrlI);
+        addButtonI=findViewById(R.id.AddButtonI);
 
-        addButton.setOnClickListener(new View.OnClickListener() {
+        addButtonI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                String data="{"+"name"+ nameAdd.getText().toString()+","+"info"+ infoAdd.getText().toString()+","+"venue"+venueAdd.getText().toString()
 //                        +","+"date"+dateAdd.getText().toString()+","+"image"+imageAdd.getText().toString()+","+"regUrl"+regUrlAdd.getText().toString()+"}";
 
 
-                AddDetails();
+                AddDetailsI();
             }
         });
-
-
-        imageAddTalk.setOnClickListener(new View.OnClickListener() {
+        imgI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK,
@@ -106,8 +105,8 @@ public class Add_Talk extends AppCompatActivity {
             bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             img = getResizedBitmap(bmp, 300);
 //          pass = encodeTobase64(img);
-            imageAddTalk.setImageBitmap(img);
-            Bitmap bitmap = ((BitmapDrawable) imageAddTalk.getDrawable()).getBitmap();
+            imgI.setImageBitmap(img);
+            Bitmap bitmap = ((BitmapDrawable) imgI.getDrawable()).getBitmap();
 
             getImageUrl(bitmap);
         }
@@ -155,7 +154,7 @@ public class Add_Talk extends AppCompatActivity {
                     public void onError(String requestId, ErrorInfo error) {
                         Log.i("HELLO", "JIJIJ");
 //                      finish();
-                        Toast.makeText(Add_Talk.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();
+                        Toast.makeText(Add_I_Events.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();
 
                     }
 
@@ -164,15 +163,17 @@ public class Add_Talk extends AppCompatActivity {
                         // your code here
                     }
                 })
-                .dispatch(Add_Talk.this);
+                .dispatch(Add_I_Events.this);
 
     }
 
 
-    private void AddDetails() {
+
+
+    private void AddDetailsI() {
         //final String savedata=data;
-        requestQueue= Volley.newRequestQueue(getApplicationContext());
-        StringRequest request= new StringRequest(Request.Method.POST, Constant.Url+ "talks" ,new Response.Listener<String>() {
+        requestQueueI= Volley.newRequestQueue(getApplicationContext());
+        StringRequest request= new StringRequest(Request.Method.POST, Constant.Url+ "instituteEvents" ,new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -199,22 +200,25 @@ public class Add_Talk extends AppCompatActivity {
         })
         {
             @Override
-                    public String getBodyContentType(){
-                    return "application/x-www-form-urlencoded; charset=utf-8";
+            public String getBodyContentType(){
+                return "application/x-www-form-urlencoded; charset=utf-8";
             }
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("name", nameAdd.getText().toString());
-                params.put("info",infoAdd.getText().toString());
-                params.put("venue",venueAdd.getText().toString());
-                params.put("date",dateAdd.getText().toString());
-    //            params.put("image",imageAdd.getText().toString());
-                params.put("regUrl",regUrlAdd.getText().toString());
+                params.put("name", nameAddI.getText().toString());
+                params.put("info",infoAddI.getText().toString());
+                params.put("venue",venueAddI.getText().toString());
+                params.put("date",dateAddI.getText().toString());
+                params.put("abstract",pdfAddI.getText().toString());
+                // params.put("image",imageAdd.getText().toString());
+                params.put("regUrl",regUrlAddI.getText().toString());
                 return params;
             }
         };
 
-        requestQueue.add(request);
+        requestQueueI.add(request);
+
     }
 }
+

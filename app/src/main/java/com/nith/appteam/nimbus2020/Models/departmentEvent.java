@@ -6,7 +6,7 @@ public class departmentEvent implements Serializable {
 
 
     private static final long id = 1L;
-    private String nameDEVE, infoDEVE, venueDEVE, regURLDEVE, dateDEVE, imageDEVE;
+    private String nameDEVE, infoDEVE, venueDEVE, regURLDEVE, dateDEVE, imageDEVE,abstractDEVE;
 
     public departmentEvent() {
     }
@@ -57,5 +57,13 @@ public class departmentEvent implements Serializable {
 
     public void setImageDEVE(String imageDEVE) {
         this.imageDEVE = imageDEVE;
+    }
+
+    public String getAbstractDEVE() {
+        return abstractDEVE;
+    }
+
+    public void setAbstractDEVE(String abstractDEVE) {
+        this.abstractDEVE = abstractDEVE;
     }
 }

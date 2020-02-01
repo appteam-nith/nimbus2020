@@ -7,7 +7,15 @@ public class TalkModel
 
 
     private static final long id= 1L;
-    private String name,info,venue,regURL,date,image;
+    private String name;
+    private String info;
+    private String venue;
+    private String regURL;
+    private String date;
+    private String image;
+
+
+    private String idTalk;
 
     public TalkModel() {
     }
@@ -57,8 +65,16 @@ public class TalkModel
     }
 
     public void setImage(String image) {
-        this.image = image;
-    }
+        this.image = image;}
+        public String getIdTalk() {
+            return idTalk;
+        }
+
+        public void setIdTalk(String idTalk) {
+            this.idTalk = idTalk;
+        }
+
+
 }
 
 
