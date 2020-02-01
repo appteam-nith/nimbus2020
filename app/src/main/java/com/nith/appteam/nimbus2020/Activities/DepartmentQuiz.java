@@ -35,46 +35,48 @@ public class DepartmentQuiz extends AppCompatActivity {
     RecyclerView departmentquiz;
     TextView textView;
     RequestQueue queue;
-    final String BASE_URL="https://still-dawn-92078.herokuapp.com";
-    ArrayList<Id_Value> quiztypes =new ArrayList<>();
+    ArrayList<Id_Value> quiztypes = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_department_quiz);
-        departmentquiz=findViewById(R.id.departmentquiz);
-        textView=findViewById(R.id.departmentname);
+        departmentquiz = findViewById(R.id.departmentquiz);
+        textView = findViewById(R.id.departmentname);
 
         queue = Volley.newRequestQueue(this);
 
-        departmentquiz.setLayoutManager(new LinearLayoutManager(this));
-        departmentquiz.setAdapter(new QuizRecyclerAdapter(this,quiztypes));
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        departmentquiz.setLayoutManager(layoutManager);
+        departmentquiz.setAdapter(new QuizRecyclerAdapter(this, quiztypes));
         getdata();
         departmentquiz.addOnItemTouchListener(
-                new RecyclerItemClickListener(this, departmentquiz ,new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override public void onItemClick(View view, int position) {
-                    postdata(position);
+                new RecyclerItemClickListener(this, departmentquiz,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                postdata(position);
 
-                    }
+                            }
 
-                    @Override public void onLongItemClick(View view, int position) {
-                        // do whatever
-                    }
-                })
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+                                // do whatever
+                            }
+                        })
         );
 
     }
 
 
-
-
-    private  void getdata(){
-        Intent j=getIntent();
+    private void getdata() {
+        Intent j = getIntent();
         String response = j.getStringExtra("quiz");
         textView.setText(j.getStringExtra("departmentname"));
         try {
-            JSONArray jsonArray=new JSONArray(response);
-            for(int i=0;i<jsonArray.length();i++){
-                Id_Value idValue =new Id_Value(jsonArray.getJSONObject(i).getString("quizName"),
+            JSONArray jsonArray = new JSONArray(response);
+            for (int i = 0; i < jsonArray.length(); i++) {
+                Id_Value idValue = new Id_Value(jsonArray.getJSONObject(i).getString("quizName"),
                         jsonArray.getJSONObject(i).getString("_id"));
                 quiztypes.add(idValue);
                 Objects.requireNonNull(departmentquiz.getAdapter()).notifyDataSetChanged();
@@ -86,20 +88,17 @@ public class DepartmentQuiz extends AppCompatActivity {
     }
 
 
-
-
-
-
-
-
-    private void postdata(final int position){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,BASE_URL+"/quiz/questions", new Response.Listener<String>() {
+    private void postdata(final int position) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                getString(R.string.baseUrl) + "/quiz/questions", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Log.e("hi", "onResponse: "+response);
-                Intent intent=new Intent(DepartmentQuiz.this,Quiz.class);
-                intent.putExtra("questions",response);
+                Log.e("hi", "onResponse: " + response);
+                Intent intent = new Intent(DepartmentQuiz.this, QuizInstructionsActivity.class);
+                intent.putExtra("questions", response);
+                intent.putExtra("quizId", quiztypes.get(position).getId());
                 startActivity(intent);
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -108,17 +107,19 @@ public class DepartmentQuiz extends AppCompatActivity {
 
             }
 
-        }){
+        }) {
 
             @Override
             public String getBodyContentType() {
                 return "application/x-www-form-urlencoded; charset=UTF-8";
             }
 
+            //TODO: send authtoken in headers
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("quizId",quiztypes.get(position).getId());
+                params.put("quizId", quiztypes.get(position).getId());
                 return params;
             }
 
@@ -127,10 +128,6 @@ public class DepartmentQuiz extends AppCompatActivity {
         queue.add(stringRequest);
 
     }
-
-
-
-
 
 
 }

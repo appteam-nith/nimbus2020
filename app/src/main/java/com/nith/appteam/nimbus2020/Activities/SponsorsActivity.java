@@ -32,7 +32,6 @@ public class SponsorsActivity extends AppCompatActivity {
     List<Sponsor> mSponsorList;
 
     private IResult mResultCallback;
-    private VolleyService mVolleyService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,22 +40,21 @@ public class SponsorsActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.sponsorsRecyclerView);
         loadwall = findViewById(R.id.loadwall);
-        mSponsorList=new ArrayList<>();
+        mSponsorList = new ArrayList<>();
         getData();
         mSponsorsAdapter = new SponsorsAdapter(mSponsorList, this);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mSponsorsAdapter);
 
     }
 
 
     private void getData() {
+        mSponsorList.clear();
         loadwall.setVisibility(View.VISIBLE);
 
         initVolleyCallback();
-
-        mVolleyService = new VolleyService(mResultCallback, this);
-
 
         final VolleyService mVolleyService = new VolleyService(mResultCallback, this);
 
@@ -76,34 +74,46 @@ public class SponsorsActivity extends AppCompatActivity {
 
 
                 if (response != null) {
+                    loadwall.setVisibility(View.GONE);
+
+                    try {
+                        obj = response;
+                        String sponsorName = obj.getString("name");
+                        String sponsor_logo = obj.getString("image");
+//                                String  = json.getString("event_time");
+                        mSponsorList.add(new Sponsor(sponsorName, sponsor_logo));
+                        mSponsorsAdapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
 
                     Log.e("Hellcatt", response.toString());
-                    //JsonObject
-                    // Toast.makeText(getContext(), String.valueOf(response), Toast.LENGTH_SHORT)
-                    // .show();
+
                 } else {
                     Log.e("zHell", jsonArray.toString());
 
-//                    //JsonArray
-//                    Toast.makeText(getContext(), String.valueOf(jsonArray), Toast.LENGTH_SHORT)
-//                    .show();
+                    loadwall.setVisibility(View.GONE);
 
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
                         try {
                             obj = jsonArray.getJSONObject(i);
-                            //TODO: parse objects and add to list,call datasetchanged
-
-
+                            String sponsorName = obj.getString("name");
+                            String sponsor_logo = obj.getString("image");
+                            mSponsorList.add(new Sponsor(sponsorName, sponsor_logo));
+                            mSponsorsAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
                     }
+                    mSponsorsAdapter.notifyDataSetChanged();
 
                 }
             }
+
 
             @Override
             public void notifyError(String requestType, VolleyError error) {
