@@ -34,7 +34,6 @@ import androidx.recyclerview.widget.RecyclerView;
 public class QuizMainActivity extends AppCompatActivity {
     RecyclerView quizrecyclerView;
     RequestQueue queue;
-    final String BASE_URL="https://still-dawn-92078.herokuapp.com";
     ArrayList<Id_Value> quiztypes =new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +64,7 @@ public class QuizMainActivity extends AppCompatActivity {
 
     private  void getdata(){
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET,BASE_URL+"/quiz/departments", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,getString(R.string.baseUrl)+"/quiz/departments", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
@@ -85,7 +84,7 @@ public class QuizMainActivity extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("Loggerreer",error.getMessage());
+                Log.e("Loggerreer",error.toString());
 
             }
         });
@@ -101,7 +100,7 @@ public class QuizMainActivity extends AppCompatActivity {
 
 
     private void postdata(final int position){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST,BASE_URL+"/quiz/departments", new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,getString(R.string.baseUrl)+"/quiz/departments", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

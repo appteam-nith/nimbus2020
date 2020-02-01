@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
     private CircleImageView profileButton;
     private Button post;
 
+    Button quiz,sponsor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +74,26 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-//        Intent intent = new Intent(this, QuizMainActivity.class);
-//        startActivity(intent);
+        quiz=findViewById(R.id.quiz);
+        sponsor=findViewById(R.id.sponsors);
+
+        quiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,QuizMainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        sponsor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,SponsorsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 }
