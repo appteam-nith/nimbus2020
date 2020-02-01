@@ -37,7 +37,7 @@
             <activity
                 android:name=".Activities.Talks"
 
-                android:exported="true"
+                
                 android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,6 +49,9 @@
         <activity android:name=".Activities.DepartmentQuiz" />
 
         <activity android:name=".Activities.QuizMainActivity"/>
+        <meta-data
+            android:name="CLOUDINARY_URL"
+            android:value="cloudinary://256963859891119:w4WXsRRz58DN3eVbGK1g6JvcjJY@duutozrvz" />
     </application>
 
 </manifest>
