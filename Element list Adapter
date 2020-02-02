@@ -1,0 +1,57 @@
+package com.nith.appteam.nimbus.Activity;
+
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import java.util.List;
+
+public class ElementListAdapter extends BaseAdapter {
+
+    private Context cont;
+    private List<Elements> Elist;
+
+    public ElementListAdapter(Context cont, List<Elements> elist) {
+        this.cont = cont;
+        Elist = elist;
+    }
+
+    @Override
+    public int getCount() {
+        return Elist.size();
+    }
+
+    @Override
+    public Object getItem(int position) {
+        return Elist.get(position);
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        View v =View.inflate(cont,R.layout.hlist_elements, null);
+
+        TextView tv1 = (TextView)v.findViewById(R.id.element1);
+        TextView tv2 = (TextView)v.findViewById(R.id.element2);
+        TextView tv3 = (TextView)v.findViewById(R.id.element3);
+        TextView tv4 = (TextView)v.findViewById(R.id.element4);
+        TextView tv5 = (TextView)v.findViewById(R.id.element5);
+
+        tv1.setText(String.valueOf(Elist.get(position).getId()));
+        tv2.setText(Elist.get(position).getElement1());
+        tv3.setText(Elist.get(position).getElement2());
+        tv4.setText(Elist.get(position).getElement3());
+        tv5.setText(String.valueOf(Elist.get(position).getElement4()));
+
+        v.setTag(Elist.get(position).getId());
+
+        return v;
+    }
+}
