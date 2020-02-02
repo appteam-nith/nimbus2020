@@ -18,7 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Activities.CampusAmbassadorPost;
@@ -68,12 +68,13 @@ public class wall extends Fragment {
 
     private void getFeeds() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        JsonArrayRequest request = new JsonArrayRequest(R.string.baseUrl + "/uploads", new Response.Listener<JSONArray>() {
+        StringRequest request = new StringRequest(R.string.baseUrl + "/views/links", new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONArray jsonArray) {
+            public void onResponse(String response) {
                 try {
+                    JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        String feedUrl = jsonArray.getJSONObject(i).getString("feedUrl");
+                        String feedUrl = jsonArray.getJSONObject(i).getString("image_url");
                         feedList.add(feedUrl);
                         Objects.requireNonNull(feed.getAdapter()).notifyDataSetChanged();
                     }

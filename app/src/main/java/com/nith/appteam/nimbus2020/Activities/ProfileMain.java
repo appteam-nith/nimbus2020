@@ -38,6 +38,7 @@ public class ProfileMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ProfileMain.this, ProfileNew.class);
+                i.putExtra("editProfile", "true");
                 startActivity(i);
 
             }

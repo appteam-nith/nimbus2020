@@ -24,7 +24,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
@@ -32,6 +32,7 @@ import com.cloudinary.android.callback.UploadCallback;
 import com.cloudinary.android.policy.TimeWindow;
 import com.nith.appteam.nimbus2020.R;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
@@ -82,16 +83,20 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                     progressBar.setVisibility(View.VISIBLE);
                     final String hash = md5(socialUrl);
                     RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                    JSONObject object = new JSONObject();
-                    String serverUrl = getResources().getString(R.string.baseUrl) + "/auth/campusAmbassador";
-                    JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, serverUrl, object,
-                            new Response.Listener<JSONObject>() {
-                                @Override
-                                public void onResponse(JSONObject response) {
-                                    Toast.makeText(CampusAmbassadorPost.this, response.toString(), Toast.LENGTH_SHORT).show();
-                                    progressBar.setVisibility(View.GONE);
-                                }
-                            }, new Response.ErrorListener() {
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/views/inc_points", new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            progressBar.setVisibility(View.GONE);
+                            try {
+                                JSONObject jsonObject = new JSONObject(response);
+                                String responseStatus = jsonObject.getString("status");
+                                Toast.makeText(CampusAmbassadorPost.this, response, Toast.LENGTH_SHORT).show();
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    }, new Response.ErrorListener() {
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             Toast.makeText(CampusAmbassadorPost.this, error.toString() + error.getCause(), Toast.LENGTH_SHORT).show();
@@ -107,20 +112,23 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                         @Override
                         public Map<String, String> getHeaders() {
                             HashMap<String, String> headers = new HashMap<>();
-                            headers.put("token", sharedPrefs.getString("token", ""));
+//                            headers.put("token", sharedPrefs.getString("token", ""));
+                            headers.put("token", "5e365b9abb840d2fb05ad40f");
+
                             return headers;
                         }
 
                         @Override
                         protected Map<String, String> getParams() throws AuthFailureError {
                             Map<String, String> params = new HashMap<String, String>();
-                            params.put("url", hash);
-                            params.put("source", imageUrl);
+                            params.put("image_url", imageUrl);
+                            params.put("post_url", socialUrl);
+                            params.put("key", hash);
                             return params;
                         }
 
                     };
-                    requestQueue.add(jsonObjectRequest);
+                    requestQueue.add(stringRequest);
                 } else
                     Toast.makeText(CampusAmbassadorPost.this, "Please enter URL", Toast.LENGTH_SHORT).show();
             }
