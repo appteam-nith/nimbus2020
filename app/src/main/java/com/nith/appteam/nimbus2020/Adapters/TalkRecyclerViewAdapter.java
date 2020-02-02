@@ -1,13 +1,17 @@
 package com.nith.appteam.nimbus2020.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.nith.appteam.nimbus2020.Activities.Add_talk_details;
 import com.nith.appteam.nimbus2020.Models.TalkModel;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
@@ -40,10 +44,10 @@ public class TalkRecyclerViewAdapter extends
     @Override
 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        TalkModel talks = talksList.get(position);
-        String imageLink = talks.getImage();
-        holder.regUrl.setText(talks.getRegURL());
-        holder.info.setText(talks.getInfo());
+        TalkModel talks=talksList.get(position);
+        String imageLink=talks.getImage();
+        //holder.regUrl.setText(talks.getRegURL());
+        //holder.info.setText(talks.getInfo());
         holder.date.setText(talks.getDate());
         holder.venue.setText(talks.getVenue());
         holder.name.setText(talks.getName());
@@ -57,26 +61,29 @@ public class TalkRecyclerViewAdapter extends
     public int getItemCount() {
         return talksList.size();
     }
-
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name, date, info, regUrl, venue;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        TextView name,date,venue;
         ImageView imgSpkr;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
-            context = ctx;
-            name = (TextView) itemView.findViewById(R.id.speakerNameID);
-            imgSpkr = (ImageView) itemView.findViewById(R.id.speakerImageID);
-            venue = (TextView) itemView.findViewById(R.id.speakerVenueID);
-            date = (TextView) itemView.findViewById(R.id.SpeakerDate);
-            info = (TextView) itemView.findViewById(R.id.speakerInfoID);
-            regUrl = (TextView) itemView.findViewById(R.id.regURL);
+            context=ctx;
+            name=(TextView) itemView.findViewById(R.id.speakerNameID);
+            imgSpkr=(ImageView) itemView.findViewById(R.id.speakerImageID);
+            venue=(TextView) itemView.findViewById(R.id.speakerVenueID);
+            date=(TextView)itemView.findViewById(R.id.SpeakerDate);
+
+         //   info=(TextView) itemView.findViewById(R.id.speakerInfoID);
+          //  regUrl=(TextView) itemView.findViewById(R.id.regURL);
             itemView.setOnClickListener(new View.OnClickListener() {
 
 
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "Scroll Only", Toast.LENGTH_SHORT).show();
+                  TalkModel talkModel= talksList.get(getAdapterPosition());
+                    Intent intent=new Intent(context, Add_talk_details.class);
+                    intent.putExtra("talk",talkModel);
+                    ctx.startActivity(intent);
                 }
 
             });

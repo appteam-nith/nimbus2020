@@ -1,14 +1,21 @@
 package com.nith.appteam.nimbus2020.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
+
+import com.nith.appteam.nimbus2020.Activities.Add_exhibition_details;
+import com.nith.appteam.nimbus2020.Activities.Add_talk_details;
 import com.nith.appteam.nimbus2020.Models.ExhibitionModel;
+import com.nith.appteam.nimbus2020.Models.TalkModel;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
@@ -41,10 +48,10 @@ public class ExhibitionRecyclerViewAdapter extends
     @Override
 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ExhibitionModel exhibitions = exhibitionList.get(position);
-        String imageLink = exhibitions.getImageExh();
-        holder.regUrl.setText(exhibitions.getRegURLExh());
-        holder.info.setText(exhibitions.getInfoExh());
+        ExhibitionModel exhibitions=exhibitionList.get(position);
+        String imageLink=exhibitions.getImageExh();
+        //holder.regUrl.setText(exhibitions.getRegURLExh());
+        //holder.info.setText(exhibitions.getInfoExh());
         holder.date.setText(exhibitions.getDateExh());
         holder.venue.setText(exhibitions.getVenueExh());
         holder.name.setText(exhibitions.getNameExh());
@@ -58,26 +65,28 @@ public class ExhibitionRecyclerViewAdapter extends
     public int getItemCount() {
         return exhibitionList.size();
     }
-
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView name, date, info, regUrl, venue;
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+        TextView name,date,venue;
         ImageView imgExh;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
-            context = ctx;
-            name = (TextView) itemView.findViewById(R.id.exhibtionNameID);
-            imgExh = (ImageView) itemView.findViewById(R.id.exhibitionImageID);
-            venue = (TextView) itemView.findViewById(R.id.exhibitionVenueID);
-            date = (TextView) itemView.findViewById(R.id.ExhibitionDate);
-            info = (TextView) itemView.findViewById(R.id.exhibtionInfoID);
-            regUrl = (TextView) itemView.findViewById(R.id.regURLExhibtion);
+            context=ctx;
+            name=(TextView) itemView.findViewById(R.id.exhibtionNameID);
+            imgExh=(ImageView) itemView.findViewById(R.id.exhibitionImageID);
+            venue=(TextView) itemView.findViewById(R.id.exhibitionVenueID);
+            date=(TextView)itemView.findViewById(R.id.ExhibitionDate);
+            //info=(TextView) itemView.findViewById(R.id.exhibtionInfoID);
+            //regUrl=(TextView) itemView.findViewById(R.id.regURLExhibtion);
             itemView.setOnClickListener(new View.OnClickListener() {
 
 
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(context, "Scroll Only", Toast.LENGTH_SHORT).show();
+                    ExhibitionModel  exhModel= exhibitionList.get(getAdapterPosition());
+                    Intent intent=new Intent(context, Add_exhibition_details.class);
+                    intent.putExtra("exhibition",exhModel);
+                    ctx.startActivity(intent);
                 }
 
             });

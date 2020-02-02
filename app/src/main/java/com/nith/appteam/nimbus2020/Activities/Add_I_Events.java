@@ -1,5 +1,8 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -7,14 +10,12 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.transition.CircularPropagation;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -41,12 +42,11 @@ import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class Add_Workshop extends AppCompatActivity {
-
-    private EditText nameAddWrk,infoAddWrk,venueAddWrk,dateAddWrk,regUrlAddWrk,typeAddWrk;
-    private CircleImageView imageAddWrk;
-    private Button addButtonWork;
-    private RequestQueue requestQueueWrk;
+public class Add_I_Events extends AppCompatActivity {
+    private EditText nameAddI,infoAddI,venueAddI,dateAddI,regUrlAddI,pdfAddI;
+    private CircleImageView imgI;
+    private Button addButtonI;
+    private RequestQueue requestQueueI;
     private int PICK_PHOTO_CODE = 100;
     private byte[] byteArray;
     private String imageUrl = "";
@@ -55,29 +55,27 @@ public class Add_Workshop extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_add__workshop);
-        nameAddWrk=findViewById(R.id.NameAddWrk);
-        typeAddWrk=findViewById(R.id.addTypeWrk);
-        infoAddWrk=findViewById(R.id.infoAddWrk);
-        venueAddWrk=findViewById(R.id.venueAddWrk);
-        dateAddWrk=findViewById(R.id.dateAddWrk);
-        imageAddWrk=findViewById(R.id.addImgWrk);
-        regUrlAddWrk=findViewById(R.id.addregUrlWrk);
-        addButtonWork=(Button) findViewById(R.id.AddButtonWrk);
+        setContentView(R.layout.activity_add__i__events);
+        nameAddI=findViewById(R.id.NameAddI);
+        pdfAddI=findViewById(R.id.pdfAddI);
+        infoAddI=findViewById(R.id.infoAddI);
+        venueAddI=findViewById(R.id.venueAddI);
+        dateAddI=findViewById(R.id.dateAddI);
+         imgI=findViewById(R.id.addImgI);
+        regUrlAddI=findViewById(R.id.addregUrlI);
+        addButtonI=findViewById(R.id.AddButtonI);
 
-        addButtonWork.setOnClickListener(new View.OnClickListener() {
+        addButtonI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String data="{"+"name"+ nameAdd.getText().toString()+","+"info"+ infoAdd
-//                .getText().toString()+","+"venue"+venueAdd.getText().toString()
-//                        +","+"date"+dateAdd.getText().toString()+","+"image"+imageAdd.getText()
-//                        .toString()+","+"regUrl"+regUrlAdd.getText().toString()+"}";
+//                String data="{"+"name"+ nameAdd.getText().toString()+","+"info"+ infoAdd.getText().toString()+","+"venue"+venueAdd.getText().toString()
+//                        +","+"date"+dateAdd.getText().toString()+","+"image"+imageAdd.getText().toString()+","+"regUrl"+regUrlAdd.getText().toString()+"}";
 
 
-                AddDetailsWrk();
+                AddDetailsI();
             }
         });
-        imageAddWrk.setOnClickListener(new View.OnClickListener() {
+        imgI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_PICK,
@@ -107,8 +105,8 @@ public class Add_Workshop extends AppCompatActivity {
             bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             img = getResizedBitmap(bmp, 300);
 //          pass = encodeTobase64(img);
-            imageAddWrk.setImageBitmap(img);
-            Bitmap bitmap = ((BitmapDrawable) imageAddWrk.getDrawable()).getBitmap();
+            imgI.setImageBitmap(img);
+            Bitmap bitmap = ((BitmapDrawable) imgI.getDrawable()).getBitmap();
 
             getImageUrl(bitmap);
         }
@@ -156,7 +154,7 @@ public class Add_Workshop extends AppCompatActivity {
                     public void onError(String requestId, ErrorInfo error) {
                         Log.i("HELLO", "JIJIJ");
 //                      finish();
-                        Toast.makeText(Add_Workshop.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();
+                        Toast.makeText(Add_I_Events.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();
 
                     }
 
@@ -165,64 +163,62 @@ public class Add_Workshop extends AppCompatActivity {
                         // your code here
                     }
                 })
-                .dispatch(Add_Workshop.this);
+                .dispatch(Add_I_Events.this);
 
     }
 
 
 
 
-
-
-    private void AddDetailsWrk() {
+    private void AddDetailsI() {
         //final String savedata=data;
-        requestQueueWrk = Volley.newRequestQueue(getApplicationContext());
-        StringRequest request = new StringRequest(Request.Method.POST, Constant.Url + "workshops",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject object = new JSONObject(response);
-                            Log.i("Tag", "Success");
-                            Toast.makeText(getApplicationContext(), object.toString(),
-                                    Toast.LENGTH_SHORT).show();
+        requestQueueI= Volley.newRequestQueue(getApplicationContext());
+        StringRequest request= new StringRequest(Request.Method.POST, Constant.Url+ "instituteEvents" ,new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object=new JSONObject(response);
+                    Log.i("Tag","Success");
+                    Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
 
 
-                        } catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(), "Error" + e,
-                                    Toast.LENGTH_SHORT).show();
+
+                }catch (JSONException e){
+                    Toast.makeText(getApplicationContext(),"Error"+e,Toast.LENGTH_SHORT).show();
 
 
-                        }
-                    }
-                }, new Response.ErrorListener() {
+                }
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("volley", "Error: " + error.getMessage());
+                VolleyLog.d("volley","Error: "+ error.getMessage());
                 error.printStackTrace();
-                Toast.makeText(getApplication(), "Error:" + error, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(),"Error:"+error,Toast.LENGTH_SHORT).show();
 
             }
-        }) {
+        })
+        {
             @Override
-            public String getBodyContentType() {
+            public String getBodyContentType(){
                 return "application/x-www-form-urlencoded; charset=utf-8";
             }
-
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put("name", nameAddWrk.getText().toString());
-                params.put("info",infoAddWrk.getText().toString());
-                params.put("venue",venueAddWrk.getText().toString());
-                params.put("date",dateAddWrk.getText().toString());
-//                params.put("image",imageAddWrk.getText().toString());
-                params.put("regUrl",regUrlAddWrk.getText().toString());
-                params.put("type",typeAddWrk.getText().toString());
+                params.put("name", nameAddI.getText().toString());
+                params.put("info",infoAddI.getText().toString());
+                params.put("venue",venueAddI.getText().toString());
+                params.put("date",dateAddI.getText().toString());
+                params.put("abstract",pdfAddI.getText().toString());
+                // params.put("image",imageAdd.getText().toString());
+                params.put("regUrl",regUrlAddI.getText().toString());
                 return params;
             }
         };
 
-        requestQueueWrk.add(request);
+        requestQueueI.add(request);
+
     }
 }
+

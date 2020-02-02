@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class instituteEvent implements Serializable {
 
+    private static final long id= 1L;
+    private String nameIEVE,infoIEVE,venueIEVE,regURLIEVE,dateIEVE,imageIEVE,abstractIEVE;
 
-    private static final long id = 1L;
-    private String nameIEVE, infoIEVE, venueIEVE, regURLIEVE, dateIEVE, imageIEVE;
 
     public instituteEvent() {
     }
@@ -57,5 +57,14 @@ public class instituteEvent implements Serializable {
 
     public void setImageIEVE(String imageIEVE) {
         this.imageIEVE = imageIEVE;
+
+    }
+
+    public String getAbstractIEVE() {
+        return abstractIEVE;
+    }
+
+    public void setAbstractIEVE(String abstractIEVE) {
+        this.abstractIEVE = abstractIEVE;
     }
 }

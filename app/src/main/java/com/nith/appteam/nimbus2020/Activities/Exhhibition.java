@@ -86,11 +86,9 @@ public class Exhhibition extends AppCompatActivity {
                         JSONObject exhObj = response.getJSONObject(i);
                         ExhibitionModel exhibition = new ExhibitionModel();
 //                        talk.setName("APP on TALkoinghg iguhedbfuhcgwu");
-//                        talk.setVenue("LEcture
-//                        aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
-//                        talk.setRegURL("https://google.com");
-//                        talk.setInfo("HE is
-//                        veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
+//                        talk.setVenue("LEcture aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
+                        exhibition.setRegURLExh("https://google.com");
+//                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
                         exhibition.setNameExh(exhObj.getString("name"));
                         exhibition.setDateExh("On: " + exhObj.getString("date"));
@@ -101,7 +99,7 @@ public class Exhhibition extends AppCompatActivity {
                         // &sa=X&ved=2ahUKEwj94_2uk6vnAhU1zTgGHUz7DEAQ_AUoAXoECA4QAw&biw=1536&bih
                         // =754#imgrc=_2JirDBiGzi3lM:");
                         exhibition.setInfoExh(exhObj.getString("info"));
-                        exhibition.setRegURLExh(exhObj.getString("regUrl"));
+                        //exhibition.setRegURLExh(  exhObj.getString("regUrl"));
                         exhibition.setVenueExh("Venue: " + exhObj.getString("venue"));
 //                         Log.d("Talk",talk.getName());
 //                       Log.d("date",talk.getDate());

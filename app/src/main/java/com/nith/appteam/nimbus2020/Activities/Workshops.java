@@ -79,15 +79,12 @@ public class Workshops extends AppCompatActivity {
 //                Log.d("Response",response.toString());
                 for (int i = 0; i < response.length(); i++) {
                     try {
-                        JSONObject workshopObj = response.getJSONObject(i);
-                        WorkshopModel workshop = new WorkshopModel();
-//                        talk.setName("Aysuh
-//                        KAusnldjhlkhfkllnewlfnlwenflkjewlkjfljwhekjksdjkjhkuhkjhkjsdhlehlkjhalhldhll");
-//                        talk.setVenue("LEcture
-//                        aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
-//                        talk.setRegURL("https://github.com/appteam-nith/nimbus2019");
-//                        talk.setInfo("HE is
-//                        veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
+                        JSONObject workshopObj= response.getJSONObject(i);
+                        WorkshopModel workshop=new WorkshopModel();
+//                        talk.setName("Aysuh KAusnldjhlkhfkllnewlfnlwenflkjewlkjfljwhekjksdjkjhkuhkjhkjsdhlehlkjhalhldhll");
+//                        talk.setVenue("LEcture aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
+                 //      workshop.setUrlWor("https://github.com/appteam-nith/nimbus2019");
+//                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
                         workshop.setNameWor(workshopObj.getString("name"));
                         workshop.setDateWor("On: " + workshopObj.getString("date"));
@@ -95,7 +92,7 @@ public class Workshops extends AppCompatActivity {
                         workshop.setInfoWor(workshopObj.getString("info"));
                         workshop.setUrlWor(workshopObj.getString("regUrl"));
                         workshop.setVenueWor("Venue: " + workshopObj.getString("venue"));
-                        workshop.setTypeWor(workshopObj.getString("type"));
+                        workshop.setTypeWor("Type:" + workshopObj.getString("type"));
                         // Log.d("Talk",talk.getName());
 //                       Log.d("date",talk.getDate());
                         workshopList.add(workshop);
