@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="@color/cardview_light_background">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+        app:srcCompat="@drawable/nimbus_logo"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"/>
+
+    <TextView
+        android:id="@+id/hello"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/logo"
+        android:layout_marginLeft="12dp"
+        android:layout_marginBottom="-72dp"
+        android:text="Hi! There"
+        android:textSize="50dp" />
+
+    <TextView
+        android:id="@+id/Intro"
+        android:layout_marginLeft="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/hello"
+        android:layout_marginBottom="-89dp"
+        android:text="Welcome to the Nimbus App. Stay tuned with feeds, games and many more..."
+        android:textSize="25dp" />
+
+    <TextView
+        android:layout_marginLeft="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Intro"
+        android:layout_marginBottom="-29dp"
+        android:text="Sign in to Continue"
+        android:textSize="25dp" />
+</RelativeLayout>
+
