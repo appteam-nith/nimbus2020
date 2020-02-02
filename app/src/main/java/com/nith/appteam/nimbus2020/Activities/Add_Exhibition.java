@@ -39,7 +39,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Exhibition extends AppCompatActivity {
@@ -66,8 +65,10 @@ public class Add_Exhibition extends AppCompatActivity {
         addButtonExh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                String data="{"+"name"+ nameAdd.getText().toString()+","+"info"+ infoAdd.getText().toString()+","+"venue"+venueAdd.getText().toString()
-//                        +","+"date"+dateAdd.getText().toString()+","+"image"+imageAdd.getText().toString()+","+"regUrl"+regUrlAdd.getText().toString()+"}";
+//                String data="{"+"name"+ nameAdd.getText().toString()+","+"info"+ infoAdd
+//                .getText().toString()+","+"venue"+venueAdd.getText().toString()
+//                        +","+"date"+dateAdd.getText().toString()+","+"image"+imageAdd.getText()
+//                        .toString()+","+"regUrl"+regUrlAdd.getText().toString()+"}";
 
 
                 AddDetailsExh();
@@ -169,37 +170,39 @@ public class Add_Exhibition extends AppCompatActivity {
 
     private void AddDetailsExh() {
         //final String savedata=data;
-        requestQueueExh= Volley.newRequestQueue(getApplicationContext());
-        StringRequest request= new StringRequest(Request.Method.POST, Constant.Url+ "exhibitions" ,new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object=new JSONObject(response);
-                    Log.i("Tag","Success");
-                    Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
+        requestQueueExh = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, Constant.Url + "exhibitions",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            Log.i("Tag", "Success");
+                            Toast.makeText(getApplicationContext(), object.toString(),
+                                    Toast.LENGTH_SHORT).show();
 
 
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "Error" + e,
+                                    Toast.LENGTH_SHORT).show();
 
-                }catch (JSONException e){
-                    Toast.makeText(getApplicationContext(),"Error"+e,Toast.LENGTH_SHORT).show();
 
-
-                }
-            }
-        }, new Response.ErrorListener() {
+                        }
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("volley","Error: "+ error.getMessage());
+                VolleyLog.d("volley", "Error: " + error.getMessage());
                 error.printStackTrace();
-                Toast.makeText(getApplication(),"Error:"+error,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), "Error:" + error, Toast.LENGTH_SHORT).show();
 
             }
-        })
-        {
+        }) {
             @Override
-            public String getBodyContentType(){
+            public String getBodyContentType() {
                 return "application/x-www-form-urlencoded; charset=utf-8";
             }
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();

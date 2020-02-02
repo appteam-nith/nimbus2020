@@ -28,17 +28,20 @@ public class VolleyService {
         try {
             RequestQueue queue = Volley.newRequestQueue(mContext);
 
-            JsonObjectRequest jsonObj = new JsonObjectRequest(url, sendObj, new Response.Listener<JSONObject>() {
-                @Override
-                public void onResponse(JSONObject response) {
-                    if (mResultCallback != null)
-                        mResultCallback.notifySuccess(requestType, response, null);
-                }
-            }, new Response.ErrorListener() {
+            JsonObjectRequest jsonObj = new JsonObjectRequest(url, sendObj,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            if (mResultCallback != null) {
+                                mResultCallback.notifySuccess(requestType, response, null);
+                            }
+                        }
+                    }, new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    if (mResultCallback != null)
+                    if (mResultCallback != null) {
                         mResultCallback.notifyError(requestType, error);
+                    }
                 }
             });
 
@@ -56,16 +59,18 @@ public class VolleyService {
 
                     @Override
                     public void onResponse(JSONObject response) {
-                        if (mResultCallback != null)
+                        if (mResultCallback != null) {
                             mResultCallback.notifySuccess(requestType, response, null);
+                        }
                     }
                 }, new Response.ErrorListener() {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         // TODO: Handle error
-                        if (mResultCallback != null)
+                        if (mResultCallback != null) {
                             mResultCallback.notifyError(requestType, error);
+                        }
                     }
                 });
         queue.add(jsonObjectRequest);
@@ -80,15 +85,17 @@ public class VolleyService {
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray jsonArray) {
-                        if (mResultCallback != null)
+                        if (mResultCallback != null) {
                             mResultCallback.notifySuccess(requestType, null, jsonArray);
+                        }
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
-                        if (mResultCallback != null)
+                        if (mResultCallback != null) {
                             mResultCallback.notifyError(requestType, volleyError);
+                        }
                     }
                 });
 

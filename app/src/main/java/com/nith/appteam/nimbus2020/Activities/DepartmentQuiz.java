@@ -1,9 +1,11 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -36,6 +38,7 @@ public class DepartmentQuiz extends AppCompatActivity {
     TextView textView;
     RequestQueue queue;
     ArrayList<Id_Value> quiztypes = new ArrayList<>();
+    ProgressBar loadwall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,8 @@ public class DepartmentQuiz extends AppCompatActivity {
         setContentView(R.layout.activity_department_quiz);
         departmentquiz = findViewById(R.id.departmentquiz);
         textView = findViewById(R.id.departmentname);
+
+        loadwall = findViewById(R.id.loadwall);
 
         queue = Volley.newRequestQueue(this);
 
@@ -77,7 +82,8 @@ public class DepartmentQuiz extends AppCompatActivity {
             JSONArray jsonArray = new JSONArray(response);
             for (int i = 0; i < jsonArray.length(); i++) {
                 Id_Value idValue = new Id_Value(jsonArray.getJSONObject(i).getString("quizName"),
-                        jsonArray.getJSONObject(i).getString("_id"));
+                        jsonArray.getJSONObject(i).getString("_id"),
+                        jsonArray.getJSONObject(i).getString("image"));
                 quiztypes.add(idValue);
                 Objects.requireNonNull(departmentquiz.getAdapter()).notifyDataSetChanged();
             }
@@ -89,10 +95,12 @@ public class DepartmentQuiz extends AppCompatActivity {
 
 
     private void postdata(final int position) {
+        loadwall.setVisibility(View.VISIBLE);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 getString(R.string.baseUrl) + "/quiz/questions", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                loadwall.setVisibility(View.GONE);
                 Log.e("hi", "onResponse: " + response);
                 Intent intent = new Intent(DepartmentQuiz.this, QuizInstructionsActivity.class);
                 intent.putExtra("questions", response);
@@ -114,7 +122,14 @@ public class DepartmentQuiz extends AppCompatActivity {
                 return "application/x-www-form-urlencoded; charset=UTF-8";
             }
 
-            //TODO: send authtoken in headers
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                SharedPreferences sharedPreferences=getSharedPreferences("app",MODE_PRIVATE);
+                String token=sharedPreferences.getString("token",null);
+                HashMap<String,String> map=new HashMap<>();
+                map.put("token",token);
+                return map;
+            }
 
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {

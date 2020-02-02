@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,21 +20,27 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class EventIRecyclerViewAdapter extends RecyclerView.Adapter<EventIRecyclerViewAdapter.ViewHolder> {
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class EventIRecyclerViewAdapter extends
+        RecyclerView.Adapter<EventIRecyclerViewAdapter.ViewHolder> {
     private Context context;
     private List<instituteEvent> eventList;
+
     public EventIRecyclerViewAdapter(Context context, List<instituteEvent> events) {
-        this.context=context;
-        eventList=events;
+        this.context = context;
+        eventList = events;
 
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.instituteevents_info,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.instituteevents_info,
+                parent, false);
 
-        return new ViewHolder(view,context);
+        return new ViewHolder(view, context);
     }
 
     @Override
@@ -47,18 +52,19 @@ public class EventIRecyclerViewAdapter extends RecyclerView.Adapter<EventIRecycl
         holder.datEVEI.setText(Ievents.getDateIEVE());
         holder.venueEVEI.setText(Ievents.getVenueIEVE());
         holder.nameEVEI.setText(Ievents.getNameIEVE());
-        Picasso.with(context).load(imageLinkEVE).placeholder(android.R.drawable.ic_btn_speak_now).into(holder.imgEVEVi);
+        Picasso.with(context).load(imageLinkEVE).placeholder(
+                android.R.drawable.ic_btn_speak_now).into(holder.imgEVEVi);
 
     }
-
 
 
     @Override
     public int getItemCount() {
         return eventList.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView nameEVEI,datEVEI,infoEVEI,regUrlEVEI,venueEVEI;
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView nameEVEI, datEVEI, infoEVEI, regUrlEVEI, venueEVEI;
         ImageView imgEVEVi;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
@@ -71,7 +77,6 @@ public class EventIRecyclerViewAdapter extends RecyclerView.Adapter<EventIRecycl
             //infoEVEI=(TextView) itemView.findViewById(R.id.EventIInfoID);
           //  regUrlEVEI=(TextView) itemView.findViewById(R.id.regURLEvevntI);
             itemView.setOnClickListener(new View.OnClickListener() {
-
 
 
                 @Override

@@ -5,11 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,6 +26,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class Exhhibition extends AppCompatActivity {
 
     private RecyclerView recyclerViewExhib;
@@ -39,12 +39,11 @@ public class Exhhibition extends AppCompatActivity {
     private RequestQueue requestQueueExh;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exhhibition);
-        requestQueueExh= Volley.newRequestQueue(this);
+        requestQueueExh = Volley.newRequestQueue(this);
         Toolbar toolbar = findViewById(R.id.toolbarExh);
         setSupportActionBar(toolbar);
 
@@ -52,39 +51,40 @@ public class Exhhibition extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Exhhibition.this,Add_Exhibition.class);
+                Intent intent = new Intent(Exhhibition.this, Add_Exhibition.class);
                 startActivity(intent);
 
 
             }
         });
-        recyclerViewExhib= findViewById(R.id.recyclerViewExhibition);
+        recyclerViewExhib = findViewById(R.id.recyclerViewExhibition);
         recyclerViewExhib.setHasFixedSize(true);
-        recyclerViewExhib.setLayoutManager( new LinearLayoutManager(this));
-        exhibitionList= new ArrayList<>();
-        PrefsExhibition prefsExhibition=new PrefsExhibition(this);
-        String search=prefsExhibition.getSearch();
-        exhibitionList=getExhibition(search);
+        recyclerViewExhib.setLayoutManager(new LinearLayoutManager(this));
+        exhibitionList = new ArrayList<>();
+        PrefsExhibition prefsExhibition = new PrefsExhibition(this);
+        String search = prefsExhibition.getSearch();
+        exhibitionList = getExhibition(search);
 //        talkRecyclerViewAdapter=new TalkRecyclerViewAdapter(this,talkList);
 //        recyclerView.setAdapter(talkRecyclerViewAdapter);
 
     }
+
     public List<ExhibitionModel> getExhibition(String searchTerm)//all info returned from api
     {
         exhibitionList.clear();
-        exhibitionRecyclerViewAdapter=new ExhibitionRecyclerViewAdapter(this,exhibitionList);
+        exhibitionRecyclerViewAdapter = new ExhibitionRecyclerViewAdapter(this, exhibitionList);
         recyclerViewExhib.setAdapter(exhibitionRecyclerViewAdapter);
 
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, Constant.Url+ searchTerm,null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
+                Constant.Url + searchTerm, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 //                Log.d("Response",response.toString());
-                for(int i=0;i<response.length();i++)
-                {
+                for (int i = 0; i < response.length(); i++) {
                     try {
-                        JSONObject exhObj= response.getJSONObject(i);
-                        ExhibitionModel exhibition=new ExhibitionModel();
+                        JSONObject exhObj = response.getJSONObject(i);
+                        ExhibitionModel exhibition = new ExhibitionModel();
 //                        talk.setName("APP on TALkoinghg iguhedbfuhcgwu");
 //                        talk.setVenue("LEcture aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
                         exhibition.setRegURLExh("https://google.com");
@@ -92,8 +92,12 @@ public class Exhhibition extends AppCompatActivity {
 //                        talk.setDate("19 2022002345453453453450 2");
                         exhibition.setNameExh(exhObj.getString("name"));
                         exhibition.setDateExh("On: " + exhObj.getString("date"));
-                       exhibition.setImageExh(exhObj.getString("image"));
-                        //exhibition.setImageExh("https://www.google.com/search?q=images&rlz=1C1CHBF_enIN859IN859&sxsrf=ACYBGNS3W0FihD42Fyr2cRgnJ33k2Ihysw:1580381365046&source=lnms&tbm=isch&sa=X&ved=2ahUKEwj94_2uk6vnAhU1zTgGHUz7DEAQ_AUoAXoECA4QAw&biw=1536&bih=754#imgrc=_2JirDBiGzi3lM:");
+                        exhibition.setImageExh(exhObj.getString("image"));
+                        //exhibition.setImageExh("https://www.google
+                        // .com/search?q=images&rlz=1C1CHBF_enIN859IN859&sxsrf
+                        // =ACYBGNS3W0FihD42Fyr2cRgnJ33k2Ihysw:1580381365046&source=lnms&tbm=isch
+                        // &sa=X&ved=2ahUKEwj94_2uk6vnAhU1zTgGHUz7DEAQ_AUoAXoECA4QAw&biw=1536&bih
+                        // =754#imgrc=_2JirDBiGzi3lM:");
                         exhibition.setInfoExh(exhObj.getString("info"));
                         //exhibition.setRegURLExh(  exhObj.getString("regUrl"));
                         exhibition.setVenueExh("Venue: " + exhObj.getString("venue"));
@@ -111,7 +115,7 @@ public class Exhhibition extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Error",error.getMessage());
+                Log.d("Error", error.getMessage());
 
             }
         });

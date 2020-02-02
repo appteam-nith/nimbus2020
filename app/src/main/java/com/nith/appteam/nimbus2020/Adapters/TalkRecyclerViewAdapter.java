@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,21 +18,27 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class TalkRecyclerViewAdapter extends RecyclerView.Adapter<TalkRecyclerViewAdapter.ViewHolder> {
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class TalkRecyclerViewAdapter extends
+        RecyclerView.Adapter<TalkRecyclerViewAdapter.ViewHolder> {
     private Context context;
     private List<TalkModel> talksList;
+
     public TalkRecyclerViewAdapter(Context context, List<TalkModel> talks) {
-        this.context=context;
-        talksList=talks;
+        this.context = context;
+        talksList = talks;
 
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.talks_info,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.talks_info, parent,
+                false);
 
-        return new ViewHolder(view,context);
+        return new ViewHolder(view, context);
     }
 
     @Override
@@ -46,8 +51,8 @@ public class TalkRecyclerViewAdapter extends RecyclerView.Adapter<TalkRecyclerVi
         holder.date.setText(talks.getDate());
         holder.venue.setText(talks.getVenue());
         holder.name.setText(talks.getName());
-        Picasso.with(context).load(imageLink).placeholder(android.R.drawable.ic_btn_speak_now).into(holder.imgSpkr);
-
+        Picasso.with(context).load(imageLink).placeholder(android.R.drawable.ic_btn_speak_now).into(
+                holder.imgSpkr);
 
 
     }
@@ -71,7 +76,6 @@ public class TalkRecyclerViewAdapter extends RecyclerView.Adapter<TalkRecyclerVi
          //   info=(TextView) itemView.findViewById(R.id.speakerInfoID);
           //  regUrl=(TextView) itemView.findViewById(R.id.regURL);
             itemView.setOnClickListener(new View.OnClickListener() {
-
 
 
                 @Override
