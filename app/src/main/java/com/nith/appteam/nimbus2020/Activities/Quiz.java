@@ -2,6 +2,7 @@ package com.nith.appteam.nimbus2020.Activities;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -28,7 +29,9 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -241,6 +244,15 @@ public class Quiz extends AppCompatActivity {
             @Override
             public String getBodyContentType() {
                 return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                SharedPreferences sharedPreferences=getSharedPreferences("app",MODE_PRIVATE);
+                String token=sharedPreferences.getString("token",null);
+                HashMap<String,String> map=new HashMap<>();
+                map.put("access-token",token);
+                return map;
             }
 
             @Override
