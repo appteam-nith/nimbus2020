@@ -42,7 +42,7 @@
             android:name=".Activities.Add_Exhibition"
             android:theme="@style/AppTheme" />
         <activity android:name=".Activities.QRScanner"
-            android:exported="true"></activity>
+            ></activity>
         <activity
             android:name=".Activities.department_Events"
             android:theme="@style/AppTheme" />
