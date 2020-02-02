@@ -1,5 +1,6 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -82,13 +83,16 @@ public class QuizMainActivity extends AppCompatActivity {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        Id_Value idValue = new Id_Value(
-                                jsonArray.getJSONObject(i).getString("departmentName"),
-                                jsonArray.getJSONObject(i).getString("departmentId"),
-                                jsonArray.getJSONObject(i).getString("image"));
-                        quiztypes.add(idValue);
-                        Objects.requireNonNull(
-                                quizrecyclerView.getAdapter()).notifyDataSetChanged();
+                        String image;
+                        if (jsonArray.getJSONObject(i).has("image"))image= jsonArray.getJSONObject(i).getString("image");
+                        else image="https://cdn.motor1.com/images/mgl/M1318/s3/lamborghini-lead-image.jpg";
+                            Id_Value idValue = new Id_Value(
+                                    jsonArray.getJSONObject(i).getString("departmentName"),
+                                    jsonArray.getJSONObject(i).getString("departmentId"),
+                                    image);
+                            quiztypes.add(idValue);
+                            Objects.requireNonNull(
+                                    quizrecyclerView.getAdapter()).notifyDataSetChanged();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -111,6 +115,11 @@ public class QuizMainActivity extends AppCompatActivity {
 
 
     private void postdata(final int position) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(QuizMainActivity.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 getString(R.string.baseUrl) + "/quiz/departments", new Response.Listener<String>() {
             @Override
@@ -119,6 +128,8 @@ public class QuizMainActivity extends AppCompatActivity {
                 Intent i = new Intent(QuizMainActivity.this, DepartmentQuiz.class);
                 i.putExtra("quiz", response);
                 i.putExtra("departmentname", quiztypes.get(position).getValue());
+                i.putExtra("image",quiztypes.get(position).getImageUrl());
+                progressDialog.dismiss();
                 startActivity(i);
 
             }

@@ -6,30 +6,40 @@
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/userImageView"
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:layout_gravity="center_vertical"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="56dp"
-        android:padding="16dp"
+        android:padding="8dp"
         android:src="@mipmap/ic_launcher_round"
         app:civ_border_color="#000000"
         app:civ_border_width="2dp"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@tools:sample/avatars"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
 
-    <TextView
-        android:id="@+id/quizdepartmentname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginStart="8dp"
-        android:gravity="center_horizontal"
-        android:text="bsdabsdd"
-        android:textSize="24sp" />
+        <TextView
+            android:id="@+id/quizdepartmentname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/userImageView"
+            android:layout_alignBottom="@+id/userImageView"
+            android:layout_gravity="center"
+            android:layout_marginTop="0dp"
+            android:layout_marginBottom="0dp"
+            android:gravity="center"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_toRightOf="@id/userImageView"
+            android:text="bsdabsdd"
+            android:textSize="24sp" />
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -1,5 +1,6 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -39,6 +40,7 @@ public class DepartmentQuiz extends AppCompatActivity {
     RequestQueue queue;
     ArrayList<Id_Value> quiztypes = new ArrayList<>();
     ProgressBar loadwall;
+    String image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +80,13 @@ public class DepartmentQuiz extends AppCompatActivity {
         Intent j = getIntent();
         String response = j.getStringExtra("quiz");
         textView.setText(j.getStringExtra("departmentname"));
+        image=j.getStringExtra("image");
         try {
             JSONArray jsonArray = new JSONArray(response);
             for (int i = 0; i < jsonArray.length(); i++) {
                 Id_Value idValue = new Id_Value(jsonArray.getJSONObject(i).getString("quizName"),
                         jsonArray.getJSONObject(i).getString("_id"),
-                        jsonArray.getJSONObject(i).getString("image"));
+                        image);
                 quiztypes.add(idValue);
                 Objects.requireNonNull(departmentquiz.getAdapter()).notifyDataSetChanged();
             }
@@ -95,6 +98,11 @@ public class DepartmentQuiz extends AppCompatActivity {
 
 
     private void postdata(final int position) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(DepartmentQuiz.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         loadwall.setVisibility(View.VISIBLE);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 getString(R.string.baseUrl) + "/quiz/questions", new Response.Listener<String>() {
@@ -105,6 +113,7 @@ public class DepartmentQuiz extends AppCompatActivity {
                 Intent intent = new Intent(DepartmentQuiz.this, QuizInstructionsActivity.class);
                 intent.putExtra("questions", response);
                 intent.putExtra("quizId", quiztypes.get(position).getId());
+                progressDialog.dismiss();
                 startActivity(intent);
 
             }
