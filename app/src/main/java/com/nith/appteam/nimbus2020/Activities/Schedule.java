@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,11 +39,13 @@ public class Schedule extends AppCompatActivity {
     private List<ScheduleModel> scheduleModelList;
     private ScheduleRecyclerViewAdapter scheduleRecyclerViewAdapter;
     private RequestQueue requestQueueSch;
+    private ProgressBar loadWall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+        loadWall=findViewById(R.id.loadwallSch);
         requestQueueSch= Volley.newRequestQueue(this);
         recyclerViewSch= findViewById(R.id.recyclerViewSchedule);
         recyclerViewSch.setHasFixedSize(true);
@@ -58,6 +61,7 @@ public class Schedule extends AppCompatActivity {
     }
     public List<ScheduleModel> getSchedule(String searchTerm)//all info returned from api
     {
+        loadWall.setVisibility(View.VISIBLE);
         scheduleModelList.clear();
         scheduleRecyclerViewAdapter=new ScheduleRecyclerViewAdapter(this,scheduleModelList);
         recyclerViewSch.setAdapter(scheduleRecyclerViewAdapter);
@@ -66,6 +70,7 @@ public class Schedule extends AppCompatActivity {
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, Constant.Url+ searchTerm,null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                loadWall.setVisibility(View.GONE);
                 Log.d("Response",response.toString());
                 for(int i=0;i<response.length();i++)
                 {
