@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -35,6 +36,7 @@ public class department_Events extends AppCompatActivity {
     private Events_D_RecyclerViewAdapter events_d_recyclerViewAdapter;
     private RequestQueue requestQueueEVED;
     private List<departmentEvent> eventlistD;
+    private ProgressBar loadWall;
 
 
     @Override
@@ -51,7 +53,7 @@ public class department_Events extends AppCompatActivity {
             }
         });
         requestQueueEVED= Volley.newRequestQueue(this);
-
+loadWall=findViewById(R.id.loadwalldpt);
         recyclerViewDEVE = findViewById(R.id.recyclerViewEVED);
         recyclerViewDEVE.setHasFixedSize(true);
         recyclerViewDEVE.setLayoutManager(new LinearLayoutManager(this));
@@ -67,6 +69,7 @@ public class department_Events extends AppCompatActivity {
 
     public List<departmentEvent> getEventD(String searchTerm)//all info returned from api
     {
+        loadWall.setVisibility(View.VISIBLE);
         eventlistD.clear();
         events_d_recyclerViewAdapter = new Events_D_RecyclerViewAdapter(this, eventlistD);
         recyclerViewDEVE.setAdapter(events_d_recyclerViewAdapter);
@@ -76,6 +79,7 @@ public class department_Events extends AppCompatActivity {
                 Constant.Url + searchTerm, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                loadWall.setVisibility(View.GONE);
                 Log.d("Response", response.toString());
                 for (int i = 0; i < response.length(); i++) {
                     try {

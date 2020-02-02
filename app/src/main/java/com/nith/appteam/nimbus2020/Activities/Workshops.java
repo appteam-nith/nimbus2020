@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,6 +37,7 @@ public class Workshops extends AppCompatActivity {
     private List<WorkshopModel> workshopList;
     private WorkshopRecyclerViewAdapter workshopRecyclerViewAdapter;
     private RequestQueue requestQueuework;
+    ProgressBar loadWall;
 
 
     @Override
@@ -55,6 +57,7 @@ public class Workshops extends AppCompatActivity {
 
             }
         });
+        loadWall=findViewById(R.id.loadwallWorkshop);
         recyclerViewwor = findViewById(R.id.recyclerViewWorkshop);
         recyclerViewwor.setHasFixedSize(true);
         recyclerViewwor.setLayoutManager(new LinearLayoutManager(this));
@@ -67,6 +70,7 @@ public class Workshops extends AppCompatActivity {
 
     public List<WorkshopModel> getWorkshop(String searchTerm)//all info returned from api
     {
+        loadWall.setVisibility(View.VISIBLE);
         workshopList.clear();
         workshopRecyclerViewAdapter = new WorkshopRecyclerViewAdapter(this, workshopList);
         recyclerViewwor.setAdapter(workshopRecyclerViewAdapter);
@@ -76,6 +80,7 @@ public class Workshops extends AppCompatActivity {
                 Constant.Url + searchTerm, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                loadWall.setVisibility(View.GONE);
 //                Log.d("Response",response.toString());
                 for (int i = 0; i < response.length(); i++) {
                     try {

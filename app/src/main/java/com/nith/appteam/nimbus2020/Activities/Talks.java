@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -36,6 +37,8 @@ public class Talks extends AppCompatActivity {
     private List<TalkModel> talkList;
     private TalkRecyclerViewAdapter talkRecyclerViewAdapter;
     private RequestQueue requestQueue;
+    ProgressBar loadwall;
+
 
 
     @Override
@@ -55,6 +58,7 @@ public class Talks extends AppCompatActivity {
 
             }
         });
+        loadwall = findViewById(R.id.loadwallTalk);
         recyclerView = findViewById(R.id.recyclerViewTalk);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -70,6 +74,7 @@ public class Talks extends AppCompatActivity {
 
     public List<TalkModel> getTalk(String searchTerm)//all info returned from api
     {
+        loadwall.setVisibility(View.VISIBLE);
         talkList.clear();
         talkRecyclerViewAdapter = new TalkRecyclerViewAdapter(this, talkList);
         recyclerView.setAdapter(talkRecyclerViewAdapter);
@@ -79,6 +84,7 @@ public class Talks extends AppCompatActivity {
                 Constant.Url + searchTerm, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                loadwall.setVisibility(View.GONE);
                 Log.d("Response", response.toString());
                 for (int i = 0; i < response.length(); i++) {
                     try {
