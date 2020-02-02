@@ -87,11 +87,13 @@ class contributorsActivity extends AppCompatActivity {
         contributorsItems.add(new contributorsItem("Moulik Bhardwaj",BASE_URL+"moulikbhardwaj.png",BASE_URL+"moulikbhardwaj"));
         contributorsItems.add(new contributorsItem("Rupali Mehra",BASE_URL+"rupalimehra.png",BASE_URL+"rupalimehra"));
         contributorsItems.add(new contributorsItem("Pranjal Dureja",BASE_URL+"pranjaldureja0002.png",BASE_URL+"pranjaldureja0002"));
+        contributorsItems.add(new contributorsItem("Shreya Agarwal",BASE_URL+"shreyaag770.png",BASE_URL+"shreyaag770"));
 
         //1st year
         contributorsItems.add(new contributorsItem("Anshit",BASE_URL+"Anshit01.png",BASE_URL+"Anshit01"));
         contributorsItems.add(new contributorsItem("Mrigank Anand",BASE_URL+"spiderpxm.png",BASE_URL+"spiderxm"));
         contributorsItems.add(new contributorsItem("Gautam Verma",BASE_URL+"hey1729gautam.png",BASE_URL+"hey1729gautam"));
+        contributorsItems.add(new contributorsItem("Kashika",BASE_URL+"Kashika1020.png",BASE_URL+"Kashika1020"));
         contributorsItems.add(new contributorsItem("Khyati Saini",BASE_URL+"KhyatiSaini.png",BASE_URL+"KhyatiSaini"));
 
         ContributorAdapter = new contributorAdapter(contributorsItems, contributorsActivity.this);
