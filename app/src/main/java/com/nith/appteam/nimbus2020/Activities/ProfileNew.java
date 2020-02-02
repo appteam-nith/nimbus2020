@@ -104,7 +104,7 @@ public class ProfileNew extends AppCompatActivity {
                             try {
                                 jsonObject = new JSONObject(response);
                                 errorCode = (int) jsonObject.get("errorCode");
-                                token = (String) jsonObject.get("token");
+                                token = (String) jsonObject.get("access-token");
                                 editor.putString("token", token);
                                 editor.apply();
 
@@ -157,7 +157,7 @@ public class ProfileNew extends AppCompatActivity {
                         public Map<String, String> getHeaders() {
                             HashMap<String, String> headers = new HashMap<>();
                             if (editStatus.equals("true")) {
-                                headers.put("token", sharedPrefs.getString("token", ""));
+                                headers.put("access-token", sharedPrefs.getString("token", ""));
                                 return headers;
                             } else return null;
                         }

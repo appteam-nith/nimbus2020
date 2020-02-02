@@ -113,7 +113,7 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                         public Map<String, String> getHeaders() {
                             HashMap<String, String> headers = new HashMap<>();
 //                            headers.put("token", sharedPrefs.getString("token", ""));
-                            headers.put("token", "5e365b9abb840d2fb05ad40f");
+                            headers.put("access-token", "5e365b9abb840d2fb05ad40f");//TODO changes here:
 
                             return headers;
                         }
