@@ -1,0 +1,58 @@
+package com.nith.appteam.nimbus.Activity;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class HospitalityActivity extends Activity {
+
+    private ListView elements_hlist;
+    private ElementListAdapter adapter;
+    private List<Elements> Elist;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hospitality);
+
+        elements_hlist = (ListView)findViewById(R.id.hlist);
+
+        Elist = new ArrayList<>();
+
+        //sample data -- data can be used from a database or website
+
+        Elist.add(new Elements(101,"Name1","Hostel alloted: KBH","Room no: A101",123));
+        Elist.add(new Elements(102,"Name2","Hostel alloted: AGH","Room no: E609",123));
+        Elist.add(new Elements(103,"Name3","Hostel alloted: MMH","Room no: B412",123));
+        Elist.add(new Elements(104,"Name4","Hostel alloted: PGH","Room no: B402",123));
+        Elist.add(new Elements(105,"Name5","Hostel alloted: KBH","Room no: D601",123));
+        Elist.add(new Elements(106,"Name6","Hostel alloted: KBH","Room no: A306",123));
+        Elist.add(new Elements(107,"Name7","Hostel alloted: SBH","Room no: A510",123));
+        Elist.add(new Elements(109,"Name9","Hostel alloted: HBH","Room no: C501",123));
+        Elist.add(new Elements(110,"Name10","Hostel alloted: KBH","Room no: D101",123));
+        Elist.add(new Elements(111,"Name11","Hostel alloted: HBH","Room no: D208",123));
+        Elist.add(new Elements(112,"Name12","Hostel alloted: SBH","Room no: B109",123));
+
+
+        adapter = new ElementListAdapter(getApplicationContext(),Elist);
+        elements_hlist.setAdapter(adapter);
+
+        elements_hlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Toast.makeText(getApplicationContext(),"User's id is " + view.getTag(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+    }
+}
