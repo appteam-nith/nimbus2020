@@ -2,10 +2,9 @@ package com.nith.appteam.nimbus2020.Models;
 
 import java.io.Serializable;
 
-public class WorkshopModel implements Serializable
-{
-    private String nameWor,infoWor,venueWor,dateWor,imageWor,UrlWor,typeWor;
-    private Serializable id="1K";
+public class WorkshopModel implements Serializable {
+    private String nameWor, infoWor, venueWor, dateWor, imageWor, UrlWor, typeWor;
+    private Serializable id = "1K";
 
     public WorkshopModel() {
     }

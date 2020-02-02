@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class TalkModel
         implements Serializable {
-
-
     private static final long id= 1L;
     private String name;
     private String info;

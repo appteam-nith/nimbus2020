@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,12 +21,17 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class ExhibitionRecyclerViewAdapter  extends RecyclerView.Adapter<ExhibitionRecyclerViewAdapter.ViewHolder> {
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class ExhibitionRecyclerViewAdapter extends
+        RecyclerView.Adapter<ExhibitionRecyclerViewAdapter.ViewHolder> {
     private Context context;
     private List<ExhibitionModel> exhibitionList;
+
     public ExhibitionRecyclerViewAdapter(Context context, List<ExhibitionModel> exhibition) {
-        this.context=context;
-        exhibitionList=exhibition;
+        this.context = context;
+        exhibitionList = exhibition;
 
     }
 
@@ -35,9 +39,10 @@ public class ExhibitionRecyclerViewAdapter  extends RecyclerView.Adapter<Exhibit
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.exhibition_info,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.exhibition_info,
+                parent, false);
 
-        return new ViewHolder(view,context);
+        return new ViewHolder(view, context);
     }
 
     @Override
@@ -50,8 +55,8 @@ public class ExhibitionRecyclerViewAdapter  extends RecyclerView.Adapter<Exhibit
         holder.date.setText(exhibitions.getDateExh());
         holder.venue.setText(exhibitions.getVenueExh());
         holder.name.setText(exhibitions.getNameExh());
-        Picasso.with(context).load(imageLink).placeholder(android.R.drawable.ic_btn_speak_now).into(holder.imgExh);
-
+        Picasso.with(context).load(imageLink).placeholder(android.R.drawable.ic_btn_speak_now).into(
+                holder.imgExh);
 
 
     }
@@ -74,7 +79,6 @@ public class ExhibitionRecyclerViewAdapter  extends RecyclerView.Adapter<Exhibit
             //info=(TextView) itemView.findViewById(R.id.exhibtionInfoID);
             //regUrl=(TextView) itemView.findViewById(R.id.regURLExhibtion);
             itemView.setOnClickListener(new View.OnClickListener() {
-
 
 
                 @Override

@@ -6,18 +6,19 @@ import android.content.SharedPreferences;
 public class PrefsExhibition {
 
     SharedPreferences sharedPreferences;
-    public PrefsExhibition(Activity activity)
-    {
-        sharedPreferences=activity.getPreferences(activity.MODE_PRIVATE);
+
+    public PrefsExhibition(Activity activity) {
+        sharedPreferences = activity.getPreferences(activity.MODE_PRIVATE);
 
     }
-    public void getSearch(String search){
-        sharedPreferences.edit().putString("search",search).commit();
+
+    public void getSearch(String search) {
+        sharedPreferences.edit().putString("search", search).commit();
 
     }
-    public String getSearch()
-    {
-        return sharedPreferences.getString("search","exhibitions");
+
+    public String getSearch() {
+        return sharedPreferences.getString("search", "exhibitions");
     }
 }
 

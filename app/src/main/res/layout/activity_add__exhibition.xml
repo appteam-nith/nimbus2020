@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activity.Add_Exhibition">
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".Activities.Add_Exhibition">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/addImgExh"
         android:layout_width="100dp"
@@ -15,8 +14,6 @@
         android:layout_centerHorizontal="true"
         android:background="@drawable/fui_ic_anonymous_white_24dp"
         android:backgroundTint="#000000"
-
-
         android:paddingTop="10dp" />
 
 
@@ -94,10 +91,5 @@
         android:backgroundTint="#0A0709"
         android:textStyle="bold|italic"
         android:textSize="20sp" />
-
-
-
-
-
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>

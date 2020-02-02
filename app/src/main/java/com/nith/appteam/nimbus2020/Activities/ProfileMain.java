@@ -6,11 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
+import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class ProfileMain extends AppCompatActivity {
@@ -44,7 +43,8 @@ public class ProfileMain extends AppCompatActivity {
             }
         });
         Picasso.with(ProfileMain.this)
-                .load(sharedPreferences.getString("imageUrl", String.valueOf(R.string.defaultImageUrl)))
+                .load(sharedPreferences.getString("imageUrl",
+                        String.valueOf(R.string.defaultImageUrl)))
                 .resize(80, 80)
                 .centerCrop()
                 .into(profilePicture);

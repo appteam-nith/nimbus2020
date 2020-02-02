@@ -47,7 +47,6 @@
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.CampusAmbassadorPost" />
-        
         <activity android:name=".Activities.QuizScoreActivity"></activity>
         <activity android:name=".Activities.LeaderBoardActivity" />
         <activity android:name=".Activities.QuizInstructionsActivity" />
