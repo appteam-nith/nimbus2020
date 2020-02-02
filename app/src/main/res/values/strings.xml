@@ -4,4 +4,11 @@
     <string name="baseUrl">http://api.festnimbus.com</string>
     <string name="quiz_comment">*Make sure to read all instructions before attempting the quiz</string>
     <string name="defaultImageUrl">https://res.cloudinary.com/duutozrvz/image/upload/v1580507678/user_ntztoi.png</string>
+
+    <string name ="defaultImageUrl">https://res.cloudinary.com/duutozrvz/image/upload/v1580507678/user_ntztoi.png</string>
+
+    <string name ="quiz_comment">*Make sure to read all instructions before attempting the quiz</string>
+
+    <string name="login_intro">Welcome to the Nimbus App \nStay Updated with feeds, \ngames and many more... \nSign in to continue</string>
+
 </resources>
