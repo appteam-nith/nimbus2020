@@ -1,0 +1,58 @@
+package com.nith.appteam.nimbus.Activity;
+
+public class Elements {
+
+    private int id;
+    private String Element1;
+    private String Element2;
+    private String Element3;
+    private int Element4;
+
+    public Elements(int id, String element1, String element2, String element3, int element4) {
+        this.id = id;
+        this.Element1 = element1;
+        this.Element2 = element2;
+        this.Element3 = element3;
+        this.Element4 = element4;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getElement1() {
+        return Element1;
+    }
+
+    public void setElement1(String element1) {
+        Element1 = element1;
+    }
+
+    public String getElement2() {
+        return Element2;
+    }
+
+    public void setElement2(String element2) {
+        Element2 = element2;
+    }
+
+    public String getElement3() {
+        return Element3;
+    }
+
+    public void setElement3(String element3) {
+        Element3 = element3;
+    }
+
+    public int getElement4() {
+        return Element4;
+    }
+
+    public void setElement4(int element4) {
+        Element4 = element4;
+    }
+}
