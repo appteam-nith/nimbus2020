@@ -180,6 +180,16 @@ public class Add_I_Events extends AppCompatActivity {
                     JSONObject object=new JSONObject(response);
                     Log.i("Tag","Success");
                     Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
+                    if(object.getString("message").equals("success") ){
+
+                        nameAddI.setText("");
+                        regUrlAddI.setText("");
+                        venueAddI.setText("");
+                        dateAddI.setText("");
+                        pdfAddI.setText("");
+                        infoAddI.setText("");
+
+                    }
 
 
 
@@ -211,6 +221,7 @@ public class Add_I_Events extends AppCompatActivity {
                 params.put("venue",venueAddI.getText().toString());
                 params.put("date",dateAddI.getText().toString());
                 params.put("abstract",pdfAddI.getText().toString());
+                params.put("image",imageUrl);
                 // params.put("image",imageAdd.getText().toString());
                 params.put("regUrl",regUrlAddI.getText().toString());
                 return params;

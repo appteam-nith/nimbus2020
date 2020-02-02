@@ -177,6 +177,15 @@ public class Add_Exhibition extends AppCompatActivity {
                     JSONObject object=new JSONObject(response);
                     Log.i("Tag","Success");
                     Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
+                    if(object.getString("message").equals("success") ){
+
+                        nameAddExh.setText("");
+                        regUrlAddExh.setText("");
+                        venueAddExh.setText("");
+                        dateAddExh.setText("");
+                        infoAddExh.setText("");
+
+                    }
 
 
 
@@ -207,6 +216,7 @@ public class Add_Exhibition extends AppCompatActivity {
                 params.put("info",infoAddExh.getText().toString());
                 params.put("venue",venueAddExh.getText().toString());
                 params.put("date",dateAddExh.getText().toString());
+                params.put("image",imageUrl);
                // params.put("image",imageAddExh.getText().toString());
                 params.put("regUrl",regUrlAddExh.getText().toString());
                 return params;

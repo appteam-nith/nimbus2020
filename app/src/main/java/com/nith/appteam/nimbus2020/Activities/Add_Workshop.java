@@ -182,6 +182,16 @@ public class Add_Workshop extends AppCompatActivity {
                     JSONObject object=new JSONObject(response);
                     Log.i("Tag","Success");
                     Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
+                    if(object.getString("message").equals("success") ){
+
+                        nameAddWrk.setText("");
+                        regUrlAddWrk.setText("");
+                        venueAddWrk.setText("");
+                        dateAddWrk.setText("");
+
+                        infoAddWrk.setText("");
+
+                    }
 
 
 
@@ -212,6 +222,7 @@ public class Add_Workshop extends AppCompatActivity {
                 params.put("info",infoAddWrk.getText().toString());
                 params.put("venue",venueAddWrk.getText().toString());
                 params.put("date",dateAddWrk.getText().toString());
+                params.put("image",imageUrl);
 //                params.put("image",imageAddWrk.getText().toString());
                 params.put("regUrl",regUrlAddWrk.getText().toString());
                 params.put("type",typeAddWrk.getText().toString());

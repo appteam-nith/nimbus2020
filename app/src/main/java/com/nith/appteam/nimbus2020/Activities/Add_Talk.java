@@ -179,6 +179,16 @@ public class Add_Talk extends AppCompatActivity {
                     JSONObject object=new JSONObject(response);
                     Log.i("Tag","Success");
                     Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
+                    if(object.getString("message").equals("success") ){
+
+                        nameAdd.setText("");
+                        regUrlAdd.setText("");
+                        venueAdd.setText("");
+                        dateAdd.setText("");
+
+                        infoAdd.setText("");
+
+                    }
 
 
 
@@ -209,6 +219,7 @@ public class Add_Talk extends AppCompatActivity {
                 params.put("info",infoAdd.getText().toString());
                 params.put("venue",venueAdd.getText().toString());
                 params.put("date",dateAdd.getText().toString());
+                params.put("image",imageUrl);
     //            params.put("image",imageAdd.getText().toString());
                 params.put("regUrl",regUrlAdd.getText().toString());
                 return params;

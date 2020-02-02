@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         quiz=findViewById(R.id.quiz);
-        sponsor=findViewById(R.id.sponsors);
+
 
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,49 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        sponsor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent=new Intent(MainActivity.this,SponsorsActivity.class);
-                startActivity(intent);
-            }
-        });
-         Button talk,event,workshp,exhibition;
-         talk=findViewById(R.id.talkIDX);
-         event=findViewById(R.id.EventsIDX);
-         workshp=findViewById(R.id.WorkshopIDX);
-         exhibition=findViewById(R.id.EventsIDX);
-         talk.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Intent intent=new Intent(MainActivity.this,Talks.class);
-                 startActivity(intent);
 
-
-             }
-         });
-         event.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Intent intent=new Intent(MainActivity.this,Event_Choose.class);
-                 startActivity(intent);
-
-             }
-         });
-         workshp.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Intent intent=new Intent(MainActivity.this,Workshops.class);
-                 startActivity(intent);
-             }
-         });
-         exhibition.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View view) {
-                 Intent intent=new Intent(MainActivity.this,Exhhibition.class);
-                 startActivity(intent);
-             }
-         });
 
 
 

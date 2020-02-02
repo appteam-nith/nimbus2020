@@ -2,9 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nith.appteam.nimbus2020">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <application
         android:name=".Activities.Nimbus2020"
         android:allowBackup="true"
@@ -13,7 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Event_Choose"></activity>
+        <activity android:name=".Activities.Schedule"
+            ></activity>
+        <activity android:name=".Activities.Schedule_Day"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.Event_Choose"
+             />
         <activity android:name=".Activities.Add_D_Events" />
         <activity android:name=".Activities.Add_I_Events" />
         <activity android:name=".Activities.Add_institute_Activity_Detail" />
@@ -44,7 +47,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Talks"
-            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.CampusAmbassadorPost" />
         <activity android:name=".Activities.QuizScoreActivity" />
@@ -69,7 +71,9 @@
             android:name="CLOUDINARY_URL"
             android:value="cloudinary://256963859891119:w4WXsRRz58DN3eVbGK1g6JvcjJY@duutozrvz" />
     </application>
-
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
 </manifest>

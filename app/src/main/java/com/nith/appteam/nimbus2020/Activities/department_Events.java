@@ -82,7 +82,8 @@ public class department_Events extends AppCompatActivity {
                         departmentEvent eventD=new departmentEvent();
 //                        talk.setName("Aysuh KAusnldjhlkhfkllnewlfnlwenflkjewlkjfljwhekjksdjkjhkuhkjhkjsdhlehlkjhalhldhll");
 //                        talk.setVenue("LEcture aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
-                        //    Ievent.setRegURL("https://github.com/appteam-nith/nimbus2019");
+                        //   eventD.setRegURLDEVE("https://github.com/appteam-nith/nimbus2019");
+                      //  eventD.setAbstractDEVE("https://github.com/appteam-nith/nimbus2019");
 //                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
                         eventD.setNameDEVE(talkObj.getString("name"));
@@ -90,7 +91,8 @@ public class department_Events extends AppCompatActivity {
                         eventD.setImageDEVE(talkObj.getString("image"));
                         eventD.setInfoDEVE(talkObj.getString("info"));
                         eventD.setRegURLDEVE(  talkObj.getString("regUrl"));
-                        eventD.setVenueDEVE("Venue: " + talkObj.getString("venue"));
+                       eventD.setVenueDEVE("Venue: " + talkObj.getString("venue"));
+                        eventD.setAbstractDEVE(talkObj.getString("abstract"));
 
                         // Log.d("Talk",talk.getName());
                         //Log.d("date",talk.getDate());
