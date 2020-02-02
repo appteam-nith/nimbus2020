@@ -73,6 +73,8 @@ public class Add_D_Events extends AppCompatActivity {
 
 
                 AddDetailsD();
+
+
             }
         });
         imgD.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +90,7 @@ public class Add_D_Events extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -177,6 +180,19 @@ public class Add_D_Events extends AppCompatActivity {
                     JSONObject object=new JSONObject(response);
                     Log.i("Tag","Success");
                     Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
+                    if(object.getString("message").equals("success") ){
+
+                        nameAddD.setText("");
+                        regUrlAddD.setText("");
+                        venueAddD.setText("");
+                        dateAddD.setText("");
+                        pdfAddD.setText("");
+                        infoAddD.setText("");
+
+                    }
+
+
+
 
 
 
@@ -193,6 +209,7 @@ public class Add_D_Events extends AppCompatActivity {
                 error.printStackTrace();
                 Toast.makeText(getApplication(),"Error:"+error,Toast.LENGTH_SHORT).show();
 
+
             }
         })
         {
@@ -208,6 +225,7 @@ public class Add_D_Events extends AppCompatActivity {
                 params.put("venue",venueAddD.getText().toString());
                 params.put("date",dateAddD.getText().toString());
                 params.put("abstract",pdfAddD.getText().toString());
+                params.put("image",imageUrl);
                // params.put("image",imageAdd.getText().toString());
                 params.put("regUrl",regUrlAddD.getText().toString());
                 return params;

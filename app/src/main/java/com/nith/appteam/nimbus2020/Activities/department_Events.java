@@ -79,6 +79,7 @@ public class department_Events extends AppCompatActivity {
                 Log.d("Response", response.toString());
                 for (int i = 0; i < response.length(); i++) {
                     try {
+
                         JSONObject talkObj = response.getJSONObject(i);
                         departmentEvent eventD = new departmentEvent();
 //                        talk.setName("Aysuh
@@ -88,13 +89,17 @@ public class department_Events extends AppCompatActivity {
                         //    Ievent.setRegURL("https://github.com/appteam-nith/nimbus2019");
 //                        talk.setInfo("HE is
 //                        veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
+
 //                        talk.setDate("19 2022002345453453453450 2");
                         eventD.setNameDEVE(talkObj.getString("name"));
                         eventD.setDateDEVE("On: " + talkObj.getString("date"));
                         eventD.setImageDEVE(talkObj.getString("image"));
                         eventD.setInfoDEVE(talkObj.getString("info"));
-                        eventD.setRegURLDEVE(talkObj.getString("regUrl"));
-                        eventD.setVenueDEVE("Venue: " + talkObj.getString("venue"));
+
+                        eventD.setRegURLDEVE(  talkObj.getString("regUrl"));
+                       eventD.setVenueDEVE("Venue: " + talkObj.getString("venue"));
+                        eventD.setAbstractDEVE(talkObj.getString("abstract"));
+
 
                         // Log.d("Talk",talk.getName());
                         //Log.d("date",talk.getDate());

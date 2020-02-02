@@ -4,8 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
+  
     <application
         android:name=".Activities.Nimbus2020"
         android:allowBackup="true"
@@ -13,8 +12,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".Activities.Schedule"
+            ></activity>
+        <activity android:name=".Activities.Schedule_Day"
+            android:exported="true" />
+        <activity
+            android:name=".Activities.Event_Choose"
+             />
         <activity android:name=".Activities.contributors"></activity>
         <activity
             android:name=".Activities.SplashScreen"
@@ -55,7 +61,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Activities.Talks"
-            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.CampusAmbassadorPost" />
         <activity android:name=".Activities.QuizScoreActivity" />
@@ -76,5 +81,4 @@
             android:name="CLOUDINARY_URL"
             android:value="cloudinary://256963859891119:w4WXsRRz58DN3eVbGK1g6JvcjJY@duutozrvz" />
     </application>
-
 </manifest>

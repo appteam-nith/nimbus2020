@@ -172,16 +172,26 @@ public class Add_Talk extends AppCompatActivity {
 
     private void AddDetails() {
         //final String savedata=data;
-        requestQueue = Volley.newRequestQueue(getApplicationContext());
-        StringRequest request = new StringRequest(Request.Method.POST, Constant.Url + "talks",
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        try {
-                            JSONObject object = new JSONObject(response);
-                            Log.i("Tag", "Success");
-                            Toast.makeText(getApplicationContext(), object.toString(),
-                                    Toast.LENGTH_SHORT).show();
+
+        requestQueue= Volley.newRequestQueue(getApplicationContext());
+        StringRequest request= new StringRequest(Request.Method.POST, Constant.Url+ "talks" ,new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object=new JSONObject(response);
+                    Log.i("Tag","Success");
+                    Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
+                    if(object.getString("message").equals("success") ){
+
+                        nameAdd.setText("");
+                        regUrlAdd.setText("");
+                        venueAdd.setText("");
+                        dateAdd.setText("");
+
+                        infoAdd.setText("");
+
+                    }
+
 
 
                         } catch (JSONException e) {
@@ -212,6 +222,7 @@ public class Add_Talk extends AppCompatActivity {
                 params.put("info",infoAdd.getText().toString());
                 params.put("venue",venueAdd.getText().toString());
                 params.put("date",dateAdd.getText().toString());
+                params.put("image",imageUrl);
     //            params.put("image",imageAdd.getText().toString());
                 params.put("regUrl",regUrlAdd.getText().toString());
                 return params;

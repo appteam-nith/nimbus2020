@@ -60,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+
+
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -67,6 +71,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+
+
+
+
 
         sponsor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,14 +103,14 @@ public class MainActivity extends AppCompatActivity {
         events.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Talks.class);
+                Intent intent = new Intent(MainActivity.this, Event_Choose.class);
                 startActivity(intent);
             }
         });
         schedule.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Talks.class);
+                Intent intent = new Intent(MainActivity.this, Schedule_Day.class);
                 startActivity(intent);
             }
         });

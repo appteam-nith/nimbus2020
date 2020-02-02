@@ -31,7 +31,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="15dp"
         android:hint="Please enter name of events"
-        android:inputType="text"
+        android:inputType="textNoSuggestions"
         android:id="@+id/NameAddD"
         android:padding="20sp"/>
     <EditText
@@ -43,7 +43,7 @@
         android:layout_marginLeft="15dp"
         android:layout_centerHorizontal="true"
         android:hint="Please add info related to event"
-        android:inputType="textMultiLine"
+        android:inputType="textNoSuggestions"
         android:padding="20dp"/>
     <EditText
         android:layout_width="350dp"
@@ -54,7 +54,7 @@
         android:layout_marginLeft="15dp"
         android:layout_centerHorizontal="true"
         android:hint="Please add venue of event"
-        android:inputType="text"
+        android:inputType="textNoSuggestions"
         android:padding="20dp"/>
     <EditText
         android:layout_width="350dp"
@@ -87,7 +87,7 @@
         android:layout_marginLeft="15dp"
         android:layout_centerHorizontal="true"
         android:hint="Please add regUrl for the event"
-        android:inputType="textWebEditText"
+        android:inputType="textWebEmailAddress"
         android:padding="20dp"/>
 
     <Button
