@@ -3,7 +3,6 @@ package com.nith.appteam.nimbus2020.Activities;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
@@ -12,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.nith.appteam.nimbus2020.R;
 
 public class MainActivity extends AppCompatActivity {
-    private Button quiz, sponsor, profile, campusA, workshops, talks, events, exhibition, schedule;
+    private Button quiz, sponsor, profile, campusA, workshops, talks, events, exhibition, schedule, contributors;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     //    private CircleImageView profileButton;
@@ -126,6 +125,5 @@ public class MainActivity extends AppCompatActivity {
         profile = findViewById(R.id.profile);
         exhibition = findViewById(R.id.exhibition);
         schedule = findViewById(R.id.schedule);
-
     }
 }
