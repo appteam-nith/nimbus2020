@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -53,6 +54,7 @@ public class ProfileNew extends AppCompatActivity {
     private byte[] byteArray;
     private String imageUrl = "";
     private Bitmap bmp, img;
+    private RadioButton caYes, caNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +63,7 @@ public class ProfileNew extends AppCompatActivity {
         sharedPrefs = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPrefs.edit();
         getUI();
-
+        final String editStatus = getIntent().getStringExtra("editProfile");
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +74,11 @@ public class ProfileNew extends AppCompatActivity {
                 }
             }
         });
+        if (caYes.isSelected())
+            editor.putBoolean("campusAmbassador", true);
+        else if (caNo.isSelected())
+            editor.putBoolean("campusAmbassador", false);
+        editor.commit();
 
         submitProfile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,8 +88,13 @@ public class ProfileNew extends AppCompatActivity {
                 if (!name.getText().toString().isEmpty() && !rollno.getText().toString().isEmpty() &&
                         !phoneNumber.getText().toString().isEmpty() && !college.getText().toString().isEmpty()) {
                     progressBar.setVisibility(View.VISIBLE);
+                    String path;
+                    if (editStatus.equals("true"))
+                        path = "/auth/profile";
+                    else
+                        path = "/auth/signup";
                     RequestQueue queue = Volley.newRequestQueue(ProfileNew.this);
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/auth/signup", new com.android.volley.Response.Listener<String>() {
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + path, new com.android.volley.Response.Listener<String>() {
 
                         @Override
                         public void onResponse(String response) {
@@ -141,12 +153,14 @@ public class ProfileNew extends AppCompatActivity {
                             return params;
                         }
 
-//                        @Override
-//                        public Map<String, String> getHeaders() {
-//                            HashMap<String, String> headers = new HashMap<>();
-//                            headers.put("token", sharedPrefs.getString("firebaseId", ""));
-//                            return headers;
-//                        }
+                        @Override
+                        public Map<String, String> getHeaders() {
+                            HashMap<String, String> headers = new HashMap<>();
+                            if (editStatus.equals("true")) {
+                                headers.put("token", sharedPrefs.getString("token", ""));
+                                return headers;
+                            } else return null;
+                        }
 
 
 //                        @Override
@@ -259,5 +273,7 @@ public class ProfileNew extends AppCompatActivity {
         submitProfile = findViewById(R.id.submit_profile);
         profilePic = findViewById(R.id.profile_pic);
         progressBar = findViewById(R.id.profile_progress);
+        caNo = findViewById(R.id.ca_no);
+        caYes = findViewById(R.id.ca_yes);
     }
 }

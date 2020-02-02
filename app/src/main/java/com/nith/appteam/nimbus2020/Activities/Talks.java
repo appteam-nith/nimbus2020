@@ -5,11 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -31,6 +26,11 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 public class Talks extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<TalkModel> talkList;
@@ -38,12 +38,11 @@ public class Talks extends AppCompatActivity {
     private RequestQueue requestQueue;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talks);
-        requestQueue= Volley.newRequestQueue(this);
+        requestQueue = Volley.newRequestQueue(this);
         Toolbar toolbar = findViewById(R.id.toolbartalk);
         setSupportActionBar(toolbar);
 
@@ -51,36 +50,37 @@ public class Talks extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(Talks.this,Add_Talk.class);
+                Intent intent = new Intent(Talks.this, Add_Talk.class);
                 startActivity(intent);
 
             }
         });
-        recyclerView= findViewById(R.id.recyclerViewTalk);
+        recyclerView = findViewById(R.id.recyclerViewTalk);
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager( new LinearLayoutManager(this));
-        talkList= new ArrayList<>();
-        PrefsTalk prefsTalk=new PrefsTalk(this);
-        String search=prefsTalk.getSearch();
-        talkList=getTalk(search);
-     //   talkRecyclerViewAdapter=new TalkRecyclerViewAdapter(this,talkList);
-       // recyclerView.setAdapter(talkRecyclerViewAdapter);
-   //     talkRecyclerViewAdapter.notifyDataSetChanged();
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        talkList = new ArrayList<>();
+        PrefsTalk prefsTalk = new PrefsTalk(this);
+        String search = prefsTalk.getSearch();
+        talkList = getTalk(search);
+        //   talkRecyclerViewAdapter=new TalkRecyclerViewAdapter(this,talkList);
+        // recyclerView.setAdapter(talkRecyclerViewAdapter);
+        //     talkRecyclerViewAdapter.notifyDataSetChanged();
 
     }
+
     public List<TalkModel> getTalk(String searchTerm)//all info returned from api
     {
         talkList.clear();
-        talkRecyclerViewAdapter=new TalkRecyclerViewAdapter(this,talkList);
+        talkRecyclerViewAdapter = new TalkRecyclerViewAdapter(this, talkList);
         recyclerView.setAdapter(talkRecyclerViewAdapter);
 
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, Constant.Url+ searchTerm,null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
+                Constant.Url + searchTerm, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-          Log.d("Response",response.toString());
-                for(int i=0;i<response.length();i++)
-                {
+                Log.d("Response", response.toString());
+                for (int i = 0; i < response.length(); i++) {
                     try {
                         JSONObject talkObj= response.getJSONObject(i);
                         TalkModel talk=new TalkModel();
@@ -97,9 +97,6 @@ public class Talks extends AppCompatActivity {
                       talk.setRegURL(  talkObj.getString("regUrl"));
                         talk.setVenue("Venue: " + talkObj.getString("venue"));
                         // Log.d("Talk",talk.getName());
-
-
-
                       talkList.add(talk);
                         talkRecyclerViewAdapter.notifyDataSetChanged();
 
@@ -112,7 +109,7 @@ public class Talks extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Error",error.getMessage());
+                Log.d("Error", error.getMessage());
 
             }
         });

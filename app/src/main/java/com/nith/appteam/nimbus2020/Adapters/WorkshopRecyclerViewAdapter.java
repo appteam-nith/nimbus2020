@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,22 +21,27 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class WorkshopRecyclerViewAdapter extends RecyclerView.Adapter<WorkshopRecyclerViewAdapter.ViewHolder>
-{
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+public class WorkshopRecyclerViewAdapter extends
+        RecyclerView.Adapter<WorkshopRecyclerViewAdapter.ViewHolder> {
     private Context context;
     private List<WorkshopModel> workshopList;
+
     public WorkshopRecyclerViewAdapter(Context context, List<WorkshopModel> workshop) {
-        this.context=context;
-        workshopList=workshop;
+        this.context = context;
+        workshopList = workshop;
 
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.workshop_info,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.workshop_info, parent,
+                false);
 
-        return new ViewHolder(view,context);
+        return new ViewHolder(view, context);
     }
 
     @Override
@@ -51,10 +55,7 @@ public class WorkshopRecyclerViewAdapter extends RecyclerView.Adapter<WorkshopRe
         holder.nameWor.setText(workshop.getNameWor());
         //holder.typeWor.setText(workshop.getTypeWor());
         Picasso.with(context).load(imageLinkWor).placeholder(android.R.drawable.ic_btn_speak_now).into(holder.imgSpkrWork);
-
-
     }
-
 
 
     @Override
@@ -76,7 +77,6 @@ public class WorkshopRecyclerViewAdapter extends RecyclerView.Adapter<WorkshopRe
             //regUrlWor=(TextView) itemView.findViewById(R.id.regURLWor);
             //typeWor=(TextView)itemView.findViewById(R.id.workshopTypeID);
             itemView.setOnClickListener(new View.OnClickListener() {
-
 
 
                 @Override

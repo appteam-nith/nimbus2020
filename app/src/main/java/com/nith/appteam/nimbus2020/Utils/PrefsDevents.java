@@ -6,18 +6,20 @@ import android.content.SharedPreferences;
 public class PrefsDevents {
 
     SharedPreferences sharedPreferences;
-    public PrefsDevents(Activity activity)
-    {
-        sharedPreferences=activity.getPreferences(activity.MODE_PRIVATE);
+
+    public PrefsDevents(Activity activity) {
+        sharedPreferences = activity.getPreferences(activity.MODE_PRIVATE);
 
     }
-    public void getSearch(String search){
-        sharedPreferences.edit().putString("search",search).commit();
+
+    public void getSearch(String search) {
+        sharedPreferences.edit().putString("search", search).commit();
 
     }
-    public String getSearch()
-    {
-        return sharedPreferences.getString("search","departmentEvents");
-    }}
+
+    public String getSearch() {
+        return sharedPreferences.getString("search", "departmentEvents");
+    }
+}
 
 

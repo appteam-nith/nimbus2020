@@ -5,10 +5,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -29,6 +25,10 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class department_Events extends AppCompatActivity {
     private RecyclerView recyclerViewDEVE;
@@ -52,47 +52,54 @@ public class department_Events extends AppCompatActivity {
         });
         requestQueueEVED= Volley.newRequestQueue(this);
 
-        recyclerViewDEVE= findViewById(R.id.recyclerViewEVED);
+        recyclerViewDEVE = findViewById(R.id.recyclerViewEVED);
         recyclerViewDEVE.setHasFixedSize(true);
-        recyclerViewDEVE.setLayoutManager( new LinearLayoutManager(this));
-        eventlistD= new ArrayList<>();
-        PrefsDevents prefsDevent=new PrefsDevents(this);
-        String search=prefsDevent.getSearch();
-        eventlistD=getEventD(search);
+        recyclerViewDEVE.setLayoutManager(new LinearLayoutManager(this));
+        eventlistD = new ArrayList<>();
+        PrefsDevents prefsDevent = new PrefsDevents(this);
+        String search = prefsDevent.getSearch();
+        eventlistD = getEventD(search);
         //   talkRecyclerViewAdapter=new TalkRecyclerViewAdapter(this,talkList);
         // recyclerView.setAdapter(talkRecyclerViewAdapter);
         //     talkRecyclerViewAdapter.notifyDataSetChanged();
 
     }
+
     public List<departmentEvent> getEventD(String searchTerm)//all info returned from api
     {
         eventlistD.clear();
-        events_d_recyclerViewAdapter=new Events_D_RecyclerViewAdapter(this,eventlistD);
+        events_d_recyclerViewAdapter = new Events_D_RecyclerViewAdapter(this, eventlistD);
         recyclerViewDEVE.setAdapter(events_d_recyclerViewAdapter);
 
 
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, Constant.Url+ searchTerm,null, new Response.Listener<JSONArray>() {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET,
+                Constant.Url + searchTerm, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                Log.d("Response",response.toString());
-                for(int i=0;i<response.length();i++)
-                {
+                Log.d("Response", response.toString());
+                for (int i = 0; i < response.length(); i++) {
                     try {
-                        JSONObject talkObj= response.getJSONObject(i);
-                        departmentEvent eventD=new departmentEvent();
-//                        talk.setName("Aysuh KAusnldjhlkhfkllnewlfnlwenflkjewlkjfljwhekjksdjkjhkuhkjhkjsdhlehlkjhalhldhll");
-//                        talk.setVenue("LEcture aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
-                        //   eventD.setRegURLDEVE("https://github.com/appteam-nith/nimbus2019");
-                      //  eventD.setAbstractDEVE("https://github.com/appteam-nith/nimbus2019");
-//                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
+
+                        JSONObject talkObj = response.getJSONObject(i);
+                        departmentEvent eventD = new departmentEvent();
+//                        talk.setName("Aysuh
+//                        KAusnldjhlkhfkllnewlfnlwenflkjewlkjfljwhekjksdjkjhkuhkjhkjsdhlehlkjhalhldhll");
+//                        talk.setVenue("LEcture
+//                        aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
+                        //    Ievent.setRegURL("https://github.com/appteam-nith/nimbus2019");
+//                        talk.setInfo("HE is
+//                        veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
+
 //                        talk.setDate("19 2022002345453453453450 2");
                         eventD.setNameDEVE(talkObj.getString("name"));
                         eventD.setDateDEVE("On: " + talkObj.getString("date"));
                         eventD.setImageDEVE(talkObj.getString("image"));
                         eventD.setInfoDEVE(talkObj.getString("info"));
+
                         eventD.setRegURLDEVE(  talkObj.getString("regUrl"));
                        eventD.setVenueDEVE("Venue: " + talkObj.getString("venue"));
                         eventD.setAbstractDEVE(talkObj.getString("abstract"));
+
 
                         // Log.d("Talk",talk.getName());
                         //Log.d("date",talk.getDate());
@@ -108,7 +115,7 @@ public class department_Events extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.d("Error",error.getMessage());
+                Log.d("Error", error.getMessage());
 
             }
         });

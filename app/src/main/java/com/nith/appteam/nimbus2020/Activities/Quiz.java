@@ -49,7 +49,7 @@ public class Quiz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        mJSONArray=new JSONArray();
+        mJSONArray = new JSONArray();
         Objects.requireNonNull(getSupportActionBar()).hide();
         timer = new CountDownTimer(15000, 1000) {
             @SuppressLint("SetTextI18n")
@@ -222,8 +222,8 @@ public class Quiz extends AppCompatActivity {
                     Toast.makeText(Quiz.this, " score is " + jsonObject.getString("score"),
                             Toast.LENGTH_LONG).show();
 
-                    Intent intent=new Intent(Quiz.this,QuizScoreActivity.class);
-                    intent.putExtra("score",Integer.valueOf(jsonObject.getString("score")));
+                    Intent intent = new Intent(Quiz.this, QuizScoreActivity.class);
+                    intent.putExtra("score", Integer.valueOf(jsonObject.getString("score")));
                     startActivity(intent);
 
                 } catch (JSONException e) {
