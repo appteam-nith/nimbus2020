@@ -47,7 +47,7 @@ public class Day1Fragment extends Fragment {
 
 
     ArrayList<Schedule> arrayList;
-    Context context;
+    Context context=getActivity();
     ScheduleRecyclerAdaptor adaptor;
     private IResult mResultCallback;
     private RequestQueue requestQueue;
@@ -95,10 +95,11 @@ public class Day1Fragment extends Fragment {
 
 
             }
-        }, new Response.ErrorListener() {
+        }
+        , new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-    Log.d("tag","error");
+                Log.d("tag","error");
             }
         });
 
