@@ -7,6 +7,6 @@
 
     <string name ="quiz_comment">*Make sure to read all instructions before attempting the quiz</string>
 
-
+    <string name="login_intro">Welcome to the Nimbus App \nStay Updated with feeds, \ngames and many more... \nSign in to continue</string>
 
 </resources>
