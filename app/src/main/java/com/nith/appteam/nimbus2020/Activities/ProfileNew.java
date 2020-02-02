@@ -63,7 +63,7 @@ public class ProfileNew extends AppCompatActivity {
         sharedPrefs = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPrefs.edit();
         getUI();
-
+        final String editStatus = getIntent().getStringExtra("editProfile");
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,8 +88,13 @@ public class ProfileNew extends AppCompatActivity {
                 if (!name.getText().toString().isEmpty() && !rollno.getText().toString().isEmpty() &&
                         !phoneNumber.getText().toString().isEmpty() && !college.getText().toString().isEmpty()) {
                     progressBar.setVisibility(View.VISIBLE);
+                    String path;
+                    if (editStatus.equals("true"))
+                        path = "/auth/profile";
+                    else
+                        path = "/auth/signup";
                     RequestQueue queue = Volley.newRequestQueue(ProfileNew.this);
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/auth/signup", new com.android.volley.Response.Listener<String>() {
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + path, new com.android.volley.Response.Listener<String>() {
 
                         @Override
                         public void onResponse(String response) {
@@ -148,12 +153,14 @@ public class ProfileNew extends AppCompatActivity {
                             return params;
                         }
 
-//                        @Override
-//                        public Map<String, String> getHeaders() {
-//                            HashMap<String, String> headers = new HashMap<>();
-//                            headers.put("token", sharedPrefs.getString("firebaseId", ""));
-//                            return headers;
-//                        }
+                        @Override
+                        public Map<String, String> getHeaders() {
+                            HashMap<String, String> headers = new HashMap<>();
+                            if (editStatus.equals("true")) {
+                                headers.put("token", sharedPrefs.getString("token", ""));
+                                return headers;
+                            } else return null;
+                        }
 
 
 //                        @Override
