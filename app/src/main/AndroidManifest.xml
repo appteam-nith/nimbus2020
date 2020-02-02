@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
         <activity android:name=".Activities.Add_D_Events"></activity>
         <activity android:name=".Activities.Add_I_Events" />
         <activity android:name=".Activities.Add_institute_Activity_Detail" />
@@ -46,9 +47,6 @@
             android:exported="true"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.CampusAmbassadorPost" />
-
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
         <activity android:name=".Activities.QuizScoreActivity"></activity>
         <activity android:name=".Activities.LeaderBoardActivity" />
         <activity android:name=".Activities.QuizInstructionsActivity" />

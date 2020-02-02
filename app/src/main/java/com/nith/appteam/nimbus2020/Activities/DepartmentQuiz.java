@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -121,7 +122,14 @@ public class DepartmentQuiz extends AppCompatActivity {
                 return "application/x-www-form-urlencoded; charset=UTF-8";
             }
 
-            //TODO: send authtoken in headers
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                SharedPreferences sharedPreferences=getSharedPreferences("app",MODE_PRIVATE);
+                String token=sharedPreferences.getString("token",null);
+                HashMap<String,String> map=new HashMap<>();
+                map.put("token",token);
+                return map;
+            }
 
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
