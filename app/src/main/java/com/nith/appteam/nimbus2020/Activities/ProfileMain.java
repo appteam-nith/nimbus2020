@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -46,7 +45,6 @@ public class ProfileMain extends AppCompatActivity {
             }
         });
         String imageUrl = sharedPreferences.getString("profileImage", String.valueOf(R.string.defaultImageUrl));
-        Toast.makeText(this, imageUrl, Toast.LENGTH_SHORT).show();
         Picasso.with(ProfileMain.this)
                 .load(imageUrl)
                 .placeholder(R.drawable.default_profile_pic)

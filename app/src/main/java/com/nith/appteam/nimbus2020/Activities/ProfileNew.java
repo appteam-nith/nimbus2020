@@ -67,6 +67,7 @@ public class ProfileNew extends AppCompatActivity {
         editor = sharedPrefs.edit();
         getUI();
         phoneNumber.setEnabled(false);
+        phoneNumber.setText(sharedPrefs.getString("phone", ""));
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,11 +93,12 @@ public class ProfileNew extends AppCompatActivity {
         submitProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bitmap bitmap = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
-                if (photoUri != null)
+                if (photoUri != null) {
+                    Bitmap bitmap = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
                     getImageUrl(bitmap);
-//                if (imageUrl.equals(""))
-//                    imageUrl = String.valueOf(R.string.defaultImageUrl);
+                }
+                if (imageUrl.equals(""))
+                    imageUrl = String.valueOf(R.string.defaultImageUrl);
                 if (!name.getText().toString().isEmpty() && !rollno.getText().toString().isEmpty() &&
                         !phoneNumber.getText().toString().isEmpty() && !college.getText().toString().isEmpty()) {
                     progressBar.setVisibility(View.VISIBLE);
@@ -118,7 +120,7 @@ public class ProfileNew extends AppCompatActivity {
                             }
 //                            Toast.makeText(ProfileNew.this, response, Toast.LENGTH_LONG).show();
                             if (errorCode == 0) {
-                                Toast.makeText(ProfileNew.this, "error code" + errorCode, Toast.LENGTH_SHORT).show();
+//                                Toast.makeText(ProfileNew.this, "error code" + errorCode, Toast.LENGTH_SHORT).show();
                                 editor.putString("name", name.getText().toString());
                                 editor.putString("rollno", rollno.getText().toString());
                                 editor.putString("college", college.getText().toString());
