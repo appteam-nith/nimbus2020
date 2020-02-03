@@ -9,6 +9,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
@@ -17,8 +19,6 @@ import com.nith.appteam.nimbus2020.R;
 
 import java.util.Arrays;
 import java.util.List;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class Login extends AppCompatActivity {
     private static final int RC_SIGN_IN = 138;
@@ -72,7 +72,6 @@ public class Login extends AppCompatActivity {
                 Log.d("UserId", user.getUid());
                 Intent intent = new Intent(this, ProfileNew.class);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra("editProfile", "false");
                 startActivity(intent);
                 finish();
             } else {

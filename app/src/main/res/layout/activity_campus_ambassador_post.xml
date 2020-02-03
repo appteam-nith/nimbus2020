@@ -9,8 +9,9 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="20dp"
-        android:text="Enter your link here"
+        android:text="Enter link of social media here"
         android:textColor="#000" />
 
     <EditText
@@ -21,25 +22,33 @@
 
     <ImageView
         android:id="@+id/imageUpload"
-        android:layout_width="200dp"
+        android:layout_width="300dp"
         android:layout_height="200dp"
         android:layout_gravity="center_horizontal" />
 
     <Button
         android:id="@+id/upload_picture"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="20dp"
-        android:text="Upload Picture" />
+        android:layout_marginRight="24dp"
+        android:background="@drawable/login_button"
+        android:text="Upload Picture"
+        android:textColor="#fff" />
 
     <Button
         android:id="@+id/submit_post"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_marginLeft="24dp"
         android:layout_marginTop="20dp"
+        android:layout_marginRight="24dp"
+        android:background="@drawable/login_button"
         android:text="Submit Post"
+        android:textColor="#fff"
         android:visibility="invisible" />
 
     <ProgressBar
