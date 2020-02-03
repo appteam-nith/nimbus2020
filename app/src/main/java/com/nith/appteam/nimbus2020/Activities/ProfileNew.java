@@ -66,7 +66,7 @@ public class ProfileNew extends AppCompatActivity {
         sharedPrefs = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPrefs.edit();
         getUI();
-
+        phoneNumber.setEnabled(false);
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

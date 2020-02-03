@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -37,6 +38,7 @@ public class Exhhibition extends AppCompatActivity {
     private List<ExhibitionModel> exhibitionList;
     private ExhibitionRecyclerViewAdapter exhibitionRecyclerViewAdapter;
     private RequestQueue requestQueueExh;
+    private ProgressBar loadWall;
 
 
     @Override
@@ -57,6 +59,7 @@ public class Exhhibition extends AppCompatActivity {
 
             }
         });
+        loadWall=findViewById(R.id.loadwallExh);
         recyclerViewExhib = findViewById(R.id.recyclerViewExhibition);
         recyclerViewExhib.setHasFixedSize(true);
         recyclerViewExhib.setLayoutManager(new LinearLayoutManager(this));
@@ -71,6 +74,7 @@ public class Exhhibition extends AppCompatActivity {
 
     public List<ExhibitionModel> getExhibition(String searchTerm)//all info returned from api
     {
+        loadWall.setVisibility(View.VISIBLE);
         exhibitionList.clear();
         exhibitionRecyclerViewAdapter = new ExhibitionRecyclerViewAdapter(this, exhibitionList);
         recyclerViewExhib.setAdapter(exhibitionRecyclerViewAdapter);
@@ -80,6 +84,7 @@ public class Exhhibition extends AppCompatActivity {
                 Constant.Url + searchTerm, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                loadWall.setVisibility(View.GONE);
 //                Log.d("Response",response.toString());
                 for (int i = 0; i < response.length(); i++) {
                     try {

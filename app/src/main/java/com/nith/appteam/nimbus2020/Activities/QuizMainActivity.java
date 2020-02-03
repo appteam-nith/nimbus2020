@@ -1,9 +1,12 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.android.volley.AuthFailureError;
@@ -14,10 +17,12 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.nith.appteam.nimbus2020.Adapters.QuizRecyclerAdapter;
 import com.nith.appteam.nimbus2020.Models.Id_Value;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.RecyclerItemClickListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -28,6 +33,7 @@ import java.util.Map;
 import java.util.Objects;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,11 +43,19 @@ public class QuizMainActivity extends AppCompatActivity {
     RequestQueue queue;
     ArrayList<Id_Value> quiztypes = new ArrayList<>();
     ProgressBar loadwall;
+    ImageView quiz;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_activity_main);
+        Toolbar collapsingToolbar=findViewById(R.id.toolbar);
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
+        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
+        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
+        setSupportActionBar(collapsingToolbar);
+        quiz=findViewById(R.id.quizImageView);
+        Picasso.with(this).load(R.drawable.quiz).fit().into(quiz);
         quizrecyclerView = findViewById(R.id.quizrecyclerview);
         queue = Volley.newRequestQueue(QuizMainActivity.this);
 
@@ -82,13 +96,16 @@ public class QuizMainActivity extends AppCompatActivity {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        Id_Value idValue = new Id_Value(
-                                jsonArray.getJSONObject(i).getString("departmentName"),
-                                jsonArray.getJSONObject(i).getString("departmentId"),
-                                jsonArray.getJSONObject(i).getString("image"));
-                        quiztypes.add(idValue);
-                        Objects.requireNonNull(
-                                quizrecyclerView.getAdapter()).notifyDataSetChanged();
+                        String image;
+                        if (jsonArray.getJSONObject(i).has("image"))image= jsonArray.getJSONObject(i).getString("image");
+                        else image="https://cdn.motor1.com/images/mgl/M1318/s3/lamborghini-lead-image.jpg";
+                            Id_Value idValue = new Id_Value(
+                                    jsonArray.getJSONObject(i).getString("departmentName"),
+                                    jsonArray.getJSONObject(i).getString("departmentId"),
+                                    image);
+                            quiztypes.add(idValue);
+                            Objects.requireNonNull(
+                                    quizrecyclerView.getAdapter()).notifyDataSetChanged();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -111,6 +128,11 @@ public class QuizMainActivity extends AppCompatActivity {
 
 
     private void postdata(final int position) {
+
+        final ProgressDialog progressDialog = new ProgressDialog(QuizMainActivity.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Loading...");
+        progressDialog.show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 getString(R.string.baseUrl) + "/quiz/departments", new Response.Listener<String>() {
             @Override
@@ -119,6 +141,8 @@ public class QuizMainActivity extends AppCompatActivity {
                 Intent i = new Intent(QuizMainActivity.this, DepartmentQuiz.class);
                 i.putExtra("quiz", response);
                 i.putExtra("departmentname", quiztypes.get(position).getValue());
+                i.putExtra("image",quiztypes.get(position).getImageUrl());
+                progressDialog.dismiss();
                 startActivity(i);
 
             }

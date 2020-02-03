@@ -2,6 +2,8 @@ package com.nith.appteam.nimbus2020.Activities;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -32,13 +34,14 @@ public class Institute_Events extends AppCompatActivity {
     private EventIRecyclerViewAdapter eventIRecyclerViewAdapter;
     private RequestQueue requestQueueEVEI;
     private List<instituteEvent> eventIlist;
+    private ProgressBar loadWall;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_institute_);
         requestQueueEVEI = Volley.newRequestQueue(this);
-
+loadWall=findViewById(R.id.loadwallEventI);
         recyclerViewIEVE = findViewById(R.id.recyclerViewEVEI);
         recyclerViewIEVE.setHasFixedSize(true);
         recyclerViewIEVE.setLayoutManager(new LinearLayoutManager(this));
@@ -54,6 +57,7 @@ public class Institute_Events extends AppCompatActivity {
 
     public List<instituteEvent> getEventI(String searchTerm)//all info returned from api
     {
+        loadWall.setVisibility(View.VISIBLE);
         eventIlist.clear();
         eventIRecyclerViewAdapter = new EventIRecyclerViewAdapter(this, eventIlist);
         recyclerViewIEVE.setAdapter(eventIRecyclerViewAdapter);
@@ -63,6 +67,7 @@ public class Institute_Events extends AppCompatActivity {
                 Constant.Url + searchTerm, null, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
+                loadWall.setVisibility(View.GONE);
                 Log.d("Response", response.toString());
                 for (int i = 0; i < response.length(); i++) {
                     try {
