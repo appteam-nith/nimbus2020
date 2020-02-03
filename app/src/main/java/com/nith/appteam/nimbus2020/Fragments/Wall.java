@@ -31,13 +31,13 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Objects;
 
-public class wall extends Fragment {
+public class Wall extends Fragment {
     private SharedPreferences sharedPreferences;
     private FloatingActionButton upload;
     private RecyclerView feed;
     private ArrayList<String> feedList = new ArrayList<>();
 
-    public wall() {
+    public Wall() {
     }
 
     @Nullable
