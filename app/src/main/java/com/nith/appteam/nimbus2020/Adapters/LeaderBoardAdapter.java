@@ -43,7 +43,7 @@ public class LeaderBoardAdapter extends
             Picasso.with(mActivity).load(user.getImageUrl()).resize(80, 80).centerCrop().into(
                     holder.userImageView);
         }
-        holder.scoreTextView.setText(user.getScore());
+        holder.scoreTextView.setText(String.valueOf(user.getScore()));
 
     }
 

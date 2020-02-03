@@ -32,6 +32,7 @@
     <!--        app:layout_constraintTop_toTopOf="parent"-->
     <!--        app:layout_constraintVertical_bias="0.303" />-->
 
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,120 +51,147 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:cardCornerRadius="4dp"
                 app:cardUseCompatPadding="true">
 
                 <Button
                     android:id="@+id/quiz"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="quiz" />
+                    android:text="quiz"
+                    android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:cardCornerRadius="4dp"
                 app:cardUseCompatPadding="true">
 
                 <Button
                     android:id="@+id/events"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Events" />
+                    android:text="Events"
+                    android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:cardCornerRadius="4dp"
                 app:cardUseCompatPadding="true">
 
                 <Button
                     android:id="@+id/talks"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Talks" />
+                    android:text="Talks"
+                    android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:cardCornerRadius="4dp"
                 app:cardUseCompatPadding="true">
 
                 <Button
                     android:id="@+id/workshops"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Workshops" />
+                    android:text="Workshops"
+                    android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:cardCornerRadius="4dp"
                 app:cardUseCompatPadding="true">
 
                 <Button
                     android:id="@+id/sponsors"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Sponsors" />
+                    android:text="Sponsors"
+                    android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:cardCornerRadius="4dp"
                 app:cardUseCompatPadding="true">
 
                 <Button
                     android:id="@+id/ca"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Campus Ambassador" />
+                    android:text="Campus Ambassador"
+                    android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:cardCornerRadius="4dp"
                 app:cardUseCompatPadding="true">
 
                 <Button
                     android:id="@+id/profile"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Profile" />
+                    android:text="Profile"
+                    android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:cardCornerRadius="4dp"
                 app:cardUseCompatPadding="true">
 
                 <Button
                     android:id="@+id/schedule"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Schedule" />
+                    android:text="Schedule"
+                    android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 app:cardCornerRadius="4dp"
                 app:cardUseCompatPadding="true">
 
                 <Button
                     android:id="@+id/exhibition"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:text="Exhibition" />
+                    android:text="Exhibition"
+                    android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
