@@ -4,15 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context="com.nith.appteam.nimbus2020.Activities.ProfileNew">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#fff">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#fff">
 
             <View
                 android:layout_width="match_parent"
@@ -25,8 +28,9 @@
                 android:layout_height="108dp"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="142dp"
-                android:elevation="4dp"
-                android:src="@drawable/default_profile_pic"
+                android:elevation="8dp"
+                android:scaleType="centerCrop"
+                android:src="@color/md_grey_500"
                 app:civ_circle_background_color="#000" />
 
             <TextView
@@ -36,7 +40,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="100dp"
                 android:text="Profile"
-                android:textColor="#000"
+                android:textColor="#fff"
                 android:textSize="40sp" />
 
             <TextView
@@ -45,7 +49,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/profile_picture"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/profile_background"
                 android:gravity="center_horizontal"
                 android:paddingLeft="4dp"
                 android:paddingTop="8dp"
@@ -64,7 +67,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
                 android:text="Roll No"
-                android:textColor="#000"
+                android:textColor="@color/md_grey_700"
                 android:textSize="20sp" />
 
             <TextView
@@ -73,7 +76,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rollno_label"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/profile_background"
                 android:gravity="center_horizontal"
                 android:paddingLeft="4dp"
                 android:paddingTop="8dp"
@@ -92,7 +94,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
                 android:text="Phone No"
-                android:textColor="#000"
+                android:textColor="@color/md_grey_700"
                 android:textSize="20sp" />
 
             <TextView
@@ -101,7 +103,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/phoneno_label"
                 android:layout_marginTop="4dp"
-                android:background="@drawable/profile_background"
                 android:gravity="center_horizontal"
                 android:paddingLeft="4dp"
                 android:paddingTop="8dp"
@@ -120,7 +121,7 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center_horizontal"
                 android:text="College"
-                android:textColor="#000"
+                android:textColor="@color/md_grey_700"
                 android:textSize="20sp" />
 
             <TextView
@@ -129,7 +130,6 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/college_label"
                 android:layout_marginTop="8dp"
-                android:background="@drawable/profile_background"
                 android:gravity="center_horizontal"
                 android:paddingLeft="4dp"
                 android:paddingTop="8dp"
@@ -140,25 +140,16 @@
                 android:textSize="16sp"
                 tools:text="NIT Hamirpur" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/edit_profile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
                 android:layout_below="@+id/college"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="64dp"
-                android:layout_marginRight="24dp"
-                android:layout_marginBottom="16dp"
-                android:background="@drawable/login_button"
-                android:gravity="center"
-                android:paddingTop="12dp"
-                android:paddingBottom="12dp"
-                android:text="Edit Profile"
-                android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
-                android:textColor="#fff"
-                android:textSize="16sp" />
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="36dp"
+                android:layout_marginBottom="36dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/edit" />
         </RelativeLayout>
     </ScrollView>
 </RelativeLayout>

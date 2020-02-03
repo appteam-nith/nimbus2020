@@ -79,6 +79,8 @@ public class CampusAmbassadorPost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 socialUrl = link.getText().toString();
+                Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
+                getImageUrl(bitmap);
                 if (!socialUrl.equals("")) {
                     progressBar.setVisibility(View.VISIBLE);
                     final String hash = md5(socialUrl);
@@ -154,9 +156,6 @@ public class CampusAmbassadorPost extends AppCompatActivity {
             img = getResizedBitmap(bmp, 300);
 //          pass = encodeTobase64(img);
             image.setImageBitmap(img);
-            Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
-            progressBar.setVisibility(View.VISIBLE);
-            getImageUrl(bitmap);
         }
     }
 
@@ -195,7 +194,6 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                     @Override
                     public void onSuccess(String requestId, Map resultData) {
                         imageUrl = String.valueOf(resultData.get("url"));
-                        progressBar.setVisibility(View.GONE);
                         submitPost.setVisibility(View.VISIBLE);
                     }
 
@@ -204,7 +202,6 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                         Log.i("HELLO", "JIJIJ");
 //                      finish();
                         Toast.makeText(CampusAmbassadorPost.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();
-                        progressBar.setVisibility(View.GONE);
                     }
 
                     @Override
