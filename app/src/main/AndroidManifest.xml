@@ -20,7 +20,7 @@
            />
         <activity
             android:name=".Activities.Event_Choose"
-             />
+             android:exported="true"/>
         <activity android:name=".Activities.contributorsActivity"></activity>
         <activity
             android:name=".Activities.SplashScreen"

@@ -1,9 +1,12 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ProgressBar;
 
 import com.android.volley.Request;
@@ -129,5 +132,14 @@ public class Exhhibition extends AppCompatActivity {
 
         return exhibitionList;
     }
+    private void runLayoutAnim(final RecyclerView recyclerView)
+    {
+        final Context context= recyclerView.getContext();
+        final LayoutAnimationController layoutAnimationController= AnimationUtils.loadLayoutAnimation(context,R.anim.layout_animation);
+        recyclerView.setLayoutAnimation(layoutAnimationController);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
+    }
+
 
 }
