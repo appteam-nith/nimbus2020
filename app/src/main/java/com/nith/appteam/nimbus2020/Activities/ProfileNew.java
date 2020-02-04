@@ -66,7 +66,7 @@ public class ProfileNew extends AppCompatActivity {
         sharedPrefs = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPrefs.edit();
         getUI();
-        phoneNumber.setEnabled(false);
+        //phoneNumber.setEnabled(false);
         phoneNumber.setText(sharedPrefs.getString("phone", ""));
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,6 +84,8 @@ public class ProfileNew extends AppCompatActivity {
                 profilePic.performClick();
             }
         });
+
+        //TODO changes here
         if (caYes.isSelected())
             editor.putBoolean("campusAmbassador", true);
         else if (caNo.isSelected())
@@ -167,20 +169,6 @@ public class ProfileNew extends AppCompatActivity {
                             headers.put("access-token", sharedPrefs.getString("token", ""));
                             return headers;
                         }
-
-
-//                        @Override
-//                        public byte[] getBody() throws AuthFailureError {
-//                            try {
-//
-//                                return requestBody == null ? null : requestBody.getBytes("utf-8");
-//
-//
-//                            } catch (UnsupportedEncodingException uee) {
-//                                VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-//                                return null;
-//                            }
-//                        }
                     };
                     stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
                             DefaultRetryPolicy.DEFAULT_MAX_RETRIES,

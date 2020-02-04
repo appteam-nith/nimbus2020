@@ -28,15 +28,15 @@ public class MainActivity extends AppCompatActivity {
         editor = sharedPref.edit();
 
         //Checking whether user has logged in or not
-        if (sharedPref.getBoolean("loginStatus", false) == false) {
+//        if (sharedPref.getBoolean("loginStatus", false) == false) {
 //            Intent i = new Intent(this, Login.class);
 //            startActivity(i);
 //            finish();
-        }
+//        }
 
         //Checking whether user has created profile or not
         //else
-            if (sharedPref.getBoolean("profileStatus", false) == false) {
+        if (sharedPref.getBoolean("profileStatus", false) == false) {
             Intent i = new Intent(this, ProfileNew.class);
             startActivity(i);
             finish();
@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
         campusA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, CampusAmbassadorPost.class);
+                Intent i = new Intent(MainActivity.this, CampusAmbassador.class);
                 startActivity(i);
             }
         });
