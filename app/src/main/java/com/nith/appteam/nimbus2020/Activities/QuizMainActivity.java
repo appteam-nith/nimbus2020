@@ -1,7 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -27,6 +27,7 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,12 +51,12 @@ public class QuizMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_activity_main);
-        Toolbar collapsingToolbar=findViewById(R.id.toolbar);
+        Toolbar collapsingToolbar = findViewById(R.id.toolbar);
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
         setSupportActionBar(collapsingToolbar);
-        quiz=findViewById(R.id.quizImageView);
+        quiz = findViewById(R.id.quizImageView);
         Picasso.with(this).load(R.drawable.quiz).fit().into(quiz);
         quizrecyclerView = findViewById(R.id.quizrecyclerview);
         queue = Volley.newRequestQueue(QuizMainActivity.this);
@@ -94,19 +95,25 @@ public class QuizMainActivity extends AppCompatActivity {
 
                 loadwall.setVisibility(View.GONE);
 
-                try {Log.e("quiz resp",response);
+                try {
+                    Log.e("quiz resp", response);
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String image;
-                        if (jsonArray.getJSONObject(i).has("image"))image= jsonArray.getJSONObject(i).getString("image");
-                        else image="https://cdn.motor1.com/images/mgl/M1318/s3/lamborghini-lead-image.jpg";
-                            Id_Value idValue = new Id_Value(
-                                    jsonArray.getJSONObject(i).getString("departmentName"),
-                                    jsonArray.getJSONObject(i).getString("departmentId"),
-                                    image);
-                            quiztypes.add(idValue);
-                            Objects.requireNonNull(
-                                    quizrecyclerView.getAdapter()).notifyDataSetChanged();
+                        if (jsonArray.getJSONObject(i).has("image")) {
+                            image = jsonArray.getJSONObject(i).getString("image");
+                        } else {
+                            image =
+                                    "https://cdn.motor1.com/images/mgl/M1318/s3/lamborghini-lead"
+                                            + "-image.jpg";
+                        }
+                        Id_Value idValue = new Id_Value(
+                                jsonArray.getJSONObject(i).getString("departmentName"),
+                                jsonArray.getJSONObject(i).getString("departmentId"),
+                                image);
+                        quiztypes.add(idValue);
+                        Objects.requireNonNull(
+                                quizrecyclerView.getAdapter()).notifyDataSetChanged();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -139,14 +146,33 @@ public class QuizMainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
-                Log.e("quiz",response);
+                Log.e("quiz", response);
 
-                Intent i = new Intent(QuizMainActivity.this, DepartmentQuiz.class);
-                i.putExtra("quiz", response);
-                i.putExtra("departmentname", quiztypes.get(position).getValue());
-                i.putExtra("image",quiztypes.get(position).getImageUrl());
-                progressDialog.dismiss();
-                startActivity(i);
+                JSONObject jsonObject = null;
+                try {
+                    jsonObject = new JSONObject(response);
+                    int error = jsonObject.getInt("errorCode");
+
+                    if (error == 3) {
+                        new AlertDialog.Builder(QuizMainActivity.this)
+                                .setTitle("User not Validated!")
+                                .setMessage("You first need to signup or login.")
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+
+                    } else {
+
+                        Intent i = new Intent(QuizMainActivity.this, DepartmentQuiz.class);
+                        i.putExtra("quiz", response);
+                        i.putExtra("departmentname", quiztypes.get(position).getValue());
+                        i.putExtra("image", quiztypes.get(position).getImageUrl());
+                        progressDialog.dismiss();
+                        startActivity(i);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
 
             }
         }, new Response.ErrorListener() {
@@ -164,11 +190,12 @@ public class QuizMainActivity extends AppCompatActivity {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                HashMap<String,String> map=new HashMap<>();
-//                SharedPreferences sharedPreferences=getSharedPreferences("app",MODE_PRIVATE);
-//                String token=sharedPreferences.getString("token",null);
 
-                map.put("access-token","5e2efff1d1bc484b0ff9a451");
+                HashMap<String, String> map = new HashMap<>();
+                SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
+                String token = sharedPreferences.getString("token", null);
+
+                map.put("access-token", token);
                 return map;
             }
 
