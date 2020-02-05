@@ -67,7 +67,7 @@ public class ProfileNew extends AppCompatActivity {
         editor = sharedPrefs.edit();
         getUI();
         phoneNumber.setEnabled(false);
-        phoneNumber.setText(sharedPrefs.getString("phone", ""));
+        phoneNumber.setText(sharedPrefs.getString("phone", "5985687"));
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
