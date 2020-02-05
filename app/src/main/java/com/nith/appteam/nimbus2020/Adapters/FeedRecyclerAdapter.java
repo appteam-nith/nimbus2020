@@ -26,9 +26,8 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
-        View v = inflater.inflate(R.layout.recycler_item_feed, parent, false);
-        return new viewHolder(v);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_item_feed, parent, false);
+        return new viewHolder(view);
     }
 
     @Override
@@ -36,12 +35,13 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
         String img = arrayList.get(position);
         Picasso.with(context)
                 .load(img)
+                .placeholder(R.drawable.nimbus_logo)
                 .into(holder.feedImage);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return arrayList.size();
     }
 
     class viewHolder extends RecyclerView.ViewHolder {

@@ -4,10 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,7 +18,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Adapters.WorkshopRecyclerViewAdapter;
@@ -32,18 +34,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 public class Workshops extends AppCompatActivity {
+    ProgressBar loadWall;
     private RecyclerView recyclerViewwor;
     private List<WorkshopModel> workshopList;
     private WorkshopRecyclerViewAdapter workshopRecyclerViewAdapter;
     private RequestQueue requestQueuework;
-    ProgressBar loadWall;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +51,7 @@ public class Workshops extends AppCompatActivity {
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
         setSupportActionBar(collapsingToolbar);
-        ImageView worksp =findViewById(R.id.workshopImageView);
+        ImageView worksp = findViewById(R.id.workshopImageView);
         Picasso.with(this).load(R.drawable.talk).fit().into(worksp);
 
         FloatingActionButton fabwo = findViewById(R.id.fabworkshop);
@@ -67,7 +63,7 @@ public class Workshops extends AppCompatActivity {
 
             }
         });
-        loadWall=findViewById(R.id.loadwallWorkshop);
+        loadWall = findViewById(R.id.loadwallWorkshop);
         recyclerViewwor = findViewById(R.id.recyclerViewWorkshop);
         recyclerViewwor.setHasFixedSize(true);
         recyclerViewwor.setLayoutManager(new LinearLayoutManager(this));
@@ -94,11 +90,11 @@ public class Workshops extends AppCompatActivity {
 //                Log.d("Response",response.toString());
                 for (int i = 0; i < response.length(); i++) {
                     try {
-                        JSONObject workshopObj= response.getJSONObject(i);
-                        WorkshopModel workshop=new WorkshopModel();
+                        JSONObject workshopObj = response.getJSONObject(i);
+                        WorkshopModel workshop = new WorkshopModel();
 //                        talk.setName("Aysuh KAusnldjhlkhfkllnewlfnlwenflkjewlkjfljwhekjksdjkjhkuhkjhkjsdhlehlkjhalhldhll");
 //                        talk.setVenue("LEcture aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
-                 //      workshop.setUrlWor("https://github.com/appteam-nith/nimbus2019");
+                        //      workshop.setUrlWor("https://github.com/appteam-nith/nimbus2019");
 //                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
                         workshop.setNameWor(workshopObj.getString("name"));

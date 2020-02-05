@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class TalkModel
         implements Serializable {
-    private static final long id= 1L;
+    private static final long id = 1L;
     private String name;
     private String info;
     private String venue;
@@ -63,14 +63,16 @@ public class TalkModel
     }
 
     public void setImage(String image) {
-        this.image = image;}
-        public String getIdTalk() {
-            return idTalk;
-        }
+        this.image = image;
+    }
 
-        public void setIdTalk(String idTalk) {
-            this.idTalk = idTalk;
-        }
+    public String getIdTalk() {
+        return idTalk;
+    }
+
+    public void setIdTalk(String idTalk) {
+        this.idTalk = idTalk;
+    }
 
 
 }

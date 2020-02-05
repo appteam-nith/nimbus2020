@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,7 +22,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.nith.appteam.nimbus2020.Adapters.QuizRecyclerAdapter;
 import com.nith.appteam.nimbus2020.Models.Id_Value;
@@ -33,11 +37,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 public class QuizMainActivity extends AppCompatActivity {
@@ -100,13 +99,10 @@ public class QuizMainActivity extends AppCompatActivity {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String image;
-                        if (jsonArray.getJSONObject(i).has("image")) {
+                        if (jsonArray.getJSONObject(i).has("image"))
                             image = jsonArray.getJSONObject(i).getString("image");
-                        } else {
-                            image =
-                                    "https://cdn.motor1.com/images/mgl/M1318/s3/lamborghini-lead"
-                                            + "-image.jpg";
-                        }
+                        else
+                            image = "https://cdn.motor1.com/images/mgl/M1318/s3/lamborghini-lead-image.jpg";
                         Id_Value idValue = new Id_Value(
                                 jsonArray.getJSONObject(i).getString("departmentName"),
                                 jsonArray.getJSONObject(i).getString("departmentId"),
@@ -145,7 +141,6 @@ public class QuizMainActivity extends AppCompatActivity {
                 getString(R.string.baseUrl) + "/quiz/departments", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
                 Log.e("quiz", response);
 
                 JSONObject jsonObject = null;
@@ -172,8 +167,6 @@ public class QuizMainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-
             }
         }, new Response.ErrorListener() {
             @Override

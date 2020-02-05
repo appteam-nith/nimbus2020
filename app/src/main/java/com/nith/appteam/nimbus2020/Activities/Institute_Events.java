@@ -5,13 +5,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.nith.appteam.nimbus2020.Adapters.EventIRecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.instituteEvent;
 import com.nith.appteam.nimbus2020.R;
@@ -25,10 +28,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 public class Institute_Events extends AppCompatActivity {
     private RecyclerView recyclerViewIEVE;
     private EventIRecyclerViewAdapter eventIRecyclerViewAdapter;
@@ -41,7 +40,7 @@ public class Institute_Events extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_institute_);
         requestQueueEVEI = Volley.newRequestQueue(this);
-loadWall=findViewById(R.id.loadwallEventI);
+        loadWall = findViewById(R.id.loadwallEventI);
         recyclerViewIEVE = findViewById(R.id.recyclerViewEVEI);
         recyclerViewIEVE.setHasFixedSize(true);
         recyclerViewIEVE.setLayoutManager(new LinearLayoutManager(this));

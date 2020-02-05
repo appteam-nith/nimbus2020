@@ -9,22 +9,16 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.nith.appteam.nimbus2020.Activities.Add_exhibition_details;
-import com.nith.appteam.nimbus2020.Activities.Add_talk_details;
 import com.nith.appteam.nimbus2020.Models.ExhibitionModel;
-import com.nith.appteam.nimbus2020.Models.TalkModel;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class ExhibitionRecyclerViewAdapter extends
         RecyclerView.Adapter<ExhibitionRecyclerViewAdapter.ViewHolder> {
@@ -50,9 +44,10 @@ public class ExhibitionRecyclerViewAdapter extends
     @Override
 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.item_animation));
-        ExhibitionModel exhibitions=exhibitionList.get(position);
-        String imageLink=exhibitions.getImageExh();
+
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.item_animation));
+        ExhibitionModel exhibitions = exhibitionList.get(position);
+        String imageLink = exhibitions.getImageExh();
         //holder.regUrl.setText(exhibitions.getRegURLExh());
         //holder.info.setText(exhibitions.getInfoExh());
         holder.date.setText(exhibitions.getDateExh());
@@ -68,19 +63,21 @@ public class ExhibitionRecyclerViewAdapter extends
     public int getItemCount() {
         return exhibitionList.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView name,date,venue;
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView name, date, venue;
         ImageView imgExh;
         RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
-            context=ctx;
-            container=itemView.findViewById(R.id.contExh);
-            name=(TextView) itemView.findViewById(R.id.exhibtionNameID);
-            imgExh=(ImageView) itemView.findViewById(R.id.exhibitionImageID);
-            venue=(TextView) itemView.findViewById(R.id.exhibitionVenueID);
-            date=(TextView)itemView.findViewById(R.id.ExhibitionDate);
+
+            context = ctx;
+            container = itemView.findViewById(R.id.contExh);
+            name = itemView.findViewById(R.id.exhibtionNameID);
+            imgExh = itemView.findViewById(R.id.exhibitionImageID);
+            venue = itemView.findViewById(R.id.exhibitionVenueID);
+            date = itemView.findViewById(R.id.ExhibitionDate);
             //info=(TextView) itemView.findViewById(R.id.exhibtionInfoID);
             //regUrl=(TextView) itemView.findViewById(R.id.regURLExhibtion);
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -88,9 +85,9 @@ public class ExhibitionRecyclerViewAdapter extends
 
                 @Override
                 public void onClick(View view) {
-                    ExhibitionModel  exhModel= exhibitionList.get(getAdapterPosition());
-                    Intent intent=new Intent(context, Add_exhibition_details.class);
-                    intent.putExtra("exhibition",exhModel);
+                    ExhibitionModel exhModel = exhibitionList.get(getAdapterPosition());
+                    Intent intent = new Intent(context, Add_exhibition_details.class);
+                    intent.putExtra("exhibition", exhModel);
                     ctx.startActivity(intent);
                 }
 

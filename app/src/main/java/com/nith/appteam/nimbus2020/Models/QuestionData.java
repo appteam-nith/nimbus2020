@@ -10,7 +10,7 @@ public class QuestionData {
     private int option_chosen;
 
     public QuestionData(String questionid, String question, String option_1, String option_2,
-            String option_3, String option_4) {
+                        String option_3, String option_4) {
         this.question = question;
         this.questionid = questionid;
         this.option_1 = option_1;

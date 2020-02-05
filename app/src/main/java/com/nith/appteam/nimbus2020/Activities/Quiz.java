@@ -11,15 +11,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.nith.appteam.nimbus2020.Models.QuestionData;
 import com.nith.appteam.nimbus2020.R;
 
@@ -27,14 +27,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class Quiz extends AppCompatActivity {
     TextView questionView, questionnumber, timeview;
@@ -53,7 +50,7 @@ public class Quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         mJSONArray = new JSONArray();
-      //  Objects.requireNonNull(getSupportActionBar()).hide();
+        //  Objects.requireNonNull(getSupportActionBar()).hide();
         timer = new CountDownTimer(15000, 1000) {
             @SuppressLint("SetTextI18n")
             public void onTick(long millisUntilFinished) {
@@ -248,23 +245,16 @@ public class Quiz extends AppCompatActivity {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                SharedPreferences sharedPreferences=getSharedPreferences("app",MODE_PRIVATE);
-                String token=sharedPreferences.getString("token",null);
-                HashMap<String,String> map=new HashMap<>();
-                map.put("access-token",token);
+                SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
+                String token = sharedPreferences.getString("token", null);
+                HashMap<String, String> map = new HashMap<>();
+                map.put("access-token", token);
                 return map;
             }
 
             @Override
             public byte[] getBody() throws AuthFailureError {
-                try {
-                    return result == null ? null : result.getBytes("utf-8");
-                } catch (UnsupportedEncodingException uee) {
-                    VolleyLog.wtf(
-                            "Unsupported Encoding while trying to get the bytes of %s using %s",
-                            result, "utf-8");
-                    return null;
-                }
+                return result == null ? null : result.getBytes(StandardCharsets.UTF_8);
             }
         };
 

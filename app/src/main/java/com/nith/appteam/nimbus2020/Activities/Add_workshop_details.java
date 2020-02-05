@@ -1,7 +1,5 @@
 package com.nith.appteam.nimbus2020.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,16 +8,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nith.appteam.nimbus2020.Models.TalkModel;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.nith.appteam.nimbus2020.Models.WorkshopModel;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class Add_workshop_details extends AppCompatActivity {
     private WorkshopModel workshopModel;
-    private TextView nameDetWor,infoDetWor,venueDetWor,dateDetWor,tupeWor;
+    private TextView nameDetWor, infoDetWor, venueDetWor, dateDetWor, tupeWor;
     private Button regDetWOr;
     private ImageView imgDetWor;
 
@@ -28,7 +25,7 @@ public class Add_workshop_details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_workshop_details);
-        workshopModel=(WorkshopModel) getIntent().getSerializableExtra("workshop");
+        workshopModel = (WorkshopModel) getIntent().getSerializableExtra("workshop");
         setUpUI();
         getMovieDetails();
         regDetWOr.setOnClickListener(new View.OnClickListener() {
@@ -42,13 +39,13 @@ public class Add_workshop_details extends AppCompatActivity {
     }
 
     private void oprnURLWor(String regURL) {
-        Uri uri=Uri.parse(regURL);
-        Intent launch= new Intent(Intent.ACTION_VIEW,uri);
+        Uri uri = Uri.parse(regURL);
+        Intent launch = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(launch);
     }
 
     private void getMovieDetails() {
-        if(workshopModel!=null) {
+        if (workshopModel != null) {
             nameDetWor.setText(workshopModel.getNameWor());
             infoDetWor.setText(workshopModel.getInfoWor());
             venueDetWor.setText(workshopModel.getVenueWor());
@@ -62,13 +59,13 @@ public class Add_workshop_details extends AppCompatActivity {
 
     private void setUpUI() {
 
-        nameDetWor=findViewById(R.id.NameIDDetWor);
-        infoDetWor=findViewById(R.id.InfoIDDetWor);
-        venueDetWor=findViewById(R.id.VenueIDDetWor);
-        dateDetWor=findViewById(R.id.DateDetWor);
-        regDetWOr=findViewById(R.id.registerDetWor);
-        imgDetWor=findViewById(R.id.ImgDetWor);
-        tupeWor=findViewById(R.id.workshopTypeIDDet);
+        nameDetWor = findViewById(R.id.NameIDDetWor);
+        infoDetWor = findViewById(R.id.InfoIDDetWor);
+        venueDetWor = findViewById(R.id.VenueIDDetWor);
+        dateDetWor = findViewById(R.id.DateDetWor);
+        regDetWOr = findViewById(R.id.registerDetWor);
+        imgDetWor = findViewById(R.id.ImgDetWor);
+        tupeWor = findViewById(R.id.workshopTypeIDDet);
     }
 }
 

@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".Activity.Add_Workshop">
+
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/addImgWrk"
             android:layout_width="100dp"
@@ -18,72 +19,76 @@
             android:paddingTop="10dp" />
 
         <EditText
+            android:id="@+id/NameAddWrk"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addImgWrk"
-            android:layout_marginTop="25dp"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
             android:hint="Please enter name of Workshop"
             android:inputType="text"
-            android:id="@+id/NameAddWrk"
-            android:padding="20sp"/>
+            android:padding="20sp" />
+
         <EditText
+            android:id="@+id/infoAddWrk"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/NameAddWrk"
-            android:id="@+id/infoAddWrk"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="15dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
             android:hint="Please add info related to Workshop"
             android:inputType="textMultiLine"
-            android:padding="20dp"/>
+            android:padding="20dp" />
+
         <EditText
+            android:id="@+id/venueAddWrk"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/infoAddWrk"
-            android:id="@+id/venueAddWrk"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="15dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
             android:hint="Please add venue of workshop"
             android:inputType="text"
-            android:padding="20dp"/>
+            android:padding="20dp" />
+
         <EditText
+            android:id="@+id/dateAddWrk"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/venueAddWrk"
-            android:id="@+id/dateAddWrk"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="15dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
             android:hint="Please add date of workshop"
             android:inputType="datetime"
-            android:padding="20dp"/>
+            android:padding="20dp" />
 
         <EditText
+            android:id="@+id/addregUrlWrk"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dateAddWrk"
-            android:id="@+id/addregUrlWrk"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="15dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
             android:hint="Please add regUrl for the workshop"
             android:inputType="textWebEditText"
-            android:padding="20dp"/>
+            android:padding="20dp" />
+
         <EditText
+            android:id="@+id/addTypeWrk"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addregUrlWrk"
-            android:id="@+id/addTypeWrk"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="15dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
             android:hint="Please add type of the workshop"
             android:inputType="textWebEditText"
-            android:padding="20dp"/>
+            android:padding="20dp" />
 
 
         <Button
@@ -91,21 +96,18 @@
             android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/addTypeWrk"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
             android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
-            android:textColor="#FDFAFA"
+            android:layout_marginRight="15dp"
             android:background="@drawable/buttob"
+            android:backgroundTint="#0A0709"
             android:padding="20dp"
             android:text="ADD"
             android:textAllCaps="false"
-            android:backgroundTint="#0A0709"
-            android:textStyle="bold|italic"
-            android:textSize="20sp" />
-
-
-
+            android:textColor="#FDFAFA"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
 
 
     </RelativeLayout>

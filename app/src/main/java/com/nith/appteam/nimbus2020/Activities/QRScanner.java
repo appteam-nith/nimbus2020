@@ -15,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
-import com.google.zxing.Result;
 import com.nith.appteam.nimbus2020.R;
 
 public class QRScanner extends AppCompatActivity {
@@ -28,7 +27,7 @@ public class QRScanner extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_qrscanner);
         CodeScannerView scannerView = findViewById(R.id.scanner_view);
-        mCodeScanner = new CodeScanner(this,scannerView);
+        mCodeScanner = new CodeScanner(this, scannerView);
 
         mCodeScanner.setDecodeCallback(new DecodeCallback() {
             @Override
@@ -37,22 +36,21 @@ public class QRScanner extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if(Patterns.WEB_URL.matcher(result.getText()).matches()) {
+                        if (Patterns.WEB_URL.matcher(result.getText()).matches()) {
                             // Open URL
                             Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(result.getText()));
                             startActivity(browserIntent);
+                        }
                     }
-                }});
+                });
             }
         });
-
-
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 mPermissionGranted = false;
-                requestPermissions(new String[] {Manifest.permission.CAMERA}, RC_PERMISSION);
+                requestPermissions(new String[]{Manifest.permission.CAMERA}, RC_PERMISSION);
             } else {
                 mPermissionGranted = true;
             }

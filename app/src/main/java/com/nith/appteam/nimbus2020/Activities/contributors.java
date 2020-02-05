@@ -65,9 +65,9 @@ class contributorsActivity extends AppCompatActivity {
         contributorsItems.add(new contributorsItem("Utkarsh Singh", BASE_URL + "utkarshsingh99.png", BASE_URL + "utkarshsingh99"));
         contributorsItems.add(new contributorsItem("Vishal Parmar", BASE_URL + "Vishal17599.png", BASE_URL + "Vishal17599"));
         contributorsItems.add(new contributorsItem("Abhinav Lamba", BASE_URL + "Abhinavlamba.png", BASE_URL + "Abhinavlamba"));
-        contributorsItems.add(new contributorsItem("Divyanshu",BASE_URL+"dextroxd.png",BASE_URL+"dextroxd"));
-        contributorsItems.add(new contributorsItem("Nishant Singh Hada",BASE_URL+"thisisnsh.png",BASE_URL+"thisisnsh"));
-        contributorsItems.add(new contributorsItem("Aakanksha Tewari",BASE_URL + "aakankshaa23.png",BASE_URL+"aakankshaa23")) ;
+        contributorsItems.add(new contributorsItem("Divyanshu", BASE_URL + "dextroxd.png", BASE_URL + "dextroxd"));
+        contributorsItems.add(new contributorsItem("Nishant Singh Hada", BASE_URL + "thisisnsh.png", BASE_URL + "thisisnsh"));
+        contributorsItems.add(new contributorsItem("Aakanksha Tewari", BASE_URL + "aakankshaa23.png", BASE_URL + "aakankshaa23"));
         contributorsItems.add(new contributorsItem("Abhiraj Singh Rathore", BASE_URL + "AbhirajSinghRathore.png", BASE_URL + "AbhirajSingh99"));
         contributorsItems.add(new contributorsItem("Alisha Mehta", BASE_URL + "Alisha1116.png", BASE_URL + "Alisha1116"));
         contributorsItems.add(new contributorsItem("Anshu Akansha", BASE_URL + "AnshuAkansha52227.png", BASE_URL + "AnshuAkansha"));
@@ -76,25 +76,25 @@ class contributorsActivity extends AppCompatActivity {
 
 
         //2nd year
-        contributorsItems.add(new contributorsItem("Sarthak Gupta",BASE_URL+"SarthakGupta3.png",BASE_URL+"SarthakGupta3"));
-        contributorsItems.add(new contributorsItem("Shweta Gurnani",BASE_URL+"shwetagurnani.png",BASE_URL+"shwetagurnani"));
-        contributorsItems.add(new contributorsItem("Shubham Kumar",BASE_URL+"SkroX.png",BASE_URL+"SkroX"));
-        contributorsItems.add(new contributorsItem("Chandan Sitlani",BASE_URL+"ChandanSitlani.png",BASE_URL+"ChandanSitlani"));
-        contributorsItems.add(new contributorsItem("Pawan Harariya",BASE_URL+"pawanharariya.png",BASE_URL+"pawanharariya"));
-        contributorsItems.add(new contributorsItem("Ayush Kaushal",BASE_URL+"Yashu017.png",BASE_URL+"Yashu017"));
-        contributorsItems.add(new contributorsItem("Ananya Sharma",BASE_URL+"Ananya-Sharma.png",BASE_URL+"Ananya-Sharma"));
-        contributorsItems.add(new contributorsItem("Amishi Bansal",BASE_URL+"AmishiBansal.png",BASE_URL+"AmishiBansal"));
-        contributorsItems.add(new contributorsItem("Moulik Bhardwaj",BASE_URL+"moulikbhardwaj.png",BASE_URL+"moulikbhardwaj"));
-        contributorsItems.add(new contributorsItem("Rupali Mehra",BASE_URL+"rupalimehra.png",BASE_URL+"rupalimehra"));
-        contributorsItems.add(new contributorsItem("Pranjal Dureja",BASE_URL+"pranjaldureja0002.png",BASE_URL+"pranjaldureja0002"));
-        contributorsItems.add(new contributorsItem("Shreya Agarwal",BASE_URL+"shreyaag770.png",BASE_URL+"shreyaag770"));
+        contributorsItems.add(new contributorsItem("Sarthak Gupta", BASE_URL + "SarthakGupta3.png", BASE_URL + "SarthakGupta3"));
+        contributorsItems.add(new contributorsItem("Shweta Gurnani", BASE_URL + "shwetagurnani.png", BASE_URL + "shwetagurnani"));
+        contributorsItems.add(new contributorsItem("Shubham Kumar", BASE_URL + "SkroX.png", BASE_URL + "SkroX"));
+        contributorsItems.add(new contributorsItem("Chandan Sitlani", BASE_URL + "ChandanSitlani.png", BASE_URL + "ChandanSitlani"));
+        contributorsItems.add(new contributorsItem("Pawan Harariya", BASE_URL + "pawanharariya.png", BASE_URL + "pawanharariya"));
+        contributorsItems.add(new contributorsItem("Ayush Kaushal", BASE_URL + "Yashu017.png", BASE_URL + "Yashu017"));
+        contributorsItems.add(new contributorsItem("Ananya Sharma", BASE_URL + "Ananya-Sharma.png", BASE_URL + "Ananya-Sharma"));
+        contributorsItems.add(new contributorsItem("Amishi Bansal", BASE_URL + "AmishiBansal.png", BASE_URL + "AmishiBansal"));
+        contributorsItems.add(new contributorsItem("Moulik Bhardwaj", BASE_URL + "moulikbhardwaj.png", BASE_URL + "moulikbhardwaj"));
+        contributorsItems.add(new contributorsItem("Rupali Mehra", BASE_URL + "rupalimehra.png", BASE_URL + "rupalimehra"));
+        contributorsItems.add(new contributorsItem("Pranjal Dureja", BASE_URL + "pranjaldureja0002.png", BASE_URL + "pranjaldureja0002"));
+        contributorsItems.add(new contributorsItem("Shreya Agarwal", BASE_URL + "shreyaag770.png", BASE_URL + "shreyaag770"));
 
         //1st year
-        contributorsItems.add(new contributorsItem("Anshit",BASE_URL+"Anshit01.png",BASE_URL+"Anshit01"));
-        contributorsItems.add(new contributorsItem("Mrigank Anand",BASE_URL+"spiderpxm.png",BASE_URL+"spiderxm"));
-        contributorsItems.add(new contributorsItem("Gautam Verma",BASE_URL+"hey1729gautam.png",BASE_URL+"hey1729gautam"));
-        contributorsItems.add(new contributorsItem("Kashika",BASE_URL+"Kashika1020.png",BASE_URL+"Kashika1020"));
-        contributorsItems.add(new contributorsItem("Khyati Saini",BASE_URL+"KhyatiSaini.png",BASE_URL+"KhyatiSaini"));
+        contributorsItems.add(new contributorsItem("Anshit", BASE_URL + "Anshit01.png", BASE_URL + "Anshit01"));
+        contributorsItems.add(new contributorsItem("Mrigank Anand", BASE_URL + "spiderpxm.png", BASE_URL + "spiderxm"));
+        contributorsItems.add(new contributorsItem("Gautam Verma", BASE_URL + "hey1729gautam.png", BASE_URL + "hey1729gautam"));
+        contributorsItems.add(new contributorsItem("Kashika", BASE_URL + "Kashika1020.png", BASE_URL + "Kashika1020"));
+        contributorsItems.add(new contributorsItem("Khyati Saini", BASE_URL + "KhyatiSaini.png", BASE_URL + "KhyatiSaini"));
 
         ContributorAdapter = new contributorAdapter(contributorsItems, contributorsActivity.this);
         rvContributors.setAdapter(ContributorAdapter);
@@ -109,7 +109,7 @@ class contributorsActivity extends AppCompatActivity {
     private void setSupportActionBar(Toolbar toolbar) {
     }
 
-    public View findViewById(int contributors_toolbar){
+    public View findViewById(int contributors_toolbar) {
         return null;
     }
 

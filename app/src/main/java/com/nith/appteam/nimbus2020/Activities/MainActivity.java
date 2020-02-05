@@ -24,27 +24,26 @@ public class MainActivity extends AppCompatActivity {
 //
 //        profileButton = findViewById(R.id.profile_button);
 //        post = findViewById(R.id.post);
-//        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
-//        editor = sharedPref.edit();
-//
-//        //Checking whether user has logged in or not
+//        Picasso.with(MainActivity.this)
+//                .load(sharedPref.getString("imageUrl", String.valueOf(R.string.defaultImageUrl)))
+//                .into(profileButton);
+        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
+        editor = sharedPref.edit();
+
+        //Checking whether user has logged in or not
 //        if (sharedPref.getBoolean("loginStatus", false) == false) {
-////            Intent i = new Intent(this, Login.class);
-////            startActivity(i);
-////            finish();
-//        }
-//
-//        //Checking whether user has created profile or not
-//        //else
-//            if (sharedPref.getBoolean("profileStatus", false) == false) {
-//            Intent i = new Intent(this, ProfileNew.class);
+//            Intent i = new Intent(this, Login.class);
 //            startActivity(i);
 //            finish();
 //        }
 
-//        Picasso.with(MainActivity.this)
-//                .load(sharedPref.getString("imageUrl", String.valueOf(R.string.defaultImageUrl)))
-//                .into(profileButton);
+        //Checking whether user has created profile or not
+        //else
+        if (sharedPref.getBoolean("profileStatus", false) == false) {
+            Intent i = new Intent(this, ProfileNew.class);
+            startActivity(i);
+            finish();
+        }
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         campusA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, CampusAmbassadorPost.class);
+                Intent i = new Intent(MainActivity.this, CampusAmbassador.class);
                 startActivity(i);
             }
         });

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,7 @@ public class Wall extends Fragment {
     private FloatingActionButton upload;
     private RecyclerView feed;
     private ArrayList<String> feedList = new ArrayList<>();
+    private ProgressBar progressBar;
 
     public Wall() {
     }
@@ -46,13 +48,16 @@ public class Wall extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_wall, container, false);
         upload = rootView.findViewById(R.id.upload);
         feed = rootView.findViewById(R.id.feed);
+        progressBar = rootView.findViewById(R.id.progress_bar);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         feed.setLayoutManager(layoutManager);
         sharedPreferences = getActivity().getSharedPreferences("app", Context.MODE_PRIVATE);
-        Boolean caStatus = sharedPreferences.getBoolean("campusAmbassador", false);
+
+        boolean caStatus = sharedPreferences.getBoolean("campusAmbassador", false);
         if (caStatus)
             upload.setVisibility(View.VISIBLE);
         else upload.setVisibility(View.GONE);
+
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,23 +65,27 @@ public class Wall extends Fragment {
                 startActivity(i);
             }
         });
-
-        feed.setAdapter(new FeedRecyclerAdapter(getContext(), feedList));
+        progressBar.setVisibility(View.VISIBLE);
         getFeeds();
+        feed.setAdapter(new FeedRecyclerAdapter(getContext(), feedList));
         return rootView;
     }
 
     private void getFeeds() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        StringRequest request = new StringRequest(R.string.baseUrl + "/views/links", new Response.Listener<String>() {
+        StringRequest request = new StringRequest(getString(R.string.baseUrl) + "/views/links", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
-                        String feedUrl = jsonArray.getJSONObject(i).getString("image_url");
-                        feedList.add(feedUrl);
+                        JSONArray feeds = jsonArray.getJSONObject(i).getJSONArray("image_urls");
+                        for (int j = 0; i < feeds.length(); ++j) {
+                            feedList.add(feeds.getString(j));
+//                            Toast.makeText(getContext(), feeds.getString(j), Toast.LENGTH_SHORT).show();
+                        }
                         Objects.requireNonNull(feed.getAdapter()).notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
