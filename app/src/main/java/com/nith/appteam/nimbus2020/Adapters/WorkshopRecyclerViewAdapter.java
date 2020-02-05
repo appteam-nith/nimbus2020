@@ -7,22 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.nith.appteam.nimbus2020.Activities.Add_talk_details;
 import com.nith.appteam.nimbus2020.Activities.Add_workshop_details;
-import com.nith.appteam.nimbus2020.Models.TalkModel;
 import com.nith.appteam.nimbus2020.Models.WorkshopModel;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class WorkshopRecyclerViewAdapter extends
         RecyclerView.Adapter<WorkshopRecyclerViewAdapter.ViewHolder> {
@@ -46,8 +40,8 @@ public class WorkshopRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        WorkshopModel workshop=workshopList.get(position);
-        String imageLinkWor=workshop.getImageWor();
+        WorkshopModel workshop = workshopList.get(position);
+        String imageLinkWor = workshop.getImageWor();
         //holder.regUrlWor.setText(workshop.getUrlWor());
         //holder.infoWor.setText(workshop.getInfoWor());
         holder.dateWor.setText(workshop.getDateWor());
@@ -62,17 +56,18 @@ public class WorkshopRecyclerViewAdapter extends
     public int getItemCount() {
         return workshopList.size();
     }
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView nameWor,dateWor,venueWor;
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        TextView nameWor, dateWor, venueWor;
         ImageView imgSpkrWork;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
-            context=ctx;
-            nameWor=(TextView) itemView.findViewById(R.id.workshopNameID);
-            imgSpkrWork=(ImageView) itemView.findViewById(R.id.WorkshopImageID);
-            venueWor=(TextView) itemView.findViewById(R.id.workshopVenueID);
-            dateWor=(TextView)itemView.findViewById(R.id.WorkshopDate);
+            context = ctx;
+            nameWor = itemView.findViewById(R.id.workshopNameID);
+            imgSpkrWork = itemView.findViewById(R.id.WorkshopImageID);
+            venueWor = itemView.findViewById(R.id.workshopVenueID);
+            dateWor = itemView.findViewById(R.id.WorkshopDate);
             //infoWor=(TextView) itemView.findViewById(R.id.workshopInfoID);
             //regUrlWor=(TextView) itemView.findViewById(R.id.regURLWor);
             //typeWor=(TextView)itemView.findViewById(R.id.workshopTypeID);
@@ -81,9 +76,9 @@ public class WorkshopRecyclerViewAdapter extends
 
                 @Override
                 public void onClick(View view) {
-                    WorkshopModel workshopModel= workshopList.get(getAdapterPosition());
-                    Intent intent=new Intent(context, Add_workshop_details.class);
-                    intent.putExtra("workshop",workshopModel);
+                    WorkshopModel workshopModel = workshopList.get(getAdapterPosition());
+                    Intent intent = new Intent(context, Add_workshop_details.class);
+                    intent.putExtra("workshop", workshopModel);
                     ctx.startActivity(intent);
                 }
 

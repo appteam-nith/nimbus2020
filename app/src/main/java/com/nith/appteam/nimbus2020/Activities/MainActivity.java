@@ -24,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
 //
 //        profileButton = findViewById(R.id.profile_button);
 //        post = findViewById(R.id.post);
+//        Picasso.with(MainActivity.this)
+//                .load(sharedPref.getString("imageUrl", String.valueOf(R.string.defaultImageUrl)))
+//                .into(profileButton);
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPref.edit();
 
@@ -42,9 +45,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-//        Picasso.with(MainActivity.this)
-//                .load(sharedPref.getString("imageUrl", String.valueOf(R.string.defaultImageUrl)))
-//                .into(profileButton);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override

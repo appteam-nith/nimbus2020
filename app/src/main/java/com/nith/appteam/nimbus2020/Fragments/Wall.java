@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,6 +37,7 @@ public class Wall extends Fragment {
     private FloatingActionButton upload;
     private RecyclerView feed;
     private ArrayList<String> feedList = new ArrayList<>();
+    private ProgressBar progressBar;
 
     public Wall() {
     }
@@ -46,15 +48,16 @@ public class Wall extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_wall, container, false);
         upload = rootView.findViewById(R.id.upload);
         feed = rootView.findViewById(R.id.feed);
+        progressBar = rootView.findViewById(R.id.progress_bar);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
         feed.setLayoutManager(layoutManager);
         sharedPreferences = getActivity().getSharedPreferences("app", Context.MODE_PRIVATE);
-        upload.setVisibility(View.VISIBLE);
 
-//        Boolean caStatus = sharedPreferences.getBoolean("campusAmbassador", false);
-//        if (caStatus)
-//            upload.setVisibility(View.VISIBLE);
-//        else upload.setVisibility(View.GONE);
+        boolean caStatus = sharedPreferences.getBoolean("campusAmbassador", false);
+        if (caStatus)
+            upload.setVisibility(View.VISIBLE);
+        else upload.setVisibility(View.GONE);
+
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,6 +65,7 @@ public class Wall extends Fragment {
                 startActivity(i);
             }
         });
+        progressBar.setVisibility(View.VISIBLE);
         getFeeds();
         feed.setAdapter(new FeedRecyclerAdapter(getContext(), feedList));
         return rootView;
@@ -81,6 +85,7 @@ public class Wall extends Fragment {
 //                            Toast.makeText(getContext(), feeds.getString(j), Toast.LENGTH_SHORT).show();
                         }
                         Objects.requireNonNull(feed.getAdapter()).notifyDataSetChanged();
+                        progressBar.setVisibility(View.GONE);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

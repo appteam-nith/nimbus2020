@@ -6,13 +6,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Adapters.Events_D_RecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.departmentEvent;
@@ -26,10 +29,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class department_Events extends AppCompatActivity {
     private RecyclerView recyclerViewDEVE;
@@ -47,13 +46,13 @@ public class department_Events extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(department_Events.this,Add_D_Events.class);
+                Intent intent = new Intent(department_Events.this, Add_D_Events.class);
                 startActivity(intent);
 
             }
         });
-        requestQueueEVED= Volley.newRequestQueue(this);
-loadWall=findViewById(R.id.loadwalldpt);
+        requestQueueEVED = Volley.newRequestQueue(this);
+        loadWall = findViewById(R.id.loadwalldpt);
         recyclerViewDEVE = findViewById(R.id.recyclerViewEVED);
         recyclerViewDEVE.setHasFixedSize(true);
         recyclerViewDEVE.setLayoutManager(new LinearLayoutManager(this));
@@ -100,8 +99,8 @@ loadWall=findViewById(R.id.loadwalldpt);
                         eventD.setImageDEVE(talkObj.getString("image"));
                         eventD.setInfoDEVE(talkObj.getString("info"));
 
-                        eventD.setRegURLDEVE(  talkObj.getString("regUrl"));
-                       eventD.setVenueDEVE("Venue: " + talkObj.getString("venue"));
+                        eventD.setRegURLDEVE(talkObj.getString("regUrl"));
+                        eventD.setVenueDEVE("Venue: " + talkObj.getString("venue"));
                         eventD.setAbstractDEVE(talkObj.getString("abstract"));
 
 

@@ -5,14 +5,14 @@ public class Id_Value {
     private String id;
     private String imageUrl;
 
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public Id_Value(String value, String id,String imageUrl) {
+    public Id_Value(String value, String id, String imageUrl) {
         this.value = value;
         this.id = id;
-        this.imageUrl=imageUrl;
+        this.imageUrl = imageUrl;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public String getValue() {

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
 
 
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_height="match_parent">
 
     <RelativeLayout
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".Activity.add_d_events">
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -24,92 +24,95 @@
             android:paddingTop="10dp" />
 
         <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addImgD"
-        android:layout_marginTop="25dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="15dp"
-        android:hint="Please enter name of events"
-        android:inputType="textNoSuggestions"
-        android:id="@+id/NameAddD"
-        android:padding="20sp"/>
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/NameAddD"
-        android:id="@+id/infoAddD"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_centerHorizontal="true"
-        android:hint="Please add info related to event"
-        android:inputType="textNoSuggestions"
-        android:padding="20dp"/>
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/infoAddD"
-        android:id="@+id/venueAddD"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_centerHorizontal="true"
-        android:hint="Please add venue of event"
-        android:inputType="textNoSuggestions"
-        android:padding="20dp"/>
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/venueAddD"
-        android:id="@+id/dateAddD"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_centerHorizontal="true"
-        android:hint="Please add date of event"
-        android:inputType="datetime"
-        android:padding="20dp"/>
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/dateAddD"
-        android:id="@+id/pdfAddD"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_centerHorizontal="true"
-        android:hint="Please add link of pdf File "
-        android:inputType="textWebEmailAddress"
-        android:padding="20dp"/>
-    <EditText
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/pdfAddD"
-        android:id="@+id/addregUrlD"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
-        android:layout_centerHorizontal="true"
-        android:hint="Please add regUrl for the event"
-        android:inputType="textWebEmailAddress"
-        android:padding="20dp"/>
+            android:id="@+id/NameAddD"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addImgD"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:hint="Please enter name of events"
+            android:inputType="textNoSuggestions"
+            android:padding="20sp" />
 
-    <Button
-        android:id="@+id/AddButtonD"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/addregUrlD"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:textColor="#FDFAFA"
-        android:background="@drawable/buttob"
-        android:padding="20dp"
-        android:text="ADD"
-        android:textAllCaps="false"
-        android:backgroundTint="#0A0709"
-        android:textStyle="bold|italic"
-        android:textSize="20sp" />
+        <EditText
+            android:id="@+id/infoAddD"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/NameAddD"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add info related to event"
+            android:inputType="textNoSuggestions"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/venueAddD"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/infoAddD"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add venue of event"
+            android:inputType="textNoSuggestions"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/dateAddD"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/venueAddD"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add date of event"
+            android:inputType="datetime"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/pdfAddD"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/dateAddD"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add link of pdf File "
+            android:inputType="textWebEmailAddress"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/addregUrlD"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/pdfAddD"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add regUrl for the event"
+            android:inputType="textWebEmailAddress"
+            android:padding="20dp" />
+
+        <Button
+            android:id="@+id/AddButtonD"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/addregUrlD"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="15dp"
+            android:background="@drawable/buttob"
+            android:backgroundTint="#0A0709"
+            android:padding="20dp"
+            android:text="ADD"
+            android:textAllCaps="false"
+            android:textColor="#FDFAFA"
+            android:textSize="20sp"
+            android:textStyle="bold|italic" />
 
 
-
-
-</RelativeLayout>
+    </RelativeLayout>
 </ScrollView>

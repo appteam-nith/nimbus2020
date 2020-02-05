@@ -46,7 +46,7 @@ public class CampusAmbassadorPost extends AppCompatActivity {
     int PICK_PHOTO_CODE = 100;
     private Button submitPost, uploadPicture;
     private EditText link;
-    private String socialUrl, imageUrl;
+    private String socialUrl, imageUrl, hash;
     private ProgressBar progressBar;
     private byte[] byteArray;
     private Bitmap bmp, img;
@@ -78,74 +78,13 @@ public class CampusAmbassadorPost extends AppCompatActivity {
         submitPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 socialUrl = link.getText().toString();
+                hash = md5(socialUrl);
                 if (photoUri != null) {
                     Bitmap bitmap = ((BitmapDrawable) image.getDrawable()).getBitmap();
                     getImageUrl(bitmap);
                 }
-                if (!socialUrl.equals("")) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    final String hash = md5(socialUrl);
-//                    if (!hash.equals("") && imageUrl.equals(""))
-                    {
-                        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
-                        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/views/inc_points", new Response.Listener<String>() {
-                            @Override
-                            public void onResponse(String response) {
-                                progressBar.setVisibility(View.GONE);
-                                if (response.equals("ok")) {
-                                    Toast.makeText(CampusAmbassadorPost.this, "Post Uploaded", Toast.LENGTH_SHORT).show();
-                                    onBackPressed();
-                                }
-                                try {
-                                    JSONObject status = new JSONObject(response);
-                                    if (status.get("status").equals("false"))
-                                        Toast.makeText(CampusAmbassadorPost.this, "Cannot upload same URL again.", Toast.LENGTH_SHORT).show();
-
-                                } catch (JSONException e) {
-                                    e.printStackTrace();
-                                }
-                            }
-
-                        }, new Response.ErrorListener() {
-                            @Override
-                            public void onErrorResponse(VolleyError error) {
-                                Toast.makeText(CampusAmbassadorPost.this, error.toString() + error.getCause(), Toast.LENGTH_LONG).show();
-                                progressBar.setVisibility(View.GONE);
-                            }
-                        }) {
-
-                            @Override
-                            public String getBodyContentType() {
-                                return "application/x-www-form-urlencoded; charset=UTF-8";
-                            }
-
-                            @Override
-                            public Map<String, String> getHeaders() {
-                                HashMap<String, String> headers = new HashMap<>();
-                                headers.put("access-token", sharedPrefs.getString("token", ""));
-                                //headers.put("access-token", "5e365b9abb840d2fb05ad40f");
-
-                                return headers;
-                            }
-
-                            @Override
-                            protected Map<String, String> getParams() throws AuthFailureError {
-                                Map<String, String> params = new HashMap<String, String>();
-                                params.put("image_url", imageUrl);
-                                params.put("post_url", socialUrl);
-                                params.put("key", hash);
-                                params.put("token", sharedPrefs.getString("token", ""));
-//                            params.put("token", "5e398211a44fc01f00335ac3");//TODO changes here:
-
-                                return params;
-                            }
-
-                        };
-                        requestQueue.add(stringRequest);
-                    }
-                } else
-                    Toast.makeText(CampusAmbassadorPost.this, "Please enter URL", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -169,8 +108,6 @@ public class CampusAmbassadorPost extends AppCompatActivity {
             img = getResizedBitmap(bmp, 300);
             image.setImageBitmap(img);
             submitPost.setVisibility(View.VISIBLE);
-            uploadPicture.setVisibility(View.GONE);
-
         }
     }
 
@@ -209,6 +146,7 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                     @Override
                     public void onSuccess(String requestId, Map resultData) {
                         imageUrl = String.valueOf(resultData.get("url"));
+                        submitPost();
                     }
 
                     @Override
@@ -232,7 +170,7 @@ public class CampusAmbassadorPost extends AppCompatActivity {
             // Create MD5 Hash
             MessageDigest digest = java.security.MessageDigest.getInstance("MD5");
             digest.update(s.getBytes());
-            byte messageDigest[] = digest.digest();
+            byte[] messageDigest = digest.digest();
 
             // Create Hex String
             StringBuffer hexString = new StringBuffer();
@@ -244,5 +182,67 @@ public class CampusAmbassadorPost extends AppCompatActivity {
             e.printStackTrace();
         }
         return "";
+    }
+
+    public void submitPost() {
+
+        if (!socialUrl.equals("")) {
+            if (!(hash == null) && !(imageUrl == null)) {
+                Log.e("generated URL hash", hash);
+                RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/views/inc_points", new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        progressBar.setVisibility(View.GONE);
+                        if (response.equals("ok")) {
+                            Toast.makeText(CampusAmbassadorPost.this, "Post Uploaded", Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+                        }
+                        try {
+                            JSONObject status = new JSONObject(response);
+                            if (status.get("status").equals("false"))
+                                Toast.makeText(CampusAmbassadorPost.this, "Cannot upload same URL again.", Toast.LENGTH_SHORT).show();
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(CampusAmbassadorPost.this, error.toString() + error.getCause(), Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }) {
+
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/x-www-form-urlencoded; charset=UTF-8";
+                    }
+
+                    @Override
+                    public Map<String, String> getHeaders() {
+                        HashMap<String, String> headers = new HashMap<>();
+                        headers.put("access-token", sharedPrefs.getString("token", ""));
+                        return headers;
+                    }
+
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("image_url", imageUrl);
+                        params.put("post_url", socialUrl);
+                        params.put("key", hash);
+                        params.put("token", "" + sharedPrefs.getString("token", ""));
+
+                        return params;
+                    }
+
+                };
+                requestQueue.add(stringRequest);
+            }
+        } else
+            Toast.makeText(CampusAmbassadorPost.this, "Please enter URL", Toast.LENGTH_SHORT).show();
     }
 }

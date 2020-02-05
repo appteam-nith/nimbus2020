@@ -1,7 +1,5 @@
 package com.nith.appteam.nimbus2020.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -9,7 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.nith.appteam.nimbus2020.Models.departmentEvent;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.nith.appteam.nimbus2020.Models.instituteEvent;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
@@ -18,8 +17,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_institute_Activity_Detail extends AppCompatActivity {
     private instituteEvent instituteEvent;
-    private TextView nameDetEventsI,infoDetEventsI,venueDetEventsI,dateDetEventsI;
-    private Button regDetEventsI,absEventI;
+    private TextView nameDetEventsI, infoDetEventsI, venueDetEventsI, dateDetEventsI;
+    private Button regDetEventsI, absEventI;
     private CircleImageView imgDetEventsI;
 
     @Override
@@ -78,7 +77,7 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
         venueDetEventsI = findViewById(R.id.VenueIDDetEventsI);
         dateDetEventsI = findViewById(R.id.DateDetEventsI);
         regDetEventsI = findViewById(R.id.registerDetEventsI);
-        absEventI=findViewById(R.id.abstractIEventsDet);
+        absEventI = findViewById(R.id.abstractIEventsDet);
         imgDetEventsI = findViewById(R.id.ImgDetEventsI);
     }
 }

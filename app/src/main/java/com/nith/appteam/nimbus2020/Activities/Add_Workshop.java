@@ -43,7 +43,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Workshop extends AppCompatActivity {
 
-    private EditText nameAddWrk,infoAddWrk,venueAddWrk,dateAddWrk,regUrlAddWrk,typeAddWrk;
+    private EditText nameAddWrk, infoAddWrk, venueAddWrk, dateAddWrk, regUrlAddWrk, typeAddWrk;
     private CircleImageView imageAddWrk;
     private Button addButtonWork;
     private RequestQueue requestQueueWrk;
@@ -55,15 +55,15 @@ public class Add_Workshop extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-         setContentView(R.layout.activity_add__workshop);
-        nameAddWrk=findViewById(R.id.NameAddWrk);
-        typeAddWrk=findViewById(R.id.addTypeWrk);
-        infoAddWrk=findViewById(R.id.infoAddWrk);
-        venueAddWrk=findViewById(R.id.venueAddWrk);
-        dateAddWrk=findViewById(R.id.dateAddWrk);
-        imageAddWrk=findViewById(R.id.addImgWrk);
-        regUrlAddWrk=findViewById(R.id.addregUrlWrk);
-        addButtonWork=(Button) findViewById(R.id.AddButtonWrk);
+        setContentView(R.layout.activity_add__workshop);
+        nameAddWrk = findViewById(R.id.NameAddWrk);
+        typeAddWrk = findViewById(R.id.addTypeWrk);
+        infoAddWrk = findViewById(R.id.infoAddWrk);
+        venueAddWrk = findViewById(R.id.venueAddWrk);
+        dateAddWrk = findViewById(R.id.dateAddWrk);
+        imageAddWrk = findViewById(R.id.addImgWrk);
+        regUrlAddWrk = findViewById(R.id.addregUrlWrk);
+        addButtonWork = findViewById(R.id.AddButtonWrk);
 
         addButtonWork.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +90,7 @@ public class Add_Workshop extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -170,22 +171,18 @@ public class Add_Workshop extends AppCompatActivity {
     }
 
 
-
-
-
-
     private void AddDetailsWrk() {
         //final String savedata=data;
 
-        requestQueueWrk= Volley.newRequestQueue(getApplicationContext());
-        StringRequest request= new StringRequest(Request.Method.POST, Constant.Url+ "workshops" ,new Response.Listener<String>() {
+        requestQueueWrk = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, Constant.Url + "workshops", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONObject object=new JSONObject(response);
-                    Log.i("Tag","Success");
-                    Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
-                    if(object.getString("message").equals("success") ){
+                    JSONObject object = new JSONObject(response);
+                    Log.i("Tag", "Success");
+                    Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();
+                    if (object.getString("message").equals("success")) {
 
                         nameAddWrk.setText("");
                         regUrlAddWrk.setText("");
@@ -197,16 +194,14 @@ public class Add_Workshop extends AppCompatActivity {
                     }
 
 
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), "Error" + e,
+                            Toast.LENGTH_SHORT).show();
 
 
-                        } catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(), "Error" + e,
-                                    Toast.LENGTH_SHORT).show();
-
-
-                        }
-                    }
-                }, new Response.ErrorListener() {
+                }
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("volley", "Error: " + error.getMessage());
@@ -224,13 +219,13 @@ public class Add_Workshop extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("name", nameAddWrk.getText().toString());
-                params.put("info",infoAddWrk.getText().toString());
-                params.put("venue",venueAddWrk.getText().toString());
-                params.put("date",dateAddWrk.getText().toString());
-                params.put("image",imageUrl);
+                params.put("info", infoAddWrk.getText().toString());
+                params.put("venue", venueAddWrk.getText().toString());
+                params.put("date", dateAddWrk.getText().toString());
+                params.put("image", imageUrl);
 //                params.put("image",imageAddWrk.getText().toString());
-                params.put("regUrl",regUrlAddWrk.getText().toString());
-                params.put("type",typeAddWrk.getText().toString());
+                params.put("regUrl", regUrlAddWrk.getText().toString());
+                params.put("type", typeAddWrk.getText().toString());
                 return params;
             }
         };

@@ -67,10 +67,10 @@ public class ExhibitionRecyclerViewAdapter extends
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context = ctx;
-            name = (TextView) itemView.findViewById(R.id.exhibtionNameID);
-            imgExh = (ImageView) itemView.findViewById(R.id.exhibitionImageID);
-            venue = (TextView) itemView.findViewById(R.id.exhibitionVenueID);
-            date = (TextView) itemView.findViewById(R.id.ExhibitionDate);
+            name = itemView.findViewById(R.id.exhibtionNameID);
+            imgExh = itemView.findViewById(R.id.exhibitionImageID);
+            venue = itemView.findViewById(R.id.exhibitionVenueID);
+            date = itemView.findViewById(R.id.ExhibitionDate);
             //info=(TextView) itemView.findViewById(R.id.exhibtionInfoID);
             //regUrl=(TextView) itemView.findViewById(R.id.regURLExhibtion);
             itemView.setOnClickListener(new View.OnClickListener() {
