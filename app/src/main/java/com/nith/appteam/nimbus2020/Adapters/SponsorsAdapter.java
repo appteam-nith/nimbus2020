@@ -34,6 +34,7 @@ public class SponsorsAdapter extends RecyclerView.Adapter<SponsorsAdapter.Sponso
 
     @Override
     public void onBindViewHolder(@NonNull SponsorsViewHolder holder, int position) {
+
         Sponsor sponsor = mSponsorList.get(position);
         holder.sponsorTextView.setText(sponsor.getName());
         if (!sponsor.getImageUrl().isEmpty()) {

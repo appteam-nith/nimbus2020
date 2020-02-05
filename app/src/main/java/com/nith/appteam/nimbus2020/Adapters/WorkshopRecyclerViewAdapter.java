@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.view.animation.AnimationUtils;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -18,9 +19,12 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class WorkshopRecyclerViewAdapter extends
         RecyclerView.Adapter<WorkshopRecyclerViewAdapter.ViewHolder> {
     private Context context;
+
     private List<WorkshopModel> workshopList;
 
     public WorkshopRecyclerViewAdapter(Context context, List<WorkshopModel> workshop) {
@@ -40,6 +44,10 @@ public class WorkshopRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.item_animation));
+
+
         WorkshopModel workshop = workshopList.get(position);
         String imageLinkWor = workshop.getImageWor();
         //holder.regUrlWor.setText(workshop.getUrlWor());
@@ -59,11 +67,13 @@ public class WorkshopRecyclerViewAdapter extends
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView nameWor, dateWor, venueWor;
-        ImageView imgSpkrWork;
+        CircleImageView imgSpkrWork;
+        RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context = ctx;
+            container = itemView.findViewById(R.id.contWor);
             nameWor = itemView.findViewById(R.id.workshopNameID);
             imgSpkrWork = itemView.findViewById(R.id.WorkshopImageID);
             venueWor = itemView.findViewById(R.id.workshopVenueID);
@@ -83,9 +93,7 @@ public class WorkshopRecyclerViewAdapter extends
                 }
 
             });
-
         }
-
         @Override
         public void onClick(View view) {
 

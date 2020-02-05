@@ -19,6 +19,7 @@
         app:layout_constraintVertical_bias="0.031">
 
         <RelativeLayout
+            android:id="@+id/IcontInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="12dp">
@@ -65,26 +66,6 @@
                 android:text="Venue"
                 android:textSize="17sp" />
 
-            <TextView
-                android:id="@+id/EventIInfoID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/EventIVenueID"
-                android:padding="5dp"
-                android:text="Info"
-                android:textSize="17sp" />
-
-            <TextView
-                android:id="@+id/regURLEvevntI"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/EventIInfoID"
-                android:autoLink="all"
-                android:clickable="true"
-                android:padding="5dp"
-                android:text="URL"
-                android:textColor="#08ACF5"
-                android:textSize="17sp" />
 
         </RelativeLayout>
 

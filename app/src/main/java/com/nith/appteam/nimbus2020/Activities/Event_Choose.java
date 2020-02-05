@@ -4,10 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.nith.appteam.nimbus2020.R;
+import com.squareup.picasso.Picasso;
 
 public class Event_Choose extends AppCompatActivity {
     private Button dept, inst;
@@ -17,6 +19,9 @@ public class Event_Choose extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event__choose);
+        ImageView img = findViewById(R.id.eventForgrnd);
+        Picasso.with(this).load(R.drawable.talk).fit().into(img);
+
         dept = findViewById(R.id.dptID);
         inst = findViewById(R.id.instID);
         dept.setOnClickListener(new View.OnClickListener() {

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4B80F0FF"
     tools:context=".Activities.Add_workshop_details">
 
     <androidx.cardview.widget.CardView
@@ -23,17 +24,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#4B80F0FF"
             android:padding="5dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/ImgDetWor"
-                android:layout_width="313dp"
+                android:layout_width="355dp"
                 android:layout_height="222dp"
                 android:layout_centerHorizontal="true"
                 android:background="#000000"
-                android:src="@drawable/fui_ic_anonymous_white_24dp"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp" />
+                android:scaleType="fitXY"
+                android:src="@drawable/fui_ic_anonymous_white_24dp" />
 
             <TextView
                 android:id="@+id/NameIDDetWor"
@@ -117,11 +118,10 @@
 
         <Button
             android:id="@+id/registerDetWor"
-            android:layout_width="154dp"
+            android:layout_width="match_parent"
             android:layout_height="59dp"
-            android:layout_marginLeft="90dp"
             android:background="@drawable/dat"
-            android:backgroundTint="#4AE0D2D2"
+            android:backgroundTint="#8A29B6FC"
             android:padding="5dp"
             android:text="Register"
             android:textSize="20sp"

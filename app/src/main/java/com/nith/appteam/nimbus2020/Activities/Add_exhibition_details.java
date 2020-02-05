@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -13,13 +14,11 @@ import com.nith.appteam.nimbus2020.Models.ExhibitionModel;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class Add_exhibition_details extends AppCompatActivity {
     private ExhibitionModel exhibitionModel;
     private TextView nameDetExh, infoDetExh, venueDetExh, dateDetExh;
     private Button regDetExh;
-    private CircleImageView imgDetExh;
+    private ImageView imgDetExh;
 
 
     @Override

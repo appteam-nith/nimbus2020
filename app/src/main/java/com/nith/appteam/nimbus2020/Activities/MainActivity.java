@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

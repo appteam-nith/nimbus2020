@@ -3,13 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-
-
     android:layout_height="match_parent">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#4B80F0FF"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context=".Activity.add_d_events">
 
@@ -20,8 +19,8 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/fui_ic_anonymous_white_24dp"
             android:backgroundTint="#000000"
-
-            android:paddingTop="10dp" />
+            android:paddingTop="10dp"
+            app:civ_circle_background_color="@color/colorPrimary" />
 
         <EditText
             android:id="@+id/NameAddD"

@@ -17,11 +17,13 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".Activities.CampusAmbassador"></activity>
         <activity android:name=".Activities.Schedule" />
-        <activity
-            android:name=".Activities.Schedule_Day"
-            android:exported="true" />
+
+
+           <activity android:name=".Activities.Schedule_Day"
+             />
         <activity android:name=".Activities.Event_Choose" />
-        <activity android:name=".Activities.contributors" />
+
+
 
         <activity android:name=".Activities.contributorsActivity"></activity>
         <activity
@@ -43,9 +45,9 @@
         <activity
             android:name=".Activities.Add_Exhibition"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".Activities.QRScanner"
-            android:exported="true"></activity>
+
+        <activity android:name=".Activities.QRScanner"
+            ></activity>
         <activity
             android:name=".Activities.department_Events"
             android:theme="@style/AppTheme" />
@@ -77,7 +79,8 @@
         <activity android:name=".Activities.SponsorsActivity" />
         <activity
             android:name=".Activities.MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:exported="true"/>
         <activity android:name=".Activities.Quiz" />
         <activity android:name=".Activities.DepartmentQuiz" />
         <activity android:name=".Activities.QuizMainActivity" />
