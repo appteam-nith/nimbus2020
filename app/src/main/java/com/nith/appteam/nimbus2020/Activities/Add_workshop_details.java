@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nith.appteam.nimbus2020.Models.TalkModel;
@@ -20,7 +21,7 @@ public class Add_workshop_details extends AppCompatActivity {
     private WorkshopModel workshopModel;
     private TextView nameDetWor,infoDetWor,venueDetWor,dateDetWor,tupeWor;
     private Button regDetWOr;
-    private CircleImageView imgDetWor;
+    private ImageView imgDetWor;
 
 
     @Override

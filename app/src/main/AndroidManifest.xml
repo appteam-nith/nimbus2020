@@ -4,7 +4,8 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name=".Activities.Nimbus2020"
         android:allowBackup="true"
@@ -12,15 +13,18 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".Activities.Schedule"
-            ></activity>
-        <activity android:name=".Activities.Schedule_Day"
-           />
-        <activity
-            android:name=".Activities.Event_Choose"
-             android:exported="true"/>
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".Activities.CampusAmbassador"></activity>
+        <activity android:name=".Activities.Schedule" />
+
+
+           <activity android:name=".Activities.Schedule_Day"
+             />
+        <activity android:name=".Activities.Event_Choose" />
+
+
+
         <activity android:name=".Activities.contributorsActivity"></activity>
         <activity
             android:name=".Activities.SplashScreen"
@@ -41,6 +45,7 @@
         <activity
             android:name=".Activities.Add_Exhibition"
             android:theme="@style/AppTheme" />
+
         <activity android:name=".Activities.QRScanner"
             ></activity>
         <activity
@@ -74,7 +79,8 @@
         <activity android:name=".Activities.SponsorsActivity" />
         <activity
             android:name=".Activities.MainActivity"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:exported="true"/>
         <activity android:name=".Activities.Quiz" />
         <activity android:name=".Activities.DepartmentQuiz" />
         <activity android:name=".Activities.QuizMainActivity" />
@@ -83,12 +89,4 @@
             android:name="CLOUDINARY_URL"
             android:value="cloudinary://256963859891119:w4WXsRRz58DN3eVbGK1g6JvcjJY@duutozrvz" />
     </application>
-
-
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
-
 </manifest>

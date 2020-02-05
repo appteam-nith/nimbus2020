@@ -53,7 +53,7 @@ public class Quiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         mJSONArray = new JSONArray();
-        Objects.requireNonNull(getSupportActionBar()).hide();
+      //  Objects.requireNonNull(getSupportActionBar()).hide();
         timer = new CountDownTimer(15000, 1000) {
             @SuppressLint("SetTextI18n")
             public void onTick(long millisUntilFinished) {

@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -44,6 +46,7 @@ public class TalkRecyclerViewAdapter extends
     @Override
 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.item_animation));
         TalkModel talks=talksList.get(position);
         String imageLink=talks.getImage();
         //holder.regUrl.setText(talks.getRegURL());
@@ -64,10 +67,12 @@ public class TalkRecyclerViewAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name,date,venue;
         ImageView imgSpkr;
+        RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context=ctx;
+            container=itemView.findViewById(R.id.contTalk);
             name=(TextView) itemView.findViewById(R.id.speakerNameID);
             imgSpkr=(ImageView) itemView.findViewById(R.id.speakerImageID);
             venue=(TextView) itemView.findViewById(R.id.speakerVenueID);

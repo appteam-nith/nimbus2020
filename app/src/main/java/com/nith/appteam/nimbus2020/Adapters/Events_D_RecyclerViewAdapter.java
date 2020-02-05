@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +49,7 @@ public class Events_D_RecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.item_animation));
         departmentEvent Devents=eventListDep.get(position);
         String imageLinkEVED=Devents.getImageDEVE();
         //holder.regUrlEVED.setText(Devents.getRegURLDEVE());
@@ -66,10 +69,11 @@ public class Events_D_RecyclerViewAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView nameEVED, datEVED, infoEVED, regUrlEVED, venueEVED;
         ImageView imgEVEVD;
-
+        RelativeLayout container;
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context=ctx;
+            container=itemView.findViewById(R.id.DcontInfo);
             nameEVED=(TextView) itemView.findViewById(R.id.EventDNameID);
             imgEVEVD=(ImageView) itemView.findViewById(R.id.EventDImageID);
             venueEVED=(TextView) itemView.findViewById(R.id.EventDVenueID);

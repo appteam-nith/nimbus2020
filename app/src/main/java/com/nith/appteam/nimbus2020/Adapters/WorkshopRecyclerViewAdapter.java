@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -24,9 +27,12 @@ import java.util.List;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class WorkshopRecyclerViewAdapter extends
         RecyclerView.Adapter<WorkshopRecyclerViewAdapter.ViewHolder> {
     private Context context;
+
     private List<WorkshopModel> workshopList;
 
     public WorkshopRecyclerViewAdapter(Context context, List<WorkshopModel> workshop) {
@@ -46,6 +52,9 @@ public class WorkshopRecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.item_animation));
+
+
         WorkshopModel workshop=workshopList.get(position);
         String imageLinkWor=workshop.getImageWor();
         //holder.regUrlWor.setText(workshop.getUrlWor());
@@ -64,13 +73,15 @@ public class WorkshopRecyclerViewAdapter extends
     }
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView nameWor,dateWor,venueWor;
-        ImageView imgSpkrWork;
+        CircleImageView imgSpkrWork;
+        RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context=ctx;
+            container=itemView.findViewById(R.id.contWor);
             nameWor=(TextView) itemView.findViewById(R.id.workshopNameID);
-            imgSpkrWork=(ImageView) itemView.findViewById(R.id.WorkshopImageID);
+            imgSpkrWork=(CircleImageView) itemView.findViewById(R.id.WorkshopImageID);
             venueWor=(TextView) itemView.findViewById(R.id.workshopVenueID);
             dateWor=(TextView)itemView.findViewById(R.id.WorkshopDate);
             //infoWor=(TextView) itemView.findViewById(R.id.workshopInfoID);

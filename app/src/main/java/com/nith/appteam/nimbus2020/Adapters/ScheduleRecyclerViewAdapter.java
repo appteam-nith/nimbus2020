@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -40,6 +42,7 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.item_animation));
         ScheduleModel scheduleModel=scheduleList.get(position);
     //    String imageLink=scheduleModel.getImage();
         //holder.regUrl.setText(talks.getRegURL());
@@ -58,10 +61,12 @@ public class ScheduleRecyclerViewAdapter extends RecyclerView.Adapter<ScheduleRe
     }
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name,date,venue,deptNAme;
+        RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context=ctx;
+            container=itemView.findViewById(R.id.contSch);
             name=(TextView) itemView.findViewById(R.id.EventSchNameID);
             deptNAme=(TextView) itemView.findViewById(R.id.EventSchVenueID);
             venue=(TextView) itemView.findViewById(R.id.EventSchVenueID);

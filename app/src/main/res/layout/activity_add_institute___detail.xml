@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4B80F0FF"
     tools:context=".Activities.Add_institute_Activity_Detail">
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewDetEventsI"
@@ -22,16 +23,17 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5dp">
-            <de.hdodenhof.circleimageview.CircleImageView
+            android:padding="5dp"
+            android:background="#4B80F0FF">
+
+            <ImageView
                 android:id="@+id/ImgDetEventsI"
-                android:layout_width="313dp"
-                android:layout_height="222dp"
+                android:layout_width="340dp"
+                android:layout_height="223dp"
                 android:layout_centerHorizontal="true"
                 android:background="#000000"
-                android:src="@drawable/fui_ic_anonymous_white_24dp"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="2dp" />
+                android:scaleType="fitXY"
+                android:src="@drawable/fui_ic_anonymous_white_24dp" />
 
             <TextView
                 android:id="@+id/NameIDDetEventsI"
@@ -113,7 +115,7 @@
             android:padding="5dp"
             android:id="@+id/abstractIEventsDet"
             android:textStyle="bold"
-            android:backgroundTint="#4AE0D2D2"
+            android:backgroundTint="#8A29B6FC"
             android:textSize="20sp"/>
 
         <Button
@@ -121,7 +123,7 @@
             android:layout_height="59dp"
             android:id="@+id/registerDetEventsI"
             android:layout_marginLeft="30dp"
-            android:backgroundTint="#4AE0D2D2"
+            android:backgroundTint="#8A29B6FC"
             android:background="@drawable/dat"
             android:padding="5dp"
             android:text="Register"

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -55,6 +56,8 @@ public class ProfileNew extends AppCompatActivity {
     private String imageUrl = "";
     private Bitmap bmp, img;
     private RadioButton caYes, caNo;
+    private ImageView uploadPic;
+    private Uri photoUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,7 +66,8 @@ public class ProfileNew extends AppCompatActivity {
         sharedPrefs = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPrefs.edit();
         getUI();
-        final String editStatus = getIntent().getStringExtra("editProfile");
+        phoneNumber.setEnabled(false);
+        phoneNumber.setText(sharedPrefs.getString("phone", ""));
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,6 +76,12 @@ public class ProfileNew extends AppCompatActivity {
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(intent, PICK_PHOTO_CODE);
                 }
+            }
+        });
+        uploadPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                profilePic.performClick();
             }
         });
         if (caYes.isSelected())
@@ -83,19 +93,17 @@ public class ProfileNew extends AppCompatActivity {
         submitProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (photoUri != null) {
+                    Bitmap bitmap = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
+                    getImageUrl(bitmap);
+                }
                 if (imageUrl.equals(""))
                     imageUrl = String.valueOf(R.string.defaultImageUrl);
                 if (!name.getText().toString().isEmpty() && !rollno.getText().toString().isEmpty() &&
                         !phoneNumber.getText().toString().isEmpty() && !college.getText().toString().isEmpty()) {
                     progressBar.setVisibility(View.VISIBLE);
-                    String path;
-                    if (editStatus.equals("true"))
-                        path = "/auth/profile";
-                    else
-                        path = "/auth/signup";
                     RequestQueue queue = Volley.newRequestQueue(ProfileNew.this);
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + path, new com.android.volley.Response.Listener<String>() {
-
+                    StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/auth/signup", new com.android.volley.Response.Listener<String>() {
                         @Override
                         public void onResponse(String response) {
                             int errorCode = 1;
@@ -104,20 +112,20 @@ public class ProfileNew extends AppCompatActivity {
                             try {
                                 jsonObject = new JSONObject(response);
                                 errorCode = (int) jsonObject.get("errorCode");
-                                token = (String) jsonObject.get("token");
+                                token = (String) jsonObject.get("access-token");
                                 editor.putString("token", token);
                                 editor.apply();
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
 //                            Toast.makeText(ProfileNew.this, response, Toast.LENGTH_LONG).show();
                             if (errorCode == 0) {
+//                                Toast.makeText(ProfileNew.this, "error code" + errorCode, Toast.LENGTH_SHORT).show();
                                 editor.putString("name", name.getText().toString());
                                 editor.putString("rollno", rollno.getText().toString());
                                 editor.putString("college", college.getText().toString());
                                 editor.putString("phone", phoneNumber.getText().toString());
-                                editor.putString("image", imageUrl);
+                                editor.putString("profileImage", imageUrl);
                                 editor.putBoolean("profileStatus", true);
                                 editor.commit();
                                 progressBar.setVisibility(View.GONE);
@@ -132,7 +140,7 @@ public class ProfileNew extends AppCompatActivity {
                         public void onErrorResponse(VolleyError error) {
                             Log.e("VOLLEY", error.toString());
                             progressBar.setVisibility(View.GONE);
-                            //Toast.makeText(ProfileNew.this, error.toString(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(ProfileNew.this, error.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }) {
 
@@ -156,10 +164,8 @@ public class ProfileNew extends AppCompatActivity {
                         @Override
                         public Map<String, String> getHeaders() {
                             HashMap<String, String> headers = new HashMap<>();
-                            if (editStatus.equals("true")) {
-                                headers.put("token", sharedPrefs.getString("token", ""));
-                                return headers;
-                            } else return null;
+                            headers.put("access-token", sharedPrefs.getString("token", ""));
+                            return headers;
                         }
 
 
@@ -190,7 +196,7 @@ public class ProfileNew extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
-            Uri photoUri = data.getData();
+            photoUri = data.getData();
             Bitmap selectedImage = null;
             try {
                 selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
@@ -202,11 +208,8 @@ public class ProfileNew extends AppCompatActivity {
             byteArray = bs.toByteArray();
             bmp = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
             img = getResizedBitmap(bmp, 300);
-//          pass = encodeTobase64(img);
             profilePic.setImageBitmap(img);
-            Bitmap bitmap = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
-            progressBar.setVisibility(View.VISIBLE);
-            getImageUrl(bitmap);
+
         }
     }
 
@@ -252,8 +255,7 @@ public class ProfileNew extends AppCompatActivity {
                     public void onError(String requestId, ErrorInfo error) {
                         Log.i("HELLO", "JIJIJ");
 //                      finish();
-                        Toast.makeText(ProfileNew.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();
-                        progressBar.setVisibility(View.GONE);
+                        Toast.makeText(ProfileNew.this, "Image Upload Failed", Toast.LENGTH_LONG).show();
                     }
 
                     @Override
@@ -268,12 +270,13 @@ public class ProfileNew extends AppCompatActivity {
     private void getUI() {
         name = findViewById(R.id.name);
         phoneNumber = findViewById(R.id.mobile);
-        rollno = findViewById(R.id.mobile);
+        rollno = findViewById(R.id.rollno);
         college = findViewById(R.id.college);
         submitProfile = findViewById(R.id.submit_profile);
         profilePic = findViewById(R.id.profile_pic);
         progressBar = findViewById(R.id.profile_progress);
         caNo = findViewById(R.id.ca_no);
         caYes = findViewById(R.id.ca_yes);
+        uploadPic = findViewById(R.id.profile_pic_button);
     }
 }

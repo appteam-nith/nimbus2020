@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.android.volley.Request;
@@ -16,12 +17,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Adapters.ExhibitionRecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.ExhibitionModel;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
 import com.nith.appteam.nimbus2020.Utils.PrefsExhibition;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,8 +52,13 @@ public class Exhhibition extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exhhibition);
         requestQueueExh = Volley.newRequestQueue(this);
-        Toolbar toolbar = findViewById(R.id.toolbarExh);
-        setSupportActionBar(toolbar);
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbarexhibition);
+        Toolbar collapsingToolbar = findViewById(R.id.toolbar);
+        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
+        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
+        setSupportActionBar(collapsingToolbar);
+        ImageView exhi =findViewById(R.id.exhibitionImageView);
+        Picasso.with(this).load(R.drawable.talk).fit().into(exhi);
 
         FloatingActionButton fab = findViewById(R.id.fabExh);
         fab.setOnClickListener(new View.OnClickListener() {

@@ -82,12 +82,12 @@ public class Schedule extends AppCompatActivity {
                         //talk.setRegURL("https://github.com/appteam-nith/nimbus2019");
 //                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
-                        sch.setNameSch("Name : "+ schObj.getString("name"));
+                        sch.setNameSch( schObj.getString("name"));
                         sch.setTimeSch("Date : " + schObj.getString("time"));
                         //sch.setS(talkObj.getString("info"));
                        // sch.setRegURL(  talkObj.getString("regUrl"));
                         sch.setVenueSch("Venue : " + schObj.getString("venue"));
-                        sch.setDeptSch("Department Name : "+ schObj.getString("departmentName"));
+
                         // Log.d("Talk",talk.getName());
 
 

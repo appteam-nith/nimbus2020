@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nith.appteam.nimbus2020.Models.departmentEvent;
@@ -20,7 +21,7 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
     private instituteEvent instituteEvent;
     private TextView nameDetEventsI,infoDetEventsI,venueDetEventsI,dateDetEventsI;
     private Button regDetEventsI,absEventI;
-    private CircleImageView imgDetEventsI;
+    private ImageView imgDetEventsI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

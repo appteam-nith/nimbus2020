@@ -24,18 +24,19 @@ public class MainActivity extends AppCompatActivity {
 //
 //        profileButton = findViewById(R.id.profile_button);
 //        post = findViewById(R.id.post);
-        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
-        editor = sharedPref.edit();
-
-        //Checking whether user has logged in or not
+//        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
+//        editor = sharedPref.edit();
+//
+//        //Checking whether user has logged in or not
 //        if (sharedPref.getBoolean("loginStatus", false) == false) {
-//            Intent i = new Intent(this, Login.class);
-//            startActivity(i);
-//            finish();
+////            Intent i = new Intent(this, Login.class);
+////            startActivity(i);
+////            finish();
 //        }
 //
 //        //Checking whether user has created profile or not
-//        if (sharedPref.getBoolean("profileStatus", false) == false) {
+//        //else
+//            if (sharedPref.getBoolean("profileStatus", false) == false) {
 //            Intent i = new Intent(this, ProfileNew.class);
 //            startActivity(i);
 //            finish();
@@ -61,9 +62,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-
-
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,11 +69,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-
-
-
-
 
 
         sponsor.setOnClickListener(new View.OnClickListener() {

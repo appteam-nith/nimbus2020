@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -48,6 +50,7 @@ public class ExhibitionRecyclerViewAdapter extends
     @Override
 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.item_animation));
         ExhibitionModel exhibitions=exhibitionList.get(position);
         String imageLink=exhibitions.getImageExh();
         //holder.regUrl.setText(exhibitions.getRegURLExh());
@@ -68,10 +71,12 @@ public class ExhibitionRecyclerViewAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView name,date,venue;
         ImageView imgExh;
+        RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context=ctx;
+            container=itemView.findViewById(R.id.contExh);
             name=(TextView) itemView.findViewById(R.id.exhibtionNameID);
             imgExh=(ImageView) itemView.findViewById(R.id.exhibitionImageID);
             venue=(TextView) itemView.findViewById(R.id.exhibitionVenueID);
