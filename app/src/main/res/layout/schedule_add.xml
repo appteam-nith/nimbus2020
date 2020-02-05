@@ -19,7 +19,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp">
+            android:padding="12dp"
+            android:id="@+id/contSch">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -52,15 +53,7 @@
                 android:padding="5dp"
                 android:textSize="17sp"
                 android:textStyle="bold"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/EventDepVenueID"
-                android:text="Department Name"
-                android:layout_below="@+id/EventSchVenueID"
-                android:padding="5dp"
-                android:textSize="17sp"
-                android:textStyle="bold"/>
+
 
 
 

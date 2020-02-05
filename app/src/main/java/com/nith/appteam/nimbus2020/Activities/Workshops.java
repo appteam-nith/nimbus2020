@@ -4,6 +4,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.android.volley.Request;
@@ -13,12 +16,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 
+import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Adapters.WorkshopRecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.WorkshopModel;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
 import com.nith.appteam.nimbus2020.Utils.PrefsWorkshop;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,8 +50,13 @@ public class Workshops extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workshops);
         requestQueuework = Volley.newRequestQueue(this);
-        Toolbar toolbar = findViewById(R.id.toolbarworksop);
-        setSupportActionBar(toolbar);
+        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbarworkshop);
+        Toolbar collapsingToolbar = findViewById(R.id.toolbar);
+        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
+        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
+        setSupportActionBar(collapsingToolbar);
+        ImageView worksp =findViewById(R.id.workshopImageView);
+        Picasso.with(this).load(R.drawable.talk).fit().into(worksp);
 
         FloatingActionButton fabwo = findViewById(R.id.fabworkshop);
         fabwo.setOnClickListener(new View.OnClickListener() {
@@ -121,5 +131,6 @@ public class Workshops extends AppCompatActivity {
 
         return workshopList;
     }
+
 
 }

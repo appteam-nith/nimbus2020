@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -26,7 +27,7 @@ public class Add_talk_details extends AppCompatActivity {
     private TalkModel talkModel;
     private TextView nameDet,infoDet,venueDet,dateDet;
     private Button regDet;
-    private CircleImageView imgDet;
+    private ImageView imgDet;
     private String talkID;
 
     @Override

@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nith.appteam.nimbus2020.Models.ExhibitionModel;
@@ -20,7 +21,7 @@ public class Add_deptEvents_detail extends AppCompatActivity {
     private departmentEvent dept;
     private TextView nameDetEventsD,infoDetEventsD,venueDetEventsD,dateDetEventsD;
     private Button regDetEventsD,absEventD;
-    private CircleImageView imgDetEventsD;
+    private ImageView imgDetEventsD;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

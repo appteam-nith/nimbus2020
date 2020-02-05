@@ -3,6 +3,7 @@ package com.nith.appteam.nimbus2020.Activities;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -93,7 +94,7 @@ public class QuizMainActivity extends AppCompatActivity {
 
                 loadwall.setVisibility(View.GONE);
 
-                try {
+                try {Log.e("quiz resp",response);
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String image;
@@ -138,6 +139,8 @@ public class QuizMainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
 
+                Log.e("quiz",response);
+
                 Intent i = new Intent(QuizMainActivity.this, DepartmentQuiz.class);
                 i.putExtra("quiz", response);
                 i.putExtra("departmentname", quiztypes.get(position).getValue());
@@ -157,6 +160,16 @@ public class QuizMainActivity extends AppCompatActivity {
             @Override
             public String getBodyContentType() {
                 return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                HashMap<String,String> map=new HashMap<>();
+//                SharedPreferences sharedPreferences=getSharedPreferences("app",MODE_PRIVATE);
+//                String token=sharedPreferences.getString("token",null);
+
+                map.put("access-token","5e2efff1d1bc484b0ff9a451");
+                return map;
             }
 
             @Override

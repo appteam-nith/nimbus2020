@@ -20,7 +20,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/fui_ic_anonymous_white_24dp"
             android:backgroundTint="#000000"
-
+app:civ_circle_background_color="@color/colorPrimary"
             android:paddingTop="10dp" />
 
         <EditText
@@ -33,7 +33,7 @@
         android:hint="Please enter name of events"
         android:inputType="textNoSuggestions"
         android:id="@+id/NameAddD"
-        android:padding="20sp"/>
+        android:padding="20sp" />
     <EditText
         android:layout_width="350dp"
         android:layout_height="wrap_content"

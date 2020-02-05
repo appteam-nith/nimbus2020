@@ -6,41 +6,54 @@
     android:layout_height="match_parent"
     tools:context=".Activities.Event_Choose">
 
+
+    <ImageView
+        android:id="@+id/eventForgrnd"
+        android:layout_width="397dp"
+        android:layout_height="319dp"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/cardChooseEvents"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.cardview.widget.CardView
-        android:layout_width="371dp"
-        android:layout_height="346dp"
+        android:id="@+id/cardChooseEvents"
+        android:layout_width="374dp"
+        android:layout_height="312dp"
         android:paddingTop="10dp"
         app:contentPaddingLeft="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintLeft_toLeftOf="parent"
-
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.425">
+        app:layout_constraintTop_toBottomOf="@id/eventForgrnd"
+        app:layout_constraintVertical_bias="0.498">
 
         <Button
             android:id="@+id/dptID"
-            android:layout_width="328dp"
-            android:layout_height="97dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginLeft="10dp"
+            android:layout_width="342dp"
+            android:layout_height="103dp"
+
+
             android:layout_marginTop="15dp"
-            android:layout_marginRight="10dp"
+
             android:background="@drawable/dat"
+            android:backgroundTint="#8A29B6FC"
             android:text="Departmental Events"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <Button
             android:id="@+id/instID"
-            android:layout_width="328dp"
-            android:layout_height="97dp"
+            android:layout_width="342dp"
+            android:layout_height="103dp"
             android:layout_gravity="center_vertical"
-            android:layout_marginLeft="10dp"
+
             android:layout_marginTop="80dp"
-            android:layout_marginRight="10dp"
+
             android:background="@drawable/dat"
+            android:backgroundTint="#8A29B6FC"
             android:text="Institute Events"
             android:textSize="24sp"
             android:textStyle="bold" />

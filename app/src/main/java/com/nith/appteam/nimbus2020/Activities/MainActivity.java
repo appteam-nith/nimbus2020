@@ -24,23 +24,23 @@ public class MainActivity extends AppCompatActivity {
 //
 //        profileButton = findViewById(R.id.profile_button);
 //        post = findViewById(R.id.post);
-        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
-        editor = sharedPref.edit();
-
-        //Checking whether user has logged in or not
-        if (sharedPref.getBoolean("loginStatus", false) == false) {
-//            Intent i = new Intent(this, Login.class);
+//        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
+//        editor = sharedPref.edit();
+//
+//        //Checking whether user has logged in or not
+//        if (sharedPref.getBoolean("loginStatus", false) == false) {
+////            Intent i = new Intent(this, Login.class);
+////            startActivity(i);
+////            finish();
+//        }
+//
+//        //Checking whether user has created profile or not
+//        //else
+//            if (sharedPref.getBoolean("profileStatus", false) == false) {
+//            Intent i = new Intent(this, ProfileNew.class);
 //            startActivity(i);
 //            finish();
-        }
-
-        //Checking whether user has created profile or not
-        //else
-            if (sharedPref.getBoolean("profileStatus", false) == false) {
-            Intent i = new Intent(this, ProfileNew.class);
-            startActivity(i);
-            finish();
-        }
+//        }
 
 //        Picasso.with(MainActivity.this)
 //                .load(sharedPref.getString("imageUrl", String.valueOf(R.string.defaultImageUrl)))
