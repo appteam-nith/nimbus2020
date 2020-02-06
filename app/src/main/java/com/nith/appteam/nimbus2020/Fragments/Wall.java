@@ -80,7 +80,7 @@ public class Wall extends Fragment {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         JSONArray feeds = jsonArray.getJSONObject(i).getJSONArray("image_urls");
-                        for (int j = 0; i < feeds.length(); ++j) {
+                        for (int j = 0; j < feeds.length(); ++j) {
                             feedList.add(feeds.getString(j));
 //                            Toast.makeText(getContext(), feeds.getString(j), Toast.LENGTH_SHORT).show();
                         }
