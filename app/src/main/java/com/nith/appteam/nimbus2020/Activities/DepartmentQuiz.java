@@ -1,5 +1,6 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,11 +11,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +18,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.nith.appteam.nimbus2020.Adapters.QuizRecyclerAdapter;
 import com.nith.appteam.nimbus2020.Models.Id_Value;
@@ -31,11 +28,17 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class DepartmentQuiz extends AppCompatActivity {
     RecyclerView departmentquiz;
@@ -125,11 +128,33 @@ public class DepartmentQuiz extends AppCompatActivity {
             public void onResponse(String response) {
                 loadwall.setVisibility(View.GONE);
                 Log.e("hi", "onResponse: " + response);
-                Intent intent = new Intent(DepartmentQuiz.this, QuizInstructionsActivity.class);
-                intent.putExtra("questions", response);
-                intent.putExtra("quizId", quiztypes.get(position).getId());
-                progressDialog.dismiss();
-                startActivity(intent);
+                boolean flag = true;
+
+                JSONObject jsonObject = null;
+
+                try {
+                    jsonObject = new JSONObject(response);
+                    int error = jsonObject.getInt("errorCode");
+
+                    if (error == 3) {
+                        flag = false;
+                        new AlertDialog.Builder(DepartmentQuiz.this)
+                                .setTitle("User not Validated!")
+                                .setMessage("You first need to signup or login.")
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if (flag) {
+                    Intent intent = new Intent(DepartmentQuiz.this, QuizInstructionsActivity.class);
+                    intent.putExtra("questions", response);
+                    intent.putExtra("quizId", quiztypes.get(position).getId());
+                    progressDialog.dismiss();
+                    startActivity(intent);
+                }
 
             }
         }, new Response.ErrorListener() {
@@ -148,11 +173,13 @@ public class DepartmentQuiz extends AppCompatActivity {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
+
+                HashMap<String, String> map = new HashMap<>();
                 SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
                 String token = sharedPreferences.getString("token", null);
-                HashMap<String, String> map = new HashMap<>();
-                map.put("token", token);
+                map.put("access-token", token);
                 return map;
+
             }
 
             @Override
