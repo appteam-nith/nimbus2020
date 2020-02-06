@@ -30,12 +30,12 @@ public class MainActivity extends AppCompatActivity {
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPref.edit();
 
-        //Checking whether user has logged in or not
-//        if (sharedPref.getBoolean("loginStatus", false) == false) {
-//            Intent i = new Intent(this, Login.class);
-//            startActivity(i);
-//            finish();
-//        }
+        // Checking whether user has logged in or not
+        if (sharedPref.getBoolean("loginStatus", false) == false) {
+            Intent i = new Intent(this, Login.class);
+            startActivity(i);
+            finish();
+        }
 
         //Checking whether user has created profile or not
         //else
