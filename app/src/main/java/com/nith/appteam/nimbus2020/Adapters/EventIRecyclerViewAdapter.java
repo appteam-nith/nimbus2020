@@ -86,9 +86,9 @@ public class EventIRecyclerViewAdapter extends
 
                 @Override
                 public void onClick(View view) {
-                    instituteEvent deptIns= eventList.get(getAdapterPosition());
+                    instituteEvent instituteEvent= eventList.get(getAdapterPosition());
                     Intent intent=new Intent(context, Add_institute_Activity_Detail.class);
-                    intent.putExtra("instituteEvents",deptIns);
+                    intent.putExtra("instituteEvents",instituteEvent);
                     ctx.startActivity(intent);
                 }
 

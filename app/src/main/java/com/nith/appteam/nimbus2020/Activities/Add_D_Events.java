@@ -188,18 +188,9 @@ public class Add_D_Events extends AppCompatActivity {
                         dateAddD.setText("");
                         pdfAddD.setText("");
                         infoAddD.setText("");
-
                     }
-
-
-
-
-
-
                 }catch (JSONException e){
                     Toast.makeText(getApplicationContext(),"Error"+e,Toast.LENGTH_SHORT).show();
-
-
                 }
             }
         }, new Response.ErrorListener() {
@@ -208,8 +199,6 @@ public class Add_D_Events extends AppCompatActivity {
                 VolleyLog.d("volley","Error: "+ error.getMessage());
                 error.printStackTrace();
                 Toast.makeText(getApplication(),"Error:"+error,Toast.LENGTH_SHORT).show();
-
-
             }
         })
         {

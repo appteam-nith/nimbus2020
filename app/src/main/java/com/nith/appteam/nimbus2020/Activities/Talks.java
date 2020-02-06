@@ -4,8 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -30,6 +33,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,6 +46,9 @@ public class Talks extends AppCompatActivity {
     private RequestQueue requestQueue;
     ProgressBar loadwall;
     private ImageView talkk;
+    private AlertDialog.Builder alertDialogBuilder;
+    private AlertDialog dialog;
+    private EditText num;
 
 
 
@@ -62,8 +69,7 @@ public class Talks extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Talks.this, Add_Talk.class);
-                startActivity(intent);
+                showInputDialog();
 
             }
         });
@@ -133,5 +139,32 @@ public class Talks extends AppCompatActivity {
 
         return talkList;
     }
+    public void showInputDialog()
+    {
+        alertDialogBuilder=new AlertDialog.Builder(this);
+        View view=getLayoutInflater().inflate(R.layout.dialog_view,null);
+        num= view.findViewById(R.id.dialog_edit);
+        Button submit= view.findViewById(R.id.submitButton);
+        alertDialogBuilder.setView(view);
+        dialog=alertDialogBuilder.create();
+        dialog.show();
 
-}
+
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(num.getText().toString().equals("8219341697")) {
+                        Intent intent = new Intent(Talks.this, Add_Talk.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(Talks.this,"Not Allowed",Toast.LENGTH_SHORT).show();
+                    }
+                    dialog.dismiss();
+                }
+            });
+        }
+    }
+
+
