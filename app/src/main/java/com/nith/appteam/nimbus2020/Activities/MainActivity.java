@@ -38,8 +38,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //Checking whether user has created profile or not
-        //else
-        if (sharedPref.getBoolean("profileStatus", false) == false) {
+        else if (sharedPref.getBoolean("profileStatus", false) == false) {
             Intent i = new Intent(this, ProfileNew.class);
             startActivity(i);
             finish();
