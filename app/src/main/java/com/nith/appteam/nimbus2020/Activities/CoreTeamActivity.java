@@ -7,8 +7,8 @@ import android.widget.ProgressBar;
 
 import com.android.volley.VolleyError;
 
-import com.nith.appteam.nimbus2020.Adapters.SponsorsAdapter;
-import com.nith.appteam.nimbus2020.Models.Sponsor;
+import com.nith.appteam.nimbus2020.Adapters.CoreTeamAdapter;
+import com.nith.appteam.nimbus2020.Models.CoreTeamModel;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.IResult;
 import com.nith.appteam.nimbus2020.Utils.VolleyService;
@@ -24,42 +24,42 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class SponsorsActivity extends AppCompatActivity {
+public class CoreTeamActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     ProgressBar loadwall;
-    SponsorsAdapter mSponsorsAdapter;
-    List<Sponsor> mSponsorList;
+    CoreTeamAdapter mCoreTeamAdapter;
+    List<CoreTeamModel> mCoreTeamModelList;
 
     private IResult mResultCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sponsors);
+        setContentView(R.layout.activity_core_team);
 
-        recyclerView = findViewById(R.id.sponsorsRecyclerView);
+        recyclerView = findViewById(R.id.coreTeamRecyclerView);
         loadwall = findViewById(R.id.loadwall);
-        mSponsorList = new ArrayList<>();
+        mCoreTeamModelList = new ArrayList<>();
         getData();
-        mSponsorsAdapter = new SponsorsAdapter(mSponsorList, this);
+        mCoreTeamAdapter = new CoreTeamAdapter(mCoreTeamModelList, this);
         GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(mSponsorsAdapter);
+        recyclerView.setAdapter(mCoreTeamAdapter);
 
     }
 
 
     private void getData() {
-        mSponsorList.clear();
+        mCoreTeamModelList.clear();
         loadwall.setVisibility(View.VISIBLE);
 
         initVolleyCallback();
 
         final VolleyService mVolleyService = new VolleyService(mResultCallback, this);
 
-        mVolleyService.getJsonArrayDataVolley("GETSPONSORS",
-                getString(R.string.baseUrl) + "/sponsor");
+        mVolleyService.getJsonArrayDataVolley("GETCORETEAMS",
+                getString(R.string.baseUrl) + "/coreTeam");
 
     }
 
@@ -78,12 +78,12 @@ public class SponsorsActivity extends AppCompatActivity {
 
                     try {
                         obj = response;
-                        String sponsorName = obj.getString("name");
-                        String sponsor_logo = getResources().getString(R.string.defaultImageUrl);
-                        if (obj.has("image")) sponsor_logo = obj.getString("image");
-//                                String  = json.getString("event_time");
-                        mSponsorList.add(new Sponsor(sponsorName, sponsor_logo));
-                        mSponsorsAdapter.notifyDataSetChanged();
+                        String name = obj.getString("name");
+                        String position = obj.getString("position");
+                        String image = getResources().getString(R.string.defaultImageUrl);
+                        if (obj.has("image")) image = obj.getString("image");
+                        mCoreTeamModelList.add(new CoreTeamModel(name, image, position));
+                        mCoreTeamAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -101,18 +101,18 @@ public class SponsorsActivity extends AppCompatActivity {
 
                         try {
                             obj = jsonArray.getJSONObject(i);
-                            String sponsorName = obj.getString("name");
-                            String sponsor_logo = getResources().getString(
-                                    R.string.defaultImageUrl);
-                            if (obj.has("image")) sponsor_logo = obj.getString("image");
-                            mSponsorList.add(new Sponsor(sponsorName, sponsor_logo));
-                            mSponsorsAdapter.notifyDataSetChanged();
+                            String name = obj.getString("name");
+                            String position = obj.getString("position");
+                            String image = getResources().getString(R.string.defaultImageUrl);
+                            if (obj.has("image")) image = obj.getString("image");
+                            mCoreTeamModelList.add(new CoreTeamModel(name, image, position));
+                            mCoreTeamAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
 
                     }
-                    mSponsorsAdapter.notifyDataSetChanged();
+                    mCoreTeamAdapter.notifyDataSetChanged();
 
                 }
             }
