@@ -10,11 +10,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -22,6 +17,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.nith.appteam.nimbus2020.Adapters.QuizRecyclerAdapter;
 import com.nith.appteam.nimbus2020.Models.Id_Value;
@@ -37,6 +33,11 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 public class QuizMainActivity extends AppCompatActivity {
@@ -99,10 +100,13 @@ public class QuizMainActivity extends AppCompatActivity {
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = 0; i < jsonArray.length(); i++) {
                         String image;
-                        if (jsonArray.getJSONObject(i).has("image"))
+                        if (jsonArray.getJSONObject(i).has("image")) {
                             image = jsonArray.getJSONObject(i).getString("image");
-                        else
-                            image = "https://cdn.motor1.com/images/mgl/M1318/s3/lamborghini-lead-image.jpg";
+                        } else {
+                            image =
+                                    "https://cdn.motor1.com/images/mgl/M1318/s3/lamborghini-lead"
+                                            + "-image.jpg";
+                        }
                         Id_Value idValue = new Id_Value(
                                 jsonArray.getJSONObject(i).getString("departmentName"),
                                 jsonArray.getJSONObject(i).getString("departmentId"),
@@ -142,31 +146,36 @@ public class QuizMainActivity extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 Log.e("quiz", response);
+                boolean flag = true;
 
                 JSONObject jsonObject = null;
+
                 try {
                     jsonObject = new JSONObject(response);
                     int error = jsonObject.getInt("errorCode");
 
                     if (error == 3) {
+                        flag = false;
                         new AlertDialog.Builder(QuizMainActivity.this)
                                 .setTitle("User not Validated!")
                                 .setMessage("You first need to signup or login.")
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .show();
 
-                    } else {
-
-                        Intent i = new Intent(QuizMainActivity.this, DepartmentQuiz.class);
-                        i.putExtra("quiz", response);
-                        i.putExtra("departmentname", quiztypes.get(position).getValue());
-                        i.putExtra("image", quiztypes.get(position).getImageUrl());
-                        progressDialog.dismiss();
-                        startActivity(i);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
+                if (flag) {
+                    Intent i = new Intent(QuizMainActivity.this, DepartmentQuiz.class);
+                    i.putExtra("quiz", response);
+                    i.putExtra("departmentname", quiztypes.get(position).getValue());
+                    i.putExtra("image", quiztypes.get(position).getImageUrl());
+                    progressDialog.dismiss();
+                    startActivity(i);
+                }
+
             }
         }, new Response.ErrorListener() {
             @Override
