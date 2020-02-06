@@ -5,10 +5,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -16,6 +12,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.nith.appteam.nimbus2020.Adapters.LeaderBoardAdapter;
 import com.nith.appteam.nimbus2020.Models.LeaderboardModel;
 import com.nith.appteam.nimbus2020.R;
@@ -25,9 +22,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class LeaderBoardActivity extends AppCompatActivity {
 
@@ -36,6 +39,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
     LeaderBoardAdapter mLeaderBoardAdapter;
     List<LeaderboardModel> mLeaderboardModelList;
     String quizId;
+    String image;
 
     RequestQueue queue;
 
@@ -43,6 +47,8 @@ public class LeaderBoardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_leader_board);
+
+        image = getResources().getString(R.string.defaultImageUrl);
 
         quizId = getIntent().getStringExtra("quizId");
 
@@ -79,10 +85,13 @@ public class LeaderBoardActivity extends AppCompatActivity {
                             for (int i = 0; i < players.length(); ++i) {
 
                                 JSONObject player = players.getJSONObject(i);
+                                if (player.has("image")) {
+                                    image = player.getString("image");
+                                }
 
                                 mLeaderboardModelList.add(
                                         new LeaderboardModel(player.getString("name"),
-                                                player.getInt("score"), player.getString("image")));
+                                                player.getInt("score"), image));
                                 mLeaderBoardAdapter.notifyDataSetChanged();
                             }
                             loadwall.setVisibility(View.GONE);
@@ -90,6 +99,20 @@ public class LeaderBoardActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
+
+                        Collections.sort(mLeaderboardModelList, new Comparator<LeaderboardModel>() {
+                            @Override
+                            public int compare(LeaderboardModel leaderboardModel,
+                                    LeaderboardModel t1) {
+                                if (leaderboardModel.getScore() == t1.getScore()) {
+                                    return 0;
+                                } else if (leaderboardModel.getScore() > t1.getScore()) {
+                                    return 1;
+                                } else {
+                                    return -1;
+                                }
+                            }
+                        });
 
                     }
                 }, new Response.ErrorListener() {
@@ -119,3 +142,5 @@ public class LeaderBoardActivity extends AppCompatActivity {
     }
 
 }
+
+

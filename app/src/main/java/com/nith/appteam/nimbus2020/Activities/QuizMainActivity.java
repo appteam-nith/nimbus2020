@@ -104,8 +104,7 @@ public class QuizMainActivity extends AppCompatActivity {
                             image = jsonArray.getJSONObject(i).getString("image");
                         } else {
                             image =
-                                    "https://cdn.motor1.com/images/mgl/M1318/s3/lamborghini-lead"
-                                            + "-image.jpg";
+                                    getResources().getString(R.string.defaultImageUrl);
                         }
                         Id_Value idValue = new Id_Value(
                                 jsonArray.getJSONObject(i).getString("departmentName"),
@@ -152,9 +151,9 @@ public class QuizMainActivity extends AppCompatActivity {
 
                 try {
                     jsonObject = new JSONObject(response);
-                    int error = jsonObject.getInt("errorCode");
+                    String error = jsonObject.getString("errorCode");
 
-                    if (error == 3) {
+                    if (error.equals("3")) {
                         flag = false;
                         new AlertDialog.Builder(QuizMainActivity.this)
                                 .setTitle("User not Validated!")
