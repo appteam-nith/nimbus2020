@@ -1,12 +1,13 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.nith.appteam.nimbus2020.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class QuizScoreActivity extends AppCompatActivity {
 
@@ -24,7 +25,8 @@ public class QuizScoreActivity extends AppCompatActivity {
         findViewById(R.id.quiz_home_link).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                Intent intent = new Intent(QuizScoreActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

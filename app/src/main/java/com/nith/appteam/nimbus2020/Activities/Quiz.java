@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -11,8 +12,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -20,6 +19,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.nith.appteam.nimbus2020.Models.QuestionData;
 import com.nith.appteam.nimbus2020.R;
 
@@ -33,11 +33,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 public class Quiz extends AppCompatActivity {
     TextView questionView, questionnumber, timeview;
     Button option1;
     Button option2;
     Button option3;
+    String result = "";
     Button option4;
     RequestQueue requestQueue;
     List<QuestionData> questions = new ArrayList<>();
@@ -59,9 +62,8 @@ public class Quiz extends AppCompatActivity {
 
             public void onFinish() {
                 counter++;
-                if (counter < questions.size()) {
+                if (counter < questions.size()&&questions.size()>0) {
                     updateQuestion();
-
                 } else {
 
                     getscore();
@@ -87,7 +89,7 @@ public class Quiz extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("questionId", questions.get(counter).getQuestionid());
-                    jsonObject.put("answer", questions.get(counter).getOption_chosen());
+                    jsonObject.put("correct", questions.get(counter).getOption_chosen());
                     mJSONArray.put(jsonObject);
 
                 } catch (JSONException e) {
@@ -106,7 +108,7 @@ public class Quiz extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("questionId", questions.get(counter).getQuestionid());
-                    jsonObject.put("answer", questions.get(counter).getOption_chosen());
+                    jsonObject.put("correct", questions.get(counter).getOption_chosen());
                     mJSONArray.put(jsonObject);
 
                 } catch (JSONException e) {
@@ -122,7 +124,7 @@ public class Quiz extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("questionId", questions.get(counter).getQuestionid());
-                    jsonObject.put("answer", questions.get(counter).getOption_chosen());
+                    jsonObject.put("correct", questions.get(counter).getOption_chosen());
                     mJSONArray.put(jsonObject);
 
                 } catch (JSONException e) {
@@ -138,7 +140,7 @@ public class Quiz extends AppCompatActivity {
                 JSONObject jsonObject = new JSONObject();
                 try {
                     jsonObject.put("questionId", questions.get(counter).getQuestionid());
-                    jsonObject.put("answer", questions.get(counter).getOption_chosen());
+                    jsonObject.put("correct", questions.get(counter).getOption_chosen());
                     mJSONArray.put(jsonObject);
 
                 } catch (JSONException e) {
@@ -192,7 +194,11 @@ public class Quiz extends AppCompatActivity {
                 }
             }
         }
-        updateQuestion();
+        if (questions.size() > 0)
+            updateQuestion();
+        else {
+            Toast.makeText(this, "No questions", Toast.LENGTH_SHORT).show();
+        }
 
     }
 
@@ -206,16 +212,29 @@ public class Quiz extends AppCompatActivity {
 
 
     private void getscore() {
+
+        final ProgressDialog progressDialog = new ProgressDialog(Quiz.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Calculating score...");
+        progressDialog.show();
         option4.setClickable(false);
         option1.setClickable(false);
         option2.setClickable(false);
         option3.setClickable(false);
         Log.e("hiiii", "onResponse: ");
-        final String result = mJSONArray.toString();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("answers", mJSONArray);
+            result = jsonObject.toString();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.e("result", result);
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
-                getString(R.string.baseUrl) + "/quiz/submit", new Response.Listener<String>() {
+                getString(R.string.baseUrl) + "/quiz/submit/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                progressDialog.dismiss();
                 Log.e("hiiii", "onResponse: " + response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -240,7 +259,7 @@ public class Quiz extends AppCompatActivity {
 
             @Override
             public String getBodyContentType() {
-                return "application/x-www-form-urlencoded; charset=UTF-8";
+                return "application/json";
             }
 
             @Override
