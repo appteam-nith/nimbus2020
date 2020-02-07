@@ -11,11 +11,7 @@ import com.nith.appteam.nimbus2020.R;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
-<<<<<<< HEAD
-
-    private Button quiz, sponsor, profile, campusA, workshops, talks, events, qr, exhibition,
-            schedule, contributors, coreTeam;
-
+    private Button quiz, sponsor, profile, campusA, workshops, talks, events, exhibition, schedule, contributors, coreTeam, qr;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     //    private CircleImageView profileButton;
