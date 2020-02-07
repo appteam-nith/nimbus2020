@@ -75,7 +75,9 @@ public class Wall extends Fragment {
         });
         progressBar.setVisibility(View.VISIBLE);
         getFeeds();
-        feed.setAdapter(new FeedRecyclerAdapter(getContext(), feedList));
+        if (getContext() != null) {
+            feed.setAdapter(new FeedRecyclerAdapter(getContext(), feedList));
+        }
         return rootView;
     }
 
