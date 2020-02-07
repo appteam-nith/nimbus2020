@@ -1,19 +1,20 @@
 package com.nith.appteam.nimbus2020.Adapters;
 
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.nith.appteam.nimbus2020.Models.LeaderboardModel;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class LeaderBoardAdapter extends
         RecyclerView.Adapter<LeaderBoardAdapter.LeaderboardViewHolder> {
@@ -30,7 +31,8 @@ public class LeaderBoardAdapter extends
     @NonNull
     @Override
     public LeaderboardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = View.inflate(parent.getContext(), R.layout.adapter_leaderboard, null);
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.adapter_leaderboard, parent, false);
         return new LeaderboardViewHolder(view);
     }
 

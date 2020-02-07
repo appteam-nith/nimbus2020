@@ -62,6 +62,19 @@ public class Quiz extends AppCompatActivity {
             }
 
             public void onFinish() {
+
+                if (questions.get(counter).getOption_chosen() == 0) {
+
+                    JSONObject jsonObject = new JSONObject();
+                    try {
+                        jsonObject.put("questionId", questions.get(counter).getQuestionid());
+                        jsonObject.put("correct", questions.get(counter).getOption_chosen());
+                        mJSONArray.put(jsonObject);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
                 counter++;
                 if (counter < questions.size() && questions.size() > 0) {
                     updateQuestion();
