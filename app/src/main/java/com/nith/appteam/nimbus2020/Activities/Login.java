@@ -71,6 +71,7 @@ public class Login extends AppCompatActivity {
                 Log.d("phoneNumber", user.getPhoneNumber());
                 Log.d("UserId", user.getUid());
                 Intent intent = new Intent(this, ProfileNew.class);
+                intent.putExtra("editProfile", false);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();

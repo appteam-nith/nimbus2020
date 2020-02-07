@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.nith.appteam.nimbus2020.R;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.nith.appteam.nimbus2020.R;
 
 public class QuizScoreActivity extends AppCompatActivity {
 

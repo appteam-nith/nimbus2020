@@ -5,8 +5,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
-import com.android.volley.VolleyError;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.VolleyError;
 import com.nith.appteam.nimbus2020.Adapters.SponsorsAdapter;
 import com.nith.appteam.nimbus2020.Models.Sponsor;
 import com.nith.appteam.nimbus2020.R;
@@ -19,10 +22,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class SponsorsActivity extends AppCompatActivity {
 
@@ -70,7 +69,7 @@ public class SponsorsActivity extends AppCompatActivity {
 
             @Override
             public void notifySuccess(String requestType, JSONObject response,
-                    JSONArray jsonArray) {
+                                      JSONArray jsonArray) {
 
 
                 if (response != null) {

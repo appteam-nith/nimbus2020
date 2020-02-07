@@ -9,23 +9,16 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.nith.appteam.nimbus2020.Activities.Add_deptEvents_detail;
-import com.nith.appteam.nimbus2020.Activities.Add_exhibition_details;
-import com.nith.appteam.nimbus2020.Models.ExhibitionModel;
 import com.nith.appteam.nimbus2020.Models.departmentEvent;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class Events_D_RecyclerViewAdapter extends
         RecyclerView.Adapter<Events_D_RecyclerViewAdapter.ViewHolder> {
@@ -49,9 +42,10 @@ public class Events_D_RecyclerViewAdapter extends
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.container.setAnimation(AnimationUtils.loadAnimation(context,R.anim.item_animation));
-        departmentEvent Devents=eventListDep.get(position);
-        String imageLinkEVED=Devents.getImageDEVE();
+
+        holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.item_animation));
+        departmentEvent Devents = eventListDep.get(position);
+        String imageLinkEVED = Devents.getImageDEVE();
         //holder.regUrlEVED.setText(Devents.getRegURLDEVE());
         //holder.infoEVED.setText(Devents.getInfoDEVE());
         holder.datEVED.setText(Devents.getDateDEVE());
@@ -70,24 +64,26 @@ public class Events_D_RecyclerViewAdapter extends
         TextView nameEVED, datEVED, infoEVED, regUrlEVED, venueEVED;
         ImageView imgEVEVD;
         RelativeLayout container;
+
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
-            context=ctx;
-            container=itemView.findViewById(R.id.DcontInfo);
-            nameEVED=(TextView) itemView.findViewById(R.id.EventDNameID);
-            imgEVEVD=(ImageView) itemView.findViewById(R.id.EventDImageID);
-            venueEVED=(TextView) itemView.findViewById(R.id.EventDVenueID);
-            datEVED=(TextView)itemView.findViewById(R.id.EventDDate);
+
+            context = ctx;
+            container = itemView.findViewById(R.id.DcontInfo);
+            nameEVED = itemView.findViewById(R.id.EventDNameID);
+            imgEVEVD = itemView.findViewById(R.id.EventDImageID);
+            venueEVED = itemView.findViewById(R.id.EventDVenueID);
+            datEVED = itemView.findViewById(R.id.EventDDate);
             //infoEVED=(TextView) itemView.findViewById(R.id.EventDInfoID);
-          //  regUrlEVED=(TextView) itemView.findViewById(R.id.regURLEvevntD);
+            //  regUrlEVED=(TextView) itemView.findViewById(R.id.regURLEvevntD);
             itemView.setOnClickListener(new View.OnClickListener() {
 
 
                 @Override
                 public void onClick(View view) {
-                    departmentEvent dept= eventListDep.get(getAdapterPosition());
-                    Intent intent=new Intent(context, Add_deptEvents_detail.class);
-                    intent.putExtra("departmentEvents",dept);
+                    departmentEvent dept = eventListDep.get(getAdapterPosition());
+                    Intent intent = new Intent(context, Add_deptEvents_detail.class);
+                    intent.putExtra("departmentEvents", dept);
                     ctx.startActivity(intent);
                 }
 

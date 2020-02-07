@@ -1,10 +1,10 @@
 package com.nith.appteam.nimbus2020.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.nith.appteam.nimbus2020.R;
 
@@ -23,6 +23,6 @@ public class SplashScreen extends AppCompatActivity {
                 startActivity(intent);
                 finish();
             }
-        },2500);
+        }, 2500);
     }
 }

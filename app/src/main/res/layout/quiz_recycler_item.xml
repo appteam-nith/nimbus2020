@@ -4,28 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="280dp"
     android:layout_height="wrap_content"
-    app:cardUseCompatPadding="true"
     android:layout_margin="16dp"
-    app:cardCornerRadius="6dp">
+    app:cardCornerRadius="6dp"
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
 
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/userImageView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_gravity="center_vertical"
-        android:padding="8dp"
-        android:src="@mipmap/ic_launcher_round"
-        app:civ_border_color="#000000"
-        app:civ_border_width="2dp"
-        tools:srcCompat="@tools:sample/avatars"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/userImageView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:padding="8dp"
+            android:src="@mipmap/ic_launcher_round"
+            app:civ_border_color="#000000"
+            app:civ_border_width="2dp"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/quizdepartmentname"
@@ -34,18 +34,17 @@
             android:layout_alignTop="@+id/userImageView"
             android:layout_alignBottom="@+id/userImageView"
             android:layout_gravity="center"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="0dp"
-            android:gravity="center"
-            android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:singleLine="true"
-            android:includeFontPadding="true"
-            android:fontFamily="@font/futur"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="0dp"
             android:layout_toRightOf="@id/userImageView"
+            android:fontFamily="@font/futur"
+            android:gravity="center"
+            android:includeFontPadding="true"
+            android:singleLine="true"
             android:text="bsdabsdd"
-            android:textSize="24sp"
-            />
+            android:textSize="24sp" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

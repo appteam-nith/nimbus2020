@@ -24,13 +24,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import com.cloudinary.android.policy.TimeWindow;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,10 +39,11 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Exhibition extends AppCompatActivity {
-    private EditText nameAddExh,infoAddExh,venueAddExh,dateAddExh,regUrlAddExh;
+    private EditText nameAddExh, infoAddExh, venueAddExh, dateAddExh, regUrlAddExh;
     private CircleImageView imageAddExh;
     private Button addButtonExh;
     private RequestQueue requestQueueExh;
@@ -50,17 +51,18 @@ public class Add_Exhibition extends AppCompatActivity {
     private byte[] byteArray;
     private String imageUrl = "";
     private Bitmap bmp, img;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__exhibition);
-        nameAddExh=findViewById(R.id.NameAddExh);
-        infoAddExh=findViewById(R.id.infoAddExh);
-        venueAddExh=findViewById(R.id.venueAddExh);
-        dateAddExh=findViewById(R.id.dateAddExh);
-        imageAddExh=findViewById(R.id.addImgExh);
-        regUrlAddExh=findViewById(R.id.addregUrlExh);
-        addButtonExh=findViewById(R.id.AddButtonExh);
+        nameAddExh = findViewById(R.id.NameAddExh);
+        infoAddExh = findViewById(R.id.infoAddExh);
+        venueAddExh = findViewById(R.id.venueAddExh);
+        dateAddExh = findViewById(R.id.dateAddExh);
+        imageAddExh = findViewById(R.id.addImgExh);
+        regUrlAddExh = findViewById(R.id.addregUrlExh);
+        addButtonExh = findViewById(R.id.AddButtonExh);
 
         addButtonExh.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +90,7 @@ public class Add_Exhibition extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -171,18 +174,19 @@ public class Add_Exhibition extends AppCompatActivity {
     private void AddDetailsExh() {
         //final String savedata=data;
 
-        requestQueueExh= Volley.newRequestQueue(getApplicationContext());
-        StringRequest request= new StringRequest(Request.Method.POST, Constant.Url+ "exhibitions" ,new Response.Listener<String>() {
+        requestQueueExh = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, Constant.Url + "exhibitions", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONObject object=new JSONObject(response);
-                    Log.i("Tag","Success");
-                    Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
-                    if(object.getString("message").equals("success") ){
+                    JSONObject object = new JSONObject(response);
+                    Log.i("Tag", "Success");
+                    Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();
+                    if (object.getString("message").equals("success")) {
 
                         nameAddExh.setText("");
                         regUrlAddExh.setText("");
+                        Picasso.with(getApplicationContext()).load(R.drawable.fui_ic_anonymous_white_24dp).into(imageAddExh);
                         venueAddExh.setText("");
                         dateAddExh.setText("");
                         infoAddExh.setText("");
@@ -190,15 +194,14 @@ public class Add_Exhibition extends AppCompatActivity {
                     }
 
 
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), "Error" + e,
+                            Toast.LENGTH_SHORT).show();
 
-                        } catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(), "Error" + e,
-                                    Toast.LENGTH_SHORT).show();
 
-
-                        }
-                    }
-                }, new Response.ErrorListener() {
+                }
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("volley", "Error: " + error.getMessage());
@@ -216,12 +219,12 @@ public class Add_Exhibition extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("name", nameAddExh.getText().toString());
-                params.put("info",infoAddExh.getText().toString());
-                params.put("venue",venueAddExh.getText().toString());
-                params.put("date",dateAddExh.getText().toString());
-                params.put("image",imageUrl);
-               // params.put("image",imageAddExh.getText().toString());
-                params.put("regUrl",regUrlAddExh.getText().toString());
+                params.put("info", infoAddExh.getText().toString());
+                params.put("venue", venueAddExh.getText().toString());
+                params.put("date", dateAddExh.getText().toString());
+                params.put("image", imageUrl);
+                // params.put("image",imageAddExh.getText().toString());
+                params.put("regUrl", regUrlAddExh.getText().toString());
                 return params;
             }
         };

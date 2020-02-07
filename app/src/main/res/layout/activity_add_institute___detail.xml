@@ -6,25 +6,27 @@
     android:layout_height="match_parent"
     android:background="#4B80F0FF"
     tools:context=".Activities.Add_institute_Activity_Detail">
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewDetEventsI"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="7dp"
-        app:layout_constraintRight_toRightOf="parent"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="7dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.046">
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="5dp"
-            android:background="#4B80F0FF">
+            android:background="#4B80F0FF"
+            android:padding="5dp">
+
 
             <ImageView
                 android:id="@+id/ImgDetEventsI"
@@ -85,8 +87,6 @@
                 />
 
 
-
-
         </RelativeLayout>
 
 
@@ -95,41 +95,43 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardViewDetEventsI"
         app:layout_constraintVertical_bias="0.774"
-        tools:layout_editor_absoluteX="0dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        tools:layout_editor_absoluteX="0dp">
 
 
         <Button
-            android:layout_width="154dp"
+            android:id="@+id/abstractIEventsDet"
+            android:layout_width="0dp"
             android:layout_height="59dp"
             android:layout_marginLeft="5dp"
+            android:layout_weight="1"
             android:background="@drawable/dat"
-            android:text="Abstract"
-            android:padding="5dp"
-            android:id="@+id/abstractIEventsDet"
-            android:textStyle="bold"
             android:backgroundTint="#8A29B6FC"
-            android:textSize="20sp"/>
+            android:padding="5dp"
+            android:text="Abstract"
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <Button
-            android:layout_width="154dp"
-            android:layout_height="59dp"
             android:id="@+id/registerDetEventsI"
+            android:layout_width="0dp"
+            android:layout_height="59dp"
             android:layout_marginLeft="30dp"
-            android:backgroundTint="#8A29B6FC"
+            android:layout_marginRight="20dp"
+            android:layout_weight="1"
             android:background="@drawable/dat"
+            android:backgroundTint="#8A29B6FC"
             android:padding="5dp"
             android:text="Register"
             android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginRight="20dp"/>
+            android:textStyle="bold" />
 
 
     </LinearLayout>

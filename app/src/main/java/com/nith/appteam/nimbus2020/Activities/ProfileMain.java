@@ -40,6 +40,7 @@ public class ProfileMain extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(ProfileMain.this, ProfileNew.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                i.putExtra("editProfile", true);
                 startActivity(i);
 
             }

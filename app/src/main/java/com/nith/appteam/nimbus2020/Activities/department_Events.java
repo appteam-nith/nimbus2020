@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -9,13 +10,16 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Adapters.Events_D_RecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.departmentEvent;
@@ -30,10 +34,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 
 public class department_Events extends AppCompatActivity {
     private RecyclerView recyclerViewDEVE;
@@ -44,22 +50,35 @@ public class department_Events extends AppCompatActivity {
     private AlertDialog.Builder alertDialogBuilder;
     private AlertDialog dialog;
     private EditText num;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_departmen);
+        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
+        editor = sharedPref.edit();
         FloatingActionButton fab = findViewById(R.id.fabD);
+        if( sharedPref.getString("phoneNumber","").equals("8219341697")) {
+            fab.setVisibility(View.VISIBLE);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 showInputDialog();
 
+
             }
-        });
-        requestQueueEVED= Volley.newRequestQueue(this);
-loadWall=findViewById(R.id.loadwalldpt);
+        });}
+        else
+        {
+            fab.setVisibility(View.GONE);
+        }
+        requestQueueEVED = Volley.newRequestQueue(this);
+        loadWall = findViewById(R.id.loadwalldpt);
         recyclerViewDEVE = findViewById(R.id.recyclerViewEVED);
         recyclerViewDEVE.setHasFixedSize(true);
         recyclerViewDEVE.setLayoutManager(new LinearLayoutManager(this));
@@ -106,8 +125,8 @@ loadWall=findViewById(R.id.loadwalldpt);
                         eventD.setImageDEVE(talkObj.getString("image"));
                         eventD.setInfoDEVE(talkObj.getString("info"));
 
-                        eventD.setRegURLDEVE(  talkObj.getString("regUrl"));
-                       eventD.setVenueDEVE("Venue: " + talkObj.getString("venue"));
+                        eventD.setRegURLDEVE(talkObj.getString("regUrl"));
+                        eventD.setVenueDEVE("Venue: " + talkObj.getString("venue"));
                         eventD.setAbstractDEVE(talkObj.getString("abstract"));
 
 

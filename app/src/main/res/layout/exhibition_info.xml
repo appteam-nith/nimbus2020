@@ -29,6 +29,7 @@
             <ImageView
                 android:id="@+id/exhibitionImageID"
                 android:layout_width="90dp"
+                android:scaleType="fitXY"
                 android:layout_height="90dp"
                 android:background="#000000"
 
@@ -67,7 +68,6 @@
                 android:padding="5dp"
                 android:text="Venue"
                 android:textSize="17sp" />
-
 
 
         </RelativeLayout>

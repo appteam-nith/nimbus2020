@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.nith.appteam.nimbus2020.R;
 
 public class MainActivity extends AppCompatActivity {
-    private Button quiz, sponsor, profile, campusA, workshops, talks, events, exhibition, schedule, contributors;
+    private Button quiz, sponsor, profile, campusA, workshops, talks, events, qr, exhibition, schedule, contributors;
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     //    private CircleImageView profileButton;
@@ -24,27 +24,25 @@ public class MainActivity extends AppCompatActivity {
 //
 //        profileButton = findViewById(R.id.profile_button);
 //        post = findViewById(R.id.post);
-//        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
-//        editor = sharedPref.edit();
-//
-//        //Checking whether user has logged in or not
-//        if (sharedPref.getBoolean("loginStatus", false) == false) {
-////            Intent i = new Intent(this, Login.class);
-////            startActivity(i);
-////            finish();
-//        }
-//
-//        //Checking whether user has created profile or not
-//        //else
-//            if (sharedPref.getBoolean("profileStatus", false) == false) {
-//            Intent i = new Intent(this, ProfileNew.class);
-//            startActivity(i);
-//            finish();
-//        }
-
 //        Picasso.with(MainActivity.this)
 //                .load(sharedPref.getString("imageUrl", String.valueOf(R.string.defaultImageUrl)))
 //                .into(profileButton);
+        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
+        editor = sharedPref.edit();
+
+        // Checking whether user has logged in or not
+        if (sharedPref.getBoolean("loginStatus", false) == false) {
+            Intent i = new Intent(this, Login.class);
+            startActivity(i);
+            finish();
+        }
+
+        //Checking whether user has created profile or not
+        else if (sharedPref.getBoolean("profileStatus", false) == false) {
+            Intent i = new Intent(this, ProfileNew.class);
+            startActivity(i);
+            finish();
+        }
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         campusA.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, CampusAmbassadorPost.class);
+                Intent i = new Intent(MainActivity.this, CampusAmbassador.class);
                 startActivity(i);
             }
         });
@@ -116,6 +114,16 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+        qr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,QRScanner.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private void getUI() {
@@ -126,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
         events = findViewById(R.id.events);
         campusA = findViewById(R.id.ca);
         profile = findViewById(R.id.profile);
+        qr=findViewById(R.id.qr);
         exhibition = findViewById(R.id.exhibition);
         schedule = findViewById(R.id.schedule);
     }

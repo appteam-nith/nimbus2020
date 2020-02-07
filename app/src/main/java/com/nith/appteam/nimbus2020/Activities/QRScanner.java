@@ -1,93 +1,235 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.Manifest;
+import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.Patterns;
+import android.view.View;
+import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.budiyev.android.codescanner.CodeScanner;
 import com.budiyev.android.codescanner.CodeScannerView;
 import com.budiyev.android.codescanner.DecodeCallback;
-import com.google.zxing.Result;
+import com.google.zxing.integration.android.IntentIntegrator;
+import com.google.zxing.integration.android.IntentResult;
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 import com.nith.appteam.nimbus2020.R;
+import com.nith.appteam.nimbus2020.Utils.Constant;
 
-public class QRScanner extends AppCompatActivity {
-    private static final int RC_PERMISSION = 10;
-    private CodeScanner mCodeScanner;
-    private boolean mPermissionGranted;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import cz.msebera.android.httpclient.entity.mime.Header;
+
+public class QRScanner extends AppCompatActivity implements View.OnClickListener {
+
+    private Button scanBtn;
+
+
+
+    //private LinearLayout llSearch;
+    private RequestQueue queue;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+
+    protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_qrscanner);
-        CodeScannerView scannerView = findViewById(R.id.scanner_view);
-        mCodeScanner = new CodeScanner(this,scannerView);
+//        llSearch.setVisibility(View.GONE);
 
-        mCodeScanner.setDecodeCallback(new DecodeCallback() {
-            @Override
-            public void onDecoded(@NonNull final com.google.zxing.Result result) {
 
-                runOnUiThread(new Runnable() {
+        IntentIntegrator integrator = new IntentIntegrator(this);
+
+        integrator.setPrompt("Scan a barcode or QRcode");
+
+        integrator.setOrientationLocked(false);
+
+        integrator.initiateScan();
+        scanBtn =  findViewById(R.id.scan_button);
+
+
+
+    //    llSearch = (LinearLayout) findViewById(R.id.llSearch);
+
+      scanBtn.setOnClickListener(this);
+
+
+    }
+
+    public void onClick(View v) {
+
+        //llSearch.setVisibility(View.GONE);
+
+        IntentIntegrator integrator = new IntentIntegrator(this);
+
+        integrator.setPrompt("Scan a barcode or QRcode");
+
+        integrator.setOrientationLocked(false);
+
+        integrator.initiateScan();
+
+//        Use this for more customization
+
+//        IntentIntegrator integrator = new IntentIntegrator(this);
+
+//        integrator.setDesiredBarcodeFormats(IntentIntegrator.ONE_D_CODE_TYPES);
+
+//        integrator.setPrompt("Scan a barcode");
+
+//        integrator.setCameraId(0);  // Use a specific camera of the device
+
+//        integrator.setBeepEnabled(false);
+
+//        integrator.setBarcodeImageEnabled(true);
+
+//        integrator.initiateScan();
+
+    }
+
+    @Override
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        final IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
+
+        if (result != null) {
+
+            if (result.getContents() == null) {
+
+                finish();
+      //          llSearch.setVisibility(View.GONE);
+
+
+                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
+
+
+            } else {
+
+                Log.e("result",result.getContents());
+                queue = Volley.newRequestQueue(getApplicationContext());
+                StringRequest request = new StringRequest(Request.Method.POST, Constant.Url + "/user/qrcode", new Response.Listener<String>() {
                     @Override
-                    public void run() {
-                        if(Patterns.WEB_URL.matcher(result.getText()).matches()) {
-                            // Open URL
-                            Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(result.getText()));
-                            startActivity(browserIntent);
+                    public void onResponse(String response) {
+                        try {
+
+                            Log.e("response",response);
+                            JSONObject object = new JSONObject(response);
+                            Boolean flag=true;
+//                            Log.i("Tag", "Success");
+//                            Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();
+//                            if (object.getString("message").equals("success")) {
+//                                //getPoints();
+//                            }
+                            String error = object.getString("errorCode");
+                            Log.e("error",error+"");
+
+                            if (error.equals("1") ) {
+                                flag=false;
+                                new AlertDialog.Builder(QRScanner.this)
+                                        .setTitle("QR has been already sent")
+                                        .setMessage("Try another QR")
+                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .show();
+
+                            }
+                            else if(error.equals("0"))
+                            {
+                                Log.i("Tag", "Success");
+                                Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();
+                                if (object.getString("message").equals("success")) {
+                                   // CampusAmbassadorPost.getPoints();
+                                }
+                            }
+                        }
+                        catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "Error" + e,
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
-                }});
+                }, new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        VolleyLog.d("volley", "Error: " + error.getMessage());
+                        error.printStackTrace();
+                        Toast.makeText(getApplication(), "Error:" + error, Toast.LENGTH_SHORT).show();
+
+                    }
+                }) {
+                    @Override
+                    public String getBodyContentType() {
+                        return "application/x-www-form-urlencoded; charset=utf-8";
+                    }
+                    @Override
+                    public Map<String, String> getHeaders() throws AuthFailureError {
+
+                        HashMap<String, String> map = new HashMap<>();
+                        SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
+                        String token = sharedPreferences.getString("token", null);
+
+                        map.put("access-token", token);//enter 5e3d804ac8ce62598c00c5c4" for dummy check
+                        return map;
+                    }
+
+                    @Override
+                    protected Map<String, String> getParams() throws AuthFailureError {
+                        Map<String, String> params = new HashMap<String, String>();
+                        params.put("code", result.getContents());
+                        return params;
+                    }
+                };
+
+                queue.add(request);
+
+
+
+
             }
-        });
 
-
-
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            if (checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-                mPermissionGranted = false;
-                requestPermissions(new String[] {Manifest.permission.CAMERA}, RC_PERMISSION);
-            } else {
-                mPermissionGranted = true;
-            }
         } else {
-            mPermissionGranted = true;
+
+            super.onActivityResult(requestCode, resultCode, data);
+
         }
+
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
-                                           @NonNull int[] grantResults) {
-        if (requestCode == RC_PERMISSION) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                mPermissionGranted = true;
-                mCodeScanner.startPreview();
-            } else {
-                mPermissionGranted = false;
-            }
-        }
+    public void onBackPressed() {
+        Intent newIntent = new Intent(QRScanner.this,MainActivity.class);
+        startActivity(newIntent);
+        finish();
+
+
     }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (mPermissionGranted) {
-            mCodeScanner.startPreview();
-
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        mCodeScanner.releaseResources();
-        super.onPause();
-    }
-
-
 }

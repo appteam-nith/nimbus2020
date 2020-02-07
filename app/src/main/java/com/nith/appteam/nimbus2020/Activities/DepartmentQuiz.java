@@ -1,5 +1,6 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -27,6 +28,7 @@ import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -54,8 +56,8 @@ public class DepartmentQuiz extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_department_quiz);
         departmentquiz = findViewById(R.id.departmentquiz);
-         collapsingToolbar = findViewById(R.id.toolbar);
-         collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
+        collapsingToolbar = findViewById(R.id.toolbar);
+        collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
 
@@ -126,11 +128,33 @@ public class DepartmentQuiz extends AppCompatActivity {
             public void onResponse(String response) {
                 loadwall.setVisibility(View.GONE);
                 Log.e("hi", "onResponse: " + response);
-                Intent intent = new Intent(DepartmentQuiz.this, QuizInstructionsActivity.class);
-                intent.putExtra("questions", response);
-                intent.putExtra("quizId", quiztypes.get(position).getId());
-                progressDialog.dismiss();
-                startActivity(intent);
+                boolean flag = true;
+
+                JSONObject jsonObject = null;
+
+                try {
+                    jsonObject = new JSONObject(response);
+                    int error = jsonObject.getInt("errorCode");
+
+                    if (error == 3) {
+                        flag = false;
+                        new AlertDialog.Builder(DepartmentQuiz.this)
+                                .setTitle("User not Validated!")
+                                .setMessage("You first need to signup or login.")
+                                .setIcon(android.R.drawable.ic_dialog_alert)
+                                .show();
+
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                if (flag) {
+                    Intent intent = new Intent(DepartmentQuiz.this, QuizInstructionsActivity.class);
+                    intent.putExtra("questions", response);
+                    intent.putExtra("quizId", quiztypes.get(position).getId());
+                    progressDialog.dismiss();
+                    startActivity(intent);
+                }
 
             }
         }, new Response.ErrorListener() {
@@ -149,11 +173,13 @@ public class DepartmentQuiz extends AppCompatActivity {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
+
+                HashMap<String, String> map = new HashMap<>();
                 SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
                 String token = sharedPreferences.getString("token", null);
-                HashMap<String, String> map = new HashMap<>();
-                map.put("token", token);
+                map.put("access-token", token);
                 return map;
+
             }
 
             @Override

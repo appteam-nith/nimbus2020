@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Utils;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.SharedPreferences;
 
 public class PrefsDevents {
@@ -8,7 +9,7 @@ public class PrefsDevents {
     SharedPreferences sharedPreferences;
 
     public PrefsDevents(Activity activity) {
-        sharedPreferences = activity.getPreferences(activity.MODE_PRIVATE);
+        sharedPreferences = activity.getPreferences(Context.MODE_PRIVATE);
 
     }
 

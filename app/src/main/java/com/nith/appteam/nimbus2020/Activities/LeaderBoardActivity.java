@@ -5,6 +5,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -12,7 +16,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.nith.appteam.nimbus2020.Adapters.LeaderBoardAdapter;
 import com.nith.appteam.nimbus2020.Models.LeaderboardModel;
 import com.nith.appteam.nimbus2020.R;
@@ -25,10 +28,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class LeaderBoardActivity extends AppCompatActivity {
 

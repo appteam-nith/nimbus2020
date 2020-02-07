@@ -6,7 +6,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 public interface IResult {
-    public void notifySuccess(String requestType, JSONObject response, JSONArray jsonArray);
+    void notifySuccess(String requestType, JSONObject response, JSONArray jsonArray);
 
-    public void notifyError(String requestType, VolleyError error);
+    void notifyError(String requestType, VolleyError error);
 }

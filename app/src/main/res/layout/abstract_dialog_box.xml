@@ -14,30 +14,24 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/dialogText"
-                android:text="Enter number"
-                android:textStyle="bold"
+                android:id="@+id/abstract_dialogText"
                 android:textSize="18sp"
-                android:layout_centerHorizontal="true"/>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/dialog_edit"
-                android:layout_below="@+id/dialogText"
-                android:hint="For e.g. 0197222345"
-                android:inputType="number"
-                android:textStyle="italic"
-                />
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/dialog_edit"
-                android:background="@drawable/dat"
-                android:id="@+id/submitButton"
-                android:text="Submit"
-                android:textStyle="bold"
-                android:textSize="18sp"/>
+                android:text="INFO"
+                android:layout_centerHorizontal="true"
+                android:scrollbarAlwaysDrawHorizontalTrack="true"/>
 
+            <Button
+                android:id="@+id/CloseButton"
+                android:layout_width="206dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/abstract_dialogText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/dat"
+                android:text="Exit"
+                android:backgroundTint="#8A29B6FC"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

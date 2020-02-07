@@ -26,7 +26,7 @@ import java.util.ArrayList;
 /**
  * Created by jaykay12 on 8/3/17.
  */
- public class contributorAdapter extends RecyclerView.Adapter<contributorAdapter.ViewHolder> {
+public class contributorAdapter extends RecyclerView.Adapter<contributorAdapter.ViewHolder> {
     ArrayList<contributorsItem> contributorsItemArrayList;
     Context context;
 
@@ -86,9 +86,9 @@ import java.util.ArrayList;
 
         public ViewHolder(View v) {
             super(v);
-            this.image_url = (ImageView) v.findViewById(R.id.contributor_pic);
-            this.contributorname = (TextView) v.findViewById(R.id.contributor_name);
-            this.githublink = (TextView) v.findViewById(R.id.contributor_link);
+            this.image_url = v.findViewById(R.id.contributor_pic);
+            this.contributorname = v.findViewById(R.id.contributor_name);
+            this.githublink = v.findViewById(R.id.contributor_link);
         }
     }
 }

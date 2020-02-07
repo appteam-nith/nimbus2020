@@ -1,8 +1,5 @@
 package com.nith.appteam.nimbus2020.Activities;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,12 +7,14 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.transition.CircularPropagation;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -31,6 +30,7 @@ import com.cloudinary.android.callback.UploadCallback;
 import com.cloudinary.android.policy.TimeWindow;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -43,7 +43,7 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_I_Events extends AppCompatActivity {
-    private EditText nameAddI,infoAddI,venueAddI,dateAddI,regUrlAddI,pdfAddI;
+    private EditText nameAddI, infoAddI, venueAddI, dateAddI, regUrlAddI, pdfAddI;
     private CircleImageView imgI;
     private Button addButtonI;
     private RequestQueue requestQueueI;
@@ -56,14 +56,14 @@ public class Add_I_Events extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__i__events);
-        nameAddI=findViewById(R.id.NameAddI);
-        pdfAddI=findViewById(R.id.pdfAddI);
-        infoAddI=findViewById(R.id.infoAddI);
-        venueAddI=findViewById(R.id.venueAddI);
-        dateAddI=findViewById(R.id.dateAddI);
-         imgI=findViewById(R.id.addImgI);
-        regUrlAddI=findViewById(R.id.addregUrlI);
-        addButtonI=findViewById(R.id.AddButtonI);
+        nameAddI = findViewById(R.id.NameAddI);
+        pdfAddI = findViewById(R.id.pdfAddI);
+        infoAddI = findViewById(R.id.infoAddI);
+        venueAddI = findViewById(R.id.venueAddI);
+        dateAddI = findViewById(R.id.dateAddI);
+        imgI = findViewById(R.id.addImgI);
+        regUrlAddI = findViewById(R.id.addregUrlI);
+        addButtonI = findViewById(R.id.AddButtonI);
 
         addButtonI.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,6 +88,7 @@ public class Add_I_Events extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -168,22 +169,21 @@ public class Add_I_Events extends AppCompatActivity {
     }
 
 
-
-
     private void AddDetailsI() {
         //final String savedata=data;
-        requestQueueI= Volley.newRequestQueue(getApplicationContext());
-        StringRequest request= new StringRequest(Request.Method.POST, Constant.Url+ "instituteEvents" ,new Response.Listener<String>() {
+        requestQueueI = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, Constant.Url + "instituteEvents", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONObject object=new JSONObject(response);
-                    Log.i("Tag","Success");
-                    Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
-                    if(object.getString("message").equals("success") ){
+                    JSONObject object = new JSONObject(response);
+                    Log.i("Tag", "Success");
+                    Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();
+                    if (object.getString("message").equals("success")) {
 
                         nameAddI.setText("");
                         regUrlAddI.setText("");
+                        Picasso.with(getApplicationContext()).load(R.drawable.fui_ic_anonymous_white_24dp).into(imgI);
                         venueAddI.setText("");
                         dateAddI.setText("");
                         pdfAddI.setText("");
@@ -192,9 +192,8 @@ public class Add_I_Events extends AppCompatActivity {
                     }
 
 
-
-                }catch (JSONException e){
-                    Toast.makeText(getApplicationContext(),"Error"+e,Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), "Error" + e, Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -202,28 +201,28 @@ public class Add_I_Events extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.d("volley","Error: "+ error.getMessage());
+                VolleyLog.d("volley", "Error: " + error.getMessage());
                 error.printStackTrace();
-                Toast.makeText(getApplication(),"Error:"+error,Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplication(), "Error:" + error, Toast.LENGTH_SHORT).show();
 
             }
-        })
-        {
+        }) {
             @Override
-            public String getBodyContentType(){
+            public String getBodyContentType() {
                 return "application/x-www-form-urlencoded; charset=utf-8";
             }
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("name", nameAddI.getText().toString());
-                params.put("info",infoAddI.getText().toString());
-                params.put("venue",venueAddI.getText().toString());
-                params.put("date",dateAddI.getText().toString());
-                params.put("abstract",pdfAddI.getText().toString());
-                params.put("image",imageUrl);
+                params.put("info", infoAddI.getText().toString());
+                params.put("venue", venueAddI.getText().toString());
+                params.put("date", dateAddI.getText().toString());
+                params.put("abstract", pdfAddI.getText().toString());
+                params.put("image", imageUrl);
                 // params.put("image",imageAdd.getText().toString());
-                params.put("regUrl",regUrlAddI.getText().toString());
+                params.put("regUrl", regUrlAddI.getText().toString());
                 return params;
             }
         };

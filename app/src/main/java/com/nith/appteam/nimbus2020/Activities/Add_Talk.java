@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -23,13 +24,13 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import com.cloudinary.android.policy.TimeWindow;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -42,7 +43,7 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Talk extends AppCompatActivity {
-    private EditText nameAdd,infoAdd,venueAdd,dateAdd,regUrlAdd;
+    private EditText nameAdd, infoAdd, venueAdd, dateAdd, regUrlAdd;
     private CircleImageView imageAddTalk;
     private Button addButton;
     private RequestQueue requestQueue;
@@ -55,13 +56,13 @@ public class Add_Talk extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add__talk);
-        nameAdd=findViewById(R.id.NameAddTalk);
-        infoAdd=findViewById(R.id.infoAddTalk);
-        venueAdd=findViewById(R.id.venueAddTalk);
-        dateAdd=findViewById(R.id.dateAddTalk);
-        imageAddTalk=findViewById(R.id.addImgTalk);
-        regUrlAdd=findViewById(R.id.addregUrlTalk);
-        addButton=findViewById(R.id.AddButtonTalk);
+        nameAdd = findViewById(R.id.NameAddTalk);
+        infoAdd = findViewById(R.id.infoAddTalk);
+        venueAdd = findViewById(R.id.venueAddTalk);
+        dateAdd = findViewById(R.id.dateAddTalk);
+        imageAddTalk = findViewById(R.id.addImgTalk);
+        regUrlAdd = findViewById(R.id.addregUrlTalk);
+        addButton = findViewById(R.id.AddButtonTalk);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +91,7 @@ public class Add_Talk extends AppCompatActivity {
 
 
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -173,35 +175,35 @@ public class Add_Talk extends AppCompatActivity {
     private void AddDetails() {
         //final String savedata=data;
 
-        requestQueue= Volley.newRequestQueue(getApplicationContext());
-        StringRequest request= new StringRequest(Request.Method.POST, Constant.Url+ "talks" ,new Response.Listener<String>() {
+        requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest request = new StringRequest(Request.Method.POST, Constant.Url + "talks", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
-                    JSONObject object=new JSONObject(response);
-                    Log.i("Tag","Success");
-                    Toast.makeText(getApplicationContext(),object.toString(),Toast.LENGTH_SHORT).show();
-                    if(object.getString("message").equals("success") ){
+                    JSONObject object = new JSONObject(response);
+                    Log.i("Tag", "Success");
+                    Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();
+                    if (object.getString("message").equals("success")) {
 
                         nameAdd.setText("");
                         regUrlAdd.setText("");
                         venueAdd.setText("");
                         dateAdd.setText("");
 
+                        Picasso.with(getApplicationContext()).load(R.drawable.fui_ic_anonymous_white_24dp).into(imageAddTalk);
                         infoAdd.setText("");
 
                     }
 
 
+                } catch (JSONException e) {
+                    Toast.makeText(getApplicationContext(), "Error" + e,
+                            Toast.LENGTH_SHORT).show();
 
-                        } catch (JSONException e) {
-                            Toast.makeText(getApplicationContext(), "Error" + e,
-                                    Toast.LENGTH_SHORT).show();
 
-
-                        }
-                    }
-                }, new Response.ErrorListener() {
+                }
+            }
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("volley", "Error: " + error.getMessage());
@@ -219,12 +221,12 @@ public class Add_Talk extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("name", nameAdd.getText().toString());
-                params.put("info",infoAdd.getText().toString());
-                params.put("venue",venueAdd.getText().toString());
-                params.put("date",dateAdd.getText().toString());
-                params.put("image",imageUrl);
-    //            params.put("image",imageAdd.getText().toString());
-                params.put("regUrl",regUrlAdd.getText().toString());
+                params.put("info", infoAdd.getText().toString());
+                params.put("venue", venueAdd.getText().toString());
+                params.put("date", dateAdd.getText().toString());
+                params.put("image", imageUrl);
+                //            params.put("image",imageAdd.getText().toString());
+                params.put("regUrl", regUrlAdd.getText().toString());
                 return params;
             }
         };

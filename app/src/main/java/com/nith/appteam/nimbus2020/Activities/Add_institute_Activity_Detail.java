@@ -1,27 +1,31 @@
 package com.nith.appteam.nimbus2020.Activities;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.nith.appteam.nimbus2020.Models.departmentEvent;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.nith.appteam.nimbus2020.Models.instituteEvent;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class Add_institute_Activity_Detail extends AppCompatActivity {
     private instituteEvent instituteEvent;
-    private TextView nameDetEventsI,infoDetEventsI,venueDetEventsI,dateDetEventsI;
-    private Button regDetEventsI,absEventI;
+    private TextView nameDetEventsI, infoDetEventsI, venueDetEventsI, dateDetEventsI;
+    private Button regDetEventsI, absEventI;
     private ImageView imgDetEventsI;
+    private AlertDialog.Builder alertDialogBuilder;
+    private AlertDialog dialog;
+    private TextView abstractDet;
+    private WebView webView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,24 +43,39 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
         absEventI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openGoogelLink(instituteEvent.getAbstractIEVE());
+                openDialogBox();
             }
         });
 
 
     }
 
-    private void openGoogelLink(String abstractIEVE) {
-        Uri uri = Uri.parse(abstractIEVE);
-        Intent launch = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(launch);
+    private void openDialogBox()
+    {  alertDialogBuilder=new AlertDialog.Builder(this);
+        View view=getLayoutInflater().inflate(R.layout.abstract_dialog_box,null);
+        abstractDet= view.findViewById(R.id.abstract_dialogText);
+        abstractDet.setText(instituteEvent.getAbstractIEVE());
+        Button submit= view.findViewById(R.id.CloseButton);
+        alertDialogBuilder.setView(view);
+        dialog=alertDialogBuilder.create();
+        dialog.show();
 
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(getApplicationContext(),"exit",Toast.LENGTH_SHORT).show();
+
+                dialog.dismiss();
+            }
+        });
     }
 
     private void oprnURLExh(String regURL) {
-        Uri uri = Uri.parse(regURL);
-        Intent launch = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(launch);
+        Intent intent = new Intent(Add_institute_Activity_Detail.this,Web.class);
+        intent.putExtra("url", regURL);
+        getApplicationContext().startActivity(intent);
+
     }
 
     private void getMovieDetails() {
@@ -79,7 +98,7 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
         venueDetEventsI = findViewById(R.id.VenueIDDetEventsI);
         dateDetEventsI = findViewById(R.id.DateDetEventsI);
         regDetEventsI = findViewById(R.id.registerDetEventsI);
-        absEventI=findViewById(R.id.abstractIEventsDet);
+        absEventI = findViewById(R.id.abstractIEventsDet);
         imgDetEventsI = findViewById(R.id.ImgDetEventsI);
     }
 }

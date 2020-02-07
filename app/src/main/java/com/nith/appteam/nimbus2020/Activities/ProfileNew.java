@@ -53,11 +53,12 @@ public class ProfileNew extends AppCompatActivity {
     private CircleImageView profilePic;
     private int PICK_PHOTO_CODE = 100;
     private byte[] byteArray;
-    private String imageUrl = "";
+    private String imageUrl;
     private Bitmap bmp, img;
     private RadioButton caYes, caNo;
     private ImageView uploadPic;
     private Uri photoUri;
+    private boolean editProfile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,8 +67,8 @@ public class ProfileNew extends AppCompatActivity {
         sharedPrefs = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPrefs.edit();
         getUI();
-        phoneNumber.setEnabled(false);
         phoneNumber.setText(sharedPrefs.getString("phone", ""));
+        //phoneNumber.setEnabled(false);
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,110 +85,32 @@ public class ProfileNew extends AppCompatActivity {
                 profilePic.performClick();
             }
         });
-        if (caYes.isSelected())
-            editor.putBoolean("campusAmbassador", true);
-        else if (caNo.isSelected())
-            editor.putBoolean("campusAmbassador", false);
-        editor.commit();
+        caYes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.putBoolean("campusAmbassador", true);
+                editor.commit();
+            }
+        });
+        caNo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                editor.putBoolean("campusAmbassador", false);
+                editor.commit();
+            }
+        });
 
         submitProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
                 if (photoUri != null) {
                     Bitmap bitmap = ((BitmapDrawable) profilePic.getDrawable()).getBitmap();
                     getImageUrl(bitmap);
-                }
-                if (imageUrl.equals(""))
+                } else if (imageUrl == null) {
                     imageUrl = String.valueOf(R.string.defaultImageUrl);
-                if (!name.getText().toString().isEmpty() && !rollno.getText().toString().isEmpty() &&
-                        !phoneNumber.getText().toString().isEmpty() && !college.getText().toString().isEmpty()) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    RequestQueue queue = Volley.newRequestQueue(ProfileNew.this);
-                    StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/auth/signup", new com.android.volley.Response.Listener<String>() {
-                        @Override
-                        public void onResponse(String response) {
-                            int errorCode = 1;
-                            String token;
-                            final JSONObject jsonObject;
-                            try {
-                                jsonObject = new JSONObject(response);
-                                errorCode = (int) jsonObject.get("errorCode");
-                                token = (String) jsonObject.get("access-token");
-                                editor.putString("token", token);
-                                editor.apply();
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-//                            Toast.makeText(ProfileNew.this, response, Toast.LENGTH_LONG).show();
-                            if (errorCode == 0) {
-//                                Toast.makeText(ProfileNew.this, "error code" + errorCode, Toast.LENGTH_SHORT).show();
-                                editor.putString("name", name.getText().toString());
-                                editor.putString("rollno", rollno.getText().toString());
-                                editor.putString("college", college.getText().toString());
-                                editor.putString("phone", phoneNumber.getText().toString());
-                                editor.putString("profileImage", imageUrl);
-                                editor.putBoolean("profileStatus", true);
-                                editor.commit();
-                                progressBar.setVisibility(View.GONE);
-                                Intent i = new Intent(ProfileNew.this, MainActivity.class);
-                                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                startActivity(i);
-                                finish();
-                            }
-                        }
-                    }, new com.android.volley.Response.ErrorListener() {
-                        @Override
-                        public void onErrorResponse(VolleyError error) {
-                            Log.e("VOLLEY", error.toString());
-                            progressBar.setVisibility(View.GONE);
-                            Toast.makeText(ProfileNew.this, error.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    }) {
-
-                        @Override
-                        public String getBodyContentType() {
-                            return "application/x-www-form-urlencoded; charset=UTF-8";
-                        }
-
-                        @Override
-                        protected Map<String, String> getParams() throws AuthFailureError {
-                            Map<String, String> params = new HashMap<String, String>();
-                            params.put("name", name.getText().toString());
-                            params.put("rollNumber", rollno.getText().toString());
-                            params.put("college", college.getText().toString());
-                            //params.put("campusAmbassador", false);
-                            params.put("image", imageUrl);
-                            params.put("phone", phoneNumber.getText().toString());
-                            return params;
-                        }
-
-                        @Override
-                        public Map<String, String> getHeaders() {
-                            HashMap<String, String> headers = new HashMap<>();
-                            headers.put("access-token", sharedPrefs.getString("token", ""));
-                            return headers;
-                        }
-
-
-//                        @Override
-//                        public byte[] getBody() throws AuthFailureError {
-//                            try {
-//
-//                                return requestBody == null ? null : requestBody.getBytes("utf-8");
-//
-//
-//                            } catch (UnsupportedEncodingException uee) {
-//                                VolleyLog.wtf("Unsupported Encoding while trying to get the bytes of %s using %s", requestBody, "utf-8");
-//                                return null;
-//                            }
-//                        }
-                    };
-                    stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
-                            DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
-                            DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
-                    queue.add(stringRequest);
-                } else
-                    Toast.makeText(ProfileNew.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
+                    submitProfile();
+                }
             }
         });
     }
@@ -248,12 +171,12 @@ public class ProfileNew extends AppCompatActivity {
                     @Override
                     public void onSuccess(String requestId, Map resultData) {
                         imageUrl = String.valueOf(resultData.get("url"));
-                        progressBar.setVisibility(View.GONE);
+                        submitProfile();
                     }
 
                     @Override
                     public void onError(String requestId, ErrorInfo error) {
-                        Log.i("HELLO", "JIJIJ");
+                        Log.e("error", "cloudinary image upload error");
 //                      finish();
                         Toast.makeText(ProfileNew.this, "Image Upload Failed", Toast.LENGTH_LONG).show();
                     }
@@ -264,6 +187,97 @@ public class ProfileNew extends AppCompatActivity {
                     }
                 })
                 .dispatch(ProfileNew.this);
+
+    }
+
+    private void submitProfile() {
+        if (!name.getText().toString().isEmpty() && !rollno.getText().toString().isEmpty() &&
+                !phoneNumber.getText().toString().isEmpty() && !college.getText().toString().isEmpty()) {
+            Intent intent = new Intent();
+            editProfile = false;
+            if (intent.hasExtra("editProfile")) {
+                editProfile = getIntent().getExtras().getBoolean("editProfile");
+                Log.e("status", "" + editProfile);
+            }
+            RequestQueue queue = Volley.newRequestQueue(ProfileNew.this);
+            StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/auth/signup", new com.android.volley.Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    int errorCode = 1;
+                    String token;
+                    final JSONObject jsonObject;
+                    try {
+                        jsonObject = new JSONObject(response);
+                        errorCode = (int) jsonObject.get("errorCode");
+                        if (!editProfile) {
+                            token = (String) jsonObject.get("token");
+                            editor.putString("token", token);
+                            editor.apply();
+                        }
+                        Toast.makeText(ProfileNew.this, "token" + sharedPrefs.getString("token", ""), Toast.LENGTH_LONG).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+//                            Toast.makeText(ProfileNew.this, response, Toast.LENGTH_LONG).show();
+                    if (errorCode == 0) {
+//                                Toast.makeText(ProfileNew.this, "error code" + errorCode, Toast.LENGTH_SHORT).show();
+                        editor.putString("name", name.getText().toString());
+                        editor.putString("rollno", rollno.getText().toString());
+                        editor.putString("college", college.getText().toString());
+                        editor.putString("phone", phoneNumber.getText().toString());
+                        editor.putString("profileImage", imageUrl);
+                        editor.putBoolean("profileStatus", true);
+                        editor.commit();
+                        progressBar.setVisibility(View.GONE);
+                        Intent i = new Intent(ProfileNew.this, MainActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        Toast.makeText(ProfileNew.this, "Unknown error" + response, Toast.LENGTH_SHORT).show();
+                        Log.e("error", response);
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }
+            }, new com.android.volley.Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Log.e("VOLLEY", error.toString());
+                    progressBar.setVisibility(View.GONE);
+                    Toast.makeText(ProfileNew.this, error.toString(), Toast.LENGTH_SHORT).show();
+                }
+            }) {
+
+                @Override
+                public String getBodyContentType() {
+                    return "application/x-www-form-urlencoded; charset=UTF-8";
+                }
+
+                @Override
+                protected Map<String, String> getParams() throws AuthFailureError {
+                    Map<String, String> params = new HashMap<String, String>();
+                    params.put("name", name.getText().toString());
+                    params.put("rollNumber", rollno.getText().toString());
+                    params.put("college", college.getText().toString());
+                    //params.put("campusAmbassador", false);
+                    params.put("image", imageUrl);
+                    params.put("phone", phoneNumber.getText().toString());
+                    return params;
+                }
+
+                @Override
+                public Map<String, String> getHeaders() {
+                    HashMap<String, String> headers = new HashMap<>();
+                    headers.put("access-token", "" + sharedPrefs.getString("token", ""));
+                    return headers;
+                }
+            };
+            stringRequest.setRetryPolicy(new DefaultRetryPolicy(5000,
+                    DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
+                    DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            queue.add(stringRequest);
+        } else
+            Toast.makeText(ProfileNew.this, "Please fill all fields", Toast.LENGTH_SHORT).show();
 
     }
 

@@ -1,61 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardTalk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintVertical_bias="0.031"
-        app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginStart="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="8dp"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:id="@+id/cardTalk">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.031">
+
         <RelativeLayout
+            android:id="@+id/contSch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp"
-            android:id="@+id/contSch">
+            android:padding="12dp">
 
             <TextView
-                android:layout_width="wrap_content"
                 android:id="@+id/EventSchNameID"
+                android:layout_width="wrap_content"
 
                 android:layout_height="wrap_content"
+                android:paddingLeft="5dp"
                 android:text="Event Name"
-                android:textSize="20sp"
 
-                android:textStyle="bold"
-                android:paddingLeft="5dp"/>
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/EventSchDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/EventSchNameID"
+                android:padding="5dp"
                 android:text="Dated"
+
                 android:textSize="17sp"
                 android:textStyle="bold"
 
-                android:layout_below="@+id/EventSchNameID"
-                android:padding="5dp"
-
                 />
+
             <TextView
+                android:id="@+id/EventSchVenueID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/EventSchVenueID"
-                android:text="Venue"
                 android:layout_below="@+id/EventSchDate"
                 android:padding="5dp"
+                android:text="Venue"
                 android:textSize="17sp"
-                android:textStyle="bold"/>
-
-
-
+                android:textStyle="bold" />
 
         </RelativeLayout>
 

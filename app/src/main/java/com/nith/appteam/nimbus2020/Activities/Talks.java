@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -10,15 +11,20 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.nith.appteam.nimbus2020.Adapters.TalkRecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.TalkModel;
 import com.nith.appteam.nimbus2020.R;
@@ -33,46 +39,59 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+
 public class Talks extends AppCompatActivity {
+    ProgressBar loadwall;
     private RecyclerView recyclerView;
     private List<TalkModel> talkList;
     private TalkRecyclerViewAdapter talkRecyclerViewAdapter;
     private RequestQueue requestQueue;
-    ProgressBar loadwall;
     private ImageView talkk;
     private AlertDialog.Builder alertDialogBuilder;
     private AlertDialog dialog;
     private EditText num;
-
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talks);
+        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
+        editor = sharedPref.edit();
+
         requestQueue = Volley.newRequestQueue(this);
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbartalk);
         Toolbar collapsingToolbar = findViewById(R.id.toolbar);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
         setSupportActionBar(collapsingToolbar);
-        talkk=findViewById(R.id.talkImageView);
+        talkk = findViewById(R.id.talkImageView);
         Picasso.with(this).load(R.drawable.talk).fit().into(talkk);
 
         FloatingActionButton fab = findViewById(R.id.fabtalk);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showInputDialog();
+        if( sharedPref.getString("phoneNumber","").equals("8219341697")) {
+            fab.setVisibility(View.VISIBLE);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showInputDialog();
 
-            }
-        });
+                }
+            });
+        }
+        else
+        {
+            fab.setVisibility(View.GONE);
+        }
         loadwall = findViewById(R.id.loadwallTalk);
         recyclerView = findViewById(R.id.recyclerViewTalk);
         recyclerView.setHasFixedSize(true);
@@ -103,11 +122,11 @@ public class Talks extends AppCompatActivity {
                 Log.d("Response", response.toString());
                 for (int i = 0; i < response.length(); i++) {
                     try {
-                        JSONObject talkObj= response.getJSONObject(i);
-                        TalkModel talk=new TalkModel();
+                        JSONObject talkObj = response.getJSONObject(i);
+                        TalkModel talk = new TalkModel();
 //                        talk.setName("Aysuh KAusnldjhlkhfkllnewlfnlwenflkjewlkjfljwhekjksdjkjhkuhkjhkjsdhlehlkjhalhldhll");
 //                        talk.setVenue("LEcture aHAljewnfkljcnkjhfewkkjhefkjwhkfjwkejfhkwehkfhkwejnfkll");
-                       //talk.setRegURL("https://github.com/appteam-nith/nimbus2019");
+                        //talk.setRegURL("https://github.com/appteam-nith/nimbus2019");
 //                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
                         talk.setName(talkObj.getString("name"));
@@ -115,10 +134,10 @@ public class Talks extends AppCompatActivity {
                         talk.setImage(talkObj.getString("image"));
                         talk.setIdTalk(talkObj.getString("_id"));
                         talk.setInfo(talkObj.getString("info"));
-                      talk.setRegURL(  talkObj.getString("regUrl"));
+                        talk.setRegURL(talkObj.getString("regUrl"));
                         talk.setVenue("Venue: " + talkObj.getString("venue"));
                         // Log.d("Talk",talk.getName());
-                      talkList.add(talk);
+                        talkList.add(talk);
                         talkRecyclerViewAdapter.notifyDataSetChanged();
 
                     } catch (JSONException e) {
