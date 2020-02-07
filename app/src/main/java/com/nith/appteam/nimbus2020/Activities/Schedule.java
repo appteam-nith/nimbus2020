@@ -36,12 +36,21 @@ public class Schedule extends AppCompatActivity {
     private ScheduleRecyclerViewAdapter scheduleRecyclerViewAdapter;
     private RequestQueue requestQueueSch;
     private ProgressBar loadWall;
+    private String day;
+    private String date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
-        scheduleModel = (ScheduleModel) getIntent().getSerializableExtra("Day");
+//        scheduleModel = (ScheduleModel) getIntent().getSerializableExtra("Day1");
+        day = getIntent().getExtras().getString("Day");
+        if (day.equals("1"))
+            date = "2020-02-01";
+        else if (day.equals("2"))
+            date = "2020-02-02";
+        else if (day.equals("3"))
+            date = "2020-02-03";
         loadWall = findViewById(R.id.loadwallSch);
         requestQueueSch = Volley.newRequestQueue(this);
         recyclerViewSch = findViewById(R.id.recyclerViewSchedule);
@@ -79,17 +88,17 @@ public class Schedule extends AppCompatActivity {
                         //talk.setRegURL("https://github.com/appteam-nith/nimbus2019");
 //                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
-                        sch.setNameSch("Name : " + schObj.getString("name"));
-
-                        sch.setTimeSch("Date : " + schObj.getString("time"));
-                        //sch.setS(talkObj.getString("info"));
-                        // sch.setRegURL(  talkObj.getString("regUrl"));
-                        sch.setVenueSch("Venue : " + schObj.getString("venue"));
-                        sch.setDeptSch("Department Name : " + schObj.getString("departmentName"));
-                        // Log.d("Talk",talk.getName());
-
-
-                        scheduleModelList.add(sch);
+                        String requiredDate = (schObj.getString("time").substring(0, 10));
+                        if (requiredDate.equals(date)) {
+                            sch.setNameSch("Name : " + schObj.getString("name"));
+                            sch.setTimeSch("Date : " + schObj.getString("time"));
+                            //sch.setS(talkObj.getString("info"));
+                            // sch.setRegURL(  talkObj.getString("regUrl"));
+                            sch.setVenueSch("Venue : " + schObj.getString("venue"));
+                            sch.setDeptSch("Department Name : " + schObj.getString("departmentName"));
+                            // Log.d("Talk",talk.getName());
+                            scheduleModelList.add(sch);
+                        }
                         scheduleRecyclerViewAdapter.notifyDataSetChanged();
 
                     } catch (JSONException e) {

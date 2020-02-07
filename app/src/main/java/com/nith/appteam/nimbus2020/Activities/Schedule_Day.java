@@ -23,7 +23,7 @@ public class Schedule_Day extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Schedule_Day.this, Schedule.class);
-                intent.putExtra("Day","1");
+                intent.putExtra("Day", "1");
                 startActivity(intent);
             }
         });
@@ -31,6 +31,7 @@ public class Schedule_Day extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intentI = new Intent(Schedule_Day.this, Schedule.class);
+                intentI.putExtra("Day", "2");
                 startActivity(intentI);
 
             }
@@ -39,6 +40,7 @@ public class Schedule_Day extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intentD = new Intent(Schedule_Day.this, Schedule.class);
+                intentD.putExtra("Day", "3");
                 startActivity(intentD);
             }
         });

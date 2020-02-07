@@ -40,6 +40,7 @@ public class Add_exhibition_details extends AppCompatActivity {
 
     private void oprnURLExh(String regURL) {
         Intent intent = new Intent(Add_exhibition_details.this,Web.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("url", regURL);
         getApplicationContext().startActivity(intent);
     }
