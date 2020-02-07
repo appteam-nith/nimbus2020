@@ -6,13 +6,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.nith.appteam.nimbus2020.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     private Button quiz, sponsor, profile, campusA, workshops, talks, events, exhibition, schedule, contributors, coreTeam, qr;
-
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     //    private CircleImageView profileButton;
@@ -146,5 +145,10 @@ public class MainActivity extends AppCompatActivity {
         exhibition = findViewById(R.id.exhibition);
         schedule = findViewById(R.id.schedule);
         coreTeam = findViewById(R.id.coreTeam);
+    }
+
+    @Override
+    public void onBackPressed() {
+        finishAffinity();
     }
 }

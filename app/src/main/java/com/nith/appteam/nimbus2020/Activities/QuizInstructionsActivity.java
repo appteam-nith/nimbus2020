@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nith.appteam.nimbus2020.R;
@@ -21,6 +22,8 @@ public class QuizInstructionsActivity extends AppCompatActivity {
     Button leaderboard;
     String response;
     String quizId;
+    TextView instructionsTV;
+    int noquestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +32,10 @@ public class QuizInstructionsActivity extends AppCompatActivity {
 
         playNow = findViewById(R.id.playNowButton);
         leaderboard = findViewById(R.id.leaderboardButton);
+        instructionsTV = findViewById(R.id.instructionsTV);
+
+
+        instructionsTV.setText("This quiz contains");
 
         response = getIntent().getStringExtra("questions");
         quizId = getIntent().getStringExtra("quizId");
@@ -43,10 +50,9 @@ public class QuizInstructionsActivity extends AppCompatActivity {
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    String error = jsonObject.getString("errorCode");
+                    int error = jsonObject.getInt("errorCode");
 
-                    if (error.equals("1")) {
-                        playNow.setClickable(false);
+                    if (error == 1) {
                         new AlertDialog.Builder(QuizInstructionsActivity.this)
                                 .setTitle("Play Later")
                                 .setMessage("This is not the right time to play the quiz")
@@ -54,8 +60,7 @@ public class QuizInstructionsActivity extends AppCompatActivity {
                                 .show();
                         flag = false;
 
-                    } else if (error.equals("2")) {
-                        playNow.setClickable(false);
+                    } else if (error == 2) {
                         new AlertDialog.Builder(QuizInstructionsActivity.this)
                                 .setTitle("Already played")
                                 .setMessage("You can play a quiz only one time")
@@ -63,7 +68,7 @@ public class QuizInstructionsActivity extends AppCompatActivity {
                                 .show();
                         flag = false;
 
-                    } else if (error.equals("4")) {
+                    } else if (error == 4) {
                         Toast.makeText(QuizInstructionsActivity.this, "No questions available",
                                 Toast.LENGTH_SHORT).show();
                         flag = false;
