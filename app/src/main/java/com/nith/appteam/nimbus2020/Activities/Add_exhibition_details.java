@@ -39,9 +39,9 @@ public class Add_exhibition_details extends AppCompatActivity {
     }
 
     private void oprnURLExh(String regURL) {
-        Uri uri = Uri.parse(regURL);
-        Intent launch = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(launch);
+        Intent intent = new Intent(Add_exhibition_details.this,Web.class);
+        intent.putExtra("url", regURL);
+        getApplicationContext().startActivity(intent);
     }
 
     private void getMovieDetails() {

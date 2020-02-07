@@ -30,6 +30,7 @@ import com.cloudinary.android.callback.UploadCallback;
 import com.cloudinary.android.policy.TimeWindow;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -187,13 +188,11 @@ public class Add_D_Events extends AppCompatActivity {
                         dateAddD.setText("");
                         pdfAddD.setText("");
                         infoAddD.setText("");
-
+                        Picasso.with(getApplicationContext()).load(R.drawable.fui_ic_anonymous_white_24dp).into(imgD);
                     }
 
-
-                } catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(), "Error" + e, Toast.LENGTH_SHORT).show();
-
+                }catch (JSONException e){
+                    Toast.makeText(getApplicationContext(),"Error"+e,Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -202,9 +201,8 @@ public class Add_D_Events extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("volley", "Error: " + error.getMessage());
                 error.printStackTrace();
+
                 Toast.makeText(getApplication(), "Error:" + error, Toast.LENGTH_SHORT).show();
-
-
             }
         }) {
             @Override

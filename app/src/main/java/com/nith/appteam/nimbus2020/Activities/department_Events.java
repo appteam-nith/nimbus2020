@@ -1,10 +1,14 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,27 +34,53 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import static com.loopj.android.http.AsyncHttpClient.log;
+
+
 public class department_Events extends AppCompatActivity {
     private RecyclerView recyclerViewDEVE;
     private Events_D_RecyclerViewAdapter events_d_recyclerViewAdapter;
     private RequestQueue requestQueueEVED;
     private List<departmentEvent> eventlistD;
     private ProgressBar loadWall;
+    private AlertDialog.Builder alertDialogBuilder;
+    private AlertDialog dialog;
+    private EditText num;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_departmen);
+        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
+        editor = sharedPref.edit();
         FloatingActionButton fab = findViewById(R.id.fabD);
+        log.e("phone",sharedPref.getString("phoneNumber",""));
+       if( sharedPref.getString("phoneNumber","").equals("+918219341697")) {
+            fab.setVisibility(View.VISIBLE);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(department_Events.this, Add_D_Events.class);
-                startActivity(intent);
+
+                showInputDialog();
+
 
             }
         });
+    }
+        else
+        {
+            fab.setVisibility(View.INVISIBLE);
+        }
         requestQueueEVED = Volley.newRequestQueue(this);
         loadWall = findViewById(R.id.loadwalldpt);
         recyclerViewDEVE = findViewById(R.id.recyclerViewEVED);
@@ -126,6 +156,32 @@ public class department_Events extends AppCompatActivity {
 
 
         return eventlistD;
+    }
+    public void showInputDialog()
+    {
+        alertDialogBuilder=new AlertDialog.Builder(this);
+        View view=getLayoutInflater().inflate(R.layout.dialog_view,null);
+        num= view.findViewById(R.id.dialog_edit);
+        Button submit= view.findViewById(R.id.submitButton);
+        alertDialogBuilder.setView(view);
+        dialog=alertDialogBuilder.create();
+        dialog.show();
+
+
+        submit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(num.getText().toString().equals("8219341697")) {
+                    Intent intent = new Intent(department_Events.this, Add_D_Events.class);
+                    startActivity(intent);
+                }
+                else
+                {
+                    Toast.makeText(department_Events.this,"Not Allowed",Toast.LENGTH_SHORT).show();
+                }
+                dialog.dismiss();
+            }
+        });
     }
 
 }

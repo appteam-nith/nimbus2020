@@ -30,6 +30,7 @@ import com.cloudinary.android.callback.UploadCallback;
 import com.cloudinary.android.policy.TimeWindow;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -188,8 +189,10 @@ public class Add_Workshop extends AppCompatActivity {
                         regUrlAddWrk.setText("");
                         venueAddWrk.setText("");
                         dateAddWrk.setText("");
+                        typeAddWrk.setText("");
 
                         infoAddWrk.setText("");
+                        Picasso.with(getApplicationContext()).load(R.drawable.fui_ic_anonymous_white_24dp).into(imageAddWrk);
 
                     }
 
