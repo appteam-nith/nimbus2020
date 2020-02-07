@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Activities.contributors"></activity>
+        <activity android:name=".Activities.Hospitality"></activity>
+        <activity android:name=".Activities.contributors" />
         <activity
             android:name=".Activities.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
