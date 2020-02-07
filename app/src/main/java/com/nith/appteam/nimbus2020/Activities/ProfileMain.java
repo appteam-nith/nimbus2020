@@ -68,7 +68,7 @@ public class ProfileMain extends AppCompatActivity {
     private void getProfile() {
         name.setText(sharedPreferences.getString("name", "Name"));
         college.setText(sharedPreferences.getString("college", "Your college name"));
-        phoneNumber.setText(sharedPreferences.getString("phone", "123456890"));
+        phoneNumber.setText(sharedPreferences.getString("phoneNumber", "123456890"));
         rollno.setText(sharedPreferences.getString("rollno", "Your roll number"));
         normalPoints.setText(sharedPreferences.getString("normalPoints", "0"));
         caPoints.setText(sharedPreferences.getString("caPoints", "0"));

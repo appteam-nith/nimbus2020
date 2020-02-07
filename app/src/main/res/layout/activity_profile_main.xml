@@ -39,6 +39,7 @@
                 android:layout_below="@id/diamond_blue"
                 android:layout_alignTop="@+id/ca_points"
                 android:layout_alignRight="@+id/diamond_blue"
+                android:layout_marginRight="5dp"
                 android:elevation="8dp"
                 android:src="@drawable/diamond_pink" />
 
