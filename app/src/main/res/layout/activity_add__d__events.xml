@@ -43,7 +43,7 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
             android:hint="Please add info related to event"
-            android:inputType="textNoSuggestions"
+            android:inputType="textMultiLine"
             android:padding="20dp" />
 
         <EditText
@@ -78,8 +78,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
-            android:hint="Please add link of pdf File "
-            android:inputType="textWebEmailAddress"
+            android:hint="add information for abstract button"
+            android:inputType="textMultiLine"
             android:padding="20dp" />
 
         <EditText
