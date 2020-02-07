@@ -19,19 +19,21 @@ public class ProfileMain extends AppCompatActivity {
     private CircleImageView profilePicture;
     private TextView name, college, phoneNumber, rollno, normalPoints, caPoints;
     private ImageView editProfile, diamondsPink;
+    private SharedPreferences sharedPreferences;
+
+    @Override
+    protected void onResume() {
+        getProfile();
+        super.onResume();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_main);
         getUI();
-        SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
-        name.setText(sharedPreferences.getString("name", "Name"));
-        college.setText(sharedPreferences.getString("college", "Your college name"));
-        phoneNumber.setText(sharedPreferences.getString("phone", "123456890"));
-        rollno.setText(sharedPreferences.getString("rollno", "Your roll number"));
-        normalPoints.setText(sharedPreferences.getString("normalPoints", "0"));
-        caPoints.setText(sharedPreferences.getString("caPoints", "0"));
+        sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
+        getProfile();
         if (sharedPreferences.getBoolean("campusAmbassador", false)) {
             diamondsPink.setVisibility(View.VISIBLE);
             caPoints.setVisibility(View.VISIBLE);
@@ -44,17 +46,11 @@ public class ProfileMain extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(ProfileMain.this, ProfileNew.class);
-                i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                 i.putExtra("editProfile", true);
                 startActivity(i);
 
             }
         });
-        String imageUrl = sharedPreferences.getString("profileImage", String.valueOf(R.string.defaultImageUrl));
-        Picasso.with(ProfileMain.this)
-                .load(imageUrl)
-                .placeholder(R.drawable.default_profile_pic)
-                .into(profilePicture);
     }
 
     private void getUI() {
@@ -67,5 +63,19 @@ public class ProfileMain extends AppCompatActivity {
         diamondsPink = findViewById(R.id.diamond_pink);
         normalPoints = findViewById(R.id.normal_points);
         caPoints = findViewById(R.id.ca_points);
+    }
+
+    private void getProfile() {
+        name.setText(sharedPreferences.getString("name", "Name"));
+        college.setText(sharedPreferences.getString("college", "Your college name"));
+        phoneNumber.setText(sharedPreferences.getString("phone", "123456890"));
+        rollno.setText(sharedPreferences.getString("rollno", "Your roll number"));
+        normalPoints.setText(sharedPreferences.getString("normalPoints", "0"));
+        caPoints.setText(sharedPreferences.getString("caPoints", "0"));
+        String imageUrl = sharedPreferences.getString("profileImage", String.valueOf(R.string.defaultImageUrl));
+        Picasso.with(ProfileMain.this)
+                .load(imageUrl)
+                .placeholder(R.drawable.default_profile_pic)
+                .into(profilePicture);
     }
 }

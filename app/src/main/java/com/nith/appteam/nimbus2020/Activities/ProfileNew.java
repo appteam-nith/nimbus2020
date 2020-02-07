@@ -233,10 +233,14 @@ public class ProfileNew extends AppCompatActivity {
                         editor.putBoolean("profileStatus", true);
                         editor.commit();
                         progressBar.setVisibility(View.GONE);
-                        Intent i = new Intent(ProfileNew.this, MainActivity.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(i);
-                        finish();
+                        if (editProfile) {
+                            finish();
+                        } else {
+                            Intent i = new Intent(ProfileNew.this, MainActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+                            finish();
+                        }
                     } else {
                         Toast.makeText(ProfileNew.this, "Unknown error" + response, Toast.LENGTH_SHORT).show();
                         Log.e("error", response);

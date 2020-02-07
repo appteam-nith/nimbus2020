@@ -204,11 +204,10 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                     public void onResponse(String response) {
                         progressBar.setVisibility(View.GONE);
                         if (response.equals("ok")) {
-                            Toast.makeText(CampusAmbassadorPost.this, "Post Uploaded", Toast.LENGTH_SHORT).show();
-                            info.setVisibility(View.VISIBLE);
-                            //TODO update user points
-                        }
-                        try {
+                            getPoints();
+//                            Toast.makeText(CampusAmbassadorPost.this, "Post Uploaded", Toast.LENGTH_SHORT).show();
+//                            info.setVisibility(View.VISIBLE);
+                        } else try {
                             JSONObject status = new JSONObject(response);
                             if (status.get("status").equals("false"))
                                 Toast.makeText(CampusAmbassadorPost.this, "Cannot upload same URL again.", Toast.LENGTH_SHORT).show();
@@ -243,9 +242,8 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                         Map<String, String> params = new HashMap<String, String>();
                         params.put("image_url", imageUrl);
                         params.put("post_url", socialUrl);
-                        params.put("key", hash);
+                        params.put("key", socialUrl);//TODO to be replaced by hash whichever is more efficient
                         params.put("token", "" + sharedPrefs.getString("token", ""));
-
                         return params;
                     }
 
@@ -254,5 +252,46 @@ public class CampusAmbassadorPost extends AppCompatActivity {
             }
         } else
             Toast.makeText(CampusAmbassadorPost.this, "Please enter URL", Toast.LENGTH_SHORT).show();
+    }
+
+    public void getPoints() {
+        SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, getString(R.string.baseUrl) + "/user/points", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                progressBar.setVisibility(View.GONE);
+                Toast.makeText(CampusAmbassadorPost.this, "Post Uploaded", Toast.LENGTH_SHORT).show();
+                info.setVisibility(View.VISIBLE);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String caPoints = jsonObject.getString("campusAmbassadorPoints");
+                    String normalPoints = jsonObject.getString("userPoints");
+                    editor.putString("normalPoints", normalPoints);
+                    editor.putString("caPoints", caPoints);
+                    Log.e("caPoints", caPoints);
+                    editor.commit();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(CampusAmbassadorPost.this, error.toString() + error.getCause(), Toast.LENGTH_LONG).show();
+                progressBar.setVisibility(View.GONE);
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("access-token", sharedPrefs.getString("token", ""));
+                return headers;
+            }
+        };
+        requestQueue.add(stringRequest);
+
     }
 }
