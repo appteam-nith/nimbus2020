@@ -23,6 +23,7 @@ public class Schedule_Day extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Schedule_Day.this, Schedule.class);
+                intent.putExtra("Day","1");
                 startActivity(intent);
             }
         });

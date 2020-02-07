@@ -20,7 +20,7 @@
             android:background="@drawable/fui_ic_anonymous_white_24dp"
             android:backgroundTint="#000000"
             android:paddingTop="10dp"
-            app:civ_circle_background_color="@color/colorPrimary" />
+             />
 
         <EditText
             android:id="@+id/NameAddD"

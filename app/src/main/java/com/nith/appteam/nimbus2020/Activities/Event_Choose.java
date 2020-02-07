@@ -19,8 +19,10 @@ public class Event_Choose extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event__choose);
-        ImageView img = findViewById(R.id.eventForgrnd);
-        Picasso.with(this).load(R.drawable.talk).fit().into(img);
+
+        ImageView img =findViewById(R.id.eventForgrnd);
+        Picasso.with(this).load(R.drawable.event).fit().into(img);
+
 
         dept = findViewById(R.id.dptID);
         inst = findViewById(R.id.instID);

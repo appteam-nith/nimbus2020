@@ -25,7 +25,7 @@
             android:layout_height="match_parent"
             android:padding="5dp">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/ImgDetEventsD"
                 android:layout_width="340dp"
                 android:layout_height="223dp"
@@ -121,6 +121,7 @@
             android:layout_width="0dp"
             android:layout_height="59dp"
             android:layout_weight="1"
+            android:layout_marginLeft="10dp"
 
             android:background="@drawable/dat"
             android:backgroundTint="#8A29B6FC"

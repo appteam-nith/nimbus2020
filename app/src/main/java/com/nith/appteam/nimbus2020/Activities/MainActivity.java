@@ -11,7 +11,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.nith.appteam.nimbus2020.R;
 
 public class MainActivity extends AppCompatActivity {
-    private Button quiz, sponsor, profile, campusA, workshops, talks, events, exhibition, schedule, contributors, coreTeam;
+    private Button quiz, sponsor, profile, campusA, workshops, talks, events, exhibition, schedule, contributors, coreTeam,qr;
+
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
     //    private CircleImageView profileButton;
@@ -122,6 +123,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        qr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, QRScanner.class);
+                startActivity(intent);
+            }
+        });
+
+
     }
 
     private void getUI() {
@@ -132,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         events = findViewById(R.id.events);
         campusA = findViewById(R.id.ca);
         profile = findViewById(R.id.profile);
+        qr = findViewById(R.id.qr);
         exhibition = findViewById(R.id.exhibition);
         schedule = findViewById(R.id.schedule);
         coreTeam = findViewById(R.id.coreTeam);

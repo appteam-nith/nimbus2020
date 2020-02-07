@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -67,7 +68,7 @@ public class WorkshopRecyclerViewAdapter extends
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView nameWor, dateWor, venueWor;
-        CircleImageView imgSpkrWork;
+       ImageView imgSpkrWork;
         RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {

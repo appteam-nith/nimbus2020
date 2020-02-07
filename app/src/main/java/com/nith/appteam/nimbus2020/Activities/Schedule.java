@@ -17,6 +17,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.nith.appteam.nimbus2020.Adapters.ScheduleRecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.ScheduleModel;
+import com.nith.appteam.nimbus2020.Models.instituteEvent;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
 import com.nith.appteam.nimbus2020.Utils.PrefsSchedule;
@@ -31,6 +32,7 @@ import java.util.List;
 public class Schedule extends AppCompatActivity {
     private RecyclerView recyclerViewSch;
     private List<ScheduleModel> scheduleModelList;
+    private ScheduleModel scheduleModel;
     private ScheduleRecyclerViewAdapter scheduleRecyclerViewAdapter;
     private RequestQueue requestQueueSch;
     private ProgressBar loadWall;
@@ -39,6 +41,7 @@ public class Schedule extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
+        scheduleModel = (ScheduleModel) getIntent().getSerializableExtra("Day");
         loadWall = findViewById(R.id.loadwallSch);
         requestQueueSch = Volley.newRequestQueue(this);
         recyclerViewSch = findViewById(R.id.recyclerViewSchedule);
@@ -77,6 +80,7 @@ public class Schedule extends AppCompatActivity {
 //                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
                         sch.setNameSch("Name : " + schObj.getString("name"));
+
                         sch.setTimeSch("Date : " + schObj.getString("time"));
                         //sch.setS(talkObj.getString("info"));
                         // sch.setRegURL(  talkObj.getString("regUrl"));

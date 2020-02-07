@@ -1,11 +1,15 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
 import com.nith.appteam.nimbus2020.Adapters.TalkRecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.TalkModel;
 import com.nith.appteam.nimbus2020.R;
@@ -34,6 +39,14 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+
 public class Talks extends AppCompatActivity {
     ProgressBar loadwall;
     private RecyclerView recyclerView;
@@ -41,11 +54,20 @@ public class Talks extends AppCompatActivity {
     private TalkRecyclerViewAdapter talkRecyclerViewAdapter;
     private RequestQueue requestQueue;
     private ImageView talkk;
+    private AlertDialog.Builder alertDialogBuilder;
+    private AlertDialog dialog;
+    private EditText num;
+    private SharedPreferences sharedPref;
+    private SharedPreferences.Editor editor;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talks);
+        sharedPref = getSharedPreferences("app", MODE_PRIVATE);
+        editor = sharedPref.edit();
+
         requestQueue = Volley.newRequestQueue(this);
         CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbartalk);
         Toolbar collapsingToolbar = findViewById(R.id.toolbar);
@@ -56,14 +78,20 @@ public class Talks extends AppCompatActivity {
         Picasso.with(this).load(R.drawable.talk).fit().into(talkk);
 
         FloatingActionButton fab = findViewById(R.id.fabtalk);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Talks.this, Add_Talk.class);
-                startActivity(intent);
+        if( sharedPref.getString("phoneNumber","").equals("+918219341697")) {
+            fab.setVisibility(View.VISIBLE);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    showInputDialog();
 
-            }
-        });
+                }
+            });
+        }
+        else
+        {
+            fab.setVisibility(View.GONE);
+        }
         loadwall = findViewById(R.id.loadwallTalk);
         recyclerView = findViewById(R.id.recyclerViewTalk);
         recyclerView.setHasFixedSize(true);
@@ -130,5 +158,32 @@ public class Talks extends AppCompatActivity {
 
         return talkList;
     }
+    public void showInputDialog()
+    {
+        alertDialogBuilder=new AlertDialog.Builder(this);
+        View view=getLayoutInflater().inflate(R.layout.dialog_view,null);
+        num= view.findViewById(R.id.dialog_edit);
+        Button submit= view.findViewById(R.id.submitButton);
+        alertDialogBuilder.setView(view);
+        dialog=alertDialogBuilder.create();
+        dialog.show();
 
-}
+
+            submit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(num.getText().toString().equals("8219341697")) {
+                        Intent intent = new Intent(Talks.this, Add_Talk.class);
+                        startActivity(intent);
+                    }
+                    else
+                    {
+                        Toast.makeText(Talks.this,"Not Allowed",Toast.LENGTH_SHORT).show();
+                    }
+                    dialog.dismiss();
+                }
+            });
+        }
+    }
+
+
