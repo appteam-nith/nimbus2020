@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -58,6 +59,7 @@ public class ProfileNew extends AppCompatActivity {
     private RadioButton caYes, caNo;
     private ImageView uploadPic;
     private Uri photoUri;
+    private LinearLayout ca;
     private boolean editProfile;
 
     @Override
@@ -67,8 +69,11 @@ public class ProfileNew extends AppCompatActivity {
         sharedPrefs = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPrefs.edit();
         getUI();
-        phoneNumber.setText(sharedPrefs.getString("phone", ""));
-        //phoneNumber.setEnabled(false);
+        if (sharedPrefs.getBoolean("profileStatus", false)) {
+            ca.setVisibility(View.INVISIBLE);
+        }
+        phoneNumber.setText(sharedPrefs.getString("phoneNumber", ""));
+        phoneNumber.setEnabled(false);
         profilePic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -214,7 +219,7 @@ public class ProfileNew extends AppCompatActivity {
                             editor.putString("token", token);
                             editor.apply();
                         }
-                        Toast.makeText(ProfileNew.this, "token" + sharedPrefs.getString("token", ""), Toast.LENGTH_LONG).show();
+//                        Toast.makeText(ProfileNew.this, "token" + sharedPrefs.getString("token", ""), Toast.LENGTH_LONG).show();
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -224,15 +229,18 @@ public class ProfileNew extends AppCompatActivity {
                         editor.putString("name", name.getText().toString());
                         editor.putString("rollno", rollno.getText().toString());
                         editor.putString("college", college.getText().toString());
-                        editor.putString("phone", phoneNumber.getText().toString());
                         editor.putString("profileImage", imageUrl);
                         editor.putBoolean("profileStatus", true);
                         editor.commit();
                         progressBar.setVisibility(View.GONE);
-                        Intent i = new Intent(ProfileNew.this, MainActivity.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(i);
-                        finish();
+                        if (editProfile) {
+                            finish();
+                        } else {
+                            Intent i = new Intent(ProfileNew.this, MainActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(i);
+                            finish();
+                        }
                     } else {
                         Toast.makeText(ProfileNew.this, "Unknown error" + response, Toast.LENGTH_SHORT).show();
                         Log.e("error", response);
@@ -291,6 +299,7 @@ public class ProfileNew extends AppCompatActivity {
         progressBar = findViewById(R.id.profile_progress);
         caNo = findViewById(R.id.ca_no);
         caYes = findViewById(R.id.ca_yes);
+        ca = findViewById(R.id.ca);
         uploadPic = findViewById(R.id.profile_pic_button);
     }
 }

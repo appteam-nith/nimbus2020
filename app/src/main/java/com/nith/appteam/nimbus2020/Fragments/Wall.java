@@ -24,6 +24,7 @@ import com.android.volley.toolbox.Volley;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Activities.CampusAmbassadorPost;
 import com.nith.appteam.nimbus2020.Adapters.FeedRecyclerAdapter;
+import com.nith.appteam.nimbus2020.Models.FeedItem;
 import com.nith.appteam.nimbus2020.R;
 
 import org.json.JSONArray;
@@ -36,10 +37,17 @@ public class Wall extends Fragment {
     private SharedPreferences sharedPreferences;
     private FloatingActionButton upload;
     private RecyclerView feed;
-    private ArrayList<String> feedList = new ArrayList<>();
+    private ArrayList<FeedItem> feedList = new ArrayList<>();
     private ProgressBar progressBar;
 
     public Wall() {
+    }
+
+    @Override
+    public void onResume() {
+        feedList.clear();
+        getFeeds();
+        super.onResume();
     }
 
     @Nullable
@@ -78,15 +86,14 @@ public class Wall extends Fragment {
             public void onResponse(String response) {
                 try {
                     JSONArray jsonArray = new JSONArray(response);
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONArray feeds = jsonArray.getJSONObject(i).getJSONArray("image_urls");
-                        for (int j = 0; j < feeds.length(); ++j) {
-                            feedList.add(feeds.getString(j));
-//                            Toast.makeText(getContext(), feeds.getString(j), Toast.LENGTH_SHORT).show();
-                        }
-                        Objects.requireNonNull(feed.getAdapter()).notifyDataSetChanged();
-                        progressBar.setVisibility(View.GONE);
+                    for (int i = jsonArray.length() - 1; i >= 0; i--) {
+                        String imageUrl = jsonArray.getJSONObject(i).getString("image_url");
+                        String postUrl = jsonArray.getJSONObject(i).getString("post_url");
+                        FeedItem currentFeed = new FeedItem(imageUrl, postUrl);
+                        feedList.add(currentFeed);
                     }
+                    Objects.requireNonNull(feed.getAdapter()).notifyDataSetChanged();
+                    progressBar.setVisibility(View.GONE);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -97,7 +104,6 @@ public class Wall extends Fragment {
                 Toast.makeText(getContext(), volleyError.toString(), Toast.LENGTH_LONG).show();
             }
         });
-
         queue.add(request);
     }
 }
