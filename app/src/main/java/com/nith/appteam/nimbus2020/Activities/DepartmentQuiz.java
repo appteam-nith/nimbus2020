@@ -134,9 +134,9 @@ public class DepartmentQuiz extends AppCompatActivity {
 
                 try {
                     jsonObject = new JSONObject(response);
-                    String error = jsonObject.getString("errorCode");
+                    int error = jsonObject.getInt("errorCode");
 
-                    if (error.equals("3")) {
+                    if (error == 3) {
                         flag = false;
                         new AlertDialog.Builder(DepartmentQuiz.this)
                                 .setTitle("User not Validated!")
@@ -174,10 +174,12 @@ public class DepartmentQuiz extends AppCompatActivity {
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
 
+
                 HashMap<String, String> map = new HashMap<>();
                 SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
                 String token = sharedPreferences.getString("token", null);
                 map.put("access-token", token);
+                Log.e("access token", token);
                 return map;
 
             }

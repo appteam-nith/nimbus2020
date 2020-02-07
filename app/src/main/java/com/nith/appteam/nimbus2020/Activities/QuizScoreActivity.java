@@ -12,6 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 public class QuizScoreActivity extends AppCompatActivity {
 
     @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(QuizScoreActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);

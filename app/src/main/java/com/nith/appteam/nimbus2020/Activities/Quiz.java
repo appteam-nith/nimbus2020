@@ -47,6 +47,7 @@ public class Quiz extends AppCompatActivity {
     int counter = 0;
     CountDownTimer timer;
     JSONArray mJSONArray;
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,9 +63,11 @@ public class Quiz extends AppCompatActivity {
 
             public void onFinish() {
                 counter++;
-                if (counter < questions.size()&&questions.size()>0) {
+                if (counter < questions.size() && questions.size() > 0) {
                     updateQuestion();
                 } else {
+
+                    Log.e("else", "else");
 
                     getscore();
                 }
@@ -194,9 +197,9 @@ public class Quiz extends AppCompatActivity {
                 }
             }
         }
-        if (questions.size() > 0)
+        if (questions.size() > 0) {
             updateQuestion();
-        else {
+        } else {
             Toast.makeText(this, "No questions", Toast.LENGTH_SHORT).show();
         }
 
@@ -205,15 +208,15 @@ public class Quiz extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         timer.cancel();
-        finish();
+        getscore();
+        super.onBackPressed();
     }
 
 
     private void getscore() {
-
-        final ProgressDialog progressDialog = new ProgressDialog(Quiz.this);
+        timer.cancel();
+        progressDialog = new ProgressDialog(Quiz.this);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Calculating score...");
         progressDialog.show();
@@ -234,7 +237,9 @@ public class Quiz extends AppCompatActivity {
                 getString(R.string.baseUrl) + "/quiz/submit/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                progressDialog.dismiss();
+                if (progressDialog != null) {
+                    progressDialog.dismiss();
+                }
                 Log.e("hiiii", "onResponse: " + response);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -282,4 +287,9 @@ public class Quiz extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        progressDialog.dismiss();
+        super.onDestroy();
+    }
 }
