@@ -40,6 +40,7 @@ public class Add_workshop_details extends AppCompatActivity {
 
     private void oprnURLWor(String regURL) {
         Intent intent = new Intent(Add_workshop_details.this,Web.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("url", regURL);
         getApplicationContext().startActivity(intent);
     }

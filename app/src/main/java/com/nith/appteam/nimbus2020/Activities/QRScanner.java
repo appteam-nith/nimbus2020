@@ -77,13 +77,12 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
         integrator.setOrientationLocked(false);
 
         integrator.initiateScan();
-        scanBtn =  findViewById(R.id.scan_button);
+        scanBtn = findViewById(R.id.scan_button);
 
 
+        //    llSearch = (LinearLayout) findViewById(R.id.llSearch);
 
-    //    llSearch = (LinearLayout) findViewById(R.id.llSearch);
-
-      scanBtn.setOnClickListener(this);
+        scanBtn.setOnClickListener(this);
 
 
     }
@@ -129,7 +128,7 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
             if (result.getContents() == null) {
 
                 finish();
-      //          llSearch.setVisibility(View.GONE);
+                //          llSearch.setVisibility(View.GONE);
 
 
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
@@ -137,43 +136,40 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
 
             } else {
 
-                Log.e("result",result.getContents());
+                Log.e("result", result.getContents());
                 queue = Volley.newRequestQueue(getApplicationContext());
                 StringRequest request = new StringRequest(Request.Method.POST, Constant.Url + "/user/qrcode", new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
                         try {
 
-                            Log.e("response",response);
+                            Log.e("response", response);
                             JSONObject object = new JSONObject(response);
-                            Boolean flag=true;
+                            Boolean flag = true;
 //                            Log.i("Tag", "Success");
 //                            Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();
 //                            if (object.getString("message").equals("success")) {
 //                                //getPoints();
 //                            }
                             String error = object.getString("errorCode");
-                            Log.e("error",error+"");
+                            Log.e("error", error + "");
 
-                            if (error.equals("1") ) {
-                                flag=false;
+                            if (error.equals("1")) {
+                                flag = false;
                                 new AlertDialog.Builder(QRScanner.this)
                                         .setTitle("QR has been already sent")
                                         .setMessage("Try another QR")
                                         .setIcon(android.R.drawable.ic_dialog_alert)
                                         .show();
 
-                            }
-                            else if(error.equals("0"))
-                            {
+                            } else if (error.equals("0")) {
                                 Log.i("Tag", "Success");
                                 Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();
-                                if (object.getString("message").equals("success")) {
-                                    getPoints();
-                                }
+                                Toast.makeText(getApplicationContext(), "Score has been added. Check in profile", Toast.LENGTH_SHORT).show();
+                                getPoints();
+
                             }
-                        }
-                        catch (JSONException e) {
+                        } catch (JSONException e) {
                             Toast.makeText(getApplicationContext(), "Error" + e,
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -191,6 +187,7 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
                     public String getBodyContentType() {
                         return "application/x-www-form-urlencoded; charset=utf-8";
                     }
+
                     @Override
                     public Map<String, String> getHeaders() throws AuthFailureError {
 
@@ -213,8 +210,6 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
                 queue.add(request);
 
 
-
-
             }
 
         } else {
@@ -224,6 +219,7 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
         }
 
     }
+
     public void getPoints() {
         SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -262,7 +258,7 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
 
     @Override
     public void onBackPressed() {
-        Intent newIntent = new Intent(QRScanner.this,MainActivity.class);
+        Intent newIntent = new Intent(QRScanner.this, MainActivity.class);
         startActivity(newIntent);
         finish();
 
