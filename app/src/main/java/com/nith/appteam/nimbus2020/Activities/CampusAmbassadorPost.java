@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -53,6 +54,7 @@ public class CampusAmbassadorPost extends AppCompatActivity {
     private ImageView image;
     private Uri photoUri;
     private SharedPreferences sharedPrefs;
+    private LinearLayout info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +64,15 @@ public class CampusAmbassadorPost extends AppCompatActivity {
         sharedPrefs = getSharedPreferences("app", MODE_PRIVATE);
         submitPost = findViewById(R.id.submit_post);
         uploadPicture = findViewById(R.id.upload_picture);
+        info = findViewById(R.id.info);
         progressBar = findViewById(R.id.post_progress);
         image = findViewById(R.id.imageUpload);
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         uploadPicture.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -196,7 +205,8 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         if (response.equals("ok")) {
                             Toast.makeText(CampusAmbassadorPost.this, "Post Uploaded", Toast.LENGTH_SHORT).show();
-                            onBackPressed();
+                            info.setVisibility(View.VISIBLE);
+                            //TODO update user points
                         }
                         try {
                             JSONObject status = new JSONObject(response);
