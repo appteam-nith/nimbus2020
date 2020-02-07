@@ -75,6 +75,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        loadwall.setVisibility(View.GONE);
 
                         try {
                             JSONObject jsonObject = new JSONObject(response);

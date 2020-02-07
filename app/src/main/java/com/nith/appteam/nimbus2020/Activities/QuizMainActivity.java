@@ -151,9 +151,9 @@ public class QuizMainActivity extends AppCompatActivity {
 
                 try {
                     jsonObject = new JSONObject(response);
-                    String error = jsonObject.getString("errorCode");
+                    int error = jsonObject.getInt("errorCode");
 
-                    if (error.equals("3")) {
+                    if (error == 3) {
                         flag = false;
                         new AlertDialog.Builder(QuizMainActivity.this)
                                 .setTitle("User not Validated!")
