@@ -11,7 +11,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".Activities.Web"></activity>
+
+        <activity android:name=".Activities.CoreTeamActivity"></activity>
+
         <activity android:name=".Activities.CampusAmbassador" />
         <activity android:name=".Activities.Schedule" />
         <activity android:name=".Activities.Schedule_Day" />
@@ -36,8 +40,9 @@
         <activity
             android:name=".Activities.Add_Exhibition"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.QRScanner"
-            android:exported="true"/>
+
+        <activity android:name=".Activities.QRScanner" />
+
         <activity
             android:name=".Activities.department_Events"
             android:theme="@style/AppTheme" />
@@ -78,6 +83,7 @@
             android:name="CLOUDINARY_URL"
             android:value="cloudinary://256963859891119:w4WXsRRz58DN3eVbGK1g6JvcjJY@duutozrvz" />
     </application>
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
 

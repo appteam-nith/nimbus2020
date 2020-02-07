@@ -62,7 +62,7 @@ public class Institute_Events extends AppCompatActivity {
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPref.edit();
         FloatingActionButton fab = findViewById(R.id.fabI);
-        if( sharedPref.getString("phoneNumber","").equals("8219341697")) {
+        if( sharedPref.getString("phoneNumber","").equals("+918219341697")) {
             fab.setVisibility(View.VISIBLE);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override

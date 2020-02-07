@@ -53,7 +53,7 @@ import cz.msebera.android.httpclient.entity.mime.Header;
 public class QRScanner extends AppCompatActivity implements View.OnClickListener {
 
     private Button scanBtn;
-
+    private SharedPreferences sharedPrefs;
 
 
     //private LinearLayout llSearch;
@@ -66,6 +66,7 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_qrscanner);
+        sharedPrefs = getSharedPreferences("app", MODE_PRIVATE);
 //        llSearch.setVisibility(View.GONE);
 
 
@@ -168,7 +169,7 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
                                 Log.i("Tag", "Success");
                                 Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();
                                 if (object.getString("message").equals("success")) {
-                                   // CampusAmbassadorPost.getPoints();
+                                    getPoints();
                                 }
                             }
                         }
@@ -221,6 +222,41 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
             super.onActivityResult(requestCode, resultCode, data);
 
         }
+
+    }
+    public void getPoints() {
+        SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, getString(R.string.baseUrl) + "/user/points", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(QRScanner.this, "LINK UPLOADED", Toast.LENGTH_SHORT).show();
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String normalPoints = jsonObject.getString("userPoints");
+                    editor.putString("normalPoints", normalPoints);
+                    Log.e("normal points", normalPoints);
+                    editor.commit();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(QRScanner.this, error.toString() + error.getCause(), Toast.LENGTH_LONG).show();
+            }
+        }) {
+            @Override
+            public Map<String, String> getHeaders() {
+                HashMap<String, String> headers = new HashMap<>();
+                headers.put("access-token", sharedPrefs.getString("token", ""));
+                return headers;
+            }
+        };
+        requestQueue.add(stringRequest);
 
     }
 

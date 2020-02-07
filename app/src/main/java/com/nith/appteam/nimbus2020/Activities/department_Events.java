@@ -40,6 +40,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import static com.loopj.android.http.AsyncHttpClient.log;
+
 
 public class department_Events extends AppCompatActivity {
     private RecyclerView recyclerViewDEVE;
@@ -61,7 +63,8 @@ public class department_Events extends AppCompatActivity {
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPref.edit();
         FloatingActionButton fab = findViewById(R.id.fabD);
-        if( sharedPref.getString("phoneNumber","").equals("8219341697")) {
+        log.e("phone",sharedPref.getString("phoneNumber",""));
+       if( sharedPref.getString("phoneNumber","").equals("+918219341697")) {
             fab.setVisibility(View.VISIBLE);
 
         fab.setOnClickListener(new View.OnClickListener() {
@@ -72,10 +75,11 @@ public class department_Events extends AppCompatActivity {
 
 
             }
-        });}
+        });
+    }
         else
         {
-            fab.setVisibility(View.GONE);
+            fab.setVisibility(View.INVISIBLE);
         }
         requestQueueEVED = Volley.newRequestQueue(this);
         loadWall = findViewById(R.id.loadwalldpt);

@@ -80,7 +80,7 @@ public class Exhhibition extends AppCompatActivity {
 
 
         FloatingActionButton fab = findViewById(R.id.fabExh);
-        if( sharedPref.getString("phoneNumber","").equals("8219341697"))
+        if( sharedPref.getString("phoneNumber","").equals("+918219341697"))
         {
             fab.setVisibility(View.VISIBLE);
         fab.setOnClickListener(new View.OnClickListener() {
