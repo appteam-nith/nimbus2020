@@ -1,5 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,7 +12,9 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -37,13 +41,14 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_I_Events extends AppCompatActivity {
-    private EditText nameAddI, infoAddI, venueAddI, dateAddI, regUrlAddI, pdfAddI;
+    private EditText nameAddI, infoAddI, venueAddI, dateAddI, regUrlAddI, pdfAddI, timeAddD;
     private CircleImageView imgI;
     private Button addButtonI;
     private RequestQueue requestQueueI;
@@ -51,6 +56,7 @@ public class Add_I_Events extends AppCompatActivity {
     private byte[] byteArray;
     private String imageUrl = "";
     private Bitmap bmp, img;
+    private int mYear,mMonth,mDay,mHour, mMinute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +70,7 @@ public class Add_I_Events extends AppCompatActivity {
         imgI = findViewById(R.id.addImgI);
         regUrlAddI = findViewById(R.id.addregUrlI);
         addButtonI = findViewById(R.id.AddButtonI);
+        timeAddD=findViewById(R.id.timeAddD);
 
         addButtonI.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,6 +90,52 @@ public class Add_I_Events extends AppCompatActivity {
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(intent, PICK_PHOTO_CODE);
                 }
+            }
+        });
+
+        dateAddI.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(Add_I_Events.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                    int monthOfYear, int dayOfMonth) {
+
+                                dateAddI.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+            }
+        });
+
+        timeAddD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                // Launch Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(Add_I_Events.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                    int minute) {
+
+                                timeAddD.setText(hourOfDay + ":" + minute);
+                            }
+                        }, mHour, mMinute, false);
+                timePickerDialog.show();
             }
         });
 
@@ -188,6 +241,7 @@ public class Add_I_Events extends AppCompatActivity {
                         dateAddI.setText("");
                         pdfAddI.setText("");
                         infoAddI.setText("");
+                        timeAddD.setText("");
 
                     }
 
