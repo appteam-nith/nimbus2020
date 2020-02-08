@@ -162,7 +162,6 @@ public class CampusAmbassadorPost extends AppCompatActivity {
 
                     @Override
                     public void onError(String requestId, ErrorInfo error) {
-                        Log.i("HELLO", "JIJIJ");
 //                      finish();
                         submitPost.setVisibility(View.VISIBLE);
                         Toast.makeText(CampusAmbassadorPost.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();

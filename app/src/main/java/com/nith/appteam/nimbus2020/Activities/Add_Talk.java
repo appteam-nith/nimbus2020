@@ -56,7 +56,8 @@ public class Add_Talk extends AppCompatActivity {
     private byte[] byteArray;
     private String imageUrl = "";
     private Bitmap bmp, img;
-    private int mYear,mMonth,mDay,mHour, mMinute;
+    private int mYear, mMonth, mDay, mHour, mMinute;
+    private Uri photoUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,9 +79,11 @@ public class Add_Talk extends AppCompatActivity {
 //                .getText().toString()+","+"venue"+venueAdd.getText().toString()
 //                        +","+"date"+dateAdd.getText().toString()+","+"image"+imageAdd.getText()
 //                        .toString()+","+"regUrl"+regUrlAdd.getText().toString()+"}";
-
-
-                AddDetails();
+                if (photoUri != null) {
+                    Bitmap bitmap = ((BitmapDrawable) imageAddTalk.getDrawable()).getBitmap();
+                    getImageUrl(bitmap);
+                } else
+                    Toast.makeText(Add_Talk.this, "Please select photo", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -111,7 +114,7 @@ public class Add_Talk extends AppCompatActivity {
 
                             @Override
                             public void onDateSet(DatePicker view, int year,
-                                    int monthOfYear, int dayOfMonth) {
+                                                  int monthOfYear, int dayOfMonth) {
 
                                 dateAdd.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
@@ -134,7 +137,7 @@ public class Add_Talk extends AppCompatActivity {
 
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
-                                    int minute) {
+                                                  int minute) {
 
                                 timeAddD.setText(hourOfDay + ":" + minute);
                             }
@@ -150,7 +153,7 @@ public class Add_Talk extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
-            Uri photoUri = data.getData();
+            photoUri = data.getData();
             Bitmap selectedImage = null;
             try {
                 selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
@@ -164,9 +167,7 @@ public class Add_Talk extends AppCompatActivity {
             img = getResizedBitmap(bmp, 300);
 //          pass = encodeTobase64(img);
             imageAddTalk.setImageBitmap(img);
-            Bitmap bitmap = ((BitmapDrawable) imageAddTalk.getDrawable()).getBitmap();
 
-            getImageUrl(bitmap);
         }
     }
 
@@ -205,6 +206,7 @@ public class Add_Talk extends AppCompatActivity {
                     @Override
                     public void onSuccess(String requestId, Map resultData) {
                         imageUrl = String.valueOf(resultData.get("url"));
+                        AddDetails();
 
                     }
 
@@ -282,7 +284,7 @@ public class Add_Talk extends AppCompatActivity {
                 params.put("image", imageUrl);
                 //            params.put("image",imageAdd.getText().toString());
                 params.put("regUrl", regUrlAdd.getText().toString());
-                Log.v("abcd",String.valueOf(params));
+                Log.v("abcd", String.valueOf(params));
                 return params;
             }
         };
