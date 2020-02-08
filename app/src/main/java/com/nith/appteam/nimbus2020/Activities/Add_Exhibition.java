@@ -86,7 +86,7 @@ public class Add_Exhibition extends AppCompatActivity {
                     getImageUrl(bitmap);
                 else {
                     try {
-                        URL url = new URL(getResources().getString(R.string.defaultImageUrl));
+                        URL url = new URL(getResources().getString(R.string.defaultImage));
                         bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
                         getImageUrl(bitmap);
                     } catch(IOException e) {
