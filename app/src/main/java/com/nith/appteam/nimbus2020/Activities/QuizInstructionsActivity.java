@@ -53,9 +53,11 @@ public class QuizInstructionsActivity extends AppCompatActivity {
                     int error = jsonObject.getInt("errorCode");
 
                     if (error == 1) {
+                        String startTime=getIntent().getStringExtra("startTime");
+                        String endTime=getIntent().getStringExtra("endTime");
                         new AlertDialog.Builder(QuizInstructionsActivity.this)
-                                .setTitle("Play Later")
-                                .setMessage("This is not the right time to play the quiz")
+                                .setTitle("Not right time!")
+                                .setMessage("Start time: "+startTime+"\n"+"End time: "+endTime)
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .show();
                         flag = false;
