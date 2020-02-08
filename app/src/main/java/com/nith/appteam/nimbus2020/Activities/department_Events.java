@@ -5,11 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,14 +33,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-
-
 public class department_Events extends AppCompatActivity {
     private RecyclerView recyclerViewDEVE;
     private Events_D_RecyclerViewAdapter events_d_recyclerViewAdapter;
@@ -62,23 +53,21 @@ public class department_Events extends AppCompatActivity {
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPref.edit();
         FloatingActionButton fab = findViewById(R.id.fabD);
-        Log.e("phone",sharedPref.getString("phoneNumber",""));
-       if( sharedPref.getString("phoneNumber","").equals("+918219341697") || sharedPref.getString("phoneNumber","").equals("+917982107070")) {
+        Log.e("phone", sharedPref.getString("phoneNumber", ""));
+        if (sharedPref.getString("phoneNumber", "").equals("+918219341697") || sharedPref.getString("phoneNumber", "").equals("+917982107070")) {
             fab.setVisibility(View.VISIBLE);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                Intent intent = new Intent(department_Events.this, Add_D_Events.class);
-                startActivity(intent);
+                    Intent intent = new Intent(department_Events.this, Add_D_Events.class);
+                    startActivity(intent);
 
 
-            }
-        });
-    }
-        else
-        {
+                }
+            });
+        } else {
             fab.setVisibility(View.INVISIBLE);
         }
         requestQueueEVED = Volley.newRequestQueue(this);

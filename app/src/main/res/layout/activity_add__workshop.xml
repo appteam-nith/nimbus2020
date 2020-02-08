@@ -67,10 +67,22 @@
             android:padding="20dp" />
 
         <EditText
-            android:id="@+id/addregUrlWrk"
+            android:id="@+id/timeAddD"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dateAddWrk"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add date of workshop"
+            android:inputType="datetime"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/addregUrlWrk"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timeAddD"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"

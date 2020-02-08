@@ -1,5 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,7 +12,9 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -37,13 +41,14 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Talk extends AppCompatActivity {
-    private EditText nameAdd, infoAdd, venueAdd, dateAdd, regUrlAdd;
+    private EditText nameAdd, infoAdd, venueAdd, dateAdd, regUrlAdd, timeAddD;
     private CircleImageView imageAddTalk;
     private Button addButton;
     private RequestQueue requestQueue;
@@ -51,6 +56,7 @@ public class Add_Talk extends AppCompatActivity {
     private byte[] byteArray;
     private String imageUrl = "";
     private Bitmap bmp, img;
+    private int mYear,mMonth,mDay,mHour, mMinute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +69,7 @@ public class Add_Talk extends AppCompatActivity {
         imageAddTalk = findViewById(R.id.addImgTalk);
         regUrlAdd = findViewById(R.id.addregUrlTalk);
         addButton = findViewById(R.id.AddButtonTalk);
+        timeAddD = findViewById(R.id.timeAddD);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +93,53 @@ public class Add_Talk extends AppCompatActivity {
                 if (intent.resolveActivity(getPackageManager()) != null) {
                     startActivityForResult(intent, PICK_PHOTO_CODE);
                 }
+            }
+        });
+
+
+        dateAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(Add_Talk.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                    int monthOfYear, int dayOfMonth) {
+
+                                dateAdd.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+            }
+        });
+
+        timeAddD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                // Launch Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Talk.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                    int minute) {
+
+                                timeAddD.setText(hourOfDay + ":" + minute);
+                            }
+                        }, mHour, mMinute, false);
+                timePickerDialog.show();
             }
         });
 
@@ -189,6 +243,7 @@ public class Add_Talk extends AppCompatActivity {
                         regUrlAdd.setText("");
                         venueAdd.setText("");
                         dateAdd.setText("");
+                        timeAddD.setText("");
 
                         Picasso.with(getApplicationContext()).load(R.drawable.fui_ic_anonymous_white_24dp).into(imageAddTalk);
                         infoAdd.setText("");
@@ -227,6 +282,7 @@ public class Add_Talk extends AppCompatActivity {
                 params.put("image", imageUrl);
                 //            params.put("image",imageAdd.getText().toString());
                 params.put("regUrl", regUrlAdd.getText().toString());
+                Log.v("abcd",String.valueOf(params));
                 return params;
             }
         };
