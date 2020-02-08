@@ -42,7 +42,6 @@ public class Login extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseUser user;
     private TextView loginButton;
-    private boolean isUserExist = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,19 +108,14 @@ public class Login extends AppCompatActivity {
                     if (errorCode == 0) {
                         String token = (String) jsonObject.get("token");
                         editor.putString("token", token);
-                        isUserExist = true;
-                        if (isUserExist) {
-                            getDetails();
-                        } else {
-                            Intent intent = new Intent(Login.this, ProfileNew.class);
-                            intent.putExtra("editProfile", false);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
                         editor.apply();
+                        getDetails();
                     } else if (errorCode == 1) {
-                        isUserExist = false;
+                        Intent intent = new Intent(Login.this, ProfileNew.class);
+                        intent.putExtra("editProfile", false);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                        finish();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -167,6 +161,7 @@ public class Login extends AppCompatActivity {
                     editor.putString("college", jsonObject.getString("collegeName"));
                     editor.putString("profileImage", jsonObject.getString("profileImage"));
                     editor.putString("normalPoints", jsonObject.getString("userPoints"));
+                    editor.putString("campusAmbassador", jsonObject.getString("campusAmbassador"));
                     editor.putString("caPoints", jsonObject.getString("campusAmbassadorPoints"));
                     editor.putBoolean("profileStatus", true);
                     editor.commit();

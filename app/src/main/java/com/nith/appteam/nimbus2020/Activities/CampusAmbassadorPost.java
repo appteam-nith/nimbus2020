@@ -210,9 +210,10 @@ public class CampusAmbassadorPost extends AppCompatActivity {
 //                            info.setVisibility(View.VISIBLE);
                         } else try {
                             JSONObject status = new JSONObject(response);
-                            if (status.get("status").equals("false"))
+                            if (status.get("status").equals("false")) {
+                                submitPost.setVisibility(View.VISIBLE);
                                 Toast.makeText(CampusAmbassadorPost.this, "Cannot upload same URL again.", Toast.LENGTH_SHORT).show();
-
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -223,6 +224,8 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                     public void onErrorResponse(VolleyError error) {
                         Toast.makeText(CampusAmbassadorPost.this, error.toString() + error.getCause(), Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
+                        submitPost.setVisibility(View.VISIBLE);
+
                     }
                 }) {
 

@@ -40,7 +40,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.loopj.android.http.AsyncHttpClient.log;
 
 
 public class department_Events extends AppCompatActivity {
@@ -63,8 +62,8 @@ public class department_Events extends AppCompatActivity {
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPref.edit();
         FloatingActionButton fab = findViewById(R.id.fabD);
-        log.e("phone",sharedPref.getString("phoneNumber",""));
-       if( sharedPref.getString("phoneNumber","").equals("+918219341697")) {
+        Log.e("phone",sharedPref.getString("phoneNumber",""));
+       if( sharedPref.getString("phoneNumber","").equals("+918219341697") || sharedPref.getString("phoneNumber","").equals("+917982107070")) {
             fab.setVisibility(View.VISIBLE);
 
         fab.setOnClickListener(new View.OnClickListener() {
