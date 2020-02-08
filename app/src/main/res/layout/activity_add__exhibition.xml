@@ -68,10 +68,22 @@
             android:padding="20dp" />
 
         <EditText
-            android:id="@+id/addregUrlExh"
+            android:id="@+id/timeAddD"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
             android:layout_below="@+id/dateAddExh"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="20dp"
+            android:hint="Please add time of exhibition"
+            android:inputType="datetime"
+            android:padding="20dp" />
+
+        <EditText
+            android:id="@+id/addregUrlExh"
+            android:layout_width="350dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/timeAddD"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"

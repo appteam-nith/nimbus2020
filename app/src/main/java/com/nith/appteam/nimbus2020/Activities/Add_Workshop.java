@@ -1,5 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -10,11 +12,10 @@ import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TimePicker;
 import android.widget.Toast;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -24,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -37,14 +39,18 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Workshop extends AppCompatActivity {
 
-    private EditText nameAddWrk, infoAddWrk, venueAddWrk, dateAddWrk, regUrlAddWrk, typeAddWrk;
+    private EditText nameAddWrk, infoAddWrk, venueAddWrk, dateAddWrk, regUrlAddWrk, typeAddWrk,
+            timeAddD;
     private CircleImageView imageAddWrk;
     private Button addButtonWork;
     private RequestQueue requestQueueWrk;
@@ -52,6 +58,7 @@ public class Add_Workshop extends AppCompatActivity {
     private byte[] byteArray;
     private String imageUrl = "";
     private Bitmap bmp, img;
+    private int mYear,mMonth,mDay,mHour, mMinute;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,7 @@ public class Add_Workshop extends AppCompatActivity {
         imageAddWrk = findViewById(R.id.addImgWrk);
         regUrlAddWrk = findViewById(R.id.addregUrlWrk);
         addButtonWork = findViewById(R.id.AddButtonWrk);
+        timeAddD=findViewById(R.id.timeAddD);
 
         addButtonWork.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,6 +98,53 @@ public class Add_Workshop extends AppCompatActivity {
         });
 
 
+        dateAddWrk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                mYear = c.get(Calendar.YEAR);
+                mMonth = c.get(Calendar.MONTH);
+                mDay = c.get(Calendar.DAY_OF_MONTH);
+
+
+                DatePickerDialog datePickerDialog = new DatePickerDialog(Add_Workshop.this,
+                        new DatePickerDialog.OnDateSetListener() {
+
+                            @Override
+                            public void onDateSet(DatePicker view, int year,
+                                    int monthOfYear, int dayOfMonth) {
+
+                                dateAddWrk.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+
+                            }
+                        }, mYear, mMonth, mDay);
+                datePickerDialog.show();
+            }
+        });
+
+        timeAddD.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Calendar c = Calendar.getInstance();
+                mHour = c.get(Calendar.HOUR_OF_DAY);
+                mMinute = c.get(Calendar.MINUTE);
+
+                // Launch Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(Add_Workshop.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                    int minute) {
+
+                                timeAddD.setText(hourOfDay + ":" + minute);
+                            }
+                        }, mHour, mMinute, false);
+                timePickerDialog.show();
+            }
+        });
+
+
     }
 
     @Override
@@ -99,7 +154,8 @@ public class Add_Workshop extends AppCompatActivity {
             Uri photoUri = data.getData();
             Bitmap selectedImage = null;
             try {
-                selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
+                selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(),
+                        photoUri);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -158,7 +214,9 @@ public class Add_Workshop extends AppCompatActivity {
                     public void onError(String requestId, ErrorInfo error) {
                         Log.i("HELLO", "JIJIJ");
 //                      finish();
-                        Toast.makeText(Add_Workshop.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();
+                        Toast.makeText(Add_Workshop.this,
+                                "Upload Failed" + error.getDescription() + " requestId" + requestId,
+                                Toast.LENGTH_LONG).show();
 
                     }
 
@@ -176,35 +234,39 @@ public class Add_Workshop extends AppCompatActivity {
         //final String savedata=data;
 
         requestQueueWrk = Volley.newRequestQueue(getApplicationContext());
-        StringRequest request = new StringRequest(Request.Method.POST, Constant.Url + "workshops", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject object = new JSONObject(response);
-                    Log.i("Tag", "Success");
-                    Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();
-                    if (object.getString("message").equals("success")) {
+        StringRequest request = new StringRequest(Request.Method.POST, Constant.Url + "workshops",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            Log.i("Tag", "Success");
+                            Toast.makeText(getApplicationContext(), object.toString(),
+                                    Toast.LENGTH_SHORT).show();
+                            if (object.getString("message").equals("success")) {
 
-                        nameAddWrk.setText("");
-                        regUrlAddWrk.setText("");
-                        venueAddWrk.setText("");
-                        dateAddWrk.setText("");
-                        typeAddWrk.setText("");
+                                nameAddWrk.setText("");
+                                regUrlAddWrk.setText("");
+                                venueAddWrk.setText("");
+                                dateAddWrk.setText("");
+                                typeAddWrk.setText("");
+                                timeAddD.setText("");
 
-                        infoAddWrk.setText("");
-                        Picasso.with(getApplicationContext()).load(R.drawable.fui_ic_anonymous_white_24dp).into(imageAddWrk);
+                                infoAddWrk.setText("");
+                                Picasso.with(getApplicationContext()).load(
+                                        R.drawable.fui_ic_anonymous_white_24dp).into(imageAddWrk);
 
+                            }
+
+
+                        } catch (JSONException e) {
+                            Toast.makeText(getApplicationContext(), "Error" + e,
+                                    Toast.LENGTH_SHORT).show();
+
+
+                        }
                     }
-
-
-                } catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(), "Error" + e,
-                            Toast.LENGTH_SHORT).show();
-
-
-                }
-            }
-        }, new Response.ErrorListener() {
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("volley", "Error: " + error.getMessage());

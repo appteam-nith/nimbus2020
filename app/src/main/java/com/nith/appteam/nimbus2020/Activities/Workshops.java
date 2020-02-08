@@ -86,7 +86,7 @@ public class Workshops extends AppCompatActivity {
         Picasso.with(this).load(R.drawable.workshop).fit().into(worksp);
         FloatingActionButton fabwo = findViewById(R.id.fabworkshop);
 
-        if( sharedPref.getString("phoneNumber","").equals("+918219341697"))
+        if( sharedPref.getString("phoneNumber","").equals("+918219341697")||sharedPref.getString("phoneNumber","").equals("+917982107070"))
         {
             fabwo.setVisibility(View.VISIBLE);
 

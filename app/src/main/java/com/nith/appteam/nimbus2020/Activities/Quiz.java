@@ -222,8 +222,15 @@ public class Quiz extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         timer.cancel();
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("questionId", questions.get(counter).getQuestionid());
+            jsonObject.put("correct", questions.get(counter).getOption_chosen());
+            mJSONArray.put(jsonObject);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         getscore();
-        super.onBackPressed();
     }
 
 
@@ -250,8 +257,10 @@ public class Quiz extends AppCompatActivity {
                 getString(R.string.baseUrl) + "/quiz/submit/", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                Toast.makeText(Quiz.this, "Response " + response, Toast.LENGTH_SHORT).show();
                 if (progressDialog != null) {
                     progressDialog.dismiss();
+//                    onBackPressed();
                 }
                 Log.e("hiiii", "onResponse: " + response);
                 try {
