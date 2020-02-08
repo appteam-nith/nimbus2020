@@ -270,6 +270,7 @@ public class Add_Exhibition extends AppCompatActivity {
                                 venueAddExh.setText("");
                                 dateAddExh.setText("");
                                 infoAddExh.setText("");
+                                timeAddD.setText("");
 
                             }
 
