@@ -56,7 +56,8 @@ public class Add_I_Events extends AppCompatActivity {
     private byte[] byteArray;
     private String imageUrl = "";
     private Bitmap bmp, img;
-    private int mYear,mMonth,mDay,mHour, mMinute;
+    private int mYear, mMonth, mDay, mHour, mMinute;
+    private Uri photoUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +71,7 @@ public class Add_I_Events extends AppCompatActivity {
         imgI = findViewById(R.id.addImgI);
         regUrlAddI = findViewById(R.id.addregUrlI);
         addButtonI = findViewById(R.id.AddButtonI);
-        timeAddD=findViewById(R.id.timeAddD);
+        timeAddD = findViewById(R.id.timeAddD);
 
         addButtonI.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,8 +79,13 @@ public class Add_I_Events extends AppCompatActivity {
 //                String data="{"+"name"+ nameAdd.getText().toString()+","+"info"+ infoAdd.getText().toString()+","+"venue"+venueAdd.getText().toString()
 //                        +","+"date"+dateAdd.getText().toString()+","+"image"+imageAdd.getText().toString()+","+"regUrl"+regUrlAdd.getText().toString()+"}";
 
+                if (photoUri != null) {
+                    Bitmap bitmap = ((BitmapDrawable) imgI.getDrawable()).getBitmap();
+                    getImageUrl(bitmap);
+                } else {
+                }
 
-                AddDetailsI();
+
             }
         });
         imgI.setOnClickListener(new View.OnClickListener() {
@@ -107,7 +113,7 @@ public class Add_I_Events extends AppCompatActivity {
 
                             @Override
                             public void onDateSet(DatePicker view, int year,
-                                    int monthOfYear, int dayOfMonth) {
+                                                  int monthOfYear, int dayOfMonth) {
 
                                 dateAddI.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
@@ -130,7 +136,7 @@ public class Add_I_Events extends AppCompatActivity {
 
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
-                                    int minute) {
+                                                  int minute) {
 
                                 timeAddD.setText(hourOfDay + ":" + minute);
                             }
@@ -146,7 +152,7 @@ public class Add_I_Events extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data != null) {
-            Uri photoUri = data.getData();
+            photoUri = data.getData();
             Bitmap selectedImage = null;
             try {
                 selectedImage = MediaStore.Images.Media.getBitmap(this.getContentResolver(), photoUri);
@@ -160,9 +166,7 @@ public class Add_I_Events extends AppCompatActivity {
             img = getResizedBitmap(bmp, 300);
 //          pass = encodeTobase64(img);
             imgI.setImageBitmap(img);
-            Bitmap bitmap = ((BitmapDrawable) imgI.getDrawable()).getBitmap();
 
-            getImageUrl(bitmap);
         }
     }
 
@@ -201,7 +205,7 @@ public class Add_I_Events extends AppCompatActivity {
                     @Override
                     public void onSuccess(String requestId, Map resultData) {
                         imageUrl = String.valueOf(resultData.get("url"));
-
+                        AddDetailsI();
                     }
 
                     @Override
