@@ -239,6 +239,7 @@ public class Quiz extends AppCompatActivity {
         progressDialog = new ProgressDialog(Quiz.this);
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Calculating score...");
+        progressDialog.setCancelable(false);
         progressDialog.show();
         option4.setClickable(false);
         option1.setClickable(false);
