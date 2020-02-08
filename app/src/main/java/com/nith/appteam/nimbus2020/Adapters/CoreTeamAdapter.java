@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Adapters;
 
 import android.app.Activity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -28,7 +29,9 @@ public class CoreTeamAdapter extends RecyclerView.Adapter<CoreTeamAdapter.CoreTe
     @NonNull
     @Override
     public CoreTeamViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = View.inflate(parent.getContext(), R.layout.adapter_core_team, null);
+
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.adapter_core_team, parent, false);
         return new CoreTeamViewHolder(view);
     }
 

@@ -108,9 +108,9 @@ public class LeaderBoardActivity extends AppCompatActivity {
                                 if (leaderboardModel.getScore() == t1.getScore()) {
                                     return 0;
                                 } else if (leaderboardModel.getScore() > t1.getScore()) {
-                                    return 1;
-                                } else {
                                     return -1;
+                                } else {
+                                    return 1;
                                 }
                             }
                         });
