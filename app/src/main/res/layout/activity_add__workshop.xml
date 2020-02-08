@@ -74,7 +74,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="20dp"
-            android:hint="Please add date of workshop"
+            android:hint="Please add time of workshop"
             android:inputType="datetime"
             android:padding="20dp" />
 

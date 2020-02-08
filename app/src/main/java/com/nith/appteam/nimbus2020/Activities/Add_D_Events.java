@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -39,6 +40,7 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
@@ -57,6 +59,8 @@ public class Add_D_Events extends AppCompatActivity {
     private String imageUrl = "";
     private Bitmap bmp, img;
     private int mYear,mMonth,mDay,mHour, mMinute;
+    private  Bitmap bitmap;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +85,18 @@ public class Add_D_Events extends AppCompatActivity {
 //                        .toString()+","+"regUrl"+regUrlAdd.getText().toString()+"}";
 
 
-                AddDetailsD();
+                if(bitmap!=null)
+                getImageUrl(bitmap);
+                else {
+                    try {
+                        URL url = new URL(getResources().getString(R.string.defaultImageUrl));
+                         bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+                         getImageUrl(bitmap);
+                    } catch(IOException e) {
+                        System.out.println(e);
+                    }
+
+                }
 
 
             }
@@ -165,9 +180,9 @@ public class Add_D_Events extends AppCompatActivity {
             img = getResizedBitmap(bmp, 300);
 //          pass = encodeTobase64(img);
             imgD.setImageBitmap(img);
-            Bitmap bitmap = ((BitmapDrawable) imgD.getDrawable()).getBitmap();
+             bitmap = ((BitmapDrawable) imgD.getDrawable()).getBitmap();
 
-            getImageUrl(bitmap);
+
         }
     }
 
@@ -187,6 +202,11 @@ public class Add_D_Events extends AppCompatActivity {
     }
 
     public void getImageUrl(Bitmap bitmap) {
+        progressDialog = new ProgressDialog(Add_D_Events.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Posting...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byteArray = stream.toByteArray();
@@ -206,6 +226,7 @@ public class Add_D_Events extends AppCompatActivity {
                     @Override
                     public void onSuccess(String requestId, Map resultData) {
                         imageUrl = String.valueOf(resultData.get("url"));
+                        AddDetailsD();
 
                     }
 
@@ -236,6 +257,7 @@ public class Add_D_Events extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
+                    progressDialog.dismiss();
                     JSONObject object = new JSONObject(response);
                     Log.i("Tag", "Success");
                     Toast.makeText(getApplicationContext(), object.toString(),
