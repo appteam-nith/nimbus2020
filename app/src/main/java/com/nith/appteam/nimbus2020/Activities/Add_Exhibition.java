@@ -180,7 +180,6 @@ public class Add_Exhibition extends AppCompatActivity {
             imageAddExh.setImageBitmap(img);
             Bitmap bitmap = ((BitmapDrawable) imageAddExh.getDrawable()).getBitmap();
 
-            getImageUrl(bitmap);
         }
     }
 
