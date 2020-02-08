@@ -285,6 +285,7 @@ public class ProfileNew extends AppCompatActivity {
                     params.put("college", college.getText().toString());
                     //params.put("campusAmbassador", false);
                     params.put("image", imageUrl);
+                    params.put("campusAmbassador", "" + sharedPrefs.getBoolean("campusAmbassador", false));
                     params.put("phone", phoneNumber.getText().toString());
                     return params;
                 }

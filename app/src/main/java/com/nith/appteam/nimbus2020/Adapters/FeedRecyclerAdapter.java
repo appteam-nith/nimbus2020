@@ -45,10 +45,12 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
         currentFeed = arrayList.get(position);
         String img = currentFeed.getImageUrl();
         postUrl = currentFeed.getSocialUrl();
-        Picasso.with(context)
-                .load(img)
-                .placeholder(R.drawable.nimbus_logo)
-                .into(holder.feedImage);
+        {
+            Picasso.with(context)
+                    .load(img)
+                    .placeholder(R.drawable.nimbus_logo)
+                    .into(holder.feedImage);
+        }
     }
 
     @Override

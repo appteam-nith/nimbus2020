@@ -1,7 +1,5 @@
 package com.nith.appteam.nimbus2020.Activities;
 
-import static com.loopj.android.http.AsyncHttpClient.log;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,13 +8,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Adapters.Events_D_RecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.departmentEvent;
@@ -30,12 +32,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 
 public class department_Events extends AppCompatActivity {
     private RecyclerView recyclerViewDEVE;
@@ -57,8 +53,8 @@ public class department_Events extends AppCompatActivity {
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPref.edit();
         FloatingActionButton fab = findViewById(R.id.fabD);
-        log.e("phone", sharedPref.getString("phoneNumber", ""));
-        if (sharedPref.getString("phoneNumber", "").equals("+918219341697")||sharedPref.getString("phoneNumber", "").equals("+917982107070")) {
+        Log.e("phone", sharedPref.getString("phoneNumber", ""));
+        if (sharedPref.getString("phoneNumber", "").equals("+918219341697") || sharedPref.getString("phoneNumber", "").equals("+917982107070")) {
             fab.setVisibility(View.VISIBLE);
 
             fab.setOnClickListener(new View.OnClickListener() {
