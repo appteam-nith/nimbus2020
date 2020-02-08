@@ -85,13 +85,13 @@ public class Add_Exhibition extends AppCompatActivity {
                 if(bitmap!=null)
                     getImageUrl(bitmap);
                 else {
-                    try {
-                        URL url = new URL(getResources().getString(R.string.defaultImageUrl));
-                        bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                        getImageUrl(bitmap);
-                    } catch(IOException e) {
-                        System.out.println(e);
-                    }
+                    progressDialog = new ProgressDialog(Add_Exhibition.this);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Posting...");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+                    imageUrl = getString(R.string.defaultImage);
+                    AddDetailsExh();
 
                 }
 

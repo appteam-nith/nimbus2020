@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,7 +29,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -40,13 +42,10 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_D_Events extends AppCompatActivity {
@@ -58,8 +57,8 @@ public class Add_D_Events extends AppCompatActivity {
     private byte[] byteArray;
     private String imageUrl = "";
     private Bitmap bmp, img;
-    private int mYear,mMonth,mDay,mHour, mMinute;
-    private  Bitmap bitmap;
+    private int mYear, mMonth, mDay, mHour, mMinute;
+    private Bitmap bitmap;
     private ProgressDialog progressDialog;
 
     @Override
@@ -85,16 +84,16 @@ public class Add_D_Events extends AppCompatActivity {
 //                        .toString()+","+"regUrl"+regUrlAdd.getText().toString()+"}";
 
 
-                if(bitmap!=null)
-                getImageUrl(bitmap);
+                if (bitmap != null)
+                    getImageUrl(bitmap);
                 else {
-                    try {
-                        URL url = new URL(getResources().getString(R.string.defaultImageUrl));
-                         bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                         getImageUrl(bitmap);
-                    } catch(IOException e) {
-                        System.out.println(e);
-                    }
+                    progressDialog = new ProgressDialog(Add_D_Events.this);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Posting...");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+                    imageUrl = getString(R.string.defaultImage);
+                    AddDetailsD();
 
                 }
 
@@ -126,7 +125,7 @@ public class Add_D_Events extends AppCompatActivity {
 
                             @Override
                             public void onDateSet(DatePicker view, int year,
-                                    int monthOfYear, int dayOfMonth) {
+                                                  int monthOfYear, int dayOfMonth) {
 
                                 dateAddD.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
@@ -149,7 +148,7 @@ public class Add_D_Events extends AppCompatActivity {
 
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
-                                    int minute) {
+                                                  int minute) {
 
                                 timeAddD.setText(hourOfDay + ":" + minute);
                             }
@@ -180,7 +179,7 @@ public class Add_D_Events extends AppCompatActivity {
             img = getResizedBitmap(bmp, 300);
 //          pass = encodeTobase64(img);
             imgD.setImageBitmap(img);
-             bitmap = ((BitmapDrawable) imgD.getDrawable()).getBitmap();
+            bitmap = ((BitmapDrawable) imgD.getDrawable()).getBitmap();
 
 
         }
@@ -300,7 +299,7 @@ public class Add_D_Events extends AppCompatActivity {
                 params.put("name", nameAddD.getText().toString());
                 params.put("info", infoAddD.getText().toString());
                 params.put("venue", venueAddD.getText().toString());
-                params.put("date", dateAddD.getText().toString()+" "+timeAddD.getText().toString());
+                params.put("date", dateAddD.getText().toString() + " " + timeAddD.getText().toString());
                 params.put("abstract", pdfAddD.getText().toString());
                 params.put("image", imageUrl);
                 // params.put("image",imageAdd.getText().toString());

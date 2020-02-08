@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -58,6 +59,7 @@ public class Add_I_Events extends AppCompatActivity {
     private Bitmap bmp, img;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private Uri photoUri;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,6 +85,13 @@ public class Add_I_Events extends AppCompatActivity {
                     Bitmap bitmap = ((BitmapDrawable) imgI.getDrawable()).getBitmap();
                     getImageUrl(bitmap);
                 } else {
+                    progressDialog = new ProgressDialog(Add_I_Events.this);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Posting...");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+                    imageUrl = String.valueOf(R.string.defaultImage);
+                    AddDetailsI();
                 }
 
 
@@ -186,6 +195,11 @@ public class Add_I_Events extends AppCompatActivity {
     }
 
     public void getImageUrl(Bitmap bitmap) {
+        progressDialog = new ProgressDialog(Add_I_Events.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Posting...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byteArray = stream.toByteArray();
@@ -233,6 +247,7 @@ public class Add_I_Events extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
+                    progressDialog.dismiss();
                     JSONObject object = new JSONObject(response);
                     Log.i("Tag", "Success");
                     Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();

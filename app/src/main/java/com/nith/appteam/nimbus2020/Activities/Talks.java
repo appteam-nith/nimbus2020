@@ -78,7 +78,7 @@ public class Talks extends AppCompatActivity {
         Picasso.with(this).load(R.drawable.talk).fit().into(talkk);
 
         FloatingActionButton fab = findViewById(R.id.fabtalk);
-        if( sharedPref.getString("phoneNumber","").equals("+917982107070") ||sharedPref.getString("phoneNumber","").equals("+918572027705")||sharedPref.getString("phoneNumber","").equals("+918959747704")) {
+        if( sharedPref.getString("phoneNumber","").equals("+917982107070") ||sharedPref.getString("phoneNumber","").equals("+918572027705")||sharedPref.getString("phoneNumber","").equals("+918959747704")||sharedPref.getString("phoneNumber","").equals("+919340453051")) {
             fab.setVisibility(View.VISIBLE);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override

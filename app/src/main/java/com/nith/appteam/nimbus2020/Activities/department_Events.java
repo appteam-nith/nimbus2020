@@ -54,7 +54,7 @@ public class department_Events extends AppCompatActivity {
         editor = sharedPref.edit();
         FloatingActionButton fab = findViewById(R.id.fabD);
         Log.e("phone", sharedPref.getString("phoneNumber", ""));
-        if (sharedPref.getString("phoneNumber", "").equals("+918219341697") || sharedPref.getString("phoneNumber", "").equals("+917982107070")||sharedPref.getString("phoneNumber","").equals("+918572027705")||sharedPref.getString("phoneNumber","").equals("+918959747704")) {
+        if (sharedPref.getString("phoneNumber", "").equals("+918219341697") || sharedPref.getString("phoneNumber", "").equals("+917982107070")||sharedPref.getString("phoneNumber","").equals("+918572027705")||sharedPref.getString("phoneNumber","").equals("+918959747704")||sharedPref.getString("phoneNumber","").equals("+918572027705")||sharedPref.getString("phoneNumber","").equals("+919340453051")) {
             fab.setVisibility(View.VISIBLE);
 
             fab.setOnClickListener(new View.OnClickListener() {
