@@ -3,7 +3,6 @@ package com.nith.appteam.nimbus2020.Adapters;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nith.appteam.nimbus2020.Activities.Web;
 import com.nith.appteam.nimbus2020.Models.FeedItem;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
@@ -58,6 +58,14 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
         return arrayList.size();
     }
 
+    private void openUrl(String regURL) {
+        Intent intent = new Intent(context, Web.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.putExtra("url", regURL);
+        context.startActivity(intent);
+
+    }
+
     class viewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
         private ImageView feedImage;
 
@@ -73,9 +81,10 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
                         if (!URLUtil.isValidUrl(postUrl)) {
                             Toast.makeText(context, " This is not a valid link", Toast.LENGTH_LONG).show();
                         } else {
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(postUrl));
-                            context.startActivity(intent);
+//                            Intent intent = new Intent(Intent.ACTION_VIEW);
+//                            intent.setData(Uri.parse(postUrl));
+//                            context.startActivity(intent);
+                            openUrl(postUrl);
                         }
                     } catch (ActivityNotFoundException e) {
                         Toast.makeText(context, " You don't have any browser to open web page", Toast.LENGTH_LONG).show();

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -196,7 +197,7 @@ public class CampusAmbassadorPost extends AppCompatActivity {
     }
 
     public void submitPost() {
-        if (!socialUrl.equals("")) {
+        if (!socialUrl.equals("") && URLUtil.isValidUrl(socialUrl)) {
             if (!(hash == null) && !(imageUrl == null)) {
                 Log.e("generated URL hash", hash);
                 RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
@@ -255,8 +256,9 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                 requestQueue.add(stringRequest);
             }
         } else {
-            Toast.makeText(CampusAmbassadorPost.this, "Please enter URL", Toast.LENGTH_SHORT).show();
+            Toast.makeText(CampusAmbassadorPost.this, "Please enter valid URL", Toast.LENGTH_SHORT).show();
             submitPost.setVisibility(View.VISIBLE);
+            progressBar.setVisibility(View.GONE);
         }
 
     }

@@ -161,7 +161,7 @@ public class Login extends AppCompatActivity {
                     editor.putString("college", jsonObject.getString("collegeName"));
                     editor.putString("profileImage", jsonObject.getString("profileImage"));
                     editor.putString("normalPoints", jsonObject.getString("userPoints"));
-                    editor.putString("campusAmbassador", jsonObject.getString("campusAmbassador"));
+                    editor.putBoolean("campusAmbassador", jsonObject.getBoolean("campusAmbassador"));
                     editor.putString("caPoints", jsonObject.getString("campusAmbassadorPoints"));
                     editor.putBoolean("profileStatus", true);
                     editor.commit();
