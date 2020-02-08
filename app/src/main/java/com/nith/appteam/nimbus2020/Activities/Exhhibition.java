@@ -1,8 +1,10 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -80,7 +82,7 @@ public class Exhhibition extends AppCompatActivity {
 
 
         FloatingActionButton fab = findViewById(R.id.fabExh);
-        if( sharedPref.getString("phoneNumber","").equals("+918219341697")||sharedPref.getString("phoneNumber","").equals("+917982107070"))
+        if( sharedPref.getString("phoneNumber","").equals("+918219341697")||sharedPref.getString("phoneNumber","").equals("+917982107070")||sharedPref.getString("phoneNumber","").equals("+918572027705")||sharedPref.getString("phoneNumber","").equals("+918959747704"))
         {
             fab.setVisibility(View.VISIBLE);
         fab.setOnClickListener(new View.OnClickListener() {
