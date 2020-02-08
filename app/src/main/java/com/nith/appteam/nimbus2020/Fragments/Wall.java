@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,9 +32,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class Wall extends Fragment {
+    FeedRecyclerAdapter feedRecyclerAdapter;
     private SharedPreferences sharedPreferences;
     private FloatingActionButton upload;
     private RecyclerView feed;
@@ -74,9 +75,10 @@ public class Wall extends Fragment {
             }
         });
         progressBar.setVisibility(View.VISIBLE);
-        getFeeds();
+//        getFeeds();
         if (getContext() != null) {
-            feed.setAdapter(new FeedRecyclerAdapter(getContext(), feedList));
+            feedRecyclerAdapter = new FeedRecyclerAdapter(getContext(), feedList);
+            feed.setAdapter(feedRecyclerAdapter);
         }
         return rootView;
     }
@@ -87,15 +89,19 @@ public class Wall extends Fragment {
             @Override
             public void onResponse(String response) {
                 try {
+
                     JSONArray jsonArray = new JSONArray(response);
                     for (int i = jsonArray.length() - 1; i >= 0; i--) {
                         String imageUrl = jsonArray.getJSONObject(i).getString("image_url");
                         String postUrl = jsonArray.getJSONObject(i).getString("post_url");
                         FeedItem currentFeed = new FeedItem(imageUrl, postUrl);
                         feedList.add(currentFeed);
+
                     }
-                    Objects.requireNonNull(feed.getAdapter()).notifyDataSetChanged();
+                    Log.e("arraySize", "" + jsonArray.length());
+//                    Objects.requireNonNull(feed.getAdapter()).notifyDataSetChanged();
                     progressBar.setVisibility(View.GONE);
+                    feedRecyclerAdapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
