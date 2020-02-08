@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
+
     private Button quiz, sponsor, profile, campusA, workshops, talks, events, qr, exhibition,
             schedule, contributors, coreTeam;
 
