@@ -33,6 +33,7 @@ import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
 import com.cloudinary.android.policy.TimeWindow;
 import com.nith.appteam.nimbus2020.R;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -71,6 +72,21 @@ public class ProfileNew extends AppCompatActivity {
         getUI();
         if (sharedPrefs.getBoolean("profileStatus", false)) {
             ca.setVisibility(View.INVISIBLE);
+            rollno.setEnabled(false);
+        }
+        Intent intent = getIntent();
+        if (intent.hasExtra("editProfile")) {
+            editProfile = getIntent().getExtras().getBoolean("editProfile");
+            String image = sharedPrefs.getString("profileImage", null);
+            if (editProfile) {
+                Picasso.with(ProfileNew.this)
+                        .load(image)
+                        .placeholder(R.drawable.default_profile_pic)
+                        .into(profilePic);
+                rollno.setText(sharedPrefs.getString("rollno", ""));
+                name.setText(sharedPrefs.getString("name", ""));
+                college.setText(sharedPrefs.getString("college", ""));
+            }
         }
         phoneNumber.setText(sharedPrefs.getString("phoneNumber", ""));
         phoneNumber.setEnabled(false);
@@ -198,7 +214,7 @@ public class ProfileNew extends AppCompatActivity {
     private void submitProfile() {
         if (!name.getText().toString().isEmpty() && !rollno.getText().toString().isEmpty() &&
                 !phoneNumber.getText().toString().isEmpty() && !college.getText().toString().isEmpty()) {
-            Intent intent = new Intent();
+            Intent intent = getIntent();
             editProfile = false;
             if (intent.hasExtra("editProfile")) {
                 editProfile = getIntent().getExtras().getBoolean("editProfile");

@@ -88,6 +88,7 @@ public class CampusAmbassadorPost extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 progressBar.setVisibility(View.VISIBLE);
+                submitPost.setVisibility(View.INVISIBLE);
                 socialUrl = link.getText().toString();
                 hash = md5(socialUrl);
                 if (photoUri != null) {
@@ -162,6 +163,7 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                     public void onError(String requestId, ErrorInfo error) {
                         Log.i("HELLO", "JIJIJ");
 //                      finish();
+                        submitPost.setVisibility(View.VISIBLE);
                         Toast.makeText(CampusAmbassadorPost.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();
                     }
 
@@ -194,7 +196,6 @@ public class CampusAmbassadorPost extends AppCompatActivity {
     }
 
     public void submitPost() {
-
         if (!socialUrl.equals("")) {
             if (!(hash == null) && !(imageUrl == null)) {
                 Log.e("generated URL hash", hash);
@@ -250,8 +251,11 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                 };
                 requestQueue.add(stringRequest);
             }
-        } else
+        } else {
             Toast.makeText(CampusAmbassadorPost.this, "Please enter URL", Toast.LENGTH_SHORT).show();
+            submitPost.setVisibility(View.VISIBLE);
+        }
+
     }
 
     public void getPoints() {
