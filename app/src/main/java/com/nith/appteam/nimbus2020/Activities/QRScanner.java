@@ -153,8 +153,16 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
 //                            }
                             String error = object.getString("errorCode");
                             Log.e("error", error + "");
+                            if(error.equals("1"))
+                            {
+                                new AlertDialog.Builder(QRScanner.this)
+                                        .setTitle("Invalid QR")
+                                        .setMessage("You have scanned an invalid QR")
+                                        .setIcon(android.R.drawable.ic_dialog_alert)
+                                        .show();
+                            }
 
-                            if (error.equals("1")) {
+                          else  if (error.equals("2")) {
                                 flag = false;
                                 new AlertDialog.Builder(QRScanner.this)
                                         .setTitle("QR has been already sent")

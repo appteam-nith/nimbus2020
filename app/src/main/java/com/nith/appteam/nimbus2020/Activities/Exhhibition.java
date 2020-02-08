@@ -86,7 +86,8 @@ public class Exhhibition extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                showInputDialog();
+                Intent intent = new Intent(Exhhibition.this, Add_Exhibition.class);
+                startActivity(intent);
 
 
             }
@@ -173,32 +174,7 @@ public class Exhhibition extends AppCompatActivity {
         recyclerView.getAdapter().notifyDataSetChanged();
         recyclerView.scheduleLayoutAnimation();
     }
-    public void showInputDialog()
-    {
-        alertDialogBuilder=new AlertDialog.Builder(this);
-        View view=getLayoutInflater().inflate(R.layout.dialog_view,null);
-        num= view.findViewById(R.id.dialog_edit);
-        Button submit= view.findViewById(R.id.submitButton);
-        alertDialogBuilder.setView(view);
-        dialog=alertDialogBuilder.create();
-        dialog.show();
 
-
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(num.getText().toString().equals("8219341697")) {
-                    Intent intent = new Intent(Exhhibition.this, Add_Exhibition.class);
-                    startActivity(intent);
-                }
-                else
-                {
-                    Toast.makeText(Exhhibition.this,"Not Allowed",Toast.LENGTH_SHORT).show();
-                }
-                dialog.dismiss();
-            }
-        });
-    }
 
 
 }
