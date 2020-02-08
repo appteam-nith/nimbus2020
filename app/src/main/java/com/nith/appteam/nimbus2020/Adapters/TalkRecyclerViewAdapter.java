@@ -51,7 +51,7 @@ public class TalkRecyclerViewAdapter extends
         holder.date.setText(talks.getDate());
         holder.venue.setText(talks.getVenue());
         holder.name.setText(talks.getName());
-        Picasso.with(context).load(imageLink).placeholder(android.R.drawable.ic_btn_speak_now).into(
+        Picasso.with(context).load(imageLink).into(
                 holder.imgSpkr);
 
 

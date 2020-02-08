@@ -89,14 +89,13 @@ public class Add_Workshop extends AppCompatActivity {
                 if(bitmap!=null)
                     getImageUrl(bitmap);
                 else {
-                    try {
-                        URL url = new URL(getResources().getString(R.string.defaultImage));
-                        bitmap = BitmapFactory.decodeStream(url.openConnection().getInputStream());
-                        getImageUrl(bitmap);
-                    } catch(IOException e) {
-                        System.out.println(e);
-                    }
-
+                    progressDialog = new ProgressDialog(Add_Workshop.this);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Posting...");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+                    imageUrl = getString(R.string.defaultImage);
+                    AddDetailsWrk();
                 }
             }
         });

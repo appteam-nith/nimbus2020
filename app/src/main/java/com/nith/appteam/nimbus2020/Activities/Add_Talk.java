@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -58,6 +59,7 @@ public class Add_Talk extends AppCompatActivity {
     private Bitmap bmp, img;
     private int mYear, mMonth, mDay, mHour, mMinute;
     private Uri photoUri;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +84,15 @@ public class Add_Talk extends AppCompatActivity {
                 if (photoUri != null) {
                     Bitmap bitmap = ((BitmapDrawable) imageAddTalk.getDrawable()).getBitmap();
                     getImageUrl(bitmap);
-                } else
-                    Toast.makeText(Add_Talk.this, "Please select photo", Toast.LENGTH_SHORT).show();
+                } else {
+                    progressDialog = new ProgressDialog(Add_Talk.this);
+                    progressDialog.setIndeterminate(true);
+                    progressDialog.setMessage("Posting...");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+                    imageUrl = getString(R.string.defaultImage);
+                    AddDetails();
+                }
             }
         });
 
@@ -187,6 +196,11 @@ public class Add_Talk extends AppCompatActivity {
     }
 
     public void getImageUrl(Bitmap bitmap) {
+        progressDialog = new ProgressDialog(Add_Talk.this);
+        progressDialog.setIndeterminate(true);
+        progressDialog.setMessage("Posting...");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream);
         byteArray = stream.toByteArray();
@@ -236,6 +250,7 @@ public class Add_Talk extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 try {
+                    progressDialog.dismiss();
                     JSONObject object = new JSONObject(response);
                     Log.i("Tag", "Success");
                     Toast.makeText(getApplicationContext(), object.toString(), Toast.LENGTH_SHORT).show();
