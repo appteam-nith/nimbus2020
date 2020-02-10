@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="0dp"
+    app:cardBackgroundColor="@color/background"
     tools:context=".Activities.QuizInstructionsActivity">
 
     <TextView
@@ -15,6 +16,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="16dp"
         android:text="INSTRUCTIONS"
+        android:textColor="@color/white"
         android:textSize="32sp"
         android:textStyle="bold" />
 
@@ -26,6 +28,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/background"
             android:orientation="vertical">
 
             <TextView
@@ -33,22 +36,39 @@
                 style="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingLeft="8dp"
+                android:paddingRight="8dp"
                 android:text="vkkkkkkkkkkkkkkkkkkkkkkas;snvc sdeoraivn a;sosnvsadgr"
+                android:textColor="@color/white"
                 android:textSize="24sp" />
 
             <Button
                 android:id="@+id/playNowButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorAccent"
-                android:text="Play Now!" />
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/round_corner"
+                android:paddingTop="24dp"
+                android:paddingBottom="24dp"
+                android:text="Play Now!"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
 
             <Button
                 android:id="@+id/leaderboardButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/colorAccent"
-                android:text="LeaderBoard" />
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="12dp"
+                android:paddingTop="24dp"
+                android:paddingBottom="24dp"
+                android:background="@drawable/round_border"
+                android:text="LeaderBoard"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
 
         </LinearLayout>
     </ScrollView>

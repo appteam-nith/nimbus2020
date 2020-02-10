@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical"
     tools:context=".Activities.CampusAmbassadorPost">
 
@@ -13,14 +14,16 @@
         android:layout_marginLeft="8dp"
         android:layout_marginTop="20dp"
         android:text="Enter link of social media here"
-        android:textColor="#000" />
+        android:textColor="@color/white" />
 
     <EditText
         android:id="@+id/link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_lable"
-        android:layout_margin="5dp" />
+        android:layout_margin="5dp"
+        android:backgroundTint="@color/white"
+        android:textColor="@color/white" />
 
     <ImageView
         android:id="@+id/imageUpload"
@@ -39,9 +42,9 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="24dp"
-        android:background="@drawable/login_button"
+        android:background="@drawable/round_corner"
         android:text="Upload Picture"
-        android:textColor="#fff" />
+        android:textColor="@color/white" />
 
     <Button
         android:id="@+id/submit_post"
@@ -52,9 +55,9 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="24dp"
-        android:background="@drawable/login_button"
+        android:background="@drawable/round_corner"
         android:text="Submit Post"
-        android:textColor="#fff"
+        android:textColor="@color/white"
         android:visibility="invisible" />
 
     <ProgressBar

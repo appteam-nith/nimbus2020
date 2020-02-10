@@ -89,7 +89,7 @@ public class Add_Workshop extends AppCompatActivity {
                 if(bitmap!=null)
                     getImageUrl(bitmap);
                 else {
-                    progressDialog = new ProgressDialog(Add_Workshop.this);
+                        progressDialog = new ProgressDialog(Add_Workshop.this);
                     progressDialog.setIndeterminate(true);
                     progressDialog.setMessage("Posting...");
                     progressDialog.setCancelable(false);
