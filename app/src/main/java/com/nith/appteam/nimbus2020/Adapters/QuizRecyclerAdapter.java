@@ -52,6 +52,7 @@ public class QuizRecyclerAdapter extends RecyclerView.Adapter<QuizRecyclerAdapte
             super(itemView);
             quizname = itemView.findViewById(R.id.quizdepartmentname);
             mImageView = itemView.findViewById(R.id.userImageView);
+            mImageView.setClipToOutline(true);
         }
     }
 }

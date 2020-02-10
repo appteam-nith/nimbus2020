@@ -61,6 +61,7 @@ public class SponsorsAdapter extends RecyclerView.Adapter<SponsorsAdapter.Sponso
             super(itemView);
             sponsorImageView = itemView.findViewById(R.id.sponsorImageView);
             sponsorTextView = itemView.findViewById(R.id.sponsorTextView);
+            sponsorImageView.setClipToOutline(true);
         }
     }
 }

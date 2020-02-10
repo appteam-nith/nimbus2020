@@ -79,6 +79,7 @@ public class WorkshopRecyclerViewAdapter extends
             imgSpkrWork = itemView.findViewById(R.id.WorkshopImageID);
             venueWor = itemView.findViewById(R.id.workshopVenueID);
             dateWor = itemView.findViewById(R.id.WorkshopDate);
+            imgSpkrWork.setClipToOutline(true);
             //infoWor=(TextView) itemView.findViewById(R.id.workshopInfoID);
             //regUrlWor=(TextView) itemView.findViewById(R.id.regURLWor);
             //typeWor=(TextView)itemView.findViewById(R.id.workshopTypeID);

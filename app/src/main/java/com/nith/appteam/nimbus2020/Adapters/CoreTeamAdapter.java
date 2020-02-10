@@ -66,6 +66,7 @@ public class CoreTeamAdapter extends RecyclerView.Adapter<CoreTeamAdapter.CoreTe
             coreTeamImageView = itemView.findViewById(R.id.coreTeamImageView);
             coreTeamName = itemView.findViewById(R.id.coreTeamName);
             coreTeamPos = itemView.findViewById(R.id.coreTeamPos);
+            coreTeamImageView.setClipToOutline(true);
         }
     }
 }
