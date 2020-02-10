@@ -6,9 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.nith.appteam.nimbus2020.R;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.nith.appteam.nimbus2020.R;
 
 public class MainActivity extends AppCompatActivity {
 
