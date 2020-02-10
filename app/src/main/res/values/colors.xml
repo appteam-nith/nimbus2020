@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="tool">#30aaff</color>
     <color name="white">#ffffff</color>
+    <color name="background">#202020</color>
 </resources>

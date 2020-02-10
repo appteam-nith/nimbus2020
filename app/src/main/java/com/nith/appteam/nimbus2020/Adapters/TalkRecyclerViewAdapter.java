@@ -75,6 +75,7 @@ public class TalkRecyclerViewAdapter extends
             imgSpkr = itemView.findViewById(R.id.speakerImageID);
             venue = itemView.findViewById(R.id.speakerVenueID);
             date = itemView.findViewById(R.id.SpeakerDate);
+            imgSpkr.setClipToOutline(true);
 
             //   info=(TextView) itemView.findViewById(R.id.speakerInfoID);
             //  regUrl=(TextView) itemView.findViewById(R.id.regURL);

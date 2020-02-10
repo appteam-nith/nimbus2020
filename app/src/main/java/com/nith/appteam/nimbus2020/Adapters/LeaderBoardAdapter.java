@@ -66,6 +66,7 @@ public class LeaderBoardAdapter extends
             userImageView = itemView.findViewById(R.id.userImageView);
             nameTextView = itemView.findViewById(R.id.nameTextView);
             scoreTextView = itemView.findViewById(R.id.scoreTextView);
+            userImageView.setClipToOutline(true);
         }
     }
 }

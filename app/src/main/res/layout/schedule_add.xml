@@ -9,29 +9,24 @@
         android:id="@+id/cardTalk"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.031">
+        android:layout_margin="16dp"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="16dp">
 
         <RelativeLayout
             android:id="@+id/contSch"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="12dp">
+            android:background="@drawable/card_gradient"
+            android:padding="16dp">
 
             <TextView
                 android:id="@+id/EventSchNameID"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
                 android:paddingLeft="5dp"
                 android:text="Event Name"
-
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -42,11 +37,8 @@
                 android:layout_below="@+id/EventSchNameID"
                 android:padding="5dp"
                 android:text="Dated"
-
                 android:textSize="17sp"
-                android:textStyle="bold"
-
-                />
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/EventSchVenueID"

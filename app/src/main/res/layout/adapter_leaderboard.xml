@@ -5,13 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    app:cardUseCompatPadding="true">
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="0dp"
+    android:layout_margin="16dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@drawable/card_gradient">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/userImageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
@@ -20,9 +24,8 @@
             android:layout_marginBottom="16dp"
             android:padding="8dp"
             android:src="@mipmap/ic_launcher_round"
-            app:civ_border_color="#000000"
-            app:civ_border_width="2dp"
-            tools:src="@mipmap/ic_launcher_round" />
+            tools:src="@mipmap/ic_launcher_round"
+            android:background="@drawable/round_outline"/>
 
         <TextView
             android:id="@+id/Name"

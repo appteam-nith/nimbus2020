@@ -72,6 +72,7 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
         private viewHolder(@NonNull View itemView) {
             super(itemView);
             feedImage = itemView.findViewById(R.id.feed_image);
+            feedImage.setClipToOutline(true);
             feedImage.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {

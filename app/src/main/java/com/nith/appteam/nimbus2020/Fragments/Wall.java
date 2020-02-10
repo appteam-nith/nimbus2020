@@ -27,6 +27,7 @@ import com.nith.appteam.nimbus2020.Activities.CampusAmbassadorPost;
 import com.nith.appteam.nimbus2020.Adapters.FeedRecyclerAdapter;
 import com.nith.appteam.nimbus2020.Models.FeedItem;
 import com.nith.appteam.nimbus2020.R;
+import com.nith.appteam.nimbus2020.Utils.SpannedGridLayoutManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,8 +59,24 @@ public class Wall extends Fragment {
         upload = rootView.findViewById(R.id.upload);
         feed = rootView.findViewById(R.id.feed);
         progressBar = rootView.findViewById(R.id.progress_bar);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        feed.setLayoutManager(layoutManager);
+
+        SpannedGridLayoutManager manager = new SpannedGridLayoutManager(
+                new SpannedGridLayoutManager.GridSpanLookup() {
+                    @Override
+                    public SpannedGridLayoutManager.SpanInfo getSpanInfo(int position) {
+                        // Conditions for 2x2 items
+                        if (position % 12 == 0 || position % 12 == 7)  {
+                            return new SpannedGridLayoutManager.SpanInfo(2, 2);
+                        } else {
+                            return new SpannedGridLayoutManager.SpanInfo(1, 1);
+                        }
+                    }
+                },
+                3, // number of columns
+                1f // how big is default item
+        );
+        //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
+        feed.setLayoutManager(manager);
         sharedPreferences = getActivity().getSharedPreferences("app", Context.MODE_PRIVATE);
 
         boolean caStatus = sharedPreferences.getBoolean("campusAmbassador", false);

@@ -78,6 +78,7 @@ public class ExhibitionRecyclerViewAdapter extends
             imgExh = itemView.findViewById(R.id.exhibitionImageID);
             venue = itemView.findViewById(R.id.exhibitionVenueID);
             date = itemView.findViewById(R.id.ExhibitionDate);
+            imgExh.setClipToOutline(true);
             //info=(TextView) itemView.findViewById(R.id.exhibtionInfoID);
             //regUrl=(TextView) itemView.findViewById(R.id.regURLExhibtion);
             itemView.setOnClickListener(new View.OnClickListener() {
