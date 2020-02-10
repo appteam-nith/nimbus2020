@@ -74,6 +74,7 @@ public class EventIRecyclerViewAdapter extends
             imgEVEVi = itemView.findViewById(R.id.EventIImageID);
             venueEVEI = itemView.findViewById(R.id.EventIVenueID);
             datEVEI = itemView.findViewById(R.id.EventIDate);
+            imgEVEVi.setClipToOutline(true);
             //infoEVEI=(TextView) itemView.findViewById(R.id.EventIInfoID);
             //  regUrlEVEI=(TextView) itemView.findViewById(R.id.regURLEvevntI);
             itemView.setOnClickListener(new View.OnClickListener() {

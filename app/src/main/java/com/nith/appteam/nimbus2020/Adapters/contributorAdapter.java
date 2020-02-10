@@ -89,6 +89,7 @@ public class contributorAdapter extends RecyclerView.Adapter<contributorAdapter.
             this.image_url = v.findViewById(R.id.contributor_pic);
             this.contributorname = v.findViewById(R.id.contributor_name);
             this.githublink = v.findViewById(R.id.contributor_link);
+            image_url.setClipToOutline(true);
         }
     }
 }
