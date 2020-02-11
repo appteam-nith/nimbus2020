@@ -11,28 +11,28 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Activities.CampusAmbassadorPost;
 import com.nith.appteam.nimbus2020.Adapters.FeedRecyclerAdapter;
 import com.nith.appteam.nimbus2020.Models.FeedItem;
 import com.nith.appteam.nimbus2020.R;
-import com.nith.appteam.nimbus2020.Utils.SpannedGridLayoutManager;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 public class Wall extends Fragment {
     FeedRecyclerAdapter feedRecyclerAdapter;
@@ -54,35 +54,24 @@ public class Wall extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_wall, container, false);
         upload = rootView.findViewById(R.id.upload);
         feed = rootView.findViewById(R.id.feed);
         progressBar = rootView.findViewById(R.id.progress_bar);
 
-        SpannedGridLayoutManager manager = new SpannedGridLayoutManager(
-                new SpannedGridLayoutManager.GridSpanLookup() {
-                    @Override
-                    public SpannedGridLayoutManager.SpanInfo getSpanInfo(int position) {
-                        // Conditions for 2x2 items
-                        if (position % 12 == 0 || position % 12 == 7)  {
-                            return new SpannedGridLayoutManager.SpanInfo(2, 2);
-                        } else {
-                            return new SpannedGridLayoutManager.SpanInfo(1, 1);
-                        }
-                    }
-                },
-                3, // number of columns
-                1f // how big is default item
-        );
-        //RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getContext());
-        feed.setLayoutManager(manager);
+        StaggeredGridLayoutManager _sGridLayoutManager = new StaggeredGridLayoutManager(2,
+                StaggeredGridLayoutManager.VERTICAL);
+        feed.setLayoutManager(_sGridLayoutManager);
         sharedPreferences = getActivity().getSharedPreferences("app", Context.MODE_PRIVATE);
 
         boolean caStatus = sharedPreferences.getBoolean("campusAmbassador", false);
-        if (caStatus)
+        if (caStatus) {
             upload.setVisibility(View.VISIBLE);
-        else upload.setVisibility(View.GONE);
+        } else {
+            upload.setVisibility(View.GONE);
+        }
 
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,28 +91,29 @@ public class Wall extends Fragment {
 
     private void getFeeds() {
         RequestQueue queue = Volley.newRequestQueue(getContext());
-        StringRequest request = new StringRequest(getString(R.string.baseUrl) + "/views/links", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
+        StringRequest request = new StringRequest(getString(R.string.baseUrl) + "/views/links",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
 
-                    JSONArray jsonArray = new JSONArray(response);
-                    for (int i = jsonArray.length() - 1; i >= 0; i--) {
-                        String imageUrl = jsonArray.getJSONObject(i).getString("image_url");
-                        String postUrl = jsonArray.getJSONObject(i).getString("post_url");
-                        FeedItem currentFeed = new FeedItem(imageUrl, postUrl);
-                        feedList.add(currentFeed);
+                            JSONArray jsonArray = new JSONArray(response);
+                            for (int i = jsonArray.length() - 1; i >= 0; i--) {
+                                String imageUrl = jsonArray.getJSONObject(i).getString("image_url");
+                                String postUrl = jsonArray.getJSONObject(i).getString("post_url");
+                                FeedItem currentFeed = new FeedItem(imageUrl, postUrl);
+                                feedList.add(currentFeed);
 
-                    }
-                    Log.e("arraySize", "" + jsonArray.length());
+                            }
+                            Log.e("arraySize", "" + jsonArray.length());
 //                    Objects.requireNonNull(feed.getAdapter()).notifyDataSetChanged();
-                    progressBar.setVisibility(View.GONE);
-                    feedRecyclerAdapter.notifyDataSetChanged();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
+                            progressBar.setVisibility(View.GONE);
+                            feedRecyclerAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 Toast.makeText(getContext(), volleyError.toString(), Toast.LENGTH_LONG).show();
