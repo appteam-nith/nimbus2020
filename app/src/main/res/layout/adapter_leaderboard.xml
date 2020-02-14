@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="16dp"
     android:orientation="vertical"
-    app:cardUseCompatPadding="true"
     app:cardCornerRadius="16dp"
     app:cardElevation="0dp"
-    android:layout_margin="16dp">
+    app:cardUseCompatPadding="true">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -22,10 +22,10 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/round_outline"
             android:padding="8dp"
             android:src="@mipmap/ic_launcher_round"
-            tools:src="@mipmap/ic_launcher_round"
-            android:background="@drawable/round_outline"/>
+            tools:src="@mipmap/ic_launcher_round" />
 
         <TextView
             android:id="@+id/Name"

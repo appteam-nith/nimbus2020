@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,7 +29,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -40,13 +42,10 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Exhibition extends AppCompatActivity {
@@ -82,7 +81,7 @@ public class Add_Exhibition extends AppCompatActivity {
 //                .getText().toString()+","+"venue"+venueAdd.getText().toString()
 //                        +","+"date"+dateAdd.getText().toString()+","+"image"+imageAdd.getText()
 //                        .toString()+","+"regUrl"+regUrlAdd.getText().toString()+"}";
-                if(bitmap!=null)
+                if (bitmap != null)
                     getImageUrl(bitmap);
                 else {
                     progressDialog = new ProgressDialog(Add_Exhibition.this);
@@ -124,7 +123,7 @@ public class Add_Exhibition extends AppCompatActivity {
 
                             @Override
                             public void onDateSet(DatePicker view, int year,
-                                    int monthOfYear, int dayOfMonth) {
+                                                  int monthOfYear, int dayOfMonth) {
 
                                 dateAddExh.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
@@ -147,7 +146,7 @@ public class Add_Exhibition extends AppCompatActivity {
 
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
-                                    int minute) {
+                                                  int minute) {
 
                                 timeAddD.setText(hourOfDay + ":" + minute);
                             }

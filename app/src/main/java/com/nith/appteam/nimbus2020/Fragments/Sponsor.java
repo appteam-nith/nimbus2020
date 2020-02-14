@@ -1,17 +1,20 @@
-package com.nith.appteam.nimbus2020.Activities;
+package com.nith.appteam.nimbus2020.Fragments;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
 import com.nith.appteam.nimbus2020.Adapters.SponsorsAdapter;
-import com.nith.appteam.nimbus2020.Models.Sponsor;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.IResult;
 import com.nith.appteam.nimbus2020.Utils.VolleyService;
@@ -23,31 +26,28 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SponsorsActivity extends AppCompatActivity {
-
+public class Sponsor extends Fragment {
     RecyclerView recyclerView;
     ProgressBar loadwall;
     SponsorsAdapter mSponsorsAdapter;
-    List<Sponsor> mSponsorList;
+    List<com.nith.appteam.nimbus2020.Models.Sponsor> mSponsorList;
 
     private IResult mResultCallback;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sponsors);
-
-        recyclerView = findViewById(R.id.sponsorsRecyclerView);
-        loadwall = findViewById(R.id.loadwall);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_sponsor, container, false);
+        recyclerView = rootView.findViewById(R.id.sponsorsRecyclerView);
+        loadwall = rootView.findViewById(R.id.loadwall);
         mSponsorList = new ArrayList<>();
         getData();
-        mSponsorsAdapter = new SponsorsAdapter(mSponsorList, this);
-        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
+        mSponsorsAdapter = new SponsorsAdapter(mSponsorList, getActivity());
+        GridLayoutManager layoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mSponsorsAdapter);
-
+        return rootView;
     }
-
 
     private void getData() {
         mSponsorList.clear();
@@ -55,7 +55,7 @@ public class SponsorsActivity extends AppCompatActivity {
 
         initVolleyCallback();
 
-        final VolleyService mVolleyService = new VolleyService(mResultCallback, this);
+        final VolleyService mVolleyService = new VolleyService(mResultCallback, getActivity());
 
         mVolleyService.getJsonArrayDataVolley("GETSPONSORS",
                 getString(R.string.baseUrl) + "/sponsor");
@@ -81,7 +81,7 @@ public class SponsorsActivity extends AppCompatActivity {
                         String sponsor_logo = getResources().getString(R.string.defaultImageUrl);
                         if (obj.has("image")) sponsor_logo = obj.getString("image");
 //                                String  = json.getString("event_time");
-                        mSponsorList.add(new Sponsor(sponsorName, sponsor_logo));
+                        mSponsorList.add(new com.nith.appteam.nimbus2020.Models.Sponsor(sponsorName, sponsor_logo));
                         mSponsorsAdapter.notifyDataSetChanged();
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -104,7 +104,7 @@ public class SponsorsActivity extends AppCompatActivity {
                             String sponsor_logo = getResources().getString(
                                     R.string.defaultImageUrl);
                             if (obj.has("image")) sponsor_logo = obj.getString("image");
-                            mSponsorList.add(new Sponsor(sponsorName, sponsor_logo));
+                            mSponsorList.add(new com.nith.appteam.nimbus2020.Models.Sponsor(sponsorName, sponsor_logo));
                             mSponsorsAdapter.notifyDataSetChanged();
                         } catch (JSONException e) {
                             e.printStackTrace();

@@ -1,7 +1,6 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -40,8 +39,8 @@ public class Add_talk_details extends AppCompatActivity {
     }
 
     private void oprnURL(String regURL) {
-        Intent intent = new Intent(Add_talk_details.this,Web.class);
-       intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(Add_talk_details.this, Web.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("url", regURL);
         getApplicationContext().startActivity(intent);
     }

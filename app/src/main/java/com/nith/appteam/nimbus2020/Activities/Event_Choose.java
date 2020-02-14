@@ -20,7 +20,7 @@ public class Event_Choose extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_event__choose);
 
-        ImageView img =findViewById(R.id.eventForgrnd);
+        ImageView img = findViewById(R.id.eventForgrnd);
         Picasso.with(this).load(R.drawable.event).fit().into(img);
 
 

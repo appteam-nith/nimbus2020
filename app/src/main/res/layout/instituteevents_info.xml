@@ -11,10 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/background"
         app:cardCornerRadius="16dp"
-        app:cardUseCompatPadding="true"
-        app:cardBackgroundColor="@color/background">
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="true">
 
         <RelativeLayout
             android:id="@+id/IcontInfo"

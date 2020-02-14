@@ -10,6 +10,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -17,7 +22,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.nith.appteam.nimbus2020.Adapters.QuizRecyclerAdapter;
 import com.nith.appteam.nimbus2020.Models.Id_Value;
@@ -33,11 +37,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 public class QuizMainActivity extends AppCompatActivity {
@@ -109,7 +108,7 @@ public class QuizMainActivity extends AppCompatActivity {
                         Id_Value idValue = new Id_Value(
                                 jsonArray.getJSONObject(i).getString("departmentName"),
                                 jsonArray.getJSONObject(i).getString("departmentId"),
-                                image,"0","0");
+                                image, "0", "0");
                         quiztypes.add(idValue);
                         Objects.requireNonNull(
                                 quizrecyclerView.getAdapter()).notifyDataSetChanged();

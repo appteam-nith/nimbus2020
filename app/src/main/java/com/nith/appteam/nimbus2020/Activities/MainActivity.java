@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         sponsor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, SponsorsActivity.class);
+                Intent intent = new Intent(MainActivity.this, UI.class);
                 startActivity(intent);
             }
         });

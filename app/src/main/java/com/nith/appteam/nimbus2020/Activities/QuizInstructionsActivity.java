@@ -9,12 +9,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.nith.appteam.nimbus2020.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class QuizInstructionsActivity extends AppCompatActivity {
 
@@ -53,11 +53,11 @@ public class QuizInstructionsActivity extends AppCompatActivity {
                     int error = jsonObject.getInt("errorCode");
 
                     if (error == 1) {
-                        String startTime=getIntent().getStringExtra("startTime");
-                        String endTime=getIntent().getStringExtra("endTime");
+                        String startTime = getIntent().getStringExtra("startTime");
+                        String endTime = getIntent().getStringExtra("endTime");
                         new AlertDialog.Builder(QuizInstructionsActivity.this)
                                 .setTitle("Not right time!")
-                                .setMessage("Start time: "+startTime+"\n"+"End time: "+endTime)
+                                .setMessage("Start time: " + startTime + "\n" + "End time: " + endTime)
                                 .setIcon(android.R.drawable.ic_dialog_alert)
                                 .show();
                         flag = false;

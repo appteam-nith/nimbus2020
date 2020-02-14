@@ -1,7 +1,6 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
@@ -50,21 +49,21 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
 
     }
 
-    private void openDialogBox()
-    {  alertDialogBuilder=new AlertDialog.Builder(this);
-        View view=getLayoutInflater().inflate(R.layout.abstract_dialog_box,null);
-        abstractDet= view.findViewById(R.id.abstract_dialogText);
+    private void openDialogBox() {
+        alertDialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.abstract_dialog_box, null);
+        abstractDet = view.findViewById(R.id.abstract_dialogText);
         abstractDet.setText(instituteEvent.getAbstractIEVE());
-        Button submit= view.findViewById(R.id.CloseButton);
+        Button submit = view.findViewById(R.id.CloseButton);
         alertDialogBuilder.setView(view);
-        dialog=alertDialogBuilder.create();
+        dialog = alertDialogBuilder.create();
         dialog.show();
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"exit",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "exit", Toast.LENGTH_SHORT).show();
 
                 dialog.dismiss();
             }
@@ -72,7 +71,7 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
     }
 
     private void oprnURLExh(String regURL) {
-        Intent intent = new Intent(Add_institute_Activity_Detail.this,Web.class);
+        Intent intent = new Intent(Add_institute_Activity_Detail.this, Web.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("url", regURL);
         getApplicationContext().startActivity(intent);

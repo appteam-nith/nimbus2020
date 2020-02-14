@@ -1,21 +1,18 @@
 package com.nith.appteam.nimbus2020.Activities;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.view.animation.LayoutAnimationController;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,13 +39,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class Exhhibition extends AppCompatActivity {
 
@@ -77,25 +67,23 @@ public class Exhhibition extends AppCompatActivity {
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
         setSupportActionBar(collapsingToolbar);
 
-        ImageView exhi =findViewById(R.id.exhibitionImageView);
+        ImageView exhi = findViewById(R.id.exhibitionImageView);
         Picasso.with(this).load(R.drawable.exhibition).fit().into(exhi);
 
 
         FloatingActionButton fab = findViewById(R.id.fabExh);
-        if( sharedPref.getString("phoneNumber","").equals("+918219341697")||sharedPref.getString("phoneNumber","").equals("+917982107070")||sharedPref.getString("phoneNumber","").equals("+918572027705")||sharedPref.getString("phoneNumber","").equals("+918959747704"))
-        {
+        if (sharedPref.getString("phoneNumber", "").equals("+918219341697") || sharedPref.getString("phoneNumber", "").equals("+917982107070") || sharedPref.getString("phoneNumber", "").equals("+918572027705") || sharedPref.getString("phoneNumber", "").equals("+918959747704")) {
             fab.setVisibility(View.VISIBLE);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Exhhibition.this, Add_Exhibition.class);
-                startActivity(intent);
+            fab.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Exhhibition.this, Add_Exhibition.class);
+                    startActivity(intent);
 
 
-            }
-        });}
-        else
-        {
+                }
+            });
+        } else {
             fab.setVisibility(View.GONE);
         }
         loadWall = findViewById(R.id.loadwallExh);
@@ -176,7 +164,6 @@ public class Exhhibition extends AppCompatActivity {
         recyclerView.getAdapter().notifyDataSetChanged();
         recyclerView.scheduleLayoutAnimation();
     }
-
 
 
 }

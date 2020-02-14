@@ -29,8 +29,7 @@ public class SponsorsAdapter extends RecyclerView.Adapter<SponsorsAdapter.Sponso
     @NonNull
     @Override
     public SponsorsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.adapter_sponsors, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_sponsors, parent, false);
         return new SponsorsViewHolder(view);
     }
 

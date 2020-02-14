@@ -6,6 +6,11 @@
     <color name="tool">#30aaff</color>
     <color name="white">#ffffff</color>
     <color name="accent">#147EFB</color>
+
+
+    <color name="greyLight">#6a6969</color>
+    <color name="blueDark">#109cac</color>
+    <color name="blueLight">#2fc0d1</color>
     <color name="background">#101010</color>
     <color name="lightBlue">#2fc0d1</color>
     <color name="darkBlue">#109cac</color>

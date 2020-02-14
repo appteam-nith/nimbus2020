@@ -18,6 +18,9 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -26,7 +29,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.cloudinary.android.MediaManager;
 import com.cloudinary.android.callback.ErrorInfo;
 import com.cloudinary.android.callback.UploadCallback;
@@ -40,13 +42,10 @@ import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Workshop extends AppCompatActivity {
@@ -60,7 +59,7 @@ public class Add_Workshop extends AppCompatActivity {
     private byte[] byteArray;
     private String imageUrl = "";
     private Bitmap bmp, img;
-    private int mYear,mMonth,mDay,mHour, mMinute;
+    private int mYear, mMonth, mDay, mHour, mMinute;
     private Bitmap bitmap;
     private ProgressDialog progressDialog;
 
@@ -76,7 +75,7 @@ public class Add_Workshop extends AppCompatActivity {
         imageAddWrk = findViewById(R.id.addImgWrk);
         regUrlAddWrk = findViewById(R.id.addregUrlWrk);
         addButtonWork = findViewById(R.id.AddButtonWrk);
-        timeAddD=findViewById(R.id.timeAddD);
+        timeAddD = findViewById(R.id.timeAddD);
 
         addButtonWork.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,10 +85,10 @@ public class Add_Workshop extends AppCompatActivity {
 //                        +","+"date"+dateAdd.getText().toString()+","+"image"+imageAdd.getText()
 //                        .toString()+","+"regUrl"+regUrlAdd.getText().toString()+"}";
 
-                if(bitmap!=null)
+                if (bitmap != null)
                     getImageUrl(bitmap);
                 else {
-                        progressDialog = new ProgressDialog(Add_Workshop.this);
+                    progressDialog = new ProgressDialog(Add_Workshop.this);
                     progressDialog.setIndeterminate(true);
                     progressDialog.setMessage("Posting...");
                     progressDialog.setCancelable(false);
@@ -125,7 +124,7 @@ public class Add_Workshop extends AppCompatActivity {
 
                             @Override
                             public void onDateSet(DatePicker view, int year,
-                                    int monthOfYear, int dayOfMonth) {
+                                                  int monthOfYear, int dayOfMonth) {
 
                                 dateAddWrk.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
 
@@ -148,7 +147,7 @@ public class Add_Workshop extends AppCompatActivity {
 
                             @Override
                             public void onTimeSet(TimePicker view, int hourOfDay,
-                                    int minute) {
+                                                  int minute) {
 
                                 timeAddD.setText(hourOfDay + ":" + minute);
                             }
@@ -179,7 +178,7 @@ public class Add_Workshop extends AppCompatActivity {
             img = getResizedBitmap(bmp, 300);
 //          pass = encodeTobase64(img);
             imageAddWrk.setImageBitmap(img);
-             bitmap = ((BitmapDrawable) imageAddWrk.getDrawable()).getBitmap();
+            bitmap = ((BitmapDrawable) imageAddWrk.getDrawable()).getBitmap();
 
 
         }
