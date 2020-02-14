@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.nith.appteam.nimbus2020">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".Activities.Nimbus2020"
         android:allowBackup="true"
@@ -11,11 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-
-        <activity android:name=".Activities.Web"></activity>
-
-        <activity android:name=".Activities.CoreTeamActivity"></activity>
-
+        <activity android:name=".Activities.UI"></activity>
+        <activity android:name=".Activities.Web" />
+        <activity android:name=".Activities.CoreTeamActivity" />
         <activity android:name=".Activities.CampusAmbassador" />
         <activity android:name=".Activities.Schedule" />
         <activity android:name=".Activities.Schedule_Day" />
@@ -40,9 +42,7 @@
         <activity
             android:name=".Activities.Add_Exhibition"
             android:theme="@style/AppTheme" />
-
         <activity android:name=".Activities.QRScanner" />
-
         <activity
             android:name=".Activities.department_Events"
             android:theme="@style/AppTheme" />
@@ -65,8 +65,9 @@
             android:name=".Activities.Talks"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Activities.CampusAmbassadorPost" />
-        <activity android:name=".Activities.QuizScoreActivity"
-            android:launchMode="singleTop"/>
+        <activity
+            android:name=".Activities.QuizScoreActivity"
+            android:launchMode="singleTop" />
         <activity android:name=".Activities.LeaderBoardActivity" />
         <activity android:name=".Activities.QuizInstructionsActivity" />
         <activity android:name=".Activities.ProfileMain" />
@@ -75,8 +76,8 @@
         <activity android:name=".Activities.SponsorsActivity" />
         <activity
             android:name=".Activities.MainActivity"
-            android:theme="@style/AppTheme"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:theme="@style/AppTheme" />
         <activity android:name=".Activities.Quiz" />
         <activity android:name=".Activities.DepartmentQuiz" />
         <activity android:name=".Activities.QuizMainActivity" />
@@ -85,10 +86,5 @@
             android:name="CLOUDINARY_URL"
             android:value="cloudinary://256963859891119:w4WXsRRz58DN3eVbGK1g6JvcjJY@duutozrvz" />
     </application>
-
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.CAMERA" />
-
-    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>

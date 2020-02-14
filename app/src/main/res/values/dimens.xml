@@ -23,5 +23,5 @@
     <!-- Profile Margins -->
     <dimen name="profileLabelLeft">50dp</dimen>
     <dimen name="profileEditTextLeft">45dp</dimen>
-
+    <dimen name="cardCornerRadius">32dp</dimen>
 </resources>

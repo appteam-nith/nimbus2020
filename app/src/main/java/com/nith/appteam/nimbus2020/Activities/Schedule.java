@@ -17,7 +17,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.nith.appteam.nimbus2020.Adapters.ScheduleRecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.ScheduleModel;
-import com.nith.appteam.nimbus2020.Models.instituteEvent;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
 import com.nith.appteam.nimbus2020.Utils.PrefsSchedule;

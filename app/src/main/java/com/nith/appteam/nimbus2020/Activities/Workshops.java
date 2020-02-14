@@ -5,16 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
-import android.widget.Button;
 import android.widget.EditText;
-
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -43,13 +38,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 public class Workshops extends AppCompatActivity {
@@ -82,23 +70,22 @@ public class Workshops extends AppCompatActivity {
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
         setSupportActionBar(collapsingToolbar);
 
-        ImageView worksp =findViewById(R.id.workshopImageView);
+        ImageView worksp = findViewById(R.id.workshopImageView);
         Picasso.with(this).load(R.drawable.workshop).fit().into(worksp);
         FloatingActionButton fabwo = findViewById(R.id.fabworkshop);
 
-        if( sharedPref.getString("phoneNumber","").equals("+918219341697")||sharedPref.getString("phoneNumber","").equals("+917982107070"))
-        {
+        if (sharedPref.getString("phoneNumber", "").equals("+918219341697") || sharedPref.getString("phoneNumber", "").equals("+917982107070")) {
             fabwo.setVisibility(View.VISIBLE);
 
-        fabwo.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Workshops.this, Add_Workshop.class);
-                startActivity(intent);
+            fabwo.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(Workshops.this, Add_Workshop.class);
+                    startActivity(intent);
 
-            }
-        });}
-        else{
+                }
+            });
+        } else {
             fabwo.setVisibility(View.GONE);
         }
         loadWall = findViewById(R.id.loadwallWorkshop);
@@ -165,7 +152,6 @@ public class Workshops extends AppCompatActivity {
 
         return workshopList;
     }
-
 
 
 }

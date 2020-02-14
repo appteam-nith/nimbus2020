@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="216dp"
     android:layout_margin="16dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="0dp"
-    app:cardUseCompatPadding="true">
+    app:cardBackgroundColor="@color/black"
+    app:cardCornerRadius="@dimen/cardCornerRadius"
+    app:cardPreventCornerOverlap="true">
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/card_gradient"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/sponsorImageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:layout_gravity="center_horizontal"
-            android:background="@drawable/round_outline"
-            android:padding="8dp"
-            android:src="@mipmap/ic_launcher_round"
-            tools:src="@mipmap/ic_launcher_round"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="16dp"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <ImageView
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:layout_centerInParent="true"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:src="@drawable/bg_round_light"
+            android:translationY="120dp" />
 
         <TextView
             android:id="@+id/sponsorTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
             android:padding="16dp"
             android:text="TextView"
+            android:textColor="@color/white"
             android:textSize="24sp" />
-    </androidx.appcompat.widget.LinearLayoutCompat>
-
-
+    </RelativeLayout>
 </androidx.cardview.widget.CardView>

@@ -7,4 +7,10 @@
     <color name="white">#ffffff</color>
     <color name="background">#202020</color>
     <color name="accent">#147EFB</color>
+
+
+    <color name="black">#000000</color>
+    <color name="greyLight">#6a6969</color>
+    <color name="blueDark">#109cac</color>
+    <color name="blueLight">#2fc0d1</color>
 </resources>

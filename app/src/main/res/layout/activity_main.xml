@@ -193,6 +193,7 @@
                     android:text="Exhibition"
                     android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -209,6 +210,7 @@
                     android:text="QR Scanner"
                     android:textSize="24sp" />
             </androidx.cardview.widget.CardView>
+
             <androidx.cardview.widget.CardView
                 android:layout_width="280dp"
                 android:layout_height="wrap_content"
@@ -217,8 +219,8 @@
                 app:cardUseCompatPadding="true">
 
 
-<Button
-            android:id="@+id/coreTeam"
+                <Button
+                    android:id="@+id/coreTeam"
                     style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

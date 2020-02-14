@@ -5,12 +5,11 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -24,7 +23,6 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.firebase.auth.FirebaseAuth;
 import com.nith.appteam.nimbus2020.Adapters.TalkRecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.TalkModel;
 import com.nith.appteam.nimbus2020.R;
@@ -38,13 +36,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
 public class Talks extends AppCompatActivity {
@@ -78,7 +69,7 @@ public class Talks extends AppCompatActivity {
         Picasso.with(this).load(R.drawable.talk).fit().into(talkk);
 
         FloatingActionButton fab = findViewById(R.id.fabtalk);
-        if( sharedPref.getString("phoneNumber","").equals("+917982107070") ||sharedPref.getString("phoneNumber","").equals("+918572027705")||sharedPref.getString("phoneNumber","").equals("+918959747704")||sharedPref.getString("phoneNumber","").equals("+919340453051")) {
+        if (sharedPref.getString("phoneNumber", "").equals("+917982107070") || sharedPref.getString("phoneNumber", "").equals("+918572027705") || sharedPref.getString("phoneNumber", "").equals("+918959747704") || sharedPref.getString("phoneNumber", "").equals("+919340453051")) {
             fab.setVisibility(View.VISIBLE);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -88,9 +79,7 @@ public class Talks extends AppCompatActivity {
 
                 }
             });
-        }
-        else
-        {
+        } else {
             fab.setVisibility(View.GONE);
         }
         loadwall = findViewById(R.id.loadwallTalk);
@@ -160,6 +149,6 @@ public class Talks extends AppCompatActivity {
         return talkList;
     }
 
-    }
+}
 
 

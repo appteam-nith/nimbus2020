@@ -1,26 +1,14 @@
 package com.nith.appteam.nimbus2020.Activities;
 
-import android.Manifest;
-import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
@@ -31,14 +19,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.budiyev.android.codescanner.CodeScanner;
-import com.budiyev.android.codescanner.CodeScannerView;
-import com.budiyev.android.codescanner.DecodeCallback;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.JsonHttpResponseHandler;
-import com.loopj.android.http.RequestParams;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
 
@@ -47,8 +29,6 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import cz.msebera.android.httpclient.entity.mime.Header;
 
 public class QRScanner extends AppCompatActivity implements View.OnClickListener {
 
@@ -153,16 +133,13 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
 //                            }
                             String error = object.getString("errorCode");
                             Log.e("error", error + "");
-                            if(error.equals("1"))
-                            {
+                            if (error.equals("1")) {
                                 new AlertDialog.Builder(QRScanner.this)
                                         .setTitle("Invalid QR")
                                         .setMessage("You have scanned an invalid QR")
                                         .setIcon(android.R.drawable.ic_dialog_alert)
                                         .show();
-                            }
-
-                          else  if (error.equals("2")) {
+                            } else if (error.equals("2")) {
                                 flag = false;
                                 new AlertDialog.Builder(QRScanner.this)
                                         .setTitle("QR has been already sent")

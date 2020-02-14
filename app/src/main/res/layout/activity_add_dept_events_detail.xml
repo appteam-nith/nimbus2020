@@ -120,8 +120,8 @@
             android:id="@+id/registerDetEventsD"
             android:layout_width="0dp"
             android:layout_height="59dp"
-            android:layout_weight="1"
             android:layout_marginLeft="10dp"
+            android:layout_weight="1"
 
             android:background="@drawable/dat"
             android:backgroundTint="#8A29B6FC"

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:cardCornerRadius="0dp"
     app:cardBackgroundColor="@color/background"
+    app:cardCornerRadius="0dp"
     tools:context=".Activities.QuizInstructionsActivity">
 
     <TextView
@@ -63,9 +63,9 @@
                 android:layout_marginLeft="12dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="12dp"
+                android:background="@drawable/round_border"
                 android:paddingTop="24dp"
                 android:paddingBottom="24dp"
-                android:background="@drawable/round_border"
                 android:text="LeaderBoard"
                 android:textColor="@color/white"
                 android:textSize="17sp" />

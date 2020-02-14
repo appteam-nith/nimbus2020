@@ -1,0 +1,208 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dashboard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_horizontal">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/events_card"
+            android:layout_width="match_parent"
+            android:layout_height="108dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="@dimen/cardCornerRadius"
+            app:cardPreventCornerOverlap="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_round_dark"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:translationX="48dp"
+                    android:translationY="-48dp" />
+
+                <ImageView
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/bg_round_light"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:translationY="48dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:text="Events"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/quote1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/events_card"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/talks_card"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:layout_below="@+id/quote1"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="@dimen/cardCornerRadius"
+            app:cardPreventCornerOverlap="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_round_dark"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:translationX="48dp"
+                    android:translationY="48dp" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_round_light"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:translationY="84dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="16dp"
+                    android:text="Talks"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/day_card"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:layout_below="@+id/quote1"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_toRightOf="@+id/talks_card"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="@dimen/cardCornerRadius"
+            app:cardPreventCornerOverlap="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_round_dark"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:translationX="-48dp"
+                    android:translationY="48dp" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_round_light"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:translationY="84dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="16dp"
+                    android:text="Day 1"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/workshop_card"
+            android:layout_width="match_parent"
+            android:layout_height="108dp"
+            android:layout_below="@+id/talks_card"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="8dp"
+            app:cardBackgroundColor="@color/black"
+            app:cardCornerRadius="@dimen/cardCornerRadius"
+            app:cardPreventCornerOverlap="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_centerHorizontal="true"
+                    android:background="@drawable/bg_round_dark"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:translationY="60dp" />
+
+                <ImageView
+                    android:layout_width="108dp"
+                    android:layout_height="108dp"
+                    android:layout_alignParentEnd="true"
+                    android:background="@drawable/bg_round_light"
+                    android:scaleX="2"
+                    android:scaleY="2"
+                    android:translationY="60dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="16dp"
+                    android:text="Workshop"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white" />
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+</ScrollView>

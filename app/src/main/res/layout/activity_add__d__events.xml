@@ -19,8 +19,7 @@
             android:layout_centerHorizontal="true"
             android:background="@drawable/fui_ic_anonymous_white_24dp"
             android:backgroundTint="#000000"
-            android:paddingTop="10dp"
-             />
+            android:paddingTop="10dp" />
 
         <EditText
             android:id="@+id/NameAddD"

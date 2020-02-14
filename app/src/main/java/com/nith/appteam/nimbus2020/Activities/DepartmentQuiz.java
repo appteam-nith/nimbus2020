@@ -11,6 +11,11 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -18,7 +23,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.nith.appteam.nimbus2020.Adapters.QuizRecyclerAdapter;
 import com.nith.appteam.nimbus2020.Models.Id_Value;
@@ -34,11 +38,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class DepartmentQuiz extends AppCompatActivity {
     RecyclerView departmentquiz;
@@ -104,7 +103,7 @@ public class DepartmentQuiz extends AppCompatActivity {
             for (int i = 0; i < jsonArray.length(); i++) {
                 Id_Value idValue = new Id_Value(jsonArray.getJSONObject(i).getString("quizName"),
                         jsonArray.getJSONObject(i).getString("_id"),
-                        image,jsonArray.getJSONObject(i).getString("startTime"),jsonArray.getJSONObject(i).getString("endTime"));
+                        image, jsonArray.getJSONObject(i).getString("startTime"), jsonArray.getJSONObject(i).getString("endTime"));
                 quiztypes.add(idValue);
                 Objects.requireNonNull(departmentquiz.getAdapter()).notifyDataSetChanged();
             }
@@ -152,8 +151,8 @@ public class DepartmentQuiz extends AppCompatActivity {
                     Intent intent = new Intent(DepartmentQuiz.this, QuizInstructionsActivity.class);
                     intent.putExtra("questions", response);
                     intent.putExtra("quizId", quiztypes.get(position).getId());
-                    intent.putExtra("startTime",quiztypes.get(position).getStartTime());
-                    intent.putExtra("endTime",quiztypes.get(position).getEndTime());
+                    intent.putExtra("startTime", quiztypes.get(position).getStartTime());
+                    intent.putExtra("endTime", quiztypes.get(position).getEndTime());
                     progressDialog.dismiss();
                     startActivity(intent);
                 }

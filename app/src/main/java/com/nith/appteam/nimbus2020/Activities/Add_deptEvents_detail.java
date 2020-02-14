@@ -1,13 +1,10 @@
 package com.nith.appteam.nimbus2020.Activities;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,8 +16,6 @@ import com.nith.appteam.nimbus2020.Models.departmentEvent;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class Add_deptEvents_detail extends AppCompatActivity {
     private departmentEvent dept;
     private TextView nameDetEventsD, infoDetEventsD, venueDetEventsD, dateDetEventsD;
@@ -30,6 +25,7 @@ public class Add_deptEvents_detail extends AppCompatActivity {
     private AlertDialog dialog;
     private TextView abstractDet;
     private WebView webView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,21 +50,21 @@ public class Add_deptEvents_detail extends AppCompatActivity {
 
     }
 
-    private void openDialogBox()
-    {  alertDialogBuilder=new AlertDialog.Builder(this);
-        View view=getLayoutInflater().inflate(R.layout.abstract_dialog_box,null);
-        abstractDet= view.findViewById(R.id.abstract_dialogText);
+    private void openDialogBox() {
+        alertDialogBuilder = new AlertDialog.Builder(this);
+        View view = getLayoutInflater().inflate(R.layout.abstract_dialog_box, null);
+        abstractDet = view.findViewById(R.id.abstract_dialogText);
         abstractDet.setText(dept.getAbstractDEVE());
-        Button submit= view.findViewById(R.id.CloseButton);
+        Button submit = view.findViewById(R.id.CloseButton);
         alertDialogBuilder.setView(view);
-        dialog=alertDialogBuilder.create();
+        dialog = alertDialogBuilder.create();
         dialog.show();
 
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"exit",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "exit", Toast.LENGTH_SHORT).show();
 
                 dialog.dismiss();
             }
@@ -76,12 +72,8 @@ public class Add_deptEvents_detail extends AppCompatActivity {
     }
 
 
-
-
-
-
     private void oprnURLExh(String regURL) {
-        Intent intent = new Intent(Add_deptEvents_detail.this,Web.class);
+        Intent intent = new Intent(Add_deptEvents_detail.this, Web.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("url", regURL);
         getApplicationContext().startActivity(intent);
