@@ -15,6 +15,8 @@
     <dimen name="dots_height">30dp</dimen>
     <dimen name="dots_margin_bottom">20dp</dimen>
 
+    <dimen name="cardRadius">32dp</dimen>
+
     <!-- Default screen margins, per the Android Design guidelines. -->
 
     <dimen name="margin_medium">16dp</dimen>

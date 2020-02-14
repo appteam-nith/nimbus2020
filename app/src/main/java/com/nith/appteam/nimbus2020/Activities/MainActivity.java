@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -13,33 +14,53 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.android.volley.VolleyError;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.internal.Constants;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
+
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
+import com.nith.appteam.nimbus2020.Adapters.DiscoverAdapter;
+import com.nith.appteam.nimbus2020.Models.DiscoverModel;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Services.GeofenceRegistrationService;
 import com.nith.appteam.nimbus2020.Utils.Constant;
+import com.nith.appteam.nimbus2020.Utils.IResult;
+import com.nith.appteam.nimbus2020.Utils.VolleyService;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
 
-
     private static final String TAG = "MainActivity";
     private static final int REQUEST_LOCATION_PERMISSION_CODE = 101;
+    RecyclerView mRecyclerView;
+    DiscoverAdapter mDiscoverAdapter;
+    List<DiscoverModel> mDiscoverModelList;
+    private IResult mResultCallback;
     private Button quiz, sponsor, profile, campusA, workshops, talks, events, qr, exhibition,
             schedule, contributors, coreTeam;
     private SharedPreferences sharedPref;
@@ -48,7 +69,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private GoogleApiClient googleApiClient;
     private boolean isMonitoring = false;
     private PendingIntent pendingIntent;
-    //    private CircleImageView profileButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -180,8 +200,101 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             }
         });
 
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mDiscoverModelList = new ArrayList<>();
+
+        getData();
+
+
+        mDiscoverAdapter = new DiscoverAdapter(mDiscoverModelList, this);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL,
+                false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(mDiscoverAdapter);
+        mDiscoverAdapter.notifyDataSetChanged();
+        SnapHelper snapHelper = new LinearSnapHelper();
+        snapHelper.attachToRecyclerView(mRecyclerView);
 
     }
+
+
+    private void getData() {
+        mDiscoverModelList.clear();
+        //  loadwall.setVisibility(View.VISIBLE);
+
+        initVolleyCallback();
+
+        final VolleyService mVolleyService = new VolleyService(mResultCallback, this);
+
+        mVolleyService.getJsonArrayDataVolley("GETDISCOVER",
+                getString(R.string.baseUrl) + "/discover");
+
+    }
+
+
+    void initVolleyCallback() {
+        mResultCallback = new IResult() {
+            JSONObject obj;
+
+            @Override
+            public void notifySuccess(String requestType, JSONObject response,
+                    JSONArray jsonArray) {
+
+
+                if (response != null) {
+                    //loadwall.setVisibility(View.GONE);
+
+                    try {
+                        obj = response;
+                        String name = obj.getString("name");
+                        String time = obj.getString("time");
+                        String location = obj.getString("location");
+                        String image = obj.getString("image_src");
+                        mDiscoverModelList.add(new DiscoverModel(name, location, time, image));
+                        mDiscoverAdapter.notifyDataSetChanged();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+
+                    Log.e("Hellcatt", response.toString());
+
+                } else {
+                    Log.e("zHell", jsonArray.toString());
+
+                    //  loadwall.setVisibility(View.GONE);
+
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        try {
+                            obj = jsonArray.getJSONObject(i);
+                            String name = obj.getString("name");
+                            String time = obj.getString("time");
+                            String location = obj.getString("location");
+                            String image = obj.getString("image_src");
+                            mDiscoverModelList.add(new DiscoverModel(name, location, time, image));
+                            mDiscoverAdapter.notifyDataSetChanged();
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                    mDiscoverAdapter.notifyDataSetChanged();
+
+                }
+            }
+
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Log.i("error", error.toString());
+            }
+        };
+
+    }
+
 
     private void getUI() {
         quiz = findViewById(R.id.quiz);
