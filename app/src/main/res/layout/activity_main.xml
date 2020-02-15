@@ -1,59 +1,141 @@
-<me.didik.component.StickyNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/background"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginTop="16dp"
+        android:layout_height="wrap_content">
+
+        <com.nith.appteam.nimbus2020.Utils.GradientTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/psb"
+            android:text="S E M B L A N C E"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <me.didik.component.StickyNestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:fontFamily="@font/psb"
-                android:text="DISCOVER"
-                android:textAllCaps="true"
-                android:textColor="@android:color/white"
-                android:textSize="24sp" />
+                android:background="@color/background"
+                android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/psb"
+                    android:text="Discover"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-        </LinearLayout>
+                android:layout_height="70dp"
+                android:elevation="4dp"
+                android:background="@color/background"
+                android:paddingTop="16dp"
+                android:tag="sticky">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/background"
-            android:tag="sticky">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/linear_layout_bg" />
 
-            <ImageView
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:paddingTop="8dp"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="8dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/dashboard_tab"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="8dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/psitalic"
+                        android:gravity="center"
+                        android:text="Dashboard"
+                        android:textAllCaps="true"
+                        android:textColor="@color/greyLight"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/sponsor_tab"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:paddingTop="16dp"
+                        android:fontFamily="@font/psitalic"
+                        android:gravity="center"
+                        android:paddingBottom="8dp"
+                        android:text="Sponsors"
+                        android:textAllCaps="true"
+                        android:textColor="@color/greyLight"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/team_tab"
+                        android:layout_width="0dp"
+                        android:paddingBottom="8dp"
+                        android:layout_height="wrap_content"
+                        android:paddingTop="16dp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/psitalic"
+                        android:gravity="center"
+                        android:text="core team"
+                        android:textAllCaps="true"
+                        android:textColor="@color/greyLight"
+                        android:textSize="11sp" />
+
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <FrameLayout
+                android:id="@+id/fragment_holder"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:src="@drawable/linear_layout_bg" />
-        </LinearLayout>
-
-
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:focusableInTouchMode="true"
-            android:nestedScrollingEnabled="false">
+                android:layout_height="match_parent"
+                android:scrollbars="none"
+                android:focusableInTouchMode="true"
+                android:nestedScrollingEnabled="false" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
 
                 <androidx.cardview.widget.CardView
@@ -236,9 +318,8 @@
 
             </LinearLayout>
 
-        </ScrollView>
 
+        </LinearLayout>
 
-    </LinearLayout>
-
-</me.didik.component.StickyNestedScrollView>
+    </me.didik.component.StickyNestedScrollView>
+</LinearLayout>
