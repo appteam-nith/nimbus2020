@@ -5,17 +5,28 @@ import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.location.Location;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.LinearSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 import com.android.volley.VolleyError;
-
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -23,17 +34,20 @@ import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofencingRequest;
-
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.model.LatLng;
 import com.nith.appteam.nimbus2020.Adapters.DiscoverAdapter;
+import com.nith.appteam.nimbus2020.Fragments.Dashboard;
+import com.nith.appteam.nimbus2020.Fragments.OurTeam;
+import com.nith.appteam.nimbus2020.Fragments.Sponsor;
 import com.nith.appteam.nimbus2020.Models.DiscoverModel;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Services.GeofenceRegistrationService;
 import com.nith.appteam.nimbus2020.Utils.Constant;
 import com.nith.appteam.nimbus2020.Utils.IResult;
+import com.nith.appteam.nimbus2020.Utils.StartSnapHelper;
 import com.nith.appteam.nimbus2020.Utils.VolleyService;
 
 import org.json.JSONArray;
@@ -42,15 +56,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -69,12 +74,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private GoogleApiClient googleApiClient;
     private boolean isMonitoring = false;
     private PendingIntent pendingIntent;
+    TextView dashboardTab, sponsorTab, teamTab;
+    Typeface psbi, psi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API)
@@ -91,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         }
 
         getUI();
-//
+
 //        profileButton = findViewById(R.id.profile_button);
 //        post = findViewById(R.id.post);
 //        Picasso.with(MainActivity.this)
@@ -101,19 +107,42 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         editor = sharedPref.edit();
 
         // Checking whether user has logged in or not
-        if (sharedPref.getBoolean("loginStatus", false) == false) {
-            Intent i = new Intent(this, Login.class);
-            startActivity(i);
-            finish();
-        }
+//        if (sharedPref.getBoolean("loginStatus", false) == false) {
+//            Intent i = new Intent(this, Login.class);
+//            startActivity(i);
+//            finish();
+//        }
 
         //Checking whether user has created profile or not
-        else if (sharedPref.getBoolean("profileStatus", false) == false) {
-            Intent i = new Intent(this, ProfileNew.class);
-            startActivity(i);
-            finish();
-        }
+//        else if (sharedPref.getBoolean("profileStatus", false) == false) {
+//            Intent i = new Intent(this, ProfileNew.class);
+//            startActivity(i);
+//            finish();
+//        }
 
+        psbi = ResourcesCompat.getFont(this, R.font.psbitalic);
+        psi = ResourcesCompat.getFont(this, R.font.psitalic);
+
+        setClickListener();
+
+        mRecyclerView = findViewById(R.id.recyclerView);
+        mDiscoverModelList = new ArrayList<>();
+
+        getData();
+
+        mDiscoverAdapter = new DiscoverAdapter(mDiscoverModelList, this);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL,
+                false);
+        mRecyclerView.setLayoutManager(layoutManager);
+        mRecyclerView.setAdapter(mDiscoverAdapter);
+        mDiscoverAdapter.notifyDataSetChanged();
+        SnapHelper snapHelper = new StartSnapHelper();
+        snapHelper.attachToRecyclerView(mRecyclerView);
+
+    }
+
+    public void setClickListener() {
         coreTeam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             }
         });
 
-
         quiz.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,7 +173,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 startActivity(intent);
             }
         });
-
 
         sponsor.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,7 +218,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             }
         });
 
-
         qr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -200,24 +226,64 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             }
         });
 
-        mRecyclerView = findViewById(R.id.recyclerView);
-        mDiscoverModelList = new ArrayList<>();
+        dashboardTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dashboardTab.setTypeface(psbi);
+                sponsorTab.setTypeface(psi);
+                teamTab.setTypeface(psi);
 
-        getData();
+                dashboardTab.setTextColor(getResources().getColor(R.color.black));
+                sponsorTab.setTextColor(getResources().getColor(R.color.lightGray));
+                teamTab.setTextColor(getResources().getColor(R.color.lightGray));
 
+                Dashboard dashboard = new Dashboard();
+                FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction()
+                        .replace(R.id.fragment_holder, dashboard)
+                        .commit();
+            }
+        });
 
-        mDiscoverAdapter = new DiscoverAdapter(mDiscoverModelList, this);
+        sponsorTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dashboardTab.setTypeface(psi);
+                sponsorTab.setTypeface(psbi);
+                teamTab.setTypeface(psi);
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL,
-                false);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(mDiscoverAdapter);
-        mDiscoverAdapter.notifyDataSetChanged();
-        SnapHelper snapHelper = new LinearSnapHelper();
-        snapHelper.attachToRecyclerView(mRecyclerView);
+                sponsorTab.setTextColor(getResources().getColor(R.color.black));
+                dashboardTab.setTextColor(getResources().getColor(R.color.lightGray));
+                teamTab.setTextColor(getResources().getColor(R.color.lightGray));
 
+                Sponsor sponsorFragment = new Sponsor();
+                FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction()
+                        .replace(R.id.fragment_holder, sponsorFragment)
+                        .commit();
+            }
+        });
+        teamTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                teamTab.setTypeface(psbi);
+                sponsorTab.setTypeface(psi);
+                dashboardTab.setTypeface(psi);
+
+                teamTab.setTextColor(getResources().getColor(R.color.black));
+                sponsorTab.setTextColor(getResources().getColor(R.color.lightGray));
+                dashboardTab.setTextColor(getResources().getColor(R.color.lightGray));
+
+                OurTeam ourTeam = new OurTeam();
+                FragmentManager fm = getSupportFragmentManager();
+                fm.beginTransaction()
+                        .replace(R.id.fragment_holder, ourTeam)
+                        .commit();
+            }
+        });
+
+        dashboardTab.performClick();
     }
-
 
     private void getData() {
         mDiscoverModelList.clear();
@@ -232,14 +298,13 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     }
 
-
     void initVolleyCallback() {
         mResultCallback = new IResult() {
             JSONObject obj;
 
             @Override
             public void notifySuccess(String requestType, JSONObject response,
-                    JSONArray jsonArray) {
+                                      JSONArray jsonArray) {
 
 
                 if (response != null) {
@@ -295,8 +360,10 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
     }
 
-
     private void getUI() {
+        dashboardTab = findViewById(R.id.dashboard_tab);
+        sponsorTab = findViewById(R.id.sponsor_tab);
+        teamTab = findViewById(R.id.team_tab);
         quiz = findViewById(R.id.quiz);
         sponsor = findViewById(R.id.sponsors);
         talks = findViewById(R.id.talks);

@@ -39,8 +39,8 @@ public class DiscoverAdapter extends RecyclerView.Adapter<DiscoverAdapter.Discov
 
         DiscoverModel discoverModel = mDiscoverModelList.get(position);
         holder.eventName.setText(discoverModel.getEventName());
-        holder.location.setText(discoverModel.getLocation());
-        holder.time.setText(discoverModel.getTime());
+//        holder.location.setText(discoverModel.getLocation());
+//        holder.time.setText(discoverModel.getTime());
 
     }
 

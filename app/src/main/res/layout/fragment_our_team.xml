@@ -1,16 +1,27 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="16dp">
+    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+    <TextView
+        android:id="@+id/quote1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="13sp"
+        android:gravity="center"
+        android:layout_margin="16dp"
+        android:textColor="@color/black"
+        android:fontFamily="@font/psregular"
+        android:layout_gravity="center"
+        android:text=""/>
+
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/our_team_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_below="@id/quote1"
+        android:paddingBottom="32dp"
         android:clipToPadding="false"
-        android:paddingBottom="64dp"
         android:scrollbars="none" />
-
 
 </RelativeLayout>

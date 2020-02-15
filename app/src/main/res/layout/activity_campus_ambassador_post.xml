@@ -42,7 +42,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="24dp"
-        android:background="@drawable/round_corner"
+        android:background="@drawable/black_round_corner"
         android:text="Upload Picture"
         android:textColor="@color/white" />
 
@@ -55,7 +55,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginTop="20dp"
         android:layout_marginRight="24dp"
-        android:background="@drawable/round_corner"
+        android:background="@drawable/black_round_corner"
         android:text="Submit Post"
         android:textColor="@color/white"
         android:visibility="invisible" />

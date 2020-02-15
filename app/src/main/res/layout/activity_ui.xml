@@ -17,6 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/psitalic"
             android:gravity="center"
             android:text="Dashboard"
             android:textAllCaps="true"
@@ -27,8 +28,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/psitalic"
             android:gravity="center"
-            android:text="Sponsor"
+            android:text="Sponsors"
             android:textAllCaps="true"
             android:textColor="@color/greyLight" />
 
@@ -37,16 +39,27 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:fontFamily="@font/psitalic"
             android:gravity="center"
-            android:text="Our Team"
+            android:text="team"
             android:textAllCaps="true"
             android:textColor="@color/greyLight" />
 
 
     </LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/fragment_holder"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:src="@drawable/white_gradient"/>
+
+        <FrameLayout
+            android:id="@+id/fragment_holder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </RelativeLayout>
 </LinearLayout>
