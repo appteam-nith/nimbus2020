@@ -16,6 +16,8 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class QuizRecyclerAdapter extends RecyclerView.Adapter<QuizRecyclerAdapter.viewholder> {
     private Context context;
     private ArrayList<Id_Value> arrayList;
@@ -46,7 +48,7 @@ public class QuizRecyclerAdapter extends RecyclerView.Adapter<QuizRecyclerAdapte
 
     class viewholder extends RecyclerView.ViewHolder {
         TextView quizname;
-        ImageView mImageView;
+        CircleImageView mImageView;
 
         private viewholder(@NonNull View itemView) {
             super(itemView);
