@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,17 +57,20 @@ public class Talks extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_talks);
+
+        TextView back;
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPref.edit();
 
         requestQueue = Volley.newRequestQueue(this);
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbartalk);
-        Toolbar collapsingToolbar = findViewById(R.id.toolbar);
-        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
-        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
-        setSupportActionBar(collapsingToolbar);
-        talkk = findViewById(R.id.talkImageView);
-        Picasso.with(this).load(R.drawable.talk).fit().into(talkk);
 
         FloatingActionButton fab = findViewById(R.id.fabtalk);
         if (sharedPref.getString("phoneNumber", "").equals("+917982107070") || sharedPref.getString("phoneNumber", "").equals("+918572027705") || sharedPref.getString("phoneNumber", "").equals("+918959747704") || sharedPref.getString("phoneNumber", "").equals("+919340453051")) {

@@ -11,6 +11,7 @@ import android.view.animation.LayoutAnimationController;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -53,24 +54,23 @@ public class Exhhibition extends AppCompatActivity {
     private SharedPreferences sharedPref;
     private SharedPreferences.Editor editor;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exhhibition);
+
+        TextView back;
+        back=findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPref.edit();
         requestQueueExh = Volley.newRequestQueue(this);
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbarexhibition);
-        Toolbar collapsingToolbar = findViewById(R.id.toolbar);
-        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
-        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
-        setSupportActionBar(collapsingToolbar);
-
-        ImageView exhi = findViewById(R.id.exhibitionImageView);
-        Picasso.with(this).load(R.drawable.exhibition).fit().into(exhi);
-
-
         FloatingActionButton fab = findViewById(R.id.fabExh);
         if (sharedPref.getString("phoneNumber", "").equals("+918219341697") || sharedPref.getString("phoneNumber", "").equals("+917982107070") || sharedPref.getString("phoneNumber", "").equals("+918572027705") || sharedPref.getString("phoneNumber", "").equals("+918959747704")) {
             fab.setVisibility(View.VISIBLE);

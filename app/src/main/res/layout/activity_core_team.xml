@@ -1,42 +1,69 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="16dp">
-
-    <ProgressBar
-        android:id="@+id/loadwall"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true"
-        android:visibility="gone" />
+    android:background="@color/background"
+    android:orientation="vertical">
 
     <RelativeLayout
-        android:id="@+id/top"
         android:layout_width="match_parent"
-        android:layout_height="68dp">
+        android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="24dp"
-            android:text="Core Teams"
-            android:textAllCaps="true"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            android:textSize="35sp" />
+            android:layout_margin="16dp"
+            android:fontFamily="@font/psregular"
+            android:text="BACK"
+            android:textColor="@android:color/white" />
+
+        <com.nith.appteam.nimbus2020.Utils.GradientTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/psb"
+            android:text="C O R E  T E A M"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
 
     </RelativeLayout>
 
-    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/coreTeamRecyclerView"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="38dp"
-        android:clipToPadding="false"
-        android:paddingTop="46dp"
-        android:paddingBottom="64dp"
-        android:scrollbars="none" />
+        android:layout_height="wrap_content">
 
 
-</RelativeLayout>
+        <ImageView
+            android:id="@+id/corner"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/linear_layout_bg" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/corner"
+            android:background="@android:color/white"></LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:id="@+id/loadwall"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:visibility="gone" />
+
+
+            <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/coreTeamRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp" />
+
+
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

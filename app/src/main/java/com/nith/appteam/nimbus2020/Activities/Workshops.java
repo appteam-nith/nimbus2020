@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -60,18 +61,21 @@ public class Workshops extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_workshops);
+
+        TextView back;
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPref.edit();
         user = FirebaseAuth.getInstance().getCurrentUser();
         requestQueuework = Volley.newRequestQueue(this);
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbarworkshop);
-        Toolbar collapsingToolbar = findViewById(R.id.toolbar);
-        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
-        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
-        setSupportActionBar(collapsingToolbar);
 
-        ImageView worksp = findViewById(R.id.workshopImageView);
-        Picasso.with(this).load(R.drawable.workshop).fit().into(worksp);
         FloatingActionButton fabwo = findViewById(R.id.fabworkshop);
 
         if (sharedPref.getString("phoneNumber", "").equals("+918219341697") || sharedPref.getString("phoneNumber", "").equals("+917982107070")) {
