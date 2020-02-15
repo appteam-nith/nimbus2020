@@ -13,20 +13,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.LinearSnapHelper;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
-
 import com.android.volley.VolleyError;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -49,6 +40,7 @@ import com.nith.appteam.nimbus2020.Utils.Constant;
 import com.nith.appteam.nimbus2020.Utils.IResult;
 import com.nith.appteam.nimbus2020.Utils.StartSnapHelper;
 import com.nith.appteam.nimbus2020.Utils.VolleyService;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -56,6 +48,16 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -65,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     RecyclerView mRecyclerView;
     DiscoverAdapter mDiscoverAdapter;
     List<DiscoverModel> mDiscoverModelList;
+    TextView dashboardTab, sponsorTab, teamTab;
+    Typeface psbi, psi;
     private IResult mResultCallback;
     private Button quiz, sponsor, profile, campusA, workshops, talks, events, qr, exhibition,
             schedule, contributors, coreTeam;
@@ -74,13 +78,22 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     private GoogleApiClient googleApiClient;
     private boolean isMonitoring = false;
     private PendingIntent pendingIntent;
-    TextView dashboardTab, sponsorTab, teamTab;
-    Typeface psbi, psi;
+    private ImageView profileImage;
+    private ImageView scanner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        profileImage = findViewById(R.id.profileImage);
+        scanner = findViewById(R.id.scanner);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
+        String image = sharedPreferences.getString("profileImage", null);
+
+        Picasso.with(this).load(image).resize(30, 30).into(profileImage);
+
 
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addApi(LocationServices.API)
@@ -143,6 +156,24 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     public void setClickListener() {
+
+        scanner.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, QRScanner.class);
+                startActivity(intent);
+            }
+        });
+
+        profileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(MainActivity.this, ProfileMain.class);
+                startActivity(intent);
+            }
+        });
+
         coreTeam.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -303,7 +334,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
             @Override
             public void notifySuccess(String requestType, JSONObject response,
-                                      JSONArray jsonArray) {
+                    JSONArray jsonArray) {
 
 
                 if (response != null) {
