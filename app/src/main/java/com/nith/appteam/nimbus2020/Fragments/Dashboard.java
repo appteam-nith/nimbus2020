@@ -3,6 +3,7 @@ package com.nith.appteam.nimbus2020.Fragments;
 import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -20,6 +21,7 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.nith.appteam.nimbus2020.Activities.MainActivity;
 import com.nith.appteam.nimbus2020.R;
 
 
@@ -27,6 +29,11 @@ public class Dashboard extends Fragment {
     private TextView quote1, quote2, event_text, campus_text;
     private CardView quiz_card, workshop_card, exhibition_card, talk_card;
     private ImageView t_n, t_k, e_n, e_k;
+    Context context;
+    public Dashboard(Context context){
+        this.context = context;
+    }
+
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Nullable

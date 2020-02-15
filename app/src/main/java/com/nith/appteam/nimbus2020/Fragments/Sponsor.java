@@ -1,5 +1,6 @@
 package com.nith.appteam.nimbus2020.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
+import com.nith.appteam.nimbus2020.Activities.MainActivity;
 import com.nith.appteam.nimbus2020.Adapters.SponsorsAdapter;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.IResult;
@@ -31,8 +33,12 @@ public class Sponsor extends Fragment {
     ProgressBar loadwall;
     SponsorsAdapter mSponsorsAdapter;
     List<com.nith.appteam.nimbus2020.Models.Sponsor> mSponsorList;
-
+    Context context;
     private IResult mResultCallback;
+
+    public Sponsor(Context context) {
+        this.context = context;
+    }
 
     @Nullable
     @Override
@@ -101,8 +107,7 @@ public class Sponsor extends Fragment {
                         try {
                             obj = jsonArray.getJSONObject(i);
                             String sponsorName = obj.getString("name");
-                            String sponsor_logo = getResources().getString(
-                                    R.string.defaultImageUrl);
+                            String sponsor_logo = context.getResources().getString(R.string.defaultImageUrl);
                             if (obj.has("image")) sponsor_logo = obj.getString("image");
                             mSponsorList.add(new com.nith.appteam.nimbus2020.Models.Sponsor(sponsorName, sponsor_logo));
                             mSponsorsAdapter.notifyDataSetChanged();

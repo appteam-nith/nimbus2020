@@ -1,5 +1,6 @@
 package com.nith.appteam.nimbus2020.Fragments;
 
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
@@ -26,6 +27,11 @@ public class OurTeam extends Fragment {
     TextView quote1;
     OurTeamAdapter ourTeamAdapter;
     List<TeamMember> teamList;
+    Context context;
+
+    public OurTeam(Context context) {
+        this.context = context;
+    }
 
     @Nullable
     @Override

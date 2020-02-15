@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 sponsorTab.setTextColor(getResources().getColor(R.color.lightGray));
                 teamTab.setTextColor(getResources().getColor(R.color.lightGray));
 
-                Dashboard dashboard = new Dashboard();
+                Dashboard dashboard = new Dashboard(MainActivity.this);
                 FragmentManager fm = getSupportFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.fragment_holder, dashboard)
@@ -255,8 +255,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 sponsorTab.setTextColor(getResources().getColor(R.color.black));
                 dashboardTab.setTextColor(getResources().getColor(R.color.lightGray));
                 teamTab.setTextColor(getResources().getColor(R.color.lightGray));
-
-                Sponsor sponsorFragment = new Sponsor();
+                Sponsor sponsorFragment = new Sponsor(MainActivity.this);
                 FragmentManager fm = getSupportFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.fragment_holder, sponsorFragment)
@@ -274,7 +273,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 sponsorTab.setTextColor(getResources().getColor(R.color.lightGray));
                 dashboardTab.setTextColor(getResources().getColor(R.color.lightGray));
 
-                OurTeam ourTeam = new OurTeam();
+                OurTeam ourTeam = new OurTeam(MainActivity.this);
                 FragmentManager fm = getSupportFragmentManager();
                 fm.beginTransaction()
                         .replace(R.id.fragment_holder, ourTeam)
