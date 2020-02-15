@@ -1,63 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".Activities.QuizMainActivity">
+    android:background="@color/background"
+    android:orientation="vertical">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:fitsSystemWindows="true"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:layout_height="wrap_content">
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
+        <TextView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:fontFamily="@font/psregular"
+            android:text="BACK"
+            android:textColor="@android:color/white" />
+
+        <com.nith.appteam.nimbus2020.Utils.GradientTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/psb"
+            android:text="Q U I Z"
+            android:textColor="@color/white"
+            android:textSize="15sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/corner"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:background="@drawable/linear_layout_bg" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:collapsedTitleTextAppearance="@style/TextAppearance.AppCompat.Title"
-            app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleGravity="center_horizontal|bottom"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:title="QUIZ"
-            app:toolbarId="@+id/toolbar">
+            android:layout_below="@+id/corner"
+            android:background="@android:color/white"></LinearLayout>
 
-            <ImageView
-                android:id="@+id/quizImageView"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ProgressBar
+                android:id="@+id/loadwall"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_centerInParent="true"
+                android:layout_gravity="center"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/quizrecyclerview"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:alpha=".9"
-                android:fitsSystemWindows="true"
-                app:layout_collapseMode="parallax" />
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"
-                app:popupTheme="@style/AppTheme.PopupOverlay" />
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <ProgressBar
-        android:id="@+id/loadwall"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="true"
-        android:layout_gravity="center"
-        android:visibility="gone" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/quizrecyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/md_blue_200"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
-
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                android:layout_margin="8dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

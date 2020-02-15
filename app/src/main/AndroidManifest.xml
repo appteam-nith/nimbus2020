@@ -55,7 +55,8 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.Exhhibition"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+        </activity>
         <activity
             android:name=".Activities.Workshops"
             android:theme="@style/AppTheme.NoActionBar" />

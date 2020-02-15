@@ -46,23 +46,20 @@ public class DepartmentQuiz extends AppCompatActivity {
     ArrayList<Id_Value> quiztypes = new ArrayList<>();
     ProgressBar loadwall;
     String image;
-    ImageView quiz;
-    Toolbar collapsingToolbar;
-    CollapsingToolbarLayout collapsingToolbarLayout;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_department_quiz);
         departmentquiz = findViewById(R.id.departmentquiz);
-        collapsingToolbar = findViewById(R.id.toolbar);
-        collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
-        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
-        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
 
-        setSupportActionBar(collapsingToolbar);
-        quiz = findViewById(R.id.quizImageView);
-
+        TextView back;
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         loadwall = findViewById(R.id.loadwall);
 
@@ -72,7 +69,6 @@ public class DepartmentQuiz extends AppCompatActivity {
         departmentquiz.setLayoutManager(layoutManager);
         departmentquiz.setAdapter(new QuizRecyclerAdapter(this, quiztypes));
         getdata();
-        Picasso.with(this).load(image).fit().into(quiz);
         departmentquiz.addOnItemTouchListener(
                 new RecyclerItemClickListener(this, departmentquiz,
                         new RecyclerItemClickListener.OnItemClickListener() {
@@ -95,8 +91,7 @@ public class DepartmentQuiz extends AppCompatActivity {
     private void getdata() {
         Intent j = getIntent();
         String response = j.getStringExtra("quiz");
-//        textView.setText(j.getStringExtra("departmentname"));
-        collapsingToolbarLayout.setTitle(j.getStringExtra("departmentname"));
+//        textView.setText(j.getStringExtra("departmentname"))
         image = j.getStringExtra("image");
         try {
             JSONArray jsonArray = new JSONArray(response);

@@ -31,6 +31,16 @@ public class ProfileMain extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_main);
+
+        TextView back;
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         getUI();
         sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
         getProfile();

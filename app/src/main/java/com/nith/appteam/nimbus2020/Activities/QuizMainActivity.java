@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -50,13 +51,16 @@ public class QuizMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.quiz_activity_main);
-        Toolbar collapsingToolbar = findViewById(R.id.toolbar);
-        CollapsingToolbarLayout collapsingToolbarLayout = findViewById(R.id.toolbar_layout);
-        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
-        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.CollapsedAppBar);
-        setSupportActionBar(collapsingToolbar);
-        quiz = findViewById(R.id.quizImageView);
-        Picasso.with(this).load(R.drawable.quiz).fit().into(quiz);
+
+        TextView back;
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         quizrecyclerView = findViewById(R.id.quizrecyclerview);
         queue = Volley.newRequestQueue(QuizMainActivity.this);
 
