@@ -10,16 +10,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="@dimen/cardRadius"
         app:cardElevation="0dp"
-        app:cardUseCompatPadding="true">
+        app:cardPreventCornerOverlap="true">
 
         <RelativeLayout
             android:id="@+id/DcontInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/card_gradient"
-            android:padding="16dp">
+            android:background="@color/background">
+
+            <ImageView
+                android:id="@+id/round_big"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:elevation="0dp"
+                android:src="@drawable/bg_round_dark"
+                android:translationX="-75dp" />
+
+            <ImageView
+                android:id="@+id/round_small"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@drawable/bg_round_dark"
+                android:tint="@color/black"
+                android:translationX="-50dp" />
 
             <ImageView
                 android:id="@+id/EventDImageID"
@@ -27,16 +46,19 @@
                 android:layout_height="98dp"
                 android:background="@drawable/round_outline"
                 android:fitsSystemWindows="true"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/EventDNameID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:layout_toRightOf="@+id/EventDImageID"
+                android:layout_marginTop="32dp"
+                android:fontFamily="psb"
                 android:paddingLeft="5dp"
                 android:text="Event Name"
+                android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -46,9 +68,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/EventDNameID"
                 android:layout_centerHorizontal="true"
-                android:layout_toRightOf="@+id/EventDImageID"
+                android:fontFamily="@font/psregular"
                 android:padding="5dp"
                 android:text="Dated"
+                android:textColor="@color/white"
                 android:textSize="17sp" />
 
             <TextView
@@ -57,9 +80,10 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/EventDDate"
                 android:layout_centerHorizontal="true"
-                android:layout_toRightOf="@+id/EventDImageID"
+                android:fontFamily="@font/psregular"
                 android:padding="5dp"
                 android:text="Venue"
+                android:textColor="@color/white"
                 android:textSize="17sp" />
 
 

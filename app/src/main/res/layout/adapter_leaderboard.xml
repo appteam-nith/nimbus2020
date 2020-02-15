@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="16dp"
     android:orientation="vertical"
-    app:cardCornerRadius="16dp"
+    app:cardCornerRadius="@dimen/cardRadius"
     app:cardElevation="0dp"
     app:cardPreventCornerOverlap="true">
 
@@ -15,20 +15,32 @@
         android:background="@color/background">
 
         <ImageView
-            android:layout_width="108dp"
-            android:layout_height="108dp"
+            android:id="@+id/round_big"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
             android:elevation="0dp"
-            android:scaleX="2"
-            android:scaleY="2"
-            android:src="@drawable/bg_round_light" />
+            android:src="@drawable/bg_round_dark"
+            android:translationX="-75dp" />
+
+        <ImageView
+            android:id="@+id/round_small"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@drawable/bg_round_dark"
+            android:tint="@color/black"
+            android:translationX="-50dp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/userImageView"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:layout_margin="16dp"
-            android:src="@color/white" />
+            android:src="@color/white"
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/Name"
@@ -37,7 +49,7 @@
             android:layout_alignTop="@+id/userImageView"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="25dp"
             android:layout_toLeftOf="@+id/nameTextView"
             android:fontFamily="@font/psregular"
             android:text="Name: "

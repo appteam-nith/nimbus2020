@@ -21,6 +21,8 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.nith.appteam.nimbus2020.Activities.CampusAmbassador;
+import com.nith.appteam.nimbus2020.Activities.Event_Choose;
 import com.nith.appteam.nimbus2020.Activities.Exhhibition;
 import com.nith.appteam.nimbus2020.Activities.QuizMainActivity;
 import com.nith.appteam.nimbus2020.Activities.Talks;
@@ -193,6 +195,20 @@ public class Dashboard extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), Exhhibition.class);
+                startActivity(i);
+            }
+        });
+        event_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), Event_Choose.class);
+                startActivity(i);
+            }
+        });
+        campus_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), CampusAmbassador.class);
                 startActivity(i);
             }
         });

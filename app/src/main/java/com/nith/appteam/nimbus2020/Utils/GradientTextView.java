@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat;
 
 import com.nith.appteam.nimbus2020.R;
 
-public class GradientTextView extends TextView {
+public class GradientTextView extends androidx.appcompat.widget.AppCompatTextView {
 
     public GradientTextView(Context context) {
         super(context);
@@ -36,4 +36,5 @@ public class GradientTextView extends TextView {
                     Shader.TileMode.CLAMP));
         }
     }
+
 }
