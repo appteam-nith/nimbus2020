@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -12,46 +11,73 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         app:cardBackgroundColor="@color/background"
-        app:cardCornerRadius="16dp"
+        app:cardCornerRadius="@dimen/cardRadius"
         app:cardElevation="0dp"
-        app:cardUseCompatPadding="true">
+        app:cardPreventCornerOverlap="true">
 
         <RelativeLayout
             android:id="@+id/IcontInfo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/card_gradient"
-            android:padding="16dp">
+            android:background="@color/background">
 
             <ImageView
+                android:id="@+id/round_big"
+                android:layout_width="108dp"
+                android:layout_height="108dp"
+                android:layout_alignParentLeft="true"
+                android:elevation="0dp"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:src="@drawable/bg_round_dark"
+                android:translationX="-10dp" />
+
+            <ImageView
+                android:id="@+id/round_small"
+                android:layout_width="108dp"
+                android:layout_height="108dp"
+                android:layout_alignParentLeft="true"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:src="@drawable/bg_round_dark"
+                android:tint="@color/black"
+                android:translationX="-40dp" />
+
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/EventIImageID"
                 android:layout_width="90dp"
                 android:layout_height="90dp"
-                android:background="@drawable/round_outline"
-                android:scaleType="fitXY"
-                tools:srcCompat="@tools:sample/avatars" />
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_margin="16dp"
+                android:src="@color/white" />
 
             <TextView
                 android:id="@+id/EventINameID"
                 android:layout_width="wrap_content"
-
                 android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
                 android:layout_centerHorizontal="true"
-                android:layout_toRightOf="@+id/EventIImageID"
-                android:paddingLeft="5dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/psb"
+                android:paddingRight="8dp"
                 android:text="Event Name"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textColor="@color/white"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/EventIDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/EventINameID"
+                android:layout_alignParentRight="true"
                 android:layout_centerHorizontal="true"
-                android:layout_toRightOf="@+id/EventIImageID"
-                android:padding="5dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/psregular"
+                android:paddingRight="8dp"
                 android:text="Dated"
+                android:textColor="@color/white"
                 android:textSize="17sp" />
 
             <TextView
@@ -59,10 +85,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/EventIDate"
+                android:layout_alignParentRight="true"
                 android:layout_centerHorizontal="true"
-                android:layout_toRightOf="@+id/EventIImageID"
-                android:padding="5dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/psregular"
+                android:paddingRight="8dp"
                 android:text="Venue"
+                android:textColor="@color/white"
                 android:textSize="17sp" />
 
 

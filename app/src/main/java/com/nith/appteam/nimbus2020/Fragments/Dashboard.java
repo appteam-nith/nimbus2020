@@ -4,13 +4,13 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.AnticipateOvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -21,16 +21,20 @@ import androidx.annotation.RequiresApi;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.nith.appteam.nimbus2020.Activities.MainActivity;
+import com.nith.appteam.nimbus2020.Activities.Exhhibition;
+import com.nith.appteam.nimbus2020.Activities.QuizMainActivity;
+import com.nith.appteam.nimbus2020.Activities.Talks;
+import com.nith.appteam.nimbus2020.Activities.Workshops;
 import com.nith.appteam.nimbus2020.R;
 
 
 public class Dashboard extends Fragment {
+    Context context;
     private TextView quote1, quote2, event_text, campus_text;
     private CardView quiz_card, workshop_card, exhibition_card, talk_card;
     private ImageView t_n, t_k, e_n, e_k;
-    Context context;
-    public Dashboard(Context context){
+
+    public Dashboard(Context context) {
         this.context = context;
     }
 
@@ -55,10 +59,10 @@ public class Dashboard extends Fragment {
         e_n = rootView.findViewById(R.id.e_n);
         e_k = rootView.findViewById(R.id.e_k);
 
-        ObjectAnimator e_n_right = ObjectAnimator.ofFloat(e_n, "translationX", e_n.getTranslationX(), e_n.getTranslationX()+30);
-        ObjectAnimator e_n_left = ObjectAnimator.ofFloat(e_n, "translationX", e_n.getTranslationX(), e_n.getTranslationX()-30);
-        ObjectAnimator e_n_right1 = ObjectAnimator.ofFloat(e_n, "translationY", e_n.getTranslationY(), e_n.getTranslationY()+30);
-        ObjectAnimator e_n_left1 = ObjectAnimator.ofFloat(e_n, "translationY", e_n.getTranslationY(), e_n.getTranslationY()-30);
+        ObjectAnimator e_n_right = ObjectAnimator.ofFloat(e_n, "translationX", e_n.getTranslationX(), e_n.getTranslationX() + 30);
+        ObjectAnimator e_n_left = ObjectAnimator.ofFloat(e_n, "translationX", e_n.getTranslationX(), e_n.getTranslationX() - 30);
+        ObjectAnimator e_n_right1 = ObjectAnimator.ofFloat(e_n, "translationY", e_n.getTranslationY(), e_n.getTranslationY() + 30);
+        ObjectAnimator e_n_left1 = ObjectAnimator.ofFloat(e_n, "translationY", e_n.getTranslationY(), e_n.getTranslationY() - 30);
         e_n_right.setDuration(1000);
         e_n_left.setDuration(1000);
         e_n_right1.setDuration(1000);
@@ -68,10 +72,10 @@ public class Dashboard extends Fragment {
         e_n_right1.setInterpolator(new AnticipateOvershootInterpolator());
         e_n_left1.setInterpolator(new AnticipateOvershootInterpolator());
 
-        ObjectAnimator e_k_right = ObjectAnimator.ofFloat(e_k, "translationX", e_k.getTranslationX(), e_k.getTranslationX()+30);
-        ObjectAnimator e_k_left = ObjectAnimator.ofFloat(e_k, "translationX", e_k.getTranslationX(), e_k.getTranslationX()-30);
-        ObjectAnimator e_k_right1 = ObjectAnimator.ofFloat(e_k, "translationY", e_k.getTranslationY(), e_k.getTranslationY()+30);
-        ObjectAnimator e_k_left1 = ObjectAnimator.ofFloat(e_k, "translationY", e_k.getTranslationY(), e_k.getTranslationY()-30);
+        ObjectAnimator e_k_right = ObjectAnimator.ofFloat(e_k, "translationX", e_k.getTranslationX(), e_k.getTranslationX() + 30);
+        ObjectAnimator e_k_left = ObjectAnimator.ofFloat(e_k, "translationX", e_k.getTranslationX(), e_k.getTranslationX() - 30);
+        ObjectAnimator e_k_right1 = ObjectAnimator.ofFloat(e_k, "translationY", e_k.getTranslationY(), e_k.getTranslationY() + 30);
+        ObjectAnimator e_k_left1 = ObjectAnimator.ofFloat(e_k, "translationY", e_k.getTranslationY(), e_k.getTranslationY() - 30);
         e_k_right1.setDuration(1400);
         e_k_left1.setDuration(1400);
         e_k_right.setDuration(1400);
@@ -82,10 +86,10 @@ public class Dashboard extends Fragment {
         e_k_left.setInterpolator(new AnticipateOvershootInterpolator());
 
         AnimatorSet animator = new AnimatorSet();
-        animator.playTogether(e_n_right,e_n_right1,e_k_right,e_k_right1);
+        animator.playTogether(e_n_right, e_n_right1, e_k_right, e_k_right1);
 
         final AnimatorSet animator1 = new AnimatorSet();
-        animator1.playTogether(e_n_left,e_n_left1,e_k_left,e_k_left1);
+        animator1.playTogether(e_n_left, e_n_left1, e_k_left, e_k_left1);
 
         animator.start();
         animator.addListener(new Animator.AnimatorListener() {
@@ -96,10 +100,10 @@ public class Dashboard extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                e_n.setTranslationX(e_n.getTranslationX()+30);
-                e_n.setTranslationY(e_n.getTranslationY()+30);
-                e_k.setTranslationX(e_k.getTranslationX()+30);
-                e_k.setTranslationY(e_k.getTranslationY()+30);
+                e_n.setTranslationX(e_n.getTranslationX() + 30);
+                e_n.setTranslationY(e_n.getTranslationY() + 30);
+                e_k.setTranslationX(e_k.getTranslationX() + 30);
+                e_k.setTranslationY(e_k.getTranslationY() + 30);
                 animator1.start();
             }
 
@@ -122,10 +126,10 @@ public class Dashboard extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                e_n.setTranslationX(e_n.getTranslationX()-30);
-                e_n.setTranslationY(e_n.getTranslationY()-30);
-                e_k.setTranslationX(e_k.getTranslationX()-30);
-                e_k.setTranslationY(e_k.getTranslationY()-30);
+                e_n.setTranslationX(e_n.getTranslationX() - 30);
+                e_n.setTranslationY(e_n.getTranslationY() - 30);
+                e_k.setTranslationX(e_k.getTranslationX() - 30);
+                e_k.setTranslationY(e_k.getTranslationY() - 30);
                 animator.start();
             }
 
@@ -163,7 +167,35 @@ public class Dashboard extends Fragment {
         } else {
             quote1.setText(Html.fromHtml("<p>\"I AM <strike>IRON MAN</strike> <font color=\"#2fc0d1\">SEMBLANCE</font> \uD83D\uDE80 !\" <small><i><font color=\"#888888\"> ~ NIMBUS</font></i></small></p>"));
         }
+        quiz_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), QuizMainActivity.class);
+                startActivity(i);
 
+            }
+        });
+        workshop_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), Workshops.class);
+                startActivity(i);
+            }
+        });
+        talk_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), Talks.class);
+                startActivity(i);
+            }
+        });
+        exhibition_card.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getContext(), Exhhibition.class);
+                startActivity(i);
+            }
+        });
         return rootView;
     }
 }
