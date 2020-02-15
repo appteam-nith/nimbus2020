@@ -89,11 +89,11 @@ public class Dashboard extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                animator1.start();
                 e_n.setTranslationX(e_n.getTranslationX()+30);
                 e_n.setTranslationY(e_n.getTranslationY()+30);
                 e_k.setTranslationX(e_k.getTranslationX()+30);
                 e_k.setTranslationY(e_k.getTranslationY()+30);
+                animator1.start();
             }
 
             @Override
@@ -115,11 +115,11 @@ public class Dashboard extends Fragment {
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                animator.start();
                 e_n.setTranslationX(e_n.getTranslationX()-30);
                 e_n.setTranslationY(e_n.getTranslationY()-30);
                 e_k.setTranslationX(e_k.getTranslationX()-30);
                 e_k.setTranslationY(e_k.getTranslationY()-30);
+                animator.start();
             }
 
             @Override
