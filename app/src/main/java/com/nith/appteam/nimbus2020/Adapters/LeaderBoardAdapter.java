@@ -4,8 +4,10 @@ import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nith.appteam.nimbus2020.Models.LeaderboardModel;
 import com.nith.appteam.nimbus2020.R;
@@ -13,8 +15,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
+import de.hdodenhof.circleimageview.CircleImageView;
 
 public class LeaderBoardAdapter extends
         RecyclerView.Adapter<LeaderBoardAdapter.LeaderboardViewHolder> {
@@ -56,7 +57,7 @@ public class LeaderBoardAdapter extends
 
     public class LeaderboardViewHolder extends RecyclerView.ViewHolder {
 
-        ImageView userImageView;
+        CircleImageView userImageView;
         TextView nameTextView;
         TextView scoreTextView;
 

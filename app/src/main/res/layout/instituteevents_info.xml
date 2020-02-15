@@ -23,25 +23,23 @@
 
             <ImageView
                 android:id="@+id/round_big"
-                android:layout_width="108dp"
-                android:layout_height="108dp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
                 android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
                 android:elevation="0dp"
-                android:scaleX="2"
-                android:scaleY="2"
                 android:src="@drawable/bg_round_dark"
-                android:translationX="-10dp" />
+                android:translationX="-75dp" />
 
             <ImageView
                 android:id="@+id/round_small"
-                android:layout_width="108dp"
-                android:layout_height="108dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:layout_alignParentLeft="true"
-                android:scaleX="2"
-                android:scaleY="2"
+                android:layout_centerVertical="true"
                 android:src="@drawable/bg_round_dark"
                 android:tint="@color/black"
-                android:translationX="-40dp" />
+                android:translationX="-50dp" />
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/EventIImageID"
@@ -50,15 +48,16 @@
                 android:layout_alignParentLeft="true"
                 android:layout_centerVertical="true"
                 android:layout_margin="16dp"
-                android:src="@color/white" />
+                android:src="@color/white"
+                android:visibility="gone" />
+
 
             <TextView
                 android:id="@+id/EventINameID"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="32dp"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/psb"
                 android:paddingRight="8dp"
@@ -71,7 +70,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/EventINameID"
-                android:layout_alignParentRight="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/psregular"
@@ -85,7 +83,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/EventIDate"
-                android:layout_alignParentRight="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginRight="16dp"
                 android:fontFamily="@font/psregular"
