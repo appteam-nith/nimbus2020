@@ -1,6 +1,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     android:orientation="vertical">
 
@@ -8,6 +9,14 @@
         android:layout_width="match_parent"
         android:layout_marginTop="16dp"
         android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/scanner"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_scanner"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"/>
 
         <com.nith.appteam.nimbus2020.Utils.GradientTextView
             android:layout_width="wrap_content"
@@ -17,6 +26,16 @@
             android:text="S E M B L A N C E"
             android:textColor="@color/white"
             android:textSize="15sp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            app:civ_border_color="@android:color/white"
+            app:civ_border_width="2dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:src="@color/colorPrimary"/>
 
     </RelativeLayout>
 
