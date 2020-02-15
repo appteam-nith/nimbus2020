@@ -2,15 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#fff">
+    android:background="@color/background">
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerInParent="true"
-        android:src="@drawable/nimbus_logo" />
 
-    <TextView
+    <com.nith.appteam.nimbus2020.Utils.GradientTextView
         android:id="@+id/login_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,13 +13,16 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="72dp"
-        android:background="@drawable/black_round_corner"
+        android:backgroundTint="@color/black"
+        android:background="@drawable/gradient_round_corner"
         android:gravity="center"
         android:paddingTop="12dp"
         android:paddingBottom="12dp"
         android:text="Login"
-        android:textColor="@color/white"
-        android:textSize="16sp" />
+        android:fontFamily="@font/psb"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
     <ProgressBar
         android:id="@+id/login_progress"
