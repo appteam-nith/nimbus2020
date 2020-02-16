@@ -125,7 +125,7 @@ public class Workshops extends AppCompatActivity {
 //                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
                         workshop.setNameWor(workshopObj.getString("name"));
-                        workshop.setDateWor("On: " + workshopObj.getString("date"));
+                        workshop.setDateWor(workshopObj.getString("date"));
                         workshop.setImageWor(workshopObj.getString("image"));
                         workshop.setInfoWor(workshopObj.getString("info"));
                         workshop.setUrlWor(workshopObj.getString("regUrl"));

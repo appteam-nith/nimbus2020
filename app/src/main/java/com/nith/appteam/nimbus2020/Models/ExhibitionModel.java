@@ -45,7 +45,8 @@ public class ExhibitionModel
     }
 
     public String getDateExh() {
-        return dateExh;
+        FormatDate formatDate = new FormatDate(dateExh);
+        return formatDate.getFormattedDate();
     }
 
     public void setDateExh(String dateExh) {

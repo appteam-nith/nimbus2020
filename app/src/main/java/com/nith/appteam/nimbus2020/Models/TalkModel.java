@@ -51,7 +51,8 @@ public class TalkModel
     }
 
     public String getDate() {
-        return date;
+        FormatDate formatDate = new FormatDate(date);
+        return formatDate.getFormattedDate();
     }
 
     public void setDate(String date) {

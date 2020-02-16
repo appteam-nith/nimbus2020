@@ -31,7 +31,8 @@ public class DiscoverModel {
     }
 
     public String getTime() {
-        return time;
+        FormatDate formatDate = new FormatDate(time);
+        return formatDate.getFormattedDate();
     }
 
     public void setTime(String time) {

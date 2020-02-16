@@ -44,10 +44,13 @@ public class departmentEvent implements Serializable {
     }
 
     public String getDateDEVE() {
-        return dateDEVE;
+
+        FormatDate formatDate = new FormatDate(dateDEVE);
+        return formatDate.getFormattedDate();
     }
 
     public void setDateDEVE(String dateDEVE) {
+
         this.dateDEVE = dateDEVE;
     }
 
