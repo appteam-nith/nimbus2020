@@ -40,7 +40,6 @@ public class LeaderBoardActivity extends AppCompatActivity {
     List<LeaderboardModel> mLeaderboardModelList;
     String quizId;
     String image;
-
     RequestQueue queue;
 
     @Override
