@@ -110,8 +110,8 @@ public class Login extends AppCompatActivity {
         final RichPath part1 = nimbus.findRichPathByName("tiny_right");
         System.out.println(part1);
         final RichPath part2 = nimbus.findRichPathByName("tiny_left");
-        final RichPath part3 = nimbus.findRichPathByName("small_right");
-        final RichPath part4 = nimbus.findRichPathByName("small_left");
+//        final RichPath part3 = nimbus.findRichPathByName("small_right");
+//        final RichPath part4 = nimbus.findRichPathByName("small_left");
         final RichPath part5 = nimbus.findRichPathByName("big_right");
         final RichPath part6 = nimbus.findRichPathByName("big_left");
 
@@ -120,10 +120,10 @@ public class Login extends AppCompatActivity {
                 .trimPathOffset(0, 1.0f)
                 .andAnimate(part2)
                 .trimPathOffset(0, 1.0f)
-                .andAnimate(part3)
-                .trimPathOffset(0, 1.0f)
-                .andAnimate(part4)
-                .trimPathOffset(0, 1.0f)
+//                .andAnimate(part3)
+//                .trimPathOffset(0, 1.0f)
+//                .andAnimate(part4)
+//                .trimPathOffset(0, 1.0f)
                 .andAnimate(part5)
                 .trimPathOffset(0, 1.0f)
                 .andAnimate(part6)
