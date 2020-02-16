@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <org.sufficientlysecure.htmltextview.HtmlTextView
             android:id="@+id/event_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <TextView
+        <org.sufficientlysecure.htmltextview.HtmlTextView
             android:id="@+id/quote1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -195,7 +195,7 @@
 
         </LinearLayout>
 
-        <TextView
+        <org.sufficientlysecure.htmltextview.HtmlTextView
             android:id="@+id/quote2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -277,7 +277,7 @@
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
-        <TextView
+        <org.sufficientlysecure.htmltextview.HtmlTextView
             android:id="@+id/campus_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
