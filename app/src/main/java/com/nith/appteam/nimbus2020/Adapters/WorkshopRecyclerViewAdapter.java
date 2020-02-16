@@ -1,24 +1,24 @@
 package com.nith.appteam.nimbus2020.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nith.appteam.nimbus2020.Activities.Add_workshop_details;
 import com.nith.appteam.nimbus2020.Models.WorkshopModel;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Random;
 
 public class WorkshopRecyclerViewAdapter extends
         RecyclerView.Adapter<WorkshopRecyclerViewAdapter.ViewHolder> {
@@ -44,8 +44,13 @@ public class WorkshopRecyclerViewAdapter extends
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.item_animation));
-
+        Animation animation = AnimationUtils.loadAnimation(context.getApplicationContext(), R.anim.fast_anim_v1);
+        Random rand = new Random();
+        animation.setDuration(rand.nextInt(2000) + 2000);
+        Animation animation1 = AnimationUtils.loadAnimation(context.getApplicationContext(), R.anim.slow_anim_v1);
+        animation1.setDuration(rand.nextInt(2000) + 2000);
+        holder.round_big.startAnimation(animation1);
+        holder.round_small.startAnimation(animation);
 
         WorkshopModel workshop = workshopList.get(position);
         String imageLinkWor = workshop.getImageWor();
@@ -66,17 +71,17 @@ public class WorkshopRecyclerViewAdapter extends
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView nameWor, dateWor, venueWor;
-        ImageView imgSpkrWork;
-        RelativeLayout container;
+        ImageView imgSpkrWork, round_big, round_small;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context = ctx;
-            container = itemView.findViewById(R.id.contWor);
             nameWor = itemView.findViewById(R.id.workshopNameID);
             imgSpkrWork = itemView.findViewById(R.id.WorkshopImageID);
             venueWor = itemView.findViewById(R.id.workshopVenueID);
             dateWor = itemView.findViewById(R.id.WorkshopDate);
+            round_big = itemView.findViewById(R.id.round_big);
+            round_small = itemView.findViewById(R.id.round_small);
             imgSpkrWork.setClipToOutline(true);
             //infoWor=(TextView) itemView.findViewById(R.id.workshopInfoID);
             //regUrlWor=(TextView) itemView.findViewById(R.id.regURLWor);
@@ -86,10 +91,12 @@ public class WorkshopRecyclerViewAdapter extends
 
                 @Override
                 public void onClick(View view) {
-                    WorkshopModel workshopModel = workshopList.get(getAdapterPosition());
-                    Intent intent = new Intent(context, Add_workshop_details.class);
-                    intent.putExtra("workshop", workshopModel);
-                    ctx.startActivity(intent);
+//                    WorkshopModel workshopModel = workshopList.get(getAdapterPosition());
+//                    Intent intent = new Intent(context, Add_workshop_details.class);
+//                    intent.putExtra("workshop", workshopModel);
+//                    ctx.startActivity(intent);
+                    //Display toast until UI is not ready
+                    Toast.makeText(ctx, "Coming Soon..", Toast.LENGTH_SHORT).show();
                 }
 
             });

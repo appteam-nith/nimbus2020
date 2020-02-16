@@ -226,7 +226,7 @@ public class Add_I_Events extends AppCompatActivity {
                     public void onError(String requestId, ErrorInfo error) {
                         Log.i("HELLO", "JIJIJ");
 //                      finish();
-overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                        overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                         Toast.makeText(Add_I_Events.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();
 
                     }

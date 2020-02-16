@@ -1,7 +1,6 @@
 package com.nith.appteam.nimbus2020.Fragments;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -27,8 +26,6 @@ import com.nith.appteam.nimbus2020.Activities.QuizMainActivity;
 import com.nith.appteam.nimbus2020.Activities.Talks;
 import com.nith.appteam.nimbus2020.Activities.Workshops;
 import com.nith.appteam.nimbus2020.R;
-
-import java.util.Objects;
 
 
 public class Dashboard extends Fragment {

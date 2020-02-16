@@ -7,13 +7,13 @@
     <scale
         android:duration="2000"
         android:fillAfter="true"
-        android:repeatMode="reverse"
-        android:repeatCount="infinite"
         android:fromXScale="1"
         android:fromYScale="1"
         android:pivotX="50%p"
         android:pivotY="50%p"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
         android:toXScale="0.98"
-        android:toYScale="0.98"/>
+        android:toYScale="0.98" />
 
 </set>

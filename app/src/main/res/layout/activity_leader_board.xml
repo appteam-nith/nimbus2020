@@ -24,7 +24,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:fontFamily="@font/psb"
-            android:text="S E M B L A N C E"
+            android:text="L e a d e r b o a r d"
+            android:textAllCaps="true"
             android:textColor="@color/white"
             android:textSize="15sp" />
 
@@ -44,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/corner"
-            android:background="@android:color/white"/>
+            android:background="@android:color/white" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -60,7 +61,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/leaderboardRecyclerView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:scrollbars="none" />
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

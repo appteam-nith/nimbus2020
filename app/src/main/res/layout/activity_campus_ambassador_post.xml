@@ -6,63 +6,98 @@
     android:background="@color/background"
     android:orientation="vertical"
     tools:context=".Activities.CampusAmbassadorPost">
-    <!--todo nsh add app bar here-->
-<!--    todo add scroll view parent-->
-    <TextView
-        android:id="@+id/text_lable"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:fontFamily="@font/psregular"
-        android:text="Enter link of social media here"
-        android:textColor="@color/colorAccent" />
 
-    <EditText
-        android:id="@+id/link"
+    <com.nith.appteam.nimbus2020.Utils.GradientTextView
+        android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text_lable"
-        android:layout_margin="16dp"
-        android:textSize="15sp"
-        android:backgroundTint="@color/white"
-        android:hint="https://www.facebook.com/something"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/psb"
+        android:gravity="center"
+        android:text="a m b a s s a d o r"
+        android:textAllCaps="true"
         android:textColor="@color/white"
-        android:textColorHint="@color/white" />
+        android:textSize="15sp" />
 
-    <ImageView
-        android:id="@+id/imageUpload"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/link"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter" />
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title"
+        android:scrollbars="none">
 
-    <Button
-        android:id="@+id/upload_picture"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imageUpload"
-        android:layout_gravity="center"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/black_round_corner"
-        android:text="Upload Picture"
-        android:textColor="@color/white" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="48dp">
 
-    <Button
-        android:id="@+id/submit_post"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/upload_picture"
-        android:layout_gravity="center"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="24dp"
-        android:background="@drawable/black_round_corner"
-        android:text="Submit Post"
-        android:textColor="@color/white"
-        android:visibility="invisible" />
+            <TextView
+                android:id="@+id/text_lable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/title"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:fontFamily="@font/psregular"
+                android:text="Enter link of social media here"
+                android:textColor="@color/colorAccent" />
+
+            <EditText
+                android:id="@+id/link"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/text_lable"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:backgroundTint="@color/white"
+                android:hint="https://www.facebook.com/something"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="15sp" />
+
+            <ImageView
+                android:id="@+id/imageUpload"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/link"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter" />
+
+            <Button
+                android:id="@+id/upload_picture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageUpload"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/black_round_corner"
+                android:text="Upload Picture"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/submit_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/upload_picture"
+                android:layout_gravity="center"
+                android:layout_marginLeft="24dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="24dp"
+                android:background="@drawable/black_round_corner"
+                android:text="Submit Post"
+                android:textColor="@color/white"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </ScrollView>
 
     <ProgressBar
         android:id="@+id/post_progress"

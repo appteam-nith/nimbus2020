@@ -22,14 +22,14 @@ public class QuizInstructionsActivity extends AppCompatActivity {
     Button leaderboard;
     String response;
     String quizId;
-    TextView instructionsTV;
+    TextView instructionsTV, back;
     int noquestions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_instructions);
-
+        back = findViewById(R.id.back);
         playNow = findViewById(R.id.playNowButton);
         leaderboard = findViewById(R.id.leaderboardButton);
         instructionsTV = findViewById(R.id.instructionsTV);
@@ -41,7 +41,12 @@ public class QuizInstructionsActivity extends AppCompatActivity {
         quizId = getIntent().getStringExtra("quizId");
 
         Log.e("response", response);
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
         playNow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

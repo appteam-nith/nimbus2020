@@ -119,21 +119,21 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
         editor = sharedPref.edit();
 
-//         Checking whether user has logged in or not
-//        if (sharedPref.getBoolean("loginStatus", false) == false) {
-//            Intent i = new Intent(this, Login.class);
-//            startActivity(i);
-//            finish();
-overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
-//        }
+        // Checking whether user has logged in or not
+        if (sharedPref.getBoolean("loginStatus", false) == false) {
+            Intent i = new Intent(this, Login.class);
+            startActivity(i);
+            finish();
+        overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+        }
 
-//        Checking whether user has created profile or not
-//        else if (sharedPref.getBoolean("profileStatus", false) == false) {
-//            Intent i = new Intent(this, ProfileNew.class);
-//            startActivity(i);
-//            finish();
-overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
-//        }
+        //Checking whether user has created profile or not
+        else if (sharedPref.getBoolean("profileStatus", false) == false) {
+            Intent i = new Intent(this, ProfileNew.class);
+            startActivity(i);
+            finish();
+        overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+        }
 
         psbi = ResourcesCompat.getFont(this, R.font.psbitalic);
         psi = ResourcesCompat.getFont(this, R.font.psitalic);

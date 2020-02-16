@@ -41,15 +41,11 @@ public class QuizRecyclerAdapter extends RecyclerView.Adapter<QuizRecyclerAdapte
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
         holder.quizname.setText(arrayList.get(position).getValue());
-
-        // todo add toast when a particular quiz,exhibiton,event,talk is tapped => Coming Soon...
-
-        // todo set below animation in all adapter which have round_big & round_small drawable..... ANIMATE ONLY THESE DRAwABLES
         Animation animation = AnimationUtils.loadAnimation(context.getApplicationContext(), R.anim.fast_anim_v1);
         Random rand = new Random();
-        animation.setDuration(rand.nextInt(2000)+2000);
+        animation.setDuration(rand.nextInt(2000) + 2000);
         Animation animation1 = AnimationUtils.loadAnimation(context.getApplicationContext(), R.anim.slow_anim_v1);
-        animation1.setDuration(rand.nextInt(2000)+2000);
+        animation1.setDuration(rand.nextInt(2000) + 2000);
         holder.round_big.startAnimation(animation1);
         holder.round_small.startAnimation(animation);
 
