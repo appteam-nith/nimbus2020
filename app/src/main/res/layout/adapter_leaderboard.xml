@@ -9,6 +9,7 @@
     app:cardElevation="0dp"
     app:cardPreventCornerOverlap="true">
 
+<!--    todo make this layout 100% same as our team adapter => write name and score in next line => USE GRID LAYOUT MANAGER IN RECYCLER VIEW-->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"

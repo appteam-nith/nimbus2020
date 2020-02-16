@@ -16,6 +16,8 @@ public class Web extends AppCompatActivity {
         String url = getIntent().getStringExtra("url");
         if (url == null || url.isEmpty()) {
             finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+            overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
         }
         setContentView(R.layout.activity_web);
         WebView webView = findViewById(R.id.nyc_poi_webview);

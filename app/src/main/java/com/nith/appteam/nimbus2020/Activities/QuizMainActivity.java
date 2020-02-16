@@ -12,7 +12,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,12 +22,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.nith.appteam.nimbus2020.Adapters.QuizRecyclerAdapter;
 import com.nith.appteam.nimbus2020.Models.Id_Value;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.RecyclerItemClickListener;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -58,6 +55,7 @@ public class QuizMainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -176,6 +174,7 @@ public class QuizMainActivity extends AppCompatActivity {
                     i.putExtra("image", quiztypes.get(position).getImageUrl());
                     progressDialog.dismiss();
                     startActivity(i);
+                    overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                 }
 
             }

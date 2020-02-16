@@ -7,12 +7,12 @@ public class Id_Value {
     private String startTime;
     private String endTime;
 
-    public Id_Value(String value, String id, String imageUrl,String startTime,String endTime) {
+    public Id_Value(String value, String id, String imageUrl, String startTime, String endTime) {
         this.value = value;
         this.id = id;
         this.imageUrl = imageUrl;
-        this.startTime=startTime;
-        this.endTime=endTime;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public String getImageUrl() {

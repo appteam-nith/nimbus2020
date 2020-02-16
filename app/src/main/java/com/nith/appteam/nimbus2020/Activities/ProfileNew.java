@@ -75,6 +75,7 @@ public class ProfileNew extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -210,6 +211,7 @@ public class ProfileNew extends AppCompatActivity {
                     public void onError(String requestId, ErrorInfo error) {
                         Log.e("error", "cloudinary image upload error");
 //                      finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                         Toast.makeText(ProfileNew.this, "Image Upload Failed", Toast.LENGTH_LONG).show();
                     }
 
@@ -262,11 +264,14 @@ public class ProfileNew extends AppCompatActivity {
                         progressBar.setVisibility(View.GONE);
                         if (editProfile) {
                             finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                         } else {
                             Intent i = new Intent(ProfileNew.this, MainActivity.class);
                             i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(i);
                             finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                            overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                         }
                     } else {
                         Toast.makeText(ProfileNew.this, "Unknown error" + response, Toast.LENGTH_SHORT).show();

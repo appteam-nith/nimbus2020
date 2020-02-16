@@ -5,15 +5,15 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toolbar;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.nith.appteam.nimbus2020.Adapters.contributorAdapter;
 import com.nith.appteam.nimbus2020.Models.contributorsItem;
 import com.nith.appteam.nimbus2020.R;
 
 import java.util.ArrayList;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 class contributorsActivity extends AppCompatActivity {
 
@@ -27,11 +27,12 @@ class contributorsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_contributors);
 
         TextView back;
-        back = (TextView)findViewById(R.id.back);
+        back = (TextView) findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 

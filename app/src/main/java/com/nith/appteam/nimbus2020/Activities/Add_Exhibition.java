@@ -230,6 +230,7 @@ public class Add_Exhibition extends AppCompatActivity {
                     public void onError(String requestId, ErrorInfo error) {
                         Log.i("HELLO", "JIJIJ");
 //                      finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                         Toast.makeText(Add_Exhibition.this,
                                 "Upload Failed" + error.getDescription() + " requestId" + requestId,
                                 Toast.LENGTH_LONG).show();

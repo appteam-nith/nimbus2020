@@ -16,8 +16,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.android.volley.VolleyError;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.fragment.app.FragmentManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 
+import com.android.volley.VolleyError;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -48,16 +57,6 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.fragment.app.FragmentManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks,
         GoogleApiClient.OnConnectionFailedListener {
@@ -92,7 +91,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         SharedPreferences sharedPreferences = getSharedPreferences("app", MODE_PRIVATE);
         String image = sharedPreferences.getString("profileImage", null);
 
-        Picasso.with(this).load(image).resize(30, 30).into(profileImage);
+        Picasso.with(this).load(image).resize(30, 30).placeholder(R.drawable.fui_ic_anonymous_white_24dp).into(profileImage);
 
 
         googleApiClient = new GoogleApiClient.Builder(this)
@@ -121,18 +120,20 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         editor = sharedPref.edit();
 
 //         Checking whether user has logged in or not
-        if (sharedPref.getBoolean("loginStatus", false) == false) {
-            Intent i = new Intent(this, Login.class);
-            startActivity(i);
-            finish();
-        }
+//        if (sharedPref.getBoolean("loginStatus", false) == false) {
+//            Intent i = new Intent(this, Login.class);
+//            startActivity(i);
+//            finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+//        }
 
 //        Checking whether user has created profile or not
-        else if (sharedPref.getBoolean("profileStatus", false) == false) {
-            Intent i = new Intent(this, ProfileNew.class);
-            startActivity(i);
-            finish();
-        }
+//        else if (sharedPref.getBoolean("profileStatus", false) == false) {
+//            Intent i = new Intent(this, ProfileNew.class);
+//            startActivity(i);
+//            finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+//        }
 
         psbi = ResourcesCompat.getFont(this, R.font.psbitalic);
         psi = ResourcesCompat.getFont(this, R.font.psitalic);
@@ -172,6 +173,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
                 Intent intent = new Intent(MainActivity.this, ProfileMain.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -180,6 +182,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View view) {
                 Intent i = new Intent(MainActivity.this, CoreTeamActivity.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -188,6 +191,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, ProfileMain.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         campusA.setOnClickListener(new View.OnClickListener() {
@@ -195,6 +199,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View v) {
                 Intent i = new Intent(MainActivity.this, CampusAmbassador.class);
                 startActivity(i);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -203,6 +208,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, QuizMainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -211,6 +217,8 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, UI.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -219,6 +227,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Workshops.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         talks.setOnClickListener(new View.OnClickListener() {
@@ -226,6 +235,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Talks.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         events.setOnClickListener(new View.OnClickListener() {
@@ -233,6 +243,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Event_Choose.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         schedule.setOnClickListener(new View.OnClickListener() {
@@ -240,6 +251,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Schedule_Day.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         exhibition.setOnClickListener(new View.OnClickListener() {
@@ -247,6 +259,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, Exhhibition.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -255,6 +268,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, QRScanner.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -335,7 +349,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
             @Override
             public void notifySuccess(String requestType, JSONObject response,
-                    JSONArray jsonArray) {
+                                      JSONArray jsonArray) {
 
 
                 if (response != null) {

@@ -17,9 +17,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:text="BACK"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/psregular"
+            android:text="&lt; BACK"
             android:textColor="@android:color/white"
-            android:fontFamily="@font/psregular"/>
+            android:textSize="13sp" />
 
         <com.nith.appteam.nimbus2020.Utils.GradientTextView
             android:layout_width="wrap_content"
@@ -33,6 +35,7 @@
     </RelativeLayout>
 
     <ScrollView
+        android:scrollbars="none"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
@@ -52,8 +55,8 @@
                 android:elevation="8dp"
                 android:scaleType="centerCrop"
                 android:src="@color/white"
-                app:civ_border_width="2dp"
                 app:civ_border_color="@color/black"
+                app:civ_border_width="2dp"
                 app:civ_circle_background_color="@color/white" />
 
             <TextView
@@ -61,12 +64,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/profile_picture"
-                android:layout_marginTop="4dp"
+                android:layout_margin="16dp"
+                android:fontFamily="@font/psb"
                 android:gravity="center_horizontal"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
+                android:textAllCaps="true"
                 android:textColor="@color/white"
-                android:textSize="32sp"
+                android:textSize="24sp"
                 tools:text="Pawan Singh" />
 
             <LinearLayout
@@ -75,13 +78,13 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/name"
                 android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="8dp">
+                android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/diamond_blue"
-                    android:layout_width="32dp"
-                    android:layout_height="28dp"
+                    android:layout_width="22dp"
+                    android:layout_height="18dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/diamond_blue" />
 
                 <TextView
@@ -89,15 +92,17 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
+                    android:fontFamily="@font/psregular"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     tools:text="100" />
 
                 <ImageView
                     android:id="@+id/diamond_pink"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:layout_marginLeft="24dp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/diamond_pink" />
 
                 <TextView
@@ -105,6 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="12dp"
+                    android:fontFamily="@font/psregular"
                     android:textColor="@color/white"
                     android:textSize="20sp"
                     tools:text="100" />
@@ -116,11 +122,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/points"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center_horizontal"
-                android:text="Roll No"
-                android:textColor="@color/accent"
-                android:textSize="20sp" />
+                android:text="Roll Number"
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/rollno"
@@ -138,11 +145,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/rollno"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center_horizontal"
-                android:text="Phone No"
-                android:textColor="@color/accent"
-                android:textSize="20sp" />
+                android:text="Phone Number"
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/phone_number"
@@ -160,11 +168,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/phone_number"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:gravity="center_horizontal"
                 android:text="College"
-                android:textColor="@color/accent"
-                android:textSize="20sp" />
+                android:textAllCaps="true"
+                android:textColor="@color/colorAccent"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/college"
@@ -177,15 +186,16 @@
                 android:textSize="16sp"
                 tools:text="NIT Hamirpur" />
 
-            <ImageView
-                android:id="@+id/edit_profile"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_below="@+id/college"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="36dp"
-                android:layout_marginBottom="36dp"
-                android:src="@drawable/edit_black_white" />
         </RelativeLayout>
     </ScrollView>
+
+    <ImageView
+        android:id="@+id/edit_profile"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="36dp"
+        android:src="@drawable/edit_black_white" />
+
 </RelativeLayout>

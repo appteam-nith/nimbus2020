@@ -1,8 +1,6 @@
 package com.nith.appteam.nimbus2020.Fragments;
 
-import android.animation.Animator;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
@@ -11,7 +9,8 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.AnticipateOvershootInterpolator;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -29,17 +28,19 @@ import com.nith.appteam.nimbus2020.Activities.Talks;
 import com.nith.appteam.nimbus2020.Activities.Workshops;
 import com.nith.appteam.nimbus2020.R;
 
+import java.util.Objects;
+
 
 public class Dashboard extends Fragment {
-    Context context;
+    Activity context;
+    Animation animation, animation1, animation2, animation3;
     private TextView quote1, quote2, event_text, campus_text;
     private CardView quiz_card, workshop_card, exhibition_card, talk_card;
     private ImageView t_n, t_k, e_n, e_k;
 
-    public Dashboard(Context context) {
+    public Dashboard(Activity context) {
         this.context = context;
     }
-
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Nullable
@@ -61,90 +62,15 @@ public class Dashboard extends Fragment {
         e_n = rootView.findViewById(R.id.e_n);
         e_k = rootView.findViewById(R.id.e_k);
 
-        ObjectAnimator e_n_right = ObjectAnimator.ofFloat(e_n, "translationX", e_n.getTranslationX(), e_n.getTranslationX() + 30);
-        ObjectAnimator e_n_left = ObjectAnimator.ofFloat(e_n, "translationX", e_n.getTranslationX(), e_n.getTranslationX() - 30);
-        ObjectAnimator e_n_right1 = ObjectAnimator.ofFloat(e_n, "translationY", e_n.getTranslationY(), e_n.getTranslationY() + 30);
-        ObjectAnimator e_n_left1 = ObjectAnimator.ofFloat(e_n, "translationY", e_n.getTranslationY(), e_n.getTranslationY() - 30);
-        e_n_right.setDuration(1000);
-        e_n_left.setDuration(1000);
-        e_n_right1.setDuration(1000);
-        e_n_left1.setDuration(1000);
-        e_n_right.setInterpolator(new AnticipateOvershootInterpolator());
-        e_n_left.setInterpolator(new AnticipateOvershootInterpolator());
-        e_n_right1.setInterpolator(new AnticipateOvershootInterpolator());
-        e_n_left1.setInterpolator(new AnticipateOvershootInterpolator());
+        animation = AnimationUtils.loadAnimation(context.getApplicationContext(), R.anim.fast_anim);
+        animation1 = AnimationUtils.loadAnimation(context.getApplicationContext(), R.anim.slow_anim);
+        animation2 = AnimationUtils.loadAnimation(context.getApplicationContext(), R.anim.fast_anim_v);
+        animation3 = AnimationUtils.loadAnimation(context.getApplicationContext(), R.anim.slow_anim_v);
 
-        ObjectAnimator e_k_right = ObjectAnimator.ofFloat(e_k, "translationX", e_k.getTranslationX(), e_k.getTranslationX() + 30);
-        ObjectAnimator e_k_left = ObjectAnimator.ofFloat(e_k, "translationX", e_k.getTranslationX(), e_k.getTranslationX() - 30);
-        ObjectAnimator e_k_right1 = ObjectAnimator.ofFloat(e_k, "translationY", e_k.getTranslationY(), e_k.getTranslationY() + 30);
-        ObjectAnimator e_k_left1 = ObjectAnimator.ofFloat(e_k, "translationY", e_k.getTranslationY(), e_k.getTranslationY() - 30);
-        e_k_right1.setDuration(1400);
-        e_k_left1.setDuration(1400);
-        e_k_right.setDuration(1400);
-        e_k_left.setDuration(1400);
-        e_k_right1.setInterpolator(new AnticipateOvershootInterpolator());
-        e_k_left1.setInterpolator(new AnticipateOvershootInterpolator());
-        e_k_right.setInterpolator(new AnticipateOvershootInterpolator());
-        e_k_left.setInterpolator(new AnticipateOvershootInterpolator());
-
-        AnimatorSet animator = new AnimatorSet();
-        animator.playTogether(e_n_right, e_n_right1, e_k_right, e_k_right1);
-
-        final AnimatorSet animator1 = new AnimatorSet();
-        animator1.playTogether(e_n_left, e_n_left1, e_k_left, e_k_left1);
-
-        animator.start();
-        animator.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                e_n.setTranslationX(e_n.getTranslationX() + 30);
-                e_n.setTranslationY(e_n.getTranslationY() + 30);
-                e_k.setTranslationX(e_k.getTranslationX() + 30);
-                e_k.setTranslationY(e_k.getTranslationY() + 30);
-                animator1.start();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
-
-        animator1.addListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationEnd(Animator animator) {
-                e_n.setTranslationX(e_n.getTranslationX() - 30);
-                e_n.setTranslationY(e_n.getTranslationY() - 30);
-                e_k.setTranslationX(e_k.getTranslationX() - 30);
-                e_k.setTranslationY(e_k.getTranslationY() - 30);
-                animator.start();
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animator) {
-
-            }
-
-            @Override
-            public void onAnimationRepeat(Animator animator) {
-
-            }
-        });
+        e_n.startAnimation(animation);
+        e_k.startAnimation(animation1);
+        t_n.startAnimation(animation2);
+        t_k.startAnimation(animation3);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             quote2.setText(Html.fromHtml("<p>\"HOW YOU <font color=\"#2fc0d1\">CODIN'</font> \uD83D\uDCBB ?!\" <small><i><font color=\"#888888\"> ~ <strike>JOEY</strike> NIMBUS</font></i></small></p>", Html.FROM_HTML_MODE_COMPACT));
@@ -169,12 +95,13 @@ public class Dashboard extends Fragment {
         } else {
             quote1.setText(Html.fromHtml("<p>\"I AM <strike>IRON MAN</strike> <font color=\"#2fc0d1\">SEMBLANCE</font> \uD83D\uDE80 !\" <small><i><font color=\"#888888\"> ~ NIMBUS</font></i></small></p>"));
         }
+
         quiz_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), QuizMainActivity.class);
-                startActivity(i);
-
+                context.startActivity(i);
+                context.overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         workshop_card.setOnClickListener(new View.OnClickListener() {
@@ -182,6 +109,7 @@ public class Dashboard extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), Workshops.class);
                 startActivity(i);
+                context.overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         talk_card.setOnClickListener(new View.OnClickListener() {
@@ -189,6 +117,7 @@ public class Dashboard extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), Talks.class);
                 startActivity(i);
+                context.overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         exhibition_card.setOnClickListener(new View.OnClickListener() {
@@ -196,6 +125,7 @@ public class Dashboard extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), Exhhibition.class);
                 startActivity(i);
+                context.overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         event_text.setOnClickListener(new View.OnClickListener() {
@@ -203,6 +133,7 @@ public class Dashboard extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), Event_Choose.class);
                 startActivity(i);
+                context.overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         campus_text.setOnClickListener(new View.OnClickListener() {
@@ -210,6 +141,7 @@ public class Dashboard extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), CampusAmbassador.class);
                 startActivity(i);
+                context.overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         return rootView;

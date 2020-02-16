@@ -6,32 +6,36 @@
     android:background="@color/background"
     android:orientation="vertical"
     tools:context=".Activities.CampusAmbassadorPost">
-
+    <!--todo nsh add app bar here-->
+<!--    todo add scroll view parent-->
     <TextView
         android:id="@+id/text_lable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_margin="16dp"
+        android:fontFamily="@font/psregular"
         android:text="Enter link of social media here"
-        android:textColor="@color/white" />
+        android:textColor="@color/colorAccent" />
 
     <EditText
         android:id="@+id/link"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_lable"
-        android:layout_margin="5dp"
+        android:layout_margin="16dp"
+        android:textSize="15sp"
         android:backgroundTint="@color/white"
-        android:textColor="@color/white" />
+        android:hint="https://www.facebook.com/something"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
 
     <ImageView
         android:id="@+id/imageUpload"
-        android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_below="@id/link"
-        android:layout_centerHorizontal="true"
-        android:layout_gravity="center_horizontal" />
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
 
     <Button
         android:id="@+id/upload_picture"

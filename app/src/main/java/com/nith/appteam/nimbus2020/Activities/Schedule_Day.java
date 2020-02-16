@@ -25,6 +25,7 @@ public class Schedule_Day extends AppCompatActivity {
                 Intent intent = new Intent(Schedule_Day.this, Schedule.class);
                 intent.putExtra("Day", "1");
                 startActivity(intent);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
         day2.setOnClickListener(new View.OnClickListener() {
@@ -33,6 +34,8 @@ public class Schedule_Day extends AppCompatActivity {
                 Intent intentI = new Intent(Schedule_Day.this, Schedule.class);
                 intentI.putExtra("Day", "2");
                 startActivity(intentI);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
 
             }
         });

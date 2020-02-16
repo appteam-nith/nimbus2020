@@ -108,6 +108,7 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
             if (result.getContents() == null) {
 
                 finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                 //          llSearch.setVisibility(View.GONE);
 
 
@@ -246,6 +247,7 @@ public class QRScanner extends AppCompatActivity implements View.OnClickListener
         Intent newIntent = new Intent(QRScanner.this, MainActivity.class);
         startActivity(newIntent);
         finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
 
 
     }

@@ -88,6 +88,7 @@ public class TalkRecyclerViewAdapter extends
                     Intent intent = new Intent(context, Add_talk_details.class);
                     intent.putExtra("talk", talkModel);
                     ctx.startActivity(intent);
+//                    ctx.overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                 }
 
             });

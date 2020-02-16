@@ -5,6 +5,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,6 +50,24 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ImageView t_n, t_k, e_n, e_k;
+        Animation animation, animation1, animation2, animation3;
+
+        t_n = findViewById(R.id.t_n);
+        t_k = findViewById(R.id.t_k);
+        e_n = findViewById(R.id.e_n);
+        e_k = findViewById(R.id.e_k);
+
+        animation = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fast_anim);
+        animation1 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slow_anim);
+        animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fast_anim_h);
+        animation3 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slow_anim_h);
+
+        e_n.startAnimation(animation);
+        e_k.startAnimation(animation1);
+        t_n.startAnimation(animation2);
+        t_k.startAnimation(animation3);
+
         loginButton = findViewById(R.id.login_btn);
         progressBar = findViewById(R.id.login_progress);
         sharedPref = getSharedPreferences("app", MODE_PRIVATE);
@@ -117,6 +138,7 @@ public class Login extends AppCompatActivity {
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -170,6 +192,7 @@ public class Login extends AppCompatActivity {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

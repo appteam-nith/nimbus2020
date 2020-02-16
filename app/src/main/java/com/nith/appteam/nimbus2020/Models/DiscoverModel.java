@@ -7,6 +7,13 @@ public class DiscoverModel {
     String time;
     String image;
 
+    public DiscoverModel(String eventName, String location, String time, String image) {
+        this.eventName = eventName;
+        this.location = location;
+        this.time = time;
+        this.image = image;
+    }
+
     public String getEventName() {
         return eventName;
     }
@@ -36,13 +43,6 @@ public class DiscoverModel {
     }
 
     public void setImage(String image) {
-        this.image = image;
-    }
-
-    public DiscoverModel(String eventName, String location, String time, String image) {
-        this.eventName = eventName;
-        this.location = location;
-        this.time = time;
         this.image = image;
     }
 }

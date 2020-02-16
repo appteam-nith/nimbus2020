@@ -73,9 +73,9 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
             super(itemView);
             feedImage = itemView.findViewById(R.id.feed_image);
             feedImage.setClipToOutline(true);
-            feedImage.setOnLongClickListener(new View.OnLongClickListener() {
+            feedImage.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public boolean onLongClick(View v) {
+                public void onClick(View v) {
                     FeedItem currentFeed = arrayList.get(getAdapterPosition());
                     postUrl = currentFeed.getSocialUrl();
                     try {
@@ -90,7 +90,6 @@ public class FeedRecyclerAdapter extends RecyclerView.Adapter<FeedRecyclerAdapte
                     } catch (ActivityNotFoundException e) {
                         Toast.makeText(context, " You don't have any browser to open web page", Toast.LENGTH_LONG).show();
                     }
-                    return true;
                 }
             });
         }

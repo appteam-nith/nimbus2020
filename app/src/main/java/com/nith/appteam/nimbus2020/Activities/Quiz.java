@@ -271,6 +271,7 @@ public class Quiz extends AppCompatActivity {
                     Intent intent = new Intent(Quiz.this, QuizScoreActivity.class);
                     intent.putExtra("score", Integer.valueOf(jsonObject.getString("score")));
                     startActivity(intent);
+                    overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

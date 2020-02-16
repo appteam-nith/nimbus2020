@@ -40,7 +40,7 @@
         <activity
             android:name=".Activities.Add_Exhibition"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.QRScanner" />
+        <activity android:name=".Activities.QRScanner" android:screenOrientation="portrait"/>
         <activity
             android:name=".Activities.department_Events"
             android:theme="@style/AppTheme" />

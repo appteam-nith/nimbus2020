@@ -58,6 +58,7 @@ public class Institute_Events extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -71,6 +72,7 @@ public class Institute_Events extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(Institute_Events.this, Add_I_Events.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
 
                 }
             });
