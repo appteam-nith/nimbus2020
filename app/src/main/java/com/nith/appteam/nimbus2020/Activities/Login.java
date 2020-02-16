@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.OvershootInterpolator;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -27,6 +29,9 @@ import com.firebase.ui.auth.IdpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.nith.appteam.nimbus2020.R;
+import com.richpath.RichPath;
+import com.richpath.RichPathView;
+import com.richpathanimator.RichPathAnimator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,13 +50,17 @@ public class Login extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseUser user;
     private TextView loginButton;
+    RichPathView nimbus,nimbus1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ImageView t_n, t_k, e_n, e_k;
-        Animation animation, animation1, animation2, animation3;
+        Animation animation, animation1, animation2, animation3, anim;
+
+        nimbus = findViewById(R.id.nimbus);
+        nimbus1 = findViewById(R.id.nimbus1);
 
         t_n = findViewById(R.id.t_n);
         t_k = findViewById(R.id.t_k);
@@ -63,10 +72,17 @@ public class Login extends AppCompatActivity {
         animation2 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.fast_anim_h);
         animation3 = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.slow_anim_h);
 
+        anim = AnimationUtils.loadAnimation(getApplicationContext(), R.anim.logo_anim);
+
+        nimbus.startAnimation(anim);
+        nimbus1.startAnimation(anim);
+
         e_n.startAnimation(animation);
         e_k.startAnimation(animation1);
         t_n.startAnimation(animation2);
         t_k.startAnimation(animation3);
+
+        animation();
 
         loginButton = findViewById(R.id.login_btn);
         progressBar = findViewById(R.id.login_progress);
@@ -88,6 +104,35 @@ public class Login extends AppCompatActivity {
                 loginButton.setVisibility(View.GONE);
             }
         });
+    }
+
+    public void animation() {
+        final RichPath part1 = nimbus.findRichPathByName("tiny_right");
+        System.out.println(part1);
+        final RichPath part2 = nimbus.findRichPathByName("tiny_left");
+        final RichPath part3 = nimbus.findRichPathByName("small_right");
+        final RichPath part4 = nimbus.findRichPathByName("small_left");
+        final RichPath part5 = nimbus.findRichPathByName("big_right");
+        final RichPath part6 = nimbus.findRichPathByName("big_left");
+
+        RichPathAnimator
+                .animate(part1)
+                .trimPathOffset(0, 1.0f)
+                .andAnimate(part2)
+                .trimPathOffset(0, 1.0f)
+                .andAnimate(part3)
+                .trimPathOffset(0, 1.0f)
+                .andAnimate(part4)
+                .trimPathOffset(0, 1.0f)
+                .andAnimate(part5)
+                .trimPathOffset(0, 1.0f)
+                .andAnimate(part6)
+                .trimPathOffset(0, 1.0f)
+                .durationSet(2000)
+                .repeatModeSet(RichPathAnimator.RESTART)
+                .repeatCountSet(RichPathAnimator.INFINITE)
+                .interpolatorSet(new OvershootInterpolator())
+                .start();
     }
 
     @Override
@@ -119,7 +164,7 @@ public class Login extends AppCompatActivity {
     private void isUser(final String phoneNumber) {
         Log.e("user", "inside is User");
         RequestQueue queue = Volley.newRequestQueue(Login.this);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/isUser", new com.android.volley.Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, getString(R.string.baseUrl) + "/isUser", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 int errorCode;
@@ -145,7 +190,7 @@ public class Login extends AppCompatActivity {
                 }
 
             }
-        }, new com.android.volley.Response.ErrorListener() {
+        }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 Log.e("is user error", error.toString());

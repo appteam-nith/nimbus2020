@@ -51,4 +51,5 @@ dependencies {
     implementation 'com.github.didikk:sticky-nestedscrollview:1.0.1'
 
     implementation 'org.sufficientlysecure:html-textview:3.9'
+    implementation 'com.github.tarek360.RichPath:animator:0.1.1'
 }
