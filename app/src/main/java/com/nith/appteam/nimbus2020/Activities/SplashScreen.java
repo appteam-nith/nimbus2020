@@ -44,7 +44,7 @@ public class SplashScreen extends AppCompatActivity {
                 Intent intent = new Intent(SplashScreen.this, MainActivity.class);
                 startActivity(intent);
                 finish();
-overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         }, 2500);
     }

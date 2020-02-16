@@ -163,7 +163,7 @@ public class CampusAmbassadorPost extends AppCompatActivity {
                     @Override
                     public void onError(String requestId, ErrorInfo error) {
 //                      finish();
-overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                        overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                         submitPost.setVisibility(View.VISIBLE);
                         Toast.makeText(CampusAmbassadorPost.this, "Upload Failed" + error.getDescription() + " requestId" + requestId, Toast.LENGTH_LONG).show();
                     }
@@ -247,8 +247,7 @@ overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                         Map<String, String> params = new HashMap<String, String>();
                         params.put("image_url", imageUrl);
                         params.put("post_url", socialUrl);
-                        params.put("key", socialUrl);
-                        //TODO to be replaced by hash whichever is more efficient
+                        params.put("key", socialUrl);//change to hash if necessary
                         params.put("token", "" + sharedPrefs.getString("token", ""));
                         return params;
                     }

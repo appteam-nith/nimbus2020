@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/corner"
-            android:background="@android:color/white"/>
+            android:background="@android:color/white" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -54,7 +54,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewSchedule"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:scrollbars="none" />
 
             <ProgressBar
                 android:id="@+id/loadwallSch"

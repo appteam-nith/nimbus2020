@@ -2,8 +2,10 @@
     <item>
         <shape android:shape="oval">
             <solid android:color="@color/white" />
-            <stroke android:width="5dp" android:color="@color/background"/>
+            <stroke
+                android:width="5dp"
+                android:color="@color/background" />
         </shape>
     </item>
-    <item android:drawable="@drawable/edit_icon_black"/>
+    <item android:drawable="@drawable/edit_icon_black" />
 </layer-list>

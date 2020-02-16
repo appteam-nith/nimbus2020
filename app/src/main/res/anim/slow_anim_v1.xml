@@ -6,11 +6,11 @@
 
     <translate
         android:fillAfter="true"
-        android:repeatMode="reverse"
-        android:repeatCount="infinite"
         android:fromXDelta="0%p"
-        android:toXDelta="30%p"
         android:fromYDelta="0%p"
+        android:repeatCount="infinite"
+        android:repeatMode="reverse"
+        android:toXDelta="30%p"
         android:toYDelta="-10%p" />
 
     <scale

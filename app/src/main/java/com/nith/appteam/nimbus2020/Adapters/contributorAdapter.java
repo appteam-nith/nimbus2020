@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Adapters;
 
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -63,8 +64,9 @@ public class contributorAdapter extends RecyclerView.Adapter<contributorAdapter.
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
                     context.startActivity(i);
-//                    todo make the following command work
-//                    context.overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                    ((Activity) context).overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+
+
                 }
             });
         }

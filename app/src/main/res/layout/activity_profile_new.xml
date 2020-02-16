@@ -18,7 +18,8 @@
             android:fontFamily="@font/psregular"
             android:text="&lt; BACK"
             android:textColor="@android:color/white"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:visibility="gone" />
 
         <com.nith.appteam.nimbus2020.Utils.GradientTextView
             android:layout_width="wrap_content"
@@ -36,7 +37,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/toolbar"
-        android:background="@color/background">
+        android:background="@color/background"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -69,7 +71,6 @@
                     android:src="@drawable/photo_camera" />
             </RelativeLayout>
 
-<!--            TODO NSH set the text ("Name") toRight of icon in all the below views-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -85,6 +86,7 @@
                     android:id="@+id/name_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="45dp"
                     android:layout_marginTop="16dp"
                     android:gravity="start"
                     android:text="Name"
@@ -120,6 +122,7 @@
                     android:id="@+id/email_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="45dp"
                     android:layout_marginTop="16dp"
                     android:gravity="start"
                     android:text="Mobile Number"
@@ -154,6 +157,7 @@
                     android:id="@+id/rno_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="45dp"
                     android:layout_marginTop="16dp"
                     android:gravity="start"
                     android:text="Roll Number"
@@ -187,6 +191,7 @@
                     android:id="@+id/branch_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="45dp"
                     android:layout_marginTop="16dp"
                     android:gravity="start"
                     android:text="College Name"
@@ -207,9 +212,9 @@
 
             <LinearLayout
                 android:id="@+id/ca"
-                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 

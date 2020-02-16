@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/corner"
-            android:background="@android:color/white"/>
+            android:background="@android:color/white" />
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -59,12 +59,11 @@
                 android:layout_gravity="center"
                 android:visibility="gone" />
 
-<!--            todo add scrollbar:none to all scroll view recycler view and nested scroll views-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/departmentquiz"
                 android:layout_width="match_parent"
-                android:scrollbars="none"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent"
+                android:scrollbars="none" />
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>

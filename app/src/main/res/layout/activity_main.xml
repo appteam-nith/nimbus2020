@@ -1,23 +1,23 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_marginTop="16dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp">
 
         <ImageView
             android:id="@+id/scanner"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:padding="4dp"
-            android:src="@drawable/ic_scanner"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="16dp"/>
+            android:layout_marginStart="16dp"
+            android:padding="4dp"
+            android:src="@drawable/ic_scanner" />
 
         <com.nith.appteam.nimbus2020.Utils.GradientTextView
             android:layout_width="wrap_content"
@@ -31,13 +31,13 @@
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profileImage"
             android:layout_width="30dp"
-            android:padding="4dp"
             android:layout_height="30dp"
-            app:civ_border_color="@android:color/white"
-            app:civ_border_width="1dp"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="16dp"
-            android:src="@color/colorPrimary"/>
+            android:padding="4dp"
+            android:src="@color/colorPrimary"
+            app:civ_border_color="@android:color/white"
+            app:civ_border_width="1dp" />
 
     </RelativeLayout>
 
@@ -45,8 +45,8 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scrollbars="none"
-        android:background="@color/white">
+        android:background="@color/white"
+        android:scrollbars="none">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,14 +72,15 @@
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none" />
             </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:elevation="4dp"
                 android:background="@color/background"
+                android:elevation="4dp"
                 android:paddingTop="16dp"
                 android:tag="sticky">
 
@@ -91,21 +92,21 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:paddingTop="8dp"
                     android:layout_centerInParent="true"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingTop="8dp">
 
                     <TextView
                         android:id="@+id/dashboard_tab"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
-                        android:paddingBottom="8dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/psitalic"
                         android:gravity="center"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="8dp"
                         android:text="Dashboard"
                         android:textAllCaps="true"
                         android:textColor="@color/greyLight"
@@ -116,9 +117,9 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:paddingTop="16dp"
                         android:fontFamily="@font/psitalic"
                         android:gravity="center"
+                        android:paddingTop="16dp"
                         android:paddingBottom="8dp"
                         android:text="Sponsors"
                         android:textAllCaps="true"
@@ -128,12 +129,12 @@
                     <TextView
                         android:id="@+id/team_tab"
                         android:layout_width="0dp"
-                        android:paddingBottom="8dp"
                         android:layout_height="wrap_content"
-                        android:paddingTop="16dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/psitalic"
                         android:gravity="center"
+                        android:paddingTop="16dp"
+                        android:paddingBottom="8dp"
                         android:text="core team"
                         android:textAllCaps="true"
                         android:textColor="@color/greyLight"
@@ -148,9 +149,9 @@
                 android:id="@+id/fragment_holder"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="none"
                 android:focusableInTouchMode="true"
-                android:nestedScrollingEnabled="false" />
+                android:nestedScrollingEnabled="false"
+                android:scrollbars="none" />
 
             <LinearLayout
                 android:layout_width="match_parent"

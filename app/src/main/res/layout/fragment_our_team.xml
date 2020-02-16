@@ -7,21 +7,21 @@
         android:id="@+id/quote1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="13sp"
-        android:gravity="center"
-        android:layout_marginTop="24dp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/psregular"
         android:layout_gravity="center"
-        android:text=""/>
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/psregular"
+        android:gravity="center"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="13sp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/our_team_recycler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/quote1"
-        android:paddingBottom="32dp"
         android:clipToPadding="false"
+        android:paddingBottom="32dp"
         android:scrollbars="none" />
 
 </RelativeLayout>

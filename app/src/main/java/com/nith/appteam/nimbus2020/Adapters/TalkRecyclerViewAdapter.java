@@ -1,24 +1,24 @@
 package com.nith.appteam.nimbus2020.Adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nith.appteam.nimbus2020.Activities.Add_talk_details;
 import com.nith.appteam.nimbus2020.Models.TalkModel;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
+import java.util.Random;
 
 public class TalkRecyclerViewAdapter extends
         RecyclerView.Adapter<TalkRecyclerViewAdapter.ViewHolder> {
@@ -43,7 +43,13 @@ public class TalkRecyclerViewAdapter extends
     @Override
 
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.container.setAnimation(AnimationUtils.loadAnimation(context, R.anim.item_animation));
+        Animation animation = AnimationUtils.loadAnimation(context.getApplicationContext(), R.anim.fast_anim_v1);
+        Random rand = new Random();
+        animation.setDuration(rand.nextInt(2000) + 2000);
+        Animation animation1 = AnimationUtils.loadAnimation(context.getApplicationContext(), R.anim.slow_anim_v1);
+        animation1.setDuration(rand.nextInt(2000) + 2000);
+        holder.round_big.startAnimation(animation1);
+        holder.round_small.startAnimation(animation);
         TalkModel talks = talksList.get(position);
         String imageLink = talks.getImage();
         //holder.regUrl.setText(talks.getRegURL());
@@ -65,12 +71,13 @@ public class TalkRecyclerViewAdapter extends
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView name, date, venue;
         ImageView imgSpkr;
-        RelativeLayout container;
+        ImageView round_big, round_small;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context = ctx;
-            container = itemView.findViewById(R.id.contTalk);
+            round_big = itemView.findViewById(R.id.round_big);
+            round_small = itemView.findViewById(R.id.round_small);
             name = itemView.findViewById(R.id.speakerNameID);
             imgSpkr = itemView.findViewById(R.id.speakerImageID);
             venue = itemView.findViewById(R.id.speakerVenueID);
@@ -84,11 +91,13 @@ public class TalkRecyclerViewAdapter extends
 
                 @Override
                 public void onClick(View view) {
-                    TalkModel talkModel = talksList.get(getAdapterPosition());
-                    Intent intent = new Intent(context, Add_talk_details.class);
-                    intent.putExtra("talk", talkModel);
-                    ctx.startActivity(intent);
-//                    ctx.overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+//                    TalkModel talkModel = talksList.get(getAdapterPosition());
+//                    Intent intent = new Intent(context, Add_talk_details.class);
+//                    intent.putExtra("talk", talkModel);
+//                    ctx.startActivity(intent);
+//                    ((Activity)ctx).overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                    //Display toast until UI is ready
+                    Toast.makeText(ctx, "Coming Soon..", Toast.LENGTH_SHORT).show();
                 }
 
             });

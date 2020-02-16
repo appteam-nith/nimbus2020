@@ -7,7 +7,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.AuthFailureError;
@@ -54,7 +54,7 @@ public class LeaderBoardActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                 overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
@@ -69,7 +69,7 @@ overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
         loadwall = findViewById(R.id.loadwall);
         mLeaderboardModelList = new ArrayList<>();
         mLeaderBoardAdapter = new LeaderBoardAdapter(mLeaderboardModelList, this);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        GridLayoutManager layoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(mLeaderBoardAdapter);
         getData();
