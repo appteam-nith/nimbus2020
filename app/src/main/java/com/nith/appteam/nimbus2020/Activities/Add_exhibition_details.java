@@ -41,7 +41,8 @@ public class Add_exhibition_details extends AppCompatActivity {
         Intent intent = new Intent(Add_exhibition_details.this, Web.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("url", regURL);
-        getApplicationContext().startActivity(intent);
+        startActivity(intent);
+        overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
     }
 
     private void getMovieDetails() {

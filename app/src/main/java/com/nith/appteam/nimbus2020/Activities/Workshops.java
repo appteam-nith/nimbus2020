@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,7 +20,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -31,7 +28,6 @@ import com.nith.appteam.nimbus2020.Models.WorkshopModel;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
 import com.nith.appteam.nimbus2020.Utils.PrefsWorkshop;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -68,6 +64,7 @@ public class Workshops extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -86,6 +83,7 @@ public class Workshops extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(Workshops.this, Add_Workshop.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
 
                 }
             });

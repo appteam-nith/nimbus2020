@@ -7,7 +7,7 @@
     app:cardBackgroundColor="@color/background"
     app:cardCornerRadius="0dp"
     tools:context=".Activities.QuizInstructionsActivity">
-
+<!--todo add app bar and that curverd white layout here-->
     <TextView
         android:id="@+id/textView3"
         style="@style/TextAppearance.AppCompat.Title"

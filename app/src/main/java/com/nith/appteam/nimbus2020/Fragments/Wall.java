@@ -11,12 +11,17 @@ import android.view.ViewGroup;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
+
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Activities.CampusAmbassadorPost;
 import com.nith.appteam.nimbus2020.Adapters.FeedRecyclerAdapter;
@@ -27,12 +32,6 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 public class Wall extends Fragment {
     FeedRecyclerAdapter feedRecyclerAdapter;
@@ -55,7 +54,7 @@ public class Wall extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_wall, container, false);
         upload = rootView.findViewById(R.id.upload);
         feed = rootView.findViewById(R.id.feed);

@@ -14,6 +14,9 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.core.app.NotificationCompat;
+
 import com.google.android.gms.location.Geofence;
 import com.google.android.gms.location.GeofenceStatusCodes;
 import com.google.android.gms.location.GeofencingEvent;
@@ -23,9 +26,6 @@ import com.nith.appteam.nimbus2020.Utils.Constant;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.Nullable;
-import androidx.core.app.NotificationCompat;
 
 public class GeofenceRegistrationService extends IntentService {
 
@@ -77,7 +77,7 @@ public class GeofenceRegistrationService extends IntentService {
 
     // Create a detail message with Geofences received
     private String getGeofenceTrasitionDetails(int geoFenceTransition,
-            List<Geofence> triggeringGeofences) {
+                                               List<Geofence> triggeringGeofences) {
         // get the ID of each geofence triggered
         ArrayList<String> triggeringGeofencesList = new ArrayList<>();
         for (Geofence geofence : triggeringGeofences) {

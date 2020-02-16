@@ -85,6 +85,7 @@ public class QuizInstructionsActivity extends AppCompatActivity {
                     Intent intent = new Intent(QuizInstructionsActivity.this, Quiz.class);
                     intent.putExtra("questions", response);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                 }
 
 

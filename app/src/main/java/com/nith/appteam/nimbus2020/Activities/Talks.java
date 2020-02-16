@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -22,14 +21,12 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.Adapters.TalkRecyclerViewAdapter;
 import com.nith.appteam.nimbus2020.Models.TalkModel;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
 import com.nith.appteam.nimbus2020.Utils.PrefsTalk;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -64,6 +61,7 @@ public class Talks extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -80,6 +78,7 @@ public class Talks extends AppCompatActivity {
                 public void onClick(View view) {
                     Intent intent = new Intent(Talks.this, Add_Talk.class);
                     startActivity(intent);
+                    overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
 
                 }
             });

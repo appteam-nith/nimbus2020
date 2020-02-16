@@ -38,6 +38,7 @@ public class ProfileMain extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 
@@ -58,6 +59,7 @@ public class ProfileMain extends AppCompatActivity {
                 Intent i = new Intent(ProfileMain.this, ProfileNew.class);
                 i.putExtra("editProfile", true);
                 startActivity(i);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
 
             }
         });

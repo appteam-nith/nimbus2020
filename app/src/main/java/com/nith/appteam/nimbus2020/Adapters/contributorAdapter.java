@@ -63,6 +63,8 @@ public class contributorAdapter extends RecyclerView.Adapter<contributorAdapter.
                     Intent i = new Intent(Intent.ACTION_VIEW);
                     i.setData(Uri.parse(url));
                     context.startActivity(i);
+//                    todo make the following command work
+//                    context.overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                 }
             });
         }

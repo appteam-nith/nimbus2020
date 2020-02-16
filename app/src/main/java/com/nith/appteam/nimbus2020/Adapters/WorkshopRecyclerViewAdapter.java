@@ -20,8 +20,6 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 public class WorkshopRecyclerViewAdapter extends
         RecyclerView.Adapter<WorkshopRecyclerViewAdapter.ViewHolder> {
     private Context context;
@@ -68,7 +66,7 @@ public class WorkshopRecyclerViewAdapter extends
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView nameWor, dateWor, venueWor;
-       ImageView imgSpkrWork;
+        ImageView imgSpkrWork;
         RelativeLayout container;
 
         public ViewHolder(@NonNull View itemView, final Context ctx) {
@@ -96,6 +94,7 @@ public class WorkshopRecyclerViewAdapter extends
 
             });
         }
+
         @Override
         public void onClick(View view) {
 

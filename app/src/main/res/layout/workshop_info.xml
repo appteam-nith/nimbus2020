@@ -48,43 +48,51 @@
                 android:scaleType="fitXY"
                 android:visibility="gone" />
 
-            <TextView
-                android:id="@+id/workshopNameID"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="32dp"
-                android:paddingLeft="5dp"
-                android:text="Workshop Name"
-                android:textColor="@color/white"
-                android:fontFamily="psb"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:layout_centerInParent="true"
+                android:layout_toRightOf="@id/round_small"
+                android:layout_margin="16dp"
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/WorkshopDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/workshopNameID"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/psregular"
-                android:padding="5dp"
-                android:text="Dated"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <com.nith.appteam.nimbus2020.Utils.GradientTextView
+                    android:id="@+id/workshopNameID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:fontFamily="@font/psb"
+                    android:text="Event Name"
+                    android:textAllCaps="true"
+                    android:textColor="@color/blueLight"
+                    android:textSize="30sp" />
 
-            <TextView
-                android:id="@+id/workshopVenueID"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/WorkshopDate"
-                android:layout_centerHorizontal="true"
-                android:fontFamily="@font/psregular"
-                android:padding="5dp"
-                android:text="Venue"
-                android:textColor="@color/white"
-                android:textSize="17sp" />
+                <TextView
+                    android:id="@+id/workshopVenueID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/psitalic"
+                    android:gravity="end"
+                    android:lines="1"
+                    android:text="Location"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
 
+                <TextView
+                    android:id="@+id/WorkshopDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:fontFamily="@font/psitalic"
+                    android:gravity="end"
+                    android:lines="1"
+                    android:text="Time"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white"
+                    android:textSize="15sp" />
+            </LinearLayout>
 
         </RelativeLayout>
 

@@ -16,8 +16,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             android:fontFamily="@font/psregular"
-            android:text="BACK"
-            android:textColor="@android:color/white" />
+            android:text="&lt; BACK"
+            android:textColor="@android:color/white"
+            android:textSize="13sp" />
 
         <com.nith.appteam.nimbus2020.Utils.GradientTextView
             android:layout_width="wrap_content"
@@ -34,7 +35,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <ImageView
             android:id="@+id/corner"
             android:layout_width="match_parent"
@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@+id/corner"
-            android:background="@android:color/white"></LinearLayout>
+            android:background="@android:color/white"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -54,8 +54,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerViewEVED"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_margin="8dp" />
+                android:layout_height="0dp"/>
 
             <ProgressBar
                 android:id="@+id/loadwalldpt"

@@ -67,7 +67,6 @@ public class VolleyService {
 
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        // TODO: Handle error
                         if (mResultCallback != null) {
                             mResultCallback.notifyError(requestType, error);
                         }

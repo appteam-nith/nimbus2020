@@ -15,6 +15,7 @@ public class QuizScoreActivity extends AppCompatActivity {
     public void onBackPressed() {
         Intent intent = new Intent(QuizScoreActivity.this, MainActivity.class);
         startActivity(intent);
+        overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
     }
 
     @Override
@@ -33,6 +34,7 @@ public class QuizScoreActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(QuizScoreActivity.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
             }
         });
 

@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.VolleyError;
-import com.nith.appteam.nimbus2020.Activities.MainActivity;
 import com.nith.appteam.nimbus2020.Adapters.SponsorsAdapter;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.IResult;
