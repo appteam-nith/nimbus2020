@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
 
@@ -18,8 +19,9 @@ public class ProfileMain extends AppCompatActivity {
 
     private CircleImageView profilePicture;
     private TextView name, college, phoneNumber, rollno, normalPoints, caPoints;
-    private ImageView editProfile, diamondsPink;
+    private ImageView diamondsPink;
     private SharedPreferences sharedPreferences;
+    private FloatingActionButton editProfile;
 
     @Override
     protected void onResume() {
