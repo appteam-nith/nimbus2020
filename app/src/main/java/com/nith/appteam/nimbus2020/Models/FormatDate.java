@@ -38,7 +38,7 @@ public class FormatDate {
         int hour = Integer.parseInt(date.substring(11, 13));
         String min = date.substring(13, 16);
         String info;
-        if (hour >= 12) {
+        if (hour > 12) {
             info = "PM";
             hour = hour - 12;
         } else

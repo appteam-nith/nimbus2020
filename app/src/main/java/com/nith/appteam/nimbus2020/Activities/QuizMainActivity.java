@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -72,8 +73,9 @@ public class QuizMainActivity extends AppCompatActivity {
                         new RecyclerItemClickListener.OnItemClickListener() {
                             @Override
                             public void onItemClick(View view, int position) {
-                                postdata(position);
-
+//                                postdata(position);
+                                //Display toast until ui
+                                Toast.makeText(QuizMainActivity.this, "Coming Soon..", Toast.LENGTH_SHORT).show();
                             }
 
                             @Override
