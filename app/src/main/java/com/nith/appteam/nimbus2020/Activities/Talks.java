@@ -123,7 +123,7 @@ public class Talks extends AppCompatActivity {
 //                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
                         talk.setName(talkObj.getString("name"));
-                        talk.setDate("On: " + talkObj.getString("date"));
+                        talk.setDate(talkObj.getString("date"));
                         talk.setImage(talkObj.getString("image"));
                         talk.setIdTalk(talkObj.getString("_id"));
                         talk.setInfo(talkObj.getString("info"));

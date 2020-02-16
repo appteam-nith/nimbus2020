@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             Intent i = new Intent(this, Login.class);
             startActivity(i);
             finish();
-        overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+            overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
         }
 
         //Checking whether user has created profile or not
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             Intent i = new Intent(this, ProfileNew.class);
             startActivity(i);
             finish();
-        overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+            overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
         }
 
         psbi = ResourcesCompat.getFont(this, R.font.psbitalic);

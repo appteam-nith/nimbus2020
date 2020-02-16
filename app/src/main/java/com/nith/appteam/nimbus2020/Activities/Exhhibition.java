@@ -69,7 +69,7 @@ public class Exhhibition extends AppCompatActivity {
         editor = sharedPref.edit();
         requestQueueExh = Volley.newRequestQueue(this);
         FloatingActionButton fab = findViewById(R.id.fabExh);
-        if (sharedPref.getString("phoneNumber", "").equals("+918219341697") || sharedPref.getString("phoneNumber", "").equals("+917982107070") || sharedPref.getString("phoneNumber", "").equals("+918572027705") || sharedPref.getString("phoneNumber", "").equals("+918959747704")) {
+        if (sharedPref.getString("phoneNumber", "").equals("+918219341697") || sharedPref.getString("phoneNumber", "").equals("+917982107070") || sharedPref.getString("phoneNumber", "").equals("+918572027705") || sharedPref.getString("phoneNumber", "").equals("+918959747704") || sharedPref.getString("phoneNumber", "").equals("+917587524626")) {
             fab.setVisibility(View.VISIBLE);
             fab.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -121,7 +121,8 @@ public class Exhhibition extends AppCompatActivity {
 //                        talk.setInfo("HE is veryhlhfeldijvoikbfewkjbkfjwkejfkjwejeovijoeijvoeijdvoijeoijeovjioejioeijvovjoeidjvlkdsnlkvn jsndoviejoiejvoljkdlkjvoeijvoiejovijdokjdeoivjolj");
 //                        talk.setDate("19 2022002345453453453450 2");
                         exhibition.setNameExh(exhObj.getString("name"));
-                        exhibition.setDateExh("On: " + exhObj.getString("date"));
+                        exhibition.setDateExh(exhObj.getString("date"));
+                        Log.e("dateeeeeeee", exhObj.getString("date"));
                         exhibition.setImageExh(exhObj.getString("image"));
                         //exhibition.setImageExh("https://www.google
                         // .com/search?q=images&rlz=1C1CHBF_enIN859IN859&sxsrf

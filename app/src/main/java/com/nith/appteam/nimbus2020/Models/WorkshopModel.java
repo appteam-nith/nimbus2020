@@ -34,7 +34,8 @@ public class WorkshopModel implements Serializable {
     }
 
     public String getDateWor() {
-        return dateWor;
+        FormatDate formatDate = new FormatDate(dateWor);
+        return formatDate.getFormattedDate();
     }
 
     public void setDateWor(String dateWor) {

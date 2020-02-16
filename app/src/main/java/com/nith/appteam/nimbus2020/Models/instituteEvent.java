@@ -44,7 +44,8 @@ public class instituteEvent implements Serializable {
     }
 
     public String getDateIEVE() {
-        return dateIEVE;
+        FormatDate formatDate = new FormatDate(dateIEVE);
+        return formatDate.getFormattedDate();
     }
 
     public void setDateIEVE(String dateIEVE) {
