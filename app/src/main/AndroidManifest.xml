@@ -28,6 +28,13 @@
         <activity
             android:name=".Activities.SplashScreen"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
 
         </activity>
         <activity android:name=".Activities.Add_D_Events" />
@@ -40,7 +47,9 @@
         <activity
             android:name=".Activities.Add_Exhibition"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.QRScanner" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.QRScanner"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.department_Events"
             android:theme="@style/AppTheme" />
@@ -55,8 +64,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.Exhhibition"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Activities.Workshops"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -76,13 +84,7 @@
         <activity
             android:name=".Activities.MainActivity"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity android:name=".Activities.Quiz" />
         <activity android:name=".Activities.DepartmentQuiz" />
         <activity android:name=".Activities.QuizMainActivity" />
