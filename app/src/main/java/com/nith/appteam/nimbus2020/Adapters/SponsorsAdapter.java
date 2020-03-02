@@ -38,9 +38,9 @@ public class SponsorsAdapter extends RecyclerView.Adapter<SponsorsAdapter.Sponso
 
         Sponsor sponsor = mSponsorList.get(position);
         holder.sponsorTextView.setText(sponsor.getName());
-        if (!sponsor.getImageUrl().isEmpty()) {
-            Picasso.with(mActivity).load(sponsor.getImageUrl()).resize(80, 80).centerCrop().into(
-                    holder.sponsorImageView);
+//        if (!sponsor.getImageUrl().isEmpty())
+        {
+            Picasso.with(mActivity).load(sponsor.getImageUrl()).resize(80, 80).centerCrop().into(holder.sponsorImageView);
         }
 
     }

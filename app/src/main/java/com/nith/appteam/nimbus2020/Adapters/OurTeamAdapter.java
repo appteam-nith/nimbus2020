@@ -25,7 +25,6 @@ public class OurTeamAdapter extends RecyclerView.Adapter<OurTeamAdapter.OurTeamV
     public OurTeamAdapter(List<TeamMember> teamList, FragmentActivity activity) {
         mTeamList = teamList;
         mActivity = activity;
-
     }
 
     @NonNull
@@ -61,8 +60,6 @@ public class OurTeamAdapter extends RecyclerView.Adapter<OurTeamAdapter.OurTeamV
             imageView = itemView.findViewById(R.id.team_image);
             name = itemView.findViewById(R.id.name);
             designation = itemView.findViewById(R.id.designation);
-
-
         }
     }
 }

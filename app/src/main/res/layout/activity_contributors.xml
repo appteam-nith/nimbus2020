@@ -51,12 +51,13 @@
             android:layout_height="wrap_content">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/contributors_view"
+                android:id="@+id/contributors"
+                android:layout_marginTop="16dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:scrollbars="none">
-
-            </androidx.recyclerview.widget.RecyclerView>
+                android:clipToPadding="false"
+                android:paddingBottom="32dp"
+                android:scrollbars="none" />
         </RelativeLayout>
     </RelativeLayout>
 </LinearLayout>
