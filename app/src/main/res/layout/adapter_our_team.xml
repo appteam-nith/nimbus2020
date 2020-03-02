@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -57,6 +57,7 @@
                 android:fontFamily="@font/psb"
                 android:padding="8dp"
                 android:text=""
+                android:gravity="center_horizontal"
                 android:textAllCaps="true"
                 android:textColor="@color/white"
                 android:textSize="15sp" />
@@ -71,6 +72,7 @@
         android:layout_gravity="center"
         android:fontFamily="@font/psb"
         android:text=""
+        android:gravity="center_horizontal"
         android:textAllCaps="true"
         android:textColor="@color/lightBlue"
         android:textSize="15sp" />

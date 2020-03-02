@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -44,7 +45,9 @@
         <activity
             android:name=".Activities.Add_Exhibition"
             android:theme="@style/AppTheme" />
-        <activity android:name=".Activities.QRScanner" android:screenOrientation="portrait"/>
+        <activity
+            android:name=".Activities.QRScanner"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".Activities.department_Events"
             android:theme="@style/AppTheme" />
@@ -59,8 +62,7 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name=".Activities.Exhhibition"
-            android:theme="@style/AppTheme.NoActionBar" >
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".Activities.Workshops"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -80,8 +82,7 @@
         <activity
             android:name=".Activities.MainActivity"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme">
-        </activity>
+            android:theme="@style/AppTheme"></activity>
         <activity android:name=".Activities.Quiz" />
         <activity android:name=".Activities.DepartmentQuiz" />
         <activity android:name=".Activities.QuizMainActivity" />
