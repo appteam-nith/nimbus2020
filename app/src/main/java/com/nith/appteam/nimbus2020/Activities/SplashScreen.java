@@ -3,6 +3,7 @@ package com.nith.appteam.nimbus2020.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.OvershootInterpolator;
@@ -66,10 +67,9 @@ public class SplashScreen extends AppCompatActivity {
 
     public void animation() {
         final RichPath part1 = nimbus.findRichPathByName("tiny_right");
-        System.out.println(part1);
         final RichPath part2 = nimbus.findRichPathByName("tiny_left");
-        final RichPath part3 = nimbus.findRichPathByName("small_right");
-        final RichPath part4 = nimbus.findRichPathByName("small_left");
+//        final RichPath part3 = nimbus.findRichPathByName("small_right");
+//        final RichPath part4 = nimbus.findRichPathByName("small_left");
         final RichPath part5 = nimbus.findRichPathByName("big_right");
         final RichPath part6 = nimbus.findRichPathByName("big_left");
 
@@ -78,10 +78,10 @@ public class SplashScreen extends AppCompatActivity {
                 .trimPathOffset(0, 1.0f)
                 .andAnimate(part2)
                 .trimPathOffset(0, 1.0f)
-                .andAnimate(part3)
-                .trimPathOffset(0, 1.0f)
-                .andAnimate(part4)
-                .trimPathOffset(0, 1.0f)
+//                .andAnimate(part3)
+//                .trimPathOffset(0, 1.0f)
+//                .andAnimate(part4)
+//                .trimPathOffset(0, 1.0f)
                 .andAnimate(part5)
                 .trimPathOffset(0, 1.0f)
                 .andAnimate(part6)
@@ -89,7 +89,7 @@ public class SplashScreen extends AppCompatActivity {
                 .durationSet(2000)
                 .repeatModeSet(RichPathAnimator.RESTART)
                 .repeatCountSet(RichPathAnimator.INFINITE)
-                .interpolatorSet(new OvershootInterpolator())
+                .interpolatorSet(new AccelerateDecelerateInterpolator())
                 .start();
     }
 
