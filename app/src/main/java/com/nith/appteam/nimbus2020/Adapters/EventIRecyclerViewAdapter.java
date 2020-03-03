@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nith.appteam.nimbus2020.Activities.Add_institute_Activity_Detail;
 import com.nith.appteam.nimbus2020.Models.instituteEvent;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
@@ -92,12 +94,12 @@ public class EventIRecyclerViewAdapter extends
                 @Override
                 public void onClick(View view) {
 //
-//                    instituteEvent instituteEvent = eventList.get(getAdapterPosition());
-//                    Intent intent = new Intent(context, Add_institute_Activity_Detail.class);
-//                    intent.putExtra("instituteEvents", instituteEvent);
-//                    ctx.startActivity(intent);
+                    instituteEvent instituteEvent = eventList.get(getAdapterPosition());
+                    Intent intent = new Intent(context, Add_institute_Activity_Detail.class);
+                    intent.putExtra("instituteEvents", instituteEvent);
+                    ctx.startActivity(intent);
                     //Display toast until UI is not ready
-                    Toast.makeText(ctx, "Coming Soon..", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ctx, "Coming Soon..", Toast.LENGTH_SHORT).show();
                 }
 
             });

@@ -1,6 +1,7 @@
 package com.nith.appteam.nimbus2020.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nith.appteam.nimbus2020.Activities.Add_exhibition_details;
 import com.nith.appteam.nimbus2020.Models.ExhibitionModel;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
@@ -93,13 +95,13 @@ public class ExhibitionRecyclerViewAdapter extends
 
                 @Override
                 public void onClick(View view) {
-//                    ExhibitionModel exhModel = exhibitionList.get(getAdapterPosition());
-//                    Intent intent = new Intent(context, Add_exhibition_details.class);
-//                    intent.putExtra("exhibition", exhModel);
-//                    ctx.startActivity(intent);
+                    ExhibitionModel exhModel = exhibitionList.get(getAdapterPosition());
+                    Intent intent = new Intent(context, Add_exhibition_details.class);
+                    intent.putExtra("exhibition", exhModel);
+                    ctx.startActivity(intent);
 
                     //Toast until its ui is not ready
-                    Toast.makeText(ctx, "Coming Soon..", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ctx, "Coming Soon..", Toast.LENGTH_SHORT).show();
                 }
 
             });

@@ -3,23 +3,25 @@ package com.nith.appteam.nimbus2020.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.webkit.WebView;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.nith.appteam.nimbus2020.Models.instituteEvent;
 import com.nith.appteam.nimbus2020.R;
-import com.squareup.picasso.Picasso;
+
+import java.util.Random;
+
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class Add_institute_Activity_Detail extends AppCompatActivity {
     private instituteEvent instituteEvent;
     private TextView nameDetEventsI, infoDetEventsI, venueDetEventsI, dateDetEventsI;
-    private Button regDetEventsI, absEventI;
+    private CardView regDetEventsI, absEventI;
     private ImageView imgDetEventsI;
     private AlertDialog.Builder alertDialogBuilder;
     private AlertDialog dialog;
@@ -30,8 +32,35 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_institute___detail);
+
+        ImageView round_big = findViewById(R.id.e_n);
+        ImageView round_small = findViewById(R.id.e_k);
+
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.fast_anim_v1);
+        Random rand = new Random();
+        animation.setDuration(rand.nextInt(2000) + 2000);
+        Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slow_anim_v1);
+        animation1.setDuration(rand.nextInt(2000) + 2000);
+        round_big.startAnimation(animation1);
+        round_small.startAnimation(animation);
+
+        TextView back;
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+            }
+        });
+
         instituteEvent = (instituteEvent) getIntent().getSerializableExtra("instituteEvents");
         setUpUI();
+        TextView abstractTV = findViewById(R.id.abstractIDDetEventsD);
+        abstractTV.setText(instituteEvent.getAbstractIEVE());
         getMovieDetails();
         regDetEventsI.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,36 +68,36 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
                 oprnURLExh(instituteEvent.getRegURLIEVE());
             }
         });
-        absEventI.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                openDialogBox();
-            }
-        });
+//        absEventI.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                openDialogBox();
+//            }
+//        });
 
 
     }
 
-    private void openDialogBox() {
-        alertDialogBuilder = new AlertDialog.Builder(this);
-        View view = getLayoutInflater().inflate(R.layout.abstract_dialog_box, null);
-        abstractDet = view.findViewById(R.id.abstract_dialogText);
-        abstractDet.setText(instituteEvent.getAbstractIEVE());
-        Button submit = view.findViewById(R.id.CloseButton);
-        alertDialogBuilder.setView(view);
-        dialog = alertDialogBuilder.create();
-        dialog.show();
-
-
-        submit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "exit", Toast.LENGTH_SHORT).show();
-
-                dialog.dismiss();
-            }
-        });
-    }
+//    private void openDialogBox() {
+//        alertDialogBuilder = new AlertDialog.Builder(this);
+//        View view = getLayoutInflater().inflate(R.layout.abstract_dialog_box, null);
+//        abstractDet = view.findViewById(R.id.abstract_dialogText);
+//        abstractDet.setText(instituteEvent.getAbstractIEVE());
+//        Button submit = view.findViewById(R.id.CloseButton);
+//        alertDialogBuilder.setView(view);
+//        dialog = alertDialogBuilder.create();
+//        dialog.show();
+//
+//
+//        submit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(getApplicationContext(), "exit", Toast.LENGTH_SHORT).show();
+//
+//                dialog.dismiss();
+//            }
+//        });
+//    }
 
     private void oprnURLExh(String regURL) {
         Intent intent = new Intent(Add_institute_Activity_Detail.this, Web.class);
@@ -85,7 +114,8 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
             venueDetEventsI.setText(instituteEvent.getVenueIEVE());
             dateDetEventsI.setText(instituteEvent.getDateIEVE());
             //  tupeWo.setText(workshopModel.getTypeWor());
-            Picasso.with(getApplicationContext()).load(instituteEvent.getImageIEVE()).placeholder(android.R.drawable.ic_btn_speak_now).into(imgDetEventsI);
+            // Picasso.with(getApplicationContext()).load(instituteEvent.getImageIEVE())
+            // .placeholder(android.R.drawable.ic_btn_speak_now).into(imgDetEventsI);
         }
 
 
@@ -98,7 +128,7 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
         venueDetEventsI = findViewById(R.id.VenueIDDetEventsI);
         dateDetEventsI = findViewById(R.id.DateDetEventsI);
         regDetEventsI = findViewById(R.id.registerDetEventsI);
-        absEventI = findViewById(R.id.abstractIEventsDet);
-        imgDetEventsI = findViewById(R.id.ImgDetEventsI);
+        //  absEventI = findViewById(R.id.abstractIEventsDet);
+        // imgDetEventsI = findViewById(R.id.ImgDetEventsI);
     }
 }
