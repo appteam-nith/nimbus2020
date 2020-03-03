@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -49,7 +50,8 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_I_Events extends AppCompatActivity {
-    private EditText nameAddI, infoAddI, venueAddI, dateAddI, regUrlAddI, pdfAddI, timeAddD;
+    private EditText nameAddI, infoAddI, venueAddI, regUrlAddI, pdfAddI;
+            private TextView dateAddI,timeAddD;
     private CircleImageView imgI;
     private Button addButtonI;
     private RequestQueue requestQueueI;

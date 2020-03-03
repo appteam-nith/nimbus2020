@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -50,8 +51,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Workshop extends AppCompatActivity {
 
-    private EditText nameAddWrk, infoAddWrk, venueAddWrk, dateAddWrk, regUrlAddWrk, typeAddWrk,
-            timeAddD;
+    private EditText nameAddWrk, infoAddWrk, venueAddWrk, regUrlAddWrk, typeAddWrk;
+    private TextView dateAddWrk,timeAddD;
     private CircleImageView imageAddWrk;
     private Button addButtonWork;
     private RequestQueue requestQueueWrk;

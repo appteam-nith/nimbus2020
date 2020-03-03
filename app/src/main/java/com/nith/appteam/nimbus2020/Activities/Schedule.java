@@ -17,9 +17,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.nith.appteam.nimbus2020.Adapters.ScheduleRecyclerViewAdapter;
+import com.nith.appteam.nimbus2020.Models.FormatDate;
 import com.nith.appteam.nimbus2020.Models.ScheduleModel;
 import com.nith.appteam.nimbus2020.R;
 import com.nith.appteam.nimbus2020.Utils.Constant;
+import com.nith.appteam.nimbus2020.Utils.GradientTextView;
 import com.nith.appteam.nimbus2020.Utils.PrefsSchedule;
 
 import org.json.JSONArray;
@@ -38,12 +40,13 @@ public class Schedule extends AppCompatActivity {
     private ProgressBar loadWall;
     private String day;
     private String date;
+    private GradientTextView day_title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule);
-
+        day_title = findViewById(R.id.day_title);
         TextView back;
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -57,12 +60,16 @@ public class Schedule extends AppCompatActivity {
 
 //        scheduleModel = (ScheduleModel) getIntent().getSerializableExtra("Day1");
         day = getIntent().getExtras().getString("Day");
-        if (day.equals("1"))
+        if (day.equals("1")) {
             date = "2020-02-01";
-        else if (day.equals("2"))
+            day_title.setText("Day 1");
+        } else if (day.equals("2")) {
             date = "2020-02-02";
-        else if (day.equals("3"))
+            day_title.setText("Day 2");
+        } else if (day.equals("3")) {
             date = "2020-02-03";
+            day_title.setText("Day 3");
+        }
         loadWall = findViewById(R.id.loadwallSch);
         requestQueueSch = Volley.newRequestQueue(this);
         recyclerViewSch = findViewById(R.id.recyclerViewSchedule);
@@ -102,12 +109,13 @@ public class Schedule extends AppCompatActivity {
 //                        talk.setDate("19 2022002345453453453450 2");
                         String requiredDate = (schObj.getString("time").substring(0, 10));
                         if (requiredDate.equals(date)) {
-                            sch.setNameSch("Name : " + schObj.getString("name"));
-                            sch.setTimeSch("Date : " + schObj.getString("time"));
+                            sch.setNameSch(schObj.getString("name"));
+                            FormatDate date = new FormatDate(schObj.getString("time"));
+                            sch.setTimeSch(date.getFormattedDate());
                             //sch.setS(talkObj.getString("info"));
                             // sch.setRegURL(  talkObj.getString("regUrl"));
-                            sch.setVenueSch("Venue : " + schObj.getString("venue"));
-                            sch.setDeptSch("Department Name : " + schObj.getString("departmentName"));
+                            sch.setVenueSch(schObj.getString("venue"));
+                            sch.setDeptSch(schObj.getString("departmentName"));
                             // Log.d("Talk",talk.getName());
                             scheduleModelList.add(sch);
                         }

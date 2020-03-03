@@ -10,10 +10,12 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
@@ -36,6 +38,8 @@ public class Dashboard extends Fragment {
     private HtmlTextView quote2, event_text, campus_text, developers_text;
     private CardView quiz_card, workshop_card, exhibition_card, talk_card;
     private ImageView t_n, t_k, e_n, e_k;
+    private AlertDialog.Builder alertDialogBuilder;
+    private AlertDialog dialog;
 
     public Dashboard(Activity context) {
         this.context = context;
@@ -150,6 +154,22 @@ public class Dashboard extends Fragment {
             public void onClick(View v) {
                 Intent i = new Intent(getContext(), contributorsActivity.class);
                 startActivity(i);
+            }
+        });
+        quote1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialogBuilder = new AlertDialog.Builder(getContext());
+                View view = getLayoutInflater().inflate(R.layout.dialog_semblance, null);
+                alertDialogBuilder.setView(view);
+                dialog = alertDialogBuilder.create();
+                dialog.show();
+//                view.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        dialog.dismiss();
+//                    }
+//                });
             }
         });
         return rootView;
