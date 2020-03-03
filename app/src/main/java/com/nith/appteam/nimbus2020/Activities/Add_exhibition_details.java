@@ -3,20 +3,23 @@ package com.nith.appteam.nimbus2020.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.nith.appteam.nimbus2020.Models.ExhibitionModel;
 import com.nith.appteam.nimbus2020.R;
-import com.squareup.picasso.Picasso;
+
+import java.util.Random;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class Add_exhibition_details extends AppCompatActivity {
     private ExhibitionModel exhibitionModel;
     private TextView nameDetExh, infoDetExh, venueDetExh, dateDetExh;
-    private Button regDetExh;
+    private CardView regDetExh;
     private ImageView imgDetExh;
 
 
@@ -24,6 +27,31 @@ public class Add_exhibition_details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_exhibition_details);
+
+        ImageView round_big = findViewById(R.id.e_n);
+        ImageView round_small = findViewById(R.id.e_k);
+
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.fast_anim_v1);
+        Random rand = new Random();
+        animation.setDuration(rand.nextInt(2000) + 2000);
+        Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slow_anim_v1);
+        animation1.setDuration(rand.nextInt(2000) + 2000);
+        round_big.startAnimation(animation1);
+        round_small.startAnimation(animation);
+
+        TextView back;
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+            }
+        });
+
         exhibitionModel = (ExhibitionModel) getIntent().getSerializableExtra("exhibition");
         setUpUI();
         getMovieDetails();
@@ -52,7 +80,8 @@ public class Add_exhibition_details extends AppCompatActivity {
             venueDetExh.setText(exhibitionModel.getVenueExh());
             dateDetExh.setText(exhibitionModel.getDateExh());
             //  tupeWo.setText(workshopModel.getTypeWor());
-            Picasso.with(getApplicationContext()).load(exhibitionModel.getImageExh()).placeholder(android.R.drawable.ic_btn_speak_now).into(imgDetExh);
+            // Picasso.with(getApplicationContext()).load(exhibitionModel.getImageExh())
+            // .placeholder(android.R.drawable.ic_btn_speak_now).into(imgDetExh);
         }
 
 
@@ -65,7 +94,7 @@ public class Add_exhibition_details extends AppCompatActivity {
         venueDetExh = findViewById(R.id.VenueIDDetExh);
         dateDetExh = findViewById(R.id.DateDetExh);
         regDetExh = findViewById(R.id.registerDetExh);
-        imgDetExh = findViewById(R.id.ImgDetExh);
+        // imgDetExh = findViewById(R.id.ImgDetExh);
         //tupeWor=findViewById(R.id.workshopTypeIDDet);
     }
 }

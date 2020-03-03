@@ -1,6 +1,8 @@
 package com.nith.appteam.nimbus2020.Adapters;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.nith.appteam.nimbus2020.Activities.Add_talk_details;
 import com.nith.appteam.nimbus2020.Models.TalkModel;
 import com.nith.appteam.nimbus2020.R;
 import com.squareup.picasso.Picasso;
@@ -91,13 +94,13 @@ public class TalkRecyclerViewAdapter extends
 
                 @Override
                 public void onClick(View view) {
-//                    TalkModel talkModel = talksList.get(getAdapterPosition());
-//                    Intent intent = new Intent(context, Add_talk_details.class);
-//                    intent.putExtra("talk", talkModel);
-//                    ctx.startActivity(intent);
-//                    ((Activity)ctx).overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                    TalkModel talkModel = talksList.get(getAdapterPosition());
+                    Intent intent = new Intent(context, Add_talk_details.class);
+                    intent.putExtra("talk", talkModel);
+                    ctx.startActivity(intent);
+                    ((Activity)ctx).overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                     //Display toast until UI is ready
-                    Toast.makeText(ctx, "Coming Soon..", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(ctx, "Coming Soon..", Toast.LENGTH_SHORT).show();
                 }
 
             });

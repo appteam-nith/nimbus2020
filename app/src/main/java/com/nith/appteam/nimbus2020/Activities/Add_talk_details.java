@@ -3,20 +3,23 @@ package com.nith.appteam.nimbus2020.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.nith.appteam.nimbus2020.Models.TalkModel;
 import com.nith.appteam.nimbus2020.R;
-import com.squareup.picasso.Picasso;
+
+import java.util.Random;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class Add_talk_details extends AppCompatActivity {
     private TalkModel talkModel;
     private TextView nameDet, infoDet, venueDet, dateDet;
-    private Button regDet;
+    private CardView regDet;
     private ImageView imgDet;
     private String talkID;
 
@@ -24,6 +27,31 @@ public class Add_talk_details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_talk_details);
+
+        ImageView round_big = findViewById(R.id.e_n);
+        ImageView round_small = findViewById(R.id.e_k);
+
+        Animation animation = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.fast_anim_v1);
+        Random rand = new Random();
+        animation.setDuration(rand.nextInt(2000) + 2000);
+        Animation animation1 = AnimationUtils.loadAnimation(getApplicationContext(),
+                R.anim.slow_anim_v1);
+        animation1.setDuration(rand.nextInt(2000) + 2000);
+        round_big.startAnimation(animation1);
+        round_small.startAnimation(animation);
+
+        TextView back;
+        back = findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+                overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+            }
+        });
+
         talkModel = (TalkModel) getIntent().getSerializableExtra("talk");
 //        talkID=talkModel.getIdTalk();
         setUpUI();
@@ -51,7 +79,8 @@ public class Add_talk_details extends AppCompatActivity {
             infoDet.setText(talkModel.getInfo());
             venueDet.setText(talkModel.getVenue());
             dateDet.setText(talkModel.getDate());
-            Picasso.with(getApplicationContext()).load(talkModel.getImage()).placeholder(android.R.drawable.ic_btn_speak_now).into(imgDet);
+            // Picasso.with(getApplicationContext()).load(talkModel.getImage()).placeholder
+            // (android.R.drawable.ic_btn_speak_now).into(imgDet);
         }
 
 
@@ -64,6 +93,6 @@ public class Add_talk_details extends AppCompatActivity {
         venueDet = findViewById(R.id.speakerVenueIDDet);
         dateDet = findViewById(R.id.SpeakerDateDet);
         regDet = findViewById(R.id.registerDet);
-        imgDet = findViewById(R.id.talk_ImgDet);
+//        imgDet = findViewById(R.id.talk_ImgDet);
     }
 }
