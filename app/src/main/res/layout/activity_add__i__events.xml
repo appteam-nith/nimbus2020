@@ -59,7 +59,7 @@
             android:inputType="text"
             android:padding="20dp" />
 
-        <EditText
+        <TextView
             android:id="@+id/dateAddI"
             android:layout_width="350dp"
             android:layout_height="wrap_content"
@@ -71,7 +71,7 @@
             android:inputType="datetime"
             android:padding="20dp" />
 
-        <EditText
+        <TextView
             android:id="@+id/timeAddD"
             android:layout_width="350dp"
             android:layout_height="wrap_content"

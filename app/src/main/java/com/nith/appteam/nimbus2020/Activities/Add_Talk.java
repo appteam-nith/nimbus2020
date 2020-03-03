@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -49,7 +50,8 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Talk extends AppCompatActivity {
-    private EditText nameAdd, infoAdd, venueAdd, dateAdd, regUrlAdd, timeAddD;
+    private EditText nameAdd, infoAdd, venueAdd, regUrlAdd;
+    private TextView dateAdd, timeAddD;
     private CircleImageView imageAddTalk;
     private Button addButton;
     private RequestQueue requestQueue;

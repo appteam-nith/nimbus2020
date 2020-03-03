@@ -76,8 +76,7 @@ public class TalkRecyclerViewAdapter extends
         public ViewHolder(@NonNull View itemView, final Context ctx) {
             super(itemView);
             context = ctx;
-            round_big = itemView.findViewById(R.id.round_big);
-            round_small = itemView.findViewById(R.id.round_small);
+
             name = itemView.findViewById(R.id.speakerNameID);
             imgSpkr = itemView.findViewById(R.id.speakerImageID);
             venue = itemView.findViewById(R.id.speakerVenueID);
