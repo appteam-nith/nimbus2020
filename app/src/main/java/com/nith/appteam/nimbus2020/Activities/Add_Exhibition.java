@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
@@ -49,8 +50,9 @@ import java.util.Map;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class Add_Exhibition extends AppCompatActivity {
-    private EditText nameAddExh, infoAddExh, venueAddExh, dateAddExh, regUrlAddExh, timeAddD;
+    private EditText nameAddExh, infoAddExh, venueAddExh, regUrlAddExh;
     private CircleImageView imageAddExh;
+    private TextView dateAddExh,timeAddD;
     private Button addButtonExh;
     private RequestQueue requestQueueExh;
     private int PICK_PHOTO_CODE = 100;

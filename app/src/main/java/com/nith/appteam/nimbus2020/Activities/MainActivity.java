@@ -48,7 +48,6 @@ import com.nith.appteam.nimbus2020.Services.GeofenceRegistrationService;
 import com.nith.appteam.nimbus2020.Utils.Constant;
 import com.nith.appteam.nimbus2020.Utils.IResult;
 import com.nith.appteam.nimbus2020.Utils.StartSnapHelper;
-import com.nith.appteam.nimbus2020.Utils.VolleyService;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
@@ -143,12 +142,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mRecyclerView = findViewById(R.id.recyclerView);
         mDiscoverModelList = new ArrayList<>();
 
-        getData();
+//        getData();
 
         mDiscoverAdapter = new DiscoverAdapter(mDiscoverModelList, this);
+        mDiscoverModelList.clear();
+        mDiscoverModelList.add(new DiscoverModel("Day 1", "", " ", ""));
+        mDiscoverModelList.add(new DiscoverModel("Day 2", "", " ", ""));
+        mDiscoverModelList.add(new DiscoverModel("Day 3", "", " ", ""));
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL,
-                false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(mDiscoverAdapter);
         mDiscoverAdapter.notifyDataSetChanged();
@@ -331,16 +333,15 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     }
 
     private void getData() {
-        mDiscoverModelList.clear();
+
         //  loadwall.setVisibility(View.VISIBLE);
-
-        initVolleyCallback();
-
-        final VolleyService mVolleyService = new VolleyService(mResultCallback, this);
-
-        mVolleyService.getJsonArrayDataVolley("GETDISCOVER",
-                getString(R.string.baseUrl) + "/discover");
-
+//
+//        initVolleyCallback();
+//
+//        final VolleyService mVolleyService = new VolleyService(mResultCallback, this);
+//
+//        mVolleyService.getJsonArrayDataVolley("GETDISCOVER",
+//                getString(R.string.baseUrl) + "/discover");
     }
 
     void initVolleyCallback() {
