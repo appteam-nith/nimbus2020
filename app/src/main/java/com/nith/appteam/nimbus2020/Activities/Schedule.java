@@ -62,13 +62,13 @@ public class Schedule extends AppCompatActivity {
         day = getIntent().getExtras().getString("Day");
         if (day.equals("1")) {
             date = "2020-02-01";
-            day_title.setText("Day 1");
+            day_title.setText("D A Y  O N E");
         } else if (day.equals("2")) {
             date = "2020-02-02";
-            day_title.setText("Day 2");
+            day_title.setText("D A Y  T W O");
         } else if (day.equals("3")) {
             date = "2020-02-03";
-            day_title.setText("Day 3");
+            day_title.setText("D A Y  T H R E E");
         }
         loadWall = findViewById(R.id.loadwallSch);
         requestQueueSch = Volley.newRequestQueue(this);

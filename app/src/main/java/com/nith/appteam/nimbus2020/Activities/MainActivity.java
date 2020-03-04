@@ -146,9 +146,9 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
 
         mDiscoverAdapter = new DiscoverAdapter(mDiscoverModelList, this);
         mDiscoverModelList.clear();
-        mDiscoverModelList.add(new DiscoverModel("Day 1", "", " ", ""));
-        mDiscoverModelList.add(new DiscoverModel("Day 2", "", " ", ""));
-        mDiscoverModelList.add(new DiscoverModel("Day 3", "", " ", ""));
+        mDiscoverModelList.add(new DiscoverModel("One", "Day", " ", ""));
+        mDiscoverModelList.add(new DiscoverModel("Two", "Day", " ", ""));
+        mDiscoverModelList.add(new DiscoverModel("Three", "Day", " ", ""));
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         mRecyclerView.setLayoutManager(layoutManager);

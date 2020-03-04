@@ -183,7 +183,7 @@ public class Login extends AppCompatActivity {
                         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(intent);
                         finish();
-                        overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+//                        overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -237,7 +237,7 @@ public class Login extends AppCompatActivity {
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                     startActivity(intent);
                     finish();
-                    overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
+//                    overridePendingTransition(R.anim.ease_in, R.anim.ease_out);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

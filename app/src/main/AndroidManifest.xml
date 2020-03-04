@@ -82,7 +82,8 @@
         <activity
             android:name=".Activities.MainActivity"
             android:launchMode="singleTop"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme">
+        </activity>
         <activity android:name=".Activities.Quiz" />
         <activity android:name=".Activities.DepartmentQuiz" />
         <activity android:name=".Activities.QuizMainActivity" />

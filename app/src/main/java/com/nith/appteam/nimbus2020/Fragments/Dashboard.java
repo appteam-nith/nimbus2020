@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.nith.appteam.nimbus2020.Activities.CampusAmbassador;
 import com.nith.appteam.nimbus2020.Activities.Event_Choose;
 import com.nith.appteam.nimbus2020.Activities.Exhhibition;
@@ -84,15 +85,16 @@ public class Dashboard extends Fragment {
                 "<p>\"HOW YOU <font color=\"#2fc0d1\">CODIN'</font> \uD83D\uDCBB ?!\" "
                         + "<small><i><font color=\"#888888\"> ~ <strike>JOEY</strike> "
                         + "NIMBUS</font></i></small></p>");
+
         developers_text.setHtml("<p>\"MEET THE<font color=\"#2fc0d1\"> DEVELOPERS</font> \uD83D\uDCBB\"</p>");
 
         campus_text.setHtml(
-                "<p>\"ARE YOU A <font color=\"#2fc0d1\">CAMPUS AMBASSADOR</font> \uD83D\uDEA9"
-                        + " ?\"</p>");
+                "<p>\"LOOK AT OUR <font color=\"#2fc0d1\">CAMPUS AMBASSADORS</font> \uD83D\uDEA9"
+                        + "\"</p>");
 
 
         event_text.setHtml(
-                "<p>\"SNEAK PEAK \uD83D\uDD76 OUR <font color=\"#2fc0d1\">EVENTS</font> "
+                "<p>\"TAP TO EXPLORE \uD83D\uDD76 OUR <font color=\"#2fc0d1\">EVENTS</font> "
                         + "!\"</p>");
 
 
@@ -163,13 +165,10 @@ public class Dashboard extends Fragment {
                 View view = getLayoutInflater().inflate(R.layout.dialog_semblance, null);
                 alertDialogBuilder.setView(view);
                 dialog = alertDialogBuilder.create();
+                dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
                 dialog.show();
-//                view.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.dismiss();
-//                    }
-//                });
+                ImageView im = dialog.findViewById(R.id.imageView);
+                Glide.with(context).load(R.drawable.ironman).into(im);
             }
         });
         return rootView;

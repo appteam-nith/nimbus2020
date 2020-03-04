@@ -16,6 +16,8 @@
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="YOU SCORED"
+            android:textColor="@color/black"
+            android:fontFamily="@font/psb"
             android:textSize="35sp" />
 
         <TextView
@@ -26,6 +28,8 @@
             android:layout_centerHorizontal="true"
             android:layout_margin="10dp"
             android:text="0"
+            android:textColor="@color/colorPrimary"
+            android:fontFamily="@font/psb"
             android:textSize="55sp" />
 
         <TextView
@@ -67,12 +71,17 @@
 
             <Button
                 android:id="@+id/quiz_home_link"
-                android:layout_width="230dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:padding="28dp"
-                android:text="BACK TO HOME"
-                android:textSize="16sp" />
+                android:layout_marginLeft="12dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="12dp"
+                android:background="@drawable/black_round_corner"
+                android:padding="24dp"
+                android:text="Back to Home"
+                android:textAllCaps="true"
+                android:textColor="@color/white"
+                android:textSize="17sp" />
 
         </LinearLayout>
 
