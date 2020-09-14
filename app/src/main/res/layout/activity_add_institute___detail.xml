@@ -145,6 +145,12 @@
     android:background="@color/background"
     android:orientation="vertical">
 
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -296,20 +302,60 @@
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
-                    <TextView
+<!--                    <TextView-->
+<!--                        android:id="@+id/abstractIDDetEventsD"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_below="@+id/InfoIDDetEventsI"-->
+<!--                        android:layout_centerHorizontal="true"-->
+<!--                        android:layout_marginStart="32dp"-->
+<!--                        android:layout_marginTop="16dp"-->
+<!--                        android:layout_marginEnd="32dp"-->
+<!--                        android:fontFamily="@font/psregular"-->
+<!--                        android:text="abstract"-->
+<!--                        android:textAllCaps="true"-->
+<!--                        android:textColor="@color/black"-->
+<!--                        android:textSize="20sp" />-->
+
+
+                    <androidx.cardview.widget.CardView
                         android:id="@+id/abstractIDDetEventsD"
-                        android:layout_width="wrap_content"
+                        android:layout_width="200dp"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/InfoIDDetEventsI"
                         android:layout_centerHorizontal="true"
-                        android:layout_marginStart="32dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="32dp"
-                        android:fontFamily="@font/psregular"
-                        android:text="abstract"
-                        android:textAllCaps="true"
-                        android:textColor="@color/black"
-                        android:textSize="20sp" />
+                        android:layout_margin="16dp"
+                        android:layout_weight="1"
+                        app:cardBackgroundColor="@color/background"
+                        app:cardCornerRadius="@dimen/cardCornerRadius"
+                        app:cardElevation="0dp"
+                        app:cardPreventCornerOverlap="true">
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <com.nith.appteam.nimbus2020.Utils.GradientTextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:layout_margin="16dp"
+                                android:autoSizeMaxTextSize="20sp"
+                                android:autoSizeMinTextSize="10sp"
+                                android:autoSizeTextType="uniform"
+                                android:fontFamily="@font/psb"
+                                android:gravity="center_horizontal"
+                                android:maxLines="1"
+                                android:paddingTop="8dp"
+                                android:paddingBottom="8dp"
+                                android:text="Abstract"
+                                android:textAllCaps="true"
+                                android:textColor="@android:color/white"
+                                android:textSize="20sp"
+                                app:autoSizeStepGranularity="1sp" />
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/registerDetEventsI"

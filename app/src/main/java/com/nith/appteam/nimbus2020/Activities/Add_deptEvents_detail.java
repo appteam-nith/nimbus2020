@@ -1,11 +1,15 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,11 +31,15 @@ public class Add_deptEvents_detail extends AppCompatActivity {
     private AlertDialog dialog;
     private TextView abstractDet;
     private WebView webView;
+    private String myPdfUrl;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_dept_events_detail);
+
+        webView = findViewById(R.id.webView);
 
         ImageView round_big = findViewById(R.id.e_n);
         ImageView round_small = findViewById(R.id.e_k);
@@ -47,8 +55,6 @@ public class Add_deptEvents_detail extends AppCompatActivity {
         round_small.startAnimation(animation);
 
 
-
-
         TextView back;
         back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -62,8 +68,46 @@ public class Add_deptEvents_detail extends AppCompatActivity {
 
         dept = (departmentEvent) getIntent().getSerializableExtra("departmentEvents");
         setUpUI();
-        TextView abstractTV=findViewById(R.id.abstractIDDetEventsD);
-        abstractTV.setText(dept.getAbstractDEVE());
+
+
+        myPdfUrl = dept.getAbstractDEVE();
+
+        Log.e("before", dept.getAbstractDEVE());
+
+        if (myPdfUrl != null && !myPdfUrl.isEmpty()) {
+            String substr = myPdfUrl.substring(myPdfUrl.length() - 4);
+            if (!substr.equals("view")) myPdfUrl = myPdfUrl + "/view";
+
+            Log.e("after", myPdfUrl);
+        }
+
+        CardView abstractButton = findViewById(R.id.abstractIDDetEventsD);
+        abstractButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+                    webView.setVisibility(View.VISIBLE);
+
+                    webView.getSettings().setJavaScriptEnabled(true);
+                    webView.setWebViewClient(new WebViewClient() {
+                        @Override
+                        public boolean shouldOverrideUrlLoading(WebView view,
+                                WebResourceRequest request) {
+                            view.loadUrl(myPdfUrl);
+                            return true;
+                        }
+                    });
+                    webView.loadUrl(myPdfUrl);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+        // abstractTV.setText(dept.getAbstractDEVE());
         getMovDetails();
         regDetEventsD.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +163,8 @@ public class Add_deptEvents_detail extends AppCompatActivity {
             venueDetEventsD.setText(dept.getVenueDEVE());
             dateDetEventsD.setText(dept.getDateDEVE());
             //  typeWo.setText(workshopModel.getTypeWor());
-           // Picasso.with(getApplicationContext()).load(dept.getImageDEVE()).placeholder(android.R.drawable.ic_btn_speak_now).into(imgDetEventsD);
+            // Picasso.with(getApplicationContext()).load(dept.getImageDEVE()).placeholder
+            // (android.R.drawable.ic_btn_speak_now).into(imgDetEventsD);
         }
 
 
@@ -133,8 +178,14 @@ public class Add_deptEvents_detail extends AppCompatActivity {
         dateDetEventsD = findViewById(R.id.DateDetEventsD);
         regDetEventsD = findViewById(R.id.registerDetEventsD);
         //absEventD = findViewById(R.id.abstractDEventsDet);
-       // imgDetEventsD = findViewById(R.id.ImgDetEventsD);
+        // imgDetEventsD = findViewById(R.id.ImgDetEventsD);
 
         //tupeWor=findViewById(R.id.workshopTypeIDDet);
+    }
+
+    @Override
+    public void onBackPressed() {
+        webView.setVisibility(View.GONE);
+        super.onBackPressed();
     }
 }

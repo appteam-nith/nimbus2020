@@ -1,11 +1,15 @@
 package com.nith.appteam.nimbus2020.Activities;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,11 +31,15 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
     private AlertDialog dialog;
     private TextView abstractDet;
     private WebView webView;
+    private String myPdfUrl;
 
+    @SuppressLint("SetJavaScriptEnabled")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_institute___detail);
+
+        webView=findViewById(R.id.webView);
 
         ImageView round_big = findViewById(R.id.e_n);
         ImageView round_small = findViewById(R.id.e_k);
@@ -59,8 +67,8 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
 
         instituteEvent = (instituteEvent) getIntent().getSerializableExtra("instituteEvents");
         setUpUI();
-        TextView abstractTV = findViewById(R.id.abstractIDDetEventsD);
-        abstractTV.setText(instituteEvent.getAbstractIEVE());
+        //TextView abstractTV = findViewById(R.id.abstractIDDetEventsD);
+        //abstractTV.setText(instituteEvent.getAbstractIEVE());
         getMovieDetails();
         regDetEventsI.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,6 +76,45 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
                 oprnURLExh(instituteEvent.getRegURLIEVE());
             }
         });
+
+        myPdfUrl = instituteEvent.getAbstractIEVE();
+
+        Log.e("before", instituteEvent.getAbstractIEVE());
+
+        if (myPdfUrl != null && !myPdfUrl.isEmpty()) {
+            String substr = myPdfUrl.substring(myPdfUrl.length() - 4);
+            if (!substr.equals("view")) myPdfUrl = myPdfUrl + "/view";
+
+            Log.e("after", myPdfUrl);
+        }
+
+        CardView abstractButton = findViewById(R.id.abstractIDDetEventsD);
+        abstractButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                try {
+                    webView.setVisibility(View.VISIBLE);
+
+                    webView.getSettings().setJavaScriptEnabled(true);
+                    webView.setWebViewClient(new WebViewClient() {
+                        @Override
+                        public boolean shouldOverrideUrlLoading(WebView view,
+                                WebResourceRequest request) {
+                            view.loadUrl(myPdfUrl);
+                            return true;
+                        }
+                    });
+                    webView.loadUrl(myPdfUrl);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        });
+
 //        absEventI.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
@@ -130,5 +177,11 @@ public class Add_institute_Activity_Detail extends AppCompatActivity {
         regDetEventsI = findViewById(R.id.registerDetEventsI);
         //  absEventI = findViewById(R.id.abstractIEventsDet);
         // imgDetEventsI = findViewById(R.id.ImgDetEventsI);
+    }
+
+    @Override
+    public void onBackPressed() {
+        webView.setVisibility(View.GONE);
+        super.onBackPressed();
     }
 }
